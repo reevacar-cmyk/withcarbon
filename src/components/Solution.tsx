@@ -227,6 +227,19 @@ const Solution = () => {
     }
   };
 
+  const getVisualForIndex = (index: number) => {
+    switch (index) {
+      case 0:
+        return <UnifiedVisual />;
+      case 1:
+        return <VisibilityVisual />;
+      case 2:
+        return <AbstractGraphic variant="solution" />;
+      default:
+        return <UnifiedVisual />;
+    }
+  };
+
   return (
     <section id="solution" className="py-16 md:py-32 px-3 md:px-8 lg:px-16">
       <div className="container mx-auto">
@@ -239,7 +252,59 @@ const Solution = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        {/* Mobile layout */}
+        <div className="md:hidden">
+          {/* Number toggles */}
+          <div className="flex gap-2 mb-6">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleManualSelect(index)}
+                className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  activeIndex === index 
+                    ? 'bg-accent/20 text-accent border border-accent/30' 
+                    : 'bg-muted text-muted-foreground border border-border/50'
+                }`}
+              >
+                <span className="text-sm font-bold">{index + 1}</span>
+                {activeIndex === index && (
+                  <svg className="absolute inset-0 w-full h-full -rotate-90">
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="18"
+                      fill="none"
+                      stroke="hsl(var(--accent))"
+                      strokeWidth="2"
+                      strokeDasharray={`${(progress / 100) * 113} 113`}
+                      className="transition-all duration-75 ease-linear"
+                    />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+          
+          {/* Feature content with visual */}
+          <div className="space-y-4">
+            <div className="fade-in">
+              <h3 className="text-lg font-medium mb-1 text-foreground">
+                {features[activeIndex].title}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {features[activeIndex].description}
+              </p>
+            </div>
+            
+            {/* Visual */}
+            <div className="h-[320px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden">
+              {getVisualForIndex(activeIndex)}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop layout */}
+        <div className="hidden md:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Feature toggles */}
           <div className="space-y-4 flex flex-col justify-center">
             {features.map((feature, index) => (
@@ -286,7 +351,7 @@ const Solution = () => {
           </div>
           
           {/* Dynamic visual */}
-          <div className="h-[380px] md:h-[480px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3 order-first lg:order-last">
+          <div className="h-[480px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3">
             {renderVisual()}
           </div>
         </div>
