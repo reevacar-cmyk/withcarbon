@@ -422,9 +422,9 @@ const ValueProps = () => {
       <div className="container mx-auto">
         {/* Mobile-only intro */}
         <div className="md:hidden pt-0 mb-10 text-center space-y-2">
-          <span className="text-xs uppercase tracking-widest text-accent">What you get</span>
+          <span className="text-xs uppercase tracking-widest text-accent">What is Carbon?</span>
           <h2 className="text-4xl font-bold tracking-tight text-white leading-[1.1]">
-            Focus on detailing.<br/>Carbon handles the rest.
+            One system for communication, scheduling, and follow-ups.
           </h2>
         </div>
 
