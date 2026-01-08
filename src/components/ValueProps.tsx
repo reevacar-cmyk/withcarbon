@@ -415,10 +415,13 @@ const ValueProps = () => {
     <section className="pt-8 pb-16 md:py-24 px-[3px] md:px-8 lg:px-16">
       <div className="container mx-auto">
         {/* Mobile-only intro */}
-        <div className="md:hidden mb-10 text-center">
+        <div className="md:hidden mb-10 text-center space-y-2">
           <h2 className="text-3xl font-bold text-foreground tracking-tight">
             Carbon AI
           </h2>
+          <p className="text-sm text-muted-foreground">
+            AI-native customer and operations platform
+          </p>
         </div>
         
         <div className="space-y-16 lg:space-y-24">

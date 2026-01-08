@@ -32,7 +32,7 @@ const ProblemStatement = () => {
   const red = "#FF0000";
 
   return (
-    <section className="pt-4 pb-16 px-[3px] md:px-12 lg:px-24 relative">
+    <section className="pt-12 md:pt-4 pb-16 px-[3px] md:px-12 lg:px-24 relative">
       <div className="container mx-auto max-w-5xl">
         {/* Centered header */}
         <div className="text-center mb-20">
