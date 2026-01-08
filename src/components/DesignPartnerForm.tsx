@@ -62,27 +62,27 @@ const DesignPartnerForm = () => {
   };
 
   return (
-    <section id="partner-form" className="py-32 px-6 md:px-12 lg:px-24">
+    <section id="partner-form" className="py-16 md:py-32 px-4 md:px-12 lg:px-24">
       <div className="container mx-auto max-w-xl">
-        <div className="text-center space-y-6 mb-12 fade-in">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
+        <div className="text-center space-y-4 md:space-y-6 mb-8 md:mb-12 fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
             Become a design partner
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             Only accepting 100 more teams
           </p>
         </div>
 
-        <div className="space-y-4 mb-12 fade-in fade-in-delay-1">
-          <div className="flex items-center gap-3 text-muted-foreground">
+        <div className="space-y-3 md:space-y-4 mb-8 md:mb-12 fade-in fade-in-delay-1">
+          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
             <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
             Early access to features
           </div>
-          <div className="flex items-center gap-3 text-muted-foreground">
+          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
             <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
             Influence the product direction
           </div>
-          <div className="flex items-center gap-3 text-muted-foreground">
+          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
             <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
             Lifetime discounts before full launch
           </div>
