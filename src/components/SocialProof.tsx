@@ -2,11 +2,12 @@ import { MapPin } from "lucide-react";
 
 const SocialProof = () => {
   // University logos as styled text badges (abstract representation)
+  // Mobile: light mode friendly colors, Desktop: dark mode colors
   const universities = [
-    { name: "Cornell", color: "bg-red-900/20 text-red-400/80 border-red-900/30" },
-    { name: "MIT", color: "bg-zinc-700/30 text-zinc-300 border-zinc-600/30" },
-    { name: "Boston College", color: "bg-amber-900/20 text-amber-500/80 border-amber-900/30" },
-    { name: "Northeastern", color: "bg-red-950/20 text-red-500/70 border-red-950/30" },
+    { name: "Cornell", mobileColor: "bg-red-100 text-red-700 border-red-200", desktopColor: "md:bg-red-900/20 md:text-red-400/80 md:border-red-900/30" },
+    { name: "MIT", mobileColor: "bg-zinc-200 text-zinc-700 border-zinc-300", desktopColor: "md:bg-zinc-700/30 md:text-zinc-300 md:border-zinc-600/30" },
+    { name: "Boston College", mobileColor: "bg-amber-100 text-amber-700 border-amber-200", desktopColor: "md:bg-amber-900/20 md:text-amber-500/80 md:border-amber-900/30" },
+    { name: "Northeastern", mobileColor: "bg-red-100 text-red-600 border-red-200", desktopColor: "md:bg-red-950/20 md:text-red-500/70 md:border-red-950/30" },
   ];
 
   const stats = [
@@ -32,7 +33,7 @@ const SocialProof = () => {
           {universities.map((uni, index) => (
             <div
               key={index}
-              className={`px-2.5 md:px-5 py-1.5 md:py-2.5 rounded-full border ${uni.color} font-mono text-[10px] md:text-sm tracking-wide`}
+              className={`px-2.5 md:px-5 py-1.5 md:py-2.5 rounded-full border ${uni.mobileColor} ${uni.desktopColor} font-mono text-[10px] md:text-sm tracking-wide`}
             >
               {uni.name}
             </div>
