@@ -135,58 +135,102 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
 
   // Solution variant - A/B testing visualization
   return (
-    <div className={cn("relative w-full aspect-[4/3] bg-card rounded-lg overflow-hidden", className)}>
-      <div className="absolute inset-6 space-y-4">
+    <div className={cn("relative w-full h-full bg-card rounded-lg overflow-hidden", className)}>
+      <div className="absolute inset-5 flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span className="text-xs text-muted-foreground font-mono">AI Message Testing</span>
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">AI Learning</span>
           </div>
-          <div className="text-xs text-muted-foreground font-mono">Live</div>
+          <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Auto-optimizing</span>
         </div>
 
         {/* A/B Test cards */}
-        <div className="grid grid-cols-2 gap-4 pt-2">
-          <div className="p-3 bg-muted/30 rounded border border-border">
-            <div className="text-xs text-muted-foreground mb-2">Variant A</div>
-            <div className="space-y-1">
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="p-3 bg-muted/30 rounded-xl border border-border/50">
+            <div className="text-[10px] text-muted-foreground mb-2 uppercase tracking-wider">Variant A</div>
+            <div className="space-y-1.5 mb-3">
               <div className="h-2 w-full bg-muted/50 rounded-full" />
               <div className="h-2 w-3/4 bg-muted/50 rounded-full" />
             </div>
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">42%</span>
-              <div className="w-16 h-1 bg-muted rounded-full overflow-hidden">
-                <div className="w-[42%] h-full bg-muted-foreground" />
-              </div>
+            <div className="text-2xl font-bold text-muted-foreground mb-1">42%</div>
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+              <div className="w-[42%] h-full bg-muted-foreground/50" />
             </div>
           </div>
-          <div className="p-3 bg-accent/10 rounded border border-accent/30">
-            <div className="text-xs text-accent mb-2">Variant B — Winner</div>
-            <div className="space-y-1">
+          <div className="p-3 bg-accent/10 rounded-xl border border-accent/30">
+            <div className="text-[10px] text-accent mb-2 uppercase tracking-wider flex items-center gap-1">
+              Variant B <span className="text-accent">✓</span>
+            </div>
+            <div className="space-y-1.5 mb-3">
               <div className="h-2 w-full bg-accent/30 rounded-full" />
               <div className="h-2 w-2/3 bg-accent/30 rounded-full" />
             </div>
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-xs text-accent">58%</span>
-              <div className="w-16 h-1 bg-muted rounded-full overflow-hidden">
-                <div className="w-[58%] h-full bg-accent" />
-              </div>
+            <div className="text-2xl font-bold text-accent mb-1">58%</div>
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+              <div className="w-[58%] h-full bg-accent" />
             </div>
           </div>
         </div>
 
-        {/* Timeline */}
-        <div className="pt-4">
-          <div className="text-xs text-muted-foreground mb-2">Response Rate Over Time</div>
-          <div className="h-20 flex items-end gap-1">
-            {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 58].map((h, i) => (
+        {/* What AI learned */}
+        <div className="bg-card/80 border border-border/50 rounded-xl p-3 mb-4">
+          <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">What AI learned</div>
+          <div className="space-y-2">
+            {[
+              { insight: "Mentioning vehicle model increases response by 23%", status: "Applied" },
+              { insight: "Messages sent at 10am outperform 2pm by 18%", status: "Applied" },
+              { insight: "Follow-up on day 3 beats day 7", status: "Testing" }
+            ].map((item, i) => (
+              <div key={i} className="flex items-center justify-between text-[10px]">
+                <span className="text-foreground/80">{item.insight}</span>
+                <span className={`px-1.5 py-0.5 rounded text-[9px] ${
+                  item.status === 'Applied' 
+                    ? 'bg-accent/20 text-accent' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {item.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Response rate chart */}
+        <div className="flex-1 flex flex-col">
+          <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Response Rate Trend</div>
+          <div className="flex-1 flex items-end gap-1 min-h-[60px]">
+            {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 65].map((h, i) => (
               <div 
                 key={i}
-                className="flex-1 bg-accent/40 rounded-t"
+                className={`flex-1 rounded-t transition-all ${i >= 10 ? 'bg-accent' : 'bg-accent/40'}`}
                 style={{ height: `${h}%` }}
               />
             ))}
+          </div>
+          <div className="flex items-center justify-between mt-2 text-[9px] text-muted-foreground">
+            <span>Week 1</span>
+            <span>Now</span>
+          </div>
+        </div>
+
+        {/* Footer stats */}
+        <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-lg font-bold text-accent">+16%</div>
+              <div className="text-[9px] text-muted-foreground">Improvement</div>
+            </div>
+            <div className="w-px h-8 bg-border/50" />
+            <div className="text-center">
+              <div className="text-lg font-bold text-foreground">847</div>
+              <div className="text-[9px] text-muted-foreground">Tests run</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">Learning</span>
           </div>
         </div>
       </div>
