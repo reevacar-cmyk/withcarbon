@@ -268,7 +268,7 @@ const Solution = () => {
               >
                 <span className="text-sm font-bold">{index + 1}</span>
                 {activeIndex === index && (
-                  <svg className="absolute inset-0 w-full h-full -rotate-90">
+                  <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 40 40">
                     <circle
                       cx="20"
                       cy="20"
