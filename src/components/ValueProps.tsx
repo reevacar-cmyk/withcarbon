@@ -417,7 +417,7 @@ const ValueProps = () => {
         {/* Mobile-only intro */}
         <div className="md:hidden pt-8 mb-10 text-center space-y-2">
           <span className="text-xs uppercase tracking-widest text-white/50">Introducing</span>
-          <h2 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-white to-black bg-clip-text text-transparent">
+          <h2 className="text-6xl font-bold tracking-tight bg-gradient-to-b from-white to-black bg-clip-text text-transparent">
             Carbon AI
           </h2>
           <p className="text-sm text-white/70 md:text-muted-foreground">
