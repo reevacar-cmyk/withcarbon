@@ -14,7 +14,7 @@ const Hero = () => {
   };
   
   return (
-    <section className="min-h-screen pb-16 px-6 md:px-12 lg:px-4 pt-28 md:pt-32 relative overflow-hidden">
+    <section className="min-h-screen pb-8 px-6 md:px-12 lg:px-4 pt-28 md:pt-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background pointer-events-none" />
       
