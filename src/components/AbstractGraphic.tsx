@@ -214,25 +214,6 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
             <span>Now</span>
           </div>
         </div>
-
-        {/* Footer stats */}
-        <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-lg font-bold text-accent">+16%</div>
-              <div className="text-[9px] text-muted-foreground">Improvement</div>
-            </div>
-            <div className="w-px h-8 bg-border/50" />
-            <div className="text-center">
-              <div className="text-lg font-bold text-foreground">847</div>
-              <div className="text-[9px] text-muted-foreground">Tests run</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] text-accent font-medium">Learning</span>
-          </div>
-        </div>
       </div>
     </div>
   );
