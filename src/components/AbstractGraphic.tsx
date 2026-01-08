@@ -8,7 +8,7 @@ interface AbstractGraphicProps {
 const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) => {
   if (variant === "hero") {
     return (
-      <div className={cn("relative w-full aspect-[4/3] bg-card/80 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
+      <div className={cn("relative w-full aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] bg-card/80 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-12 grid-rows-8 h-full w-full gap-px">
@@ -19,7 +19,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
         </div>
         
         {/* Main content area */}
-        <div className="absolute inset-5 bottom-20 space-y-4 overflow-hidden">
+        <div className="absolute inset-5 bottom-24 space-y-4 overflow-hidden">
           {/* Top bar - simulating app header */}
           <div className="flex items-center justify-between pb-3 border-b border-border/30">
             <div className="flex items-center gap-2">
