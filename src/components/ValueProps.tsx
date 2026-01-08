@@ -1,4 +1,4 @@
-import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw } from "lucide-react";
+import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database } from "lucide-react";
 
 const ValueProps = () => {
   const values = [
@@ -23,46 +23,134 @@ const ValueProps = () => {
   ];
 
   const BookingVisual = () => (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Incoming calls visualization */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 space-y-3">
-        {[1, 2, 3].map((i) => (
+    <div className="relative w-full h-full flex flex-col p-5">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4 fade-in">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">Live Leads</span>
+        </div>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">24/7 Active</span>
+      </div>
+      
+      {/* Lead cards */}
+      <div className="flex-1 space-y-3 overflow-hidden">
+        {[
+          { 
+            name: "New Lead",
+            phone: "(555) 123-4567",
+            source: "Missed call",
+            time: "Just now",
+            aiAction: "Answered & qualified",
+            request: "Full detail for BMW X5",
+            outcome: "Booked",
+            slot: "Tomorrow 10am",
+            value: "$220",
+            crmStatus: "Synced"
+          },
+          { 
+            name: "Maria G.",
+            phone: "(555) 987-6543",
+            source: "Text message",
+            time: "2 min ago",
+            aiAction: "Sent quote",
+            request: "Ceramic coating estimate",
+            outcome: "Quote sent",
+            slot: null,
+            value: "$450",
+            crmStatus: "Synced"
+          },
+          { 
+            name: "David L.",
+            phone: "(555) 456-7890",
+            source: "Website form",
+            time: "5 min ago",
+            aiAction: "Auto-responded",
+            request: "Interior + exterior",
+            outcome: "Booked",
+            slot: "Friday 2pm",
+            value: "$180",
+            crmStatus: "Synced"
+          }
+        ].map((lead, i) => (
           <div 
             key={i} 
-            className="flex items-center gap-2 px-3 py-2 bg-muted/50 border border-border/50 rounded-lg fade-in"
+            className="bg-card/80 border border-border/50 rounded-xl p-3 fade-in hover:border-accent/30 transition-colors"
             style={{ animationDelay: `${i * 0.15}s` }}
           >
-            <Phone className="w-4 h-4 text-accent" />
-            <span className="text-xs text-muted-foreground">Incoming</span>
+            {/* Lead header */}
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center">
+                  <PhoneIncoming className="w-3.5 h-3.5 text-accent" />
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-foreground">{lead.name}</div>
+                  <div className="text-[10px] text-muted-foreground">{lead.source} · {lead.time}</div>
+                </div>
+              </div>
+              <div className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                lead.outcome === 'Booked' 
+                  ? 'bg-accent/20 text-accent' 
+                  : 'bg-muted text-muted-foreground'
+              }`}>
+                {lead.outcome}
+              </div>
+            </div>
+            
+            {/* Request */}
+            <div className="bg-muted/30 rounded-lg px-2 py-1.5 mb-2">
+              <p className="text-[11px] text-foreground">"{lead.request}"</p>
+            </div>
+            
+            {/* AI action + result row */}
+            <div className="flex items-center justify-between text-[10px]">
+              <div className="flex items-center gap-1 text-accent">
+                <CheckCircle className="w-3 h-3" />
+                <span>{lead.aiAction}</span>
+              </div>
+              {lead.slot && (
+                <div className="flex items-center gap-1 text-foreground">
+                  <Calendar className="w-3 h-3 text-accent/70" />
+                  <span>{lead.slot}</span>
+                </div>
+              )}
+            </div>
+            
+            {/* Bottom row - value + CRM sync */}
+            <div className="mt-2 pt-2 border-t border-border/30 flex items-center justify-between">
+              <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                <Database className="w-3 h-3 text-accent/70" />
+                <span>{lead.crmStatus}</span>
+              </div>
+              <span className="text-xs font-bold text-accent">{lead.value}</span>
+            </div>
           </div>
         ))}
       </div>
       
-      {/* Arrow flow */}
-      <div className="flex items-center gap-2 mx-8">
-        <ArrowRight className="w-5 h-5 text-accent/50" />
-        <div className="w-16 h-px bg-gradient-to-r from-accent/50 to-accent" />
-        <ArrowRight className="w-5 h-5 text-accent" />
-      </div>
-      
-      {/* Booked jobs */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 space-y-2">
-        {["9:00 AM", "11:30 AM", "2:00 PM"].map((time, i) => (
-          <div 
-            key={i} 
-            className="flex items-center gap-2 px-3 py-2 bg-accent/10 border border-accent/30 rounded-lg fade-in"
-            style={{ animationDelay: `${0.5 + i * 0.15}s` }}
-          >
-            <Calendar className="w-4 h-4 text-accent" />
-            <span className="text-xs text-foreground font-medium">{time}</span>
+      {/* Summary stats */}
+      <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-bold text-accent">$850</div>
+            <div className="text-[9px] text-muted-foreground">Today</div>
           </div>
-        ))}
-      </div>
-      
-      {/* Conversion indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-full">
-        <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-        <span className="text-xs text-accent font-medium">24/7 Active</span>
+          <div className="w-px h-8 bg-border/50" />
+          <div className="text-center">
+            <div className="text-lg font-bold text-foreground">100%</div>
+            <div className="text-[9px] text-muted-foreground">Answered</div>
+          </div>
+          <div className="w-px h-8 bg-border/50" />
+          <div className="text-center">
+            <div className="text-lg font-bold text-foreground">3/3</div>
+            <div className="text-[9px] text-muted-foreground">CRM synced</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">AI Active</span>
+        </div>
       </div>
     </div>
   );
