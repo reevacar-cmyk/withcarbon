@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight } from "lucide-react";
+import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw } from "lucide-react";
 
 const ValueProps = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -7,21 +7,27 @@ const ValueProps = () => {
   const values = [
     {
       metric: "40%",
+      label: "Bookings",
       title: "Increase booking rate",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
-      visual: "booking"
+      visual: "booking",
+      icon: Calendar
     },
     {
       metric: "30%",
+      label: "Retention",
       title: "Bring back more customers",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
-      visual: "retention"
+      visual: "retention",
+      icon: RotateCcw
     },
     {
       metric: "~4hrs",
+      label: "Time Saved",
       title: "Save every week",
       description: "Every call, text, lead, and job auto-logs into your calendar and CRM — whether AI or a human answered.",
-      visual: "automation"
+      visual: "automation",
+      icon: Clock
     }
   ];
 
@@ -71,35 +77,75 @@ const ValueProps = () => {
   );
 
   const RetentionVisual = () => (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Customer profiles */}
-      <div className="grid grid-cols-2 gap-3 max-w-xs">
-        {[
-          { name: "John D.", vehicle: "Honda Accord", days: "30 days ago" },
-          { name: "Sarah M.", vehicle: "Toyota Camry", days: "45 days ago" },
-          { name: "Mike R.", vehicle: "Ford F-150", days: "60 days ago" },
-          { name: "Lisa K.", vehicle: "Chevy Malibu", days: "90 days ago" }
-        ].map((customer, i) => (
-          <div 
-            key={i} 
-            className="p-3 bg-muted/30 border border-border/50 rounded-lg fade-in group hover:border-accent/30 transition-colors"
-            style={{ animationDelay: `${i * 0.1}s` }}
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <Users className="w-4 h-4 text-accent/70" />
-              <span className="text-xs font-medium text-foreground">{customer.name}</span>
-            </div>
-            <p className="text-[10px] text-muted-foreground">{customer.vehicle}</p>
-            <p className="text-[10px] text-accent/70">{customer.days}</p>
+    <div className="relative w-full h-full flex items-center justify-center p-6">
+      {/* Customer journey timeline */}
+      <div className="w-full max-w-md">
+        {/* Timeline header */}
+        <div className="flex items-center justify-between mb-6 fade-in">
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">Customer Timeline</span>
+          <span className="text-xs text-accent">Auto-triggered</span>
+        </div>
+        
+        {/* Timeline with customers */}
+        <div className="relative">
+          {/* Vertical timeline line */}
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-accent/50 to-border" />
+          
+          {/* Timeline events */}
+          <div className="space-y-4">
+            {[
+              { name: "John D.", action: "Service completed", time: "30 days ago", status: "followup", message: "Time for your next oil change?" },
+              { name: "Sarah M.", action: "Estimate sent", time: "7 days ago", status: "reminder", message: "Ready to schedule your brake service?" },
+              { name: "Mike R.", action: "Missed call", time: "2 days ago", status: "urgent", message: "We tried reaching you about your appointment" }
+            ].map((event, i) => (
+              <div 
+                key={i} 
+                className="relative pl-14 fade-in"
+                style={{ animationDelay: `${i * 0.15}s` }}
+              >
+                {/* Timeline dot */}
+                <div className={`absolute left-4 top-3 w-4 h-4 rounded-full border-2 ${
+                  event.status === 'urgent' ? 'bg-accent border-accent' : 
+                  event.status === 'followup' ? 'bg-accent/20 border-accent' : 
+                  'bg-muted border-border'
+                }`}>
+                  {event.status === 'urgent' && (
+                    <Bell className="w-2 h-2 text-accent-foreground absolute top-0.5 left-0.5" />
+                  )}
+                </div>
+                
+                {/* Event card */}
+                <div className="bg-muted/30 border border-border/50 rounded-lg p-3 hover:border-accent/30 transition-colors">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-3 h-3 text-accent/70" />
+                      <span className="text-sm font-medium text-foreground">{event.name}</span>
+                    </div>
+                    <span className="text-[10px] text-muted-foreground">{event.time}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-2">{event.action}</p>
+                  
+                  {/* Auto-sent message preview */}
+                  <div className="flex items-start gap-2 p-2 bg-accent/5 border border-accent/20 rounded-md">
+                    <Send className="w-3 h-3 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="text-[11px] text-foreground/80 italic">"{event.message}"</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      
-      {/* Follow-up indicator */}
-      <div className="absolute -right-2 top-1/2 -translate-y-1/2 flex flex-col gap-2">
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/30 rounded-lg fade-in" style={{ animationDelay: '0.5s' }}>
-          <MessageSquare className="w-3 h-3 text-accent" />
-          <span className="text-[10px] text-accent">Follow-up sent</span>
+        </div>
+        
+        {/* Stats bar */}
+        <div className="mt-6 pt-4 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
+          <div className="flex items-center gap-2">
+            <RotateCcw className="w-4 h-4 text-accent" />
+            <span className="text-xs text-foreground">12 customers re-engaged this week</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">AI Active</span>
+          </div>
         </div>
       </div>
     </div>
@@ -174,21 +220,36 @@ const ValueProps = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Tabs and content */}
           <div className="space-y-8">
-            {/* Tab buttons */}
-            <div className="flex flex-wrap gap-3">
-              {values.map((value, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeIndex === index
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50"
-                  }`}
-                >
-                  {value.metric}
-                </button>
-              ))}
+            {/* Tab buttons - improved with labels and icons */}
+            <div className="flex flex-col sm:flex-row gap-2">
+              {values.map((value, index) => {
+                const Icon = value.icon;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 flex-1 ${
+                      activeIndex === index
+                        ? "bg-accent/10 border-2 border-accent"
+                        : "bg-muted/30 border border-border/50 hover:bg-muted/50 hover:border-border"
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      activeIndex === index ? "bg-accent" : "bg-muted"
+                    }`}>
+                      <Icon className={`w-5 h-5 ${activeIndex === index ? "text-accent-foreground" : "text-muted-foreground"}`} />
+                    </div>
+                    <div>
+                      <div className={`text-lg font-bold ${activeIndex === index ? "text-accent" : "text-foreground"}`}>
+                        {value.metric}
+                      </div>
+                      <div className={`text-xs ${activeIndex === index ? "text-foreground" : "text-muted-foreground"}`}>
+                        {value.label}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
             
             {/* Active content */}
@@ -206,7 +267,7 @@ const ValueProps = () => {
           </div>
           
           {/* Right: Visual */}
-          <div className="relative h-80 lg:h-96 bg-muted/20 border border-border/50 rounded-2xl overflow-hidden" key={`visual-${activeIndex}`}>
+          <div className="relative h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden" key={`visual-${activeIndex}`}>
             {renderVisual()}
           </div>
         </div>
