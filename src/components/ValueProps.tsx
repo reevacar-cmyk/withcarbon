@@ -282,51 +282,120 @@ const ValueProps = () => {
   );
 
   const AutomationVisual = () => (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Timeline visualization */}
-      <div className="w-full max-w-sm">
-        <div className="relative">
-          {/* Timeline bar */}
-          <div className="h-1 bg-border rounded-full mb-6">
-            <div className="h-full w-3/4 bg-gradient-to-r from-accent/50 to-accent rounded-full" />
+    <div className="relative w-full h-full flex flex-col p-5">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4 fade-in">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">CRM Dashboard</span>
+        </div>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Auto-sync</span>
+      </div>
+      
+      {/* Main content - Customer profile card */}
+      <div className="flex-1 space-y-3 overflow-hidden">
+        {/* Featured customer profile */}
+        <div className="bg-card/80 border border-accent/30 rounded-xl p-4 fade-in">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-bold text-accent">
+              JD
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-medium text-foreground">John Davidson</div>
+                <div className="text-[10px] px-1.5 py-0.5 bg-accent/20 text-accent rounded">VIP</div>
+              </div>
+              <div className="text-[10px] text-muted-foreground">2021 Tesla Model 3 · Black</div>
+            </div>
           </div>
           
-          {/* Auto-logged events */}
-          <div className="space-y-3">
-            {[
-              { icon: Phone, label: "Call logged", time: "9:15 AM", auto: true },
-              { icon: MessageSquare, label: "Text synced", time: "9:22 AM", auto: true },
-              { icon: Calendar, label: "Job scheduled", time: "9:25 AM", auto: true },
-              { icon: Users, label: "CRM updated", time: "9:25 AM", auto: true }
-            ].map((event, i) => {
-              const Icon = event.icon;
-              return (
-                <div 
-                  key={i} 
-                  className="flex items-center justify-between px-3 py-2 bg-muted/30 border border-border/50 rounded-lg fade-in"
-                  style={{ animationDelay: `${i * 0.12}s` }}
-                >
-                  <div className="flex items-center gap-3">
-                    <Icon className="w-4 h-4 text-accent/70" />
-                    <span className="text-xs text-foreground">{event.label}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-muted-foreground">{event.time}</span>
-                    {event.auto && (
-                      <span className="text-[9px] px-1.5 py-0.5 bg-accent/10 text-accent rounded">AUTO</span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+          {/* Customer stats */}
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="text-center p-2 bg-muted/30 rounded-lg">
+              <div className="text-sm font-bold text-foreground">8</div>
+              <div className="text-[9px] text-muted-foreground">Visits</div>
+            </div>
+            <div className="text-center p-2 bg-muted/30 rounded-lg">
+              <div className="text-sm font-bold text-accent">$1,440</div>
+              <div className="text-[9px] text-muted-foreground">Lifetime</div>
+            </div>
+            <div className="text-center p-2 bg-muted/30 rounded-lg">
+              <div className="text-sm font-bold text-foreground">45d</div>
+              <div className="text-[9px] text-muted-foreground">Avg. cycle</div>
+            </div>
           </div>
+          
+          {/* Recent activity log */}
+          <div className="space-y-1.5">
+            <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Activity Log</div>
+            {[
+              { action: "Call answered", detail: "Booked full detail", time: "Today", icon: Phone },
+              { action: "SMS sent", detail: "Appointment reminder", time: "Yesterday", icon: MessageSquare },
+              { action: "Service completed", detail: "Full detail + ceramic", time: "45d ago", icon: CheckCircle }
+            ].map((log, i) => (
+              <div key={i} className="flex items-center justify-between text-[10px] py-1 border-b border-border/20 last:border-0">
+                <div className="flex items-center gap-2">
+                  <log.icon className="w-3 h-3 text-accent/70" />
+                  <span className="text-foreground">{log.action}</span>
+                  <span className="text-muted-foreground">· {log.detail}</span>
+                </div>
+                <span className="text-muted-foreground">{log.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Other customers in CRM */}
+        <div className="grid grid-cols-2 gap-2">
+          {[
+            { initials: "SM", name: "Sarah M.", vehicle: "BMW X5", visits: 5, value: "$920" },
+            { initials: "MR", name: "Mike R.", vehicle: "Ford F-150", visits: 3, value: "$540" }
+          ].map((customer, i) => (
+            <div 
+              key={i} 
+              className="bg-card/60 border border-border/50 rounded-lg p-2.5 fade-in hover:border-accent/30 transition-colors"
+              style={{ animationDelay: `${0.3 + i * 0.1}s` }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-[9px] font-bold text-accent">
+                  {customer.initials}
+                </div>
+                <div>
+                  <div className="text-[11px] font-medium text-foreground">{customer.name}</div>
+                  <div className="text-[9px] text-muted-foreground">{customer.vehicle}</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="text-muted-foreground">{customer.visits} visits</span>
+                <span className="text-accent font-medium">{customer.value}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       
-      {/* Time saved indicator */}
-      <div className="absolute bottom-2 right-2 flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full">
-        <Clock className="w-3 h-3 text-accent" />
-        <span className="text-xs text-accent font-medium">Zero manual entry</span>
+      {/* Summary stats */}
+      <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-bold text-foreground">142</div>
+            <div className="text-[9px] text-muted-foreground">Profiles</div>
+          </div>
+          <div className="w-px h-8 bg-border/50" />
+          <div className="text-center">
+            <div className="text-lg font-bold text-accent">100%</div>
+            <div className="text-[9px] text-muted-foreground">Up to date</div>
+          </div>
+          <div className="w-px h-8 bg-border/50" />
+          <div className="text-center">
+            <div className="text-lg font-bold text-foreground">0</div>
+            <div className="text-[9px] text-muted-foreground">Manual entry</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">Synced</span>
+        </div>
       </div>
     </div>
   );
