@@ -11,8 +11,7 @@ const SocialProof = () => {
 
   const stats = [
     { value: "40+", label: "Active Partners" },
-    { value: "2", label: "States" },
-    { value: "12k+", label: "Jobs Managed" },
+    { value: "6", label: "Months Building" },
   ];
 
   return (
@@ -50,7 +49,7 @@ const SocialProof = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 max-w-xl mx-auto mb-16 fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="grid grid-cols-2 gap-12 max-w-md mx-auto mb-16 fade-in" style={{ animationDelay: '0.2s' }}>
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-semibold text-foreground mb-1 font-mono">
