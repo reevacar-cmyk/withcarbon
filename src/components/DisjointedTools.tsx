@@ -127,7 +127,7 @@ const DisjointedTools = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 bg-[hsl(40_15%_12%)] md:bg-card text-[hsl(40_20%_96%)] md:text-foreground">
+    <section className="py-24 px-4 md:px-8 lg:px-16 bg-card">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16">
