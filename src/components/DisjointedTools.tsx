@@ -127,7 +127,7 @@ const DisjointedTools = () => {
   };
 
   return (
-    <section className="py-12 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card">
+    <section className="pt-6 pb-12 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8 md:mb-16">

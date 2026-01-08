@@ -415,7 +415,7 @@ const ValueProps = () => {
     <section className="pt-16 pb-16 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-transparent text-[hsl(0_0%_100%)] md:text-foreground">
       <div className="container mx-auto">
         {/* Mobile-only intro */}
-        <div className="md:hidden pt-8 mb-10 text-center space-y-2">
+        <div className="md:hidden pt-4 mb-10 text-center space-y-2">
           <span className="text-xs uppercase tracking-widest text-white/50">Introducing</span>
           <h2 className="text-6xl font-bold tracking-tight bg-gradient-to-b from-white to-black bg-clip-text text-transparent">
             Carbon AI
