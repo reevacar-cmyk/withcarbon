@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import AbstractGraphic from "./AbstractGraphic";
-import heroPrismBg from "@/assets/hero-prism-bg.jpg";
 
 const Hero = () => {
   const scrollToPartnerForm = () => {
@@ -16,17 +15,8 @@ const Hero = () => {
   
   return (
     <section className="min-h-screen pb-16 px-6 md:px-12 lg:px-4 pt-28 md:pt-32 relative overflow-hidden">
-      {/* Background prism image */}
-      <div className="absolute inset-0 pointer-events-none">
-        <img 
-          src={heroPrismBg} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
-      </div>
+      {/* Background */}
+      <div className="absolute inset-0 bg-background pointer-events-none" />
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -39,11 +29,8 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-2">
               <Button onClick={scrollToPartnerForm} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8">
-                Become a design partner
+                Book a demo
               </Button>
-              <button onClick={scrollToHowItWorks} className="text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4">
-                See how it works
-              </button>
             </div>
           </div>
           <div className="fade-in fade-in-delay-3">
