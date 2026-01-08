@@ -241,7 +241,7 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="py-16 md:py-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-transparent text-[hsl(0_0%_100%)] md:text-foreground">
+    <section id="solution" className="pt-16 pb-24 md:py-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-transparent text-[hsl(0_0%_100%)] md:text-foreground">
       <div className="container mx-auto">
         <div className="hidden md:block mb-10 md:mb-16 fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-3 md:mb-4">
