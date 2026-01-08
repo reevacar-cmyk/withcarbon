@@ -41,7 +41,7 @@ const ProblemStatement = () => {
             <span className="hidden md:inline">The Problem</span>
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] md:leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-            <span className="md:hidden">Every missed call is money walking away.</span>
+            <span className="md:hidden">Great work doesn't matter if customers slip away.</span>
             <span className="hidden md:inline">You're too busy detailing cars to run your business.</span>
           </h2>
         </div>
