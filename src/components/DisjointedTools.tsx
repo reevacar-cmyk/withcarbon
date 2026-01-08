@@ -28,7 +28,7 @@ const DisjointedTools = () => {
     },
     {
       name: "AI Builders",
-      price: "$200-1,400/mo",
+      price: "$1,200/mo",
       icon: Workflow,
       tagline: "Complexity you'll never use",
       painPoints: [
@@ -187,7 +187,7 @@ const DisjointedTools = () => {
         <div className="mt-12 text-center fade-in" style={{ animationDelay: '0.5s' }}>
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-full">
             <span className="text-sm text-muted-foreground">Total monthly cost:</span>
-            <span className="text-xl font-bold" style={{ color: "#FF0000" }}>$2,050+</span>
+            <span className="text-xl font-bold" style={{ color: "#FF0000" }}>$200–1,400/mo</span>
             <span className="text-sm text-muted-foreground">for tools that don't talk to each other</span>
           </div>
         </div>
