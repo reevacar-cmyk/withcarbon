@@ -15,8 +15,8 @@ const ValueProps = () => {
       visual: "retention"
     },
     {
-      metric: "~4hrs",
-      title: "Save every week",
+      metric: "4hrs",
+      title: "Saved per day",
       description: "Every call, text, lead, and job auto-logs into your calendar and CRM — whether AI or a human answered.",
       visual: "automation"
     }
@@ -416,7 +416,7 @@ const ValueProps = () => {
       <div className="container mx-auto">
         {/* Mobile-only intro */}
         <div className="md:hidden mb-10 text-center space-y-2">
-          <h2 className="text-4xl font-bold tracking-tight">
+          <h2 className="text-5xl font-bold tracking-tight">
             Carbon AI
           </h2>
           <p className="text-sm text-white/70 md:text-muted-foreground">
@@ -445,7 +445,7 @@ const ValueProps = () => {
               </div>
               
               {/* Visual - below for mobile, on top for desktop */}
-              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-xl md:rounded-2xl overflow-hidden md:order-1">
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-[hsl(0_0%_8%)] md:bg-muted/20 border border-white/10 md:border-border/50 rounded-xl md:rounded-2xl overflow-hidden md:order-1 [&_*]:md:text-inherit [&_.text-foreground]:text-white [&_.text-muted-foreground]:text-white/60 [&_.bg-card\\/80]:bg-white/5 [&_.bg-muted\\/30]:bg-white/10 [&_.bg-muted\\/20]:bg-white/5 [&_.border-border\\/50]:border-white/10 [&_.border-border\\/30]:border-white/10 [&_.border-border\\/20]:border-white/10 md:[&_*]:text-[revert] md:[&_.text-foreground]:text-foreground md:[&_.text-muted-foreground]:text-muted-foreground md:[&_.bg-card\\/80]:bg-card/80 md:[&_.bg-muted\\/30]:bg-muted/30 md:[&_.bg-muted\\/20]:bg-muted/20 md:[&_.border-border\\/50]:border-border/50 md:[&_.border-border\\/30]:border-border/30 md:[&_.border-border\\/20]:border-border/20">
                 {renderVisual(value.visual)}
               </div>
             </div>
