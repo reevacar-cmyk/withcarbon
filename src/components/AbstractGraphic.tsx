@@ -120,7 +120,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               <div className="text-[9px] text-muted-foreground">Coverage</div>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-accent/15 rounded-full border border-accent/30">
+          <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-accent/15 rounded-full border border-accent/30">
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-[10px] text-accent font-medium">AI Active</span>
           </div>
