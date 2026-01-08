@@ -39,8 +39,9 @@ const ProblemStatement = () => {
           <p className="text-sm tracking-[0.3em] uppercase mb-4 md:mb-6 fade-in" style={{ color: red }}>
             The Problem
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-            You're too busy detailing cars to run your business.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] md:leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
+            <span className="md:hidden">Great detailers lose customers to chaos — not competition.</span>
+            <span className="hidden md:inline">You're too busy detailing cars to run your business.</span>
           </h2>
         </div>
         
