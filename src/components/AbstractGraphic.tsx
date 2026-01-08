@@ -8,103 +8,116 @@ interface AbstractGraphicProps {
 const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) => {
   if (variant === "hero") {
     return (
-      <div className={cn("relative w-full aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] bg-card/80 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
+      <div className={cn("relative w-full aspect-[4/5] bg-card/90 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 grid-rows-8 h-full w-full gap-px">
-            {Array.from({ length: 96 }).map((_, i) => (
+          <div className="grid grid-cols-12 grid-rows-10 h-full w-full gap-px">
+            {Array.from({ length: 120 }).map((_, i) => (
               <div key={i} className="border-b border-r border-border/30" />
             ))}
           </div>
         </div>
         
         {/* Main content area */}
-        <div className="absolute inset-5 bottom-24 space-y-4 overflow-hidden">
+        <div className="absolute inset-4 bottom-28 space-y-3 overflow-hidden">
           {/* Top bar - simulating app header */}
-          <div className="flex items-center justify-between pb-3 border-b border-border/30">
+          <div className="flex items-center justify-between pb-2 border-b border-border/30">
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
               <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">Carbon AI</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="px-2 py-0.5 bg-accent/10 rounded text-[9px] text-accent font-mono">LIVE</div>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-accent/10 rounded-full">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[9px] text-accent font-medium">Working</span>
             </div>
           </div>
           
-          {/* Active job cards row */}
+          {/* AI Impact Stats */}
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: "Incoming", count: "3", status: "active" },
-              { label: "Scheduled", count: "12", status: "normal" },
-              { label: "Completed", count: "28", status: "normal" }
+              { label: "Time Saved", value: "4.2h", sublabel: "today", icon: "⚡" },
+              { label: "Revenue", value: "$840", sublabel: "recovered", icon: "💰" },
+              { label: "Customers", value: "12", sublabel: "retained", icon: "🤝" }
             ].map((item, i) => (
               <div 
                 key={i} 
-                className={cn(
-                  "p-3 rounded-lg border",
-                  item.status === "active" 
-                    ? "bg-accent/10 border-accent/30" 
-                    : "bg-muted/30 border-border/50"
-                )}
+                className="p-2 rounded-lg bg-accent/5 border border-accent/20"
               >
-                <div className="text-[10px] text-muted-foreground mb-1">{item.label}</div>
-                <div className={cn(
-                  "text-2xl font-bold",
-                  item.status === "active" ? "text-accent" : "text-foreground"
-                )}>
-                  {item.count}
+                <div className="text-[9px] text-muted-foreground flex items-center gap-1">
+                  <span>{item.icon}</span>
+                  {item.label}
                 </div>
+                <div className="text-lg font-bold text-accent leading-tight">{item.value}</div>
+                <div className="text-[8px] text-muted-foreground">{item.sublabel}</div>
               </div>
             ))}
           </div>
           
-          {/* Recent activity feed */}
-          <div className="space-y-2 pt-2">
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">Recent Activity</div>
+          {/* AI Activity feed - More prominent */}
+          <div className="space-y-1.5 pt-1 flex-1">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">AI Activity</div>
+              <div className="text-[9px] text-accent">Live</div>
+            </div>
             {[
-              { action: "Call answered", customer: "John D.", time: "Just now", highlight: true },
-              { action: "Job booked", customer: "Sarah M.", time: "2m ago", highlight: false },
-              { action: "Follow-up sent", customer: "Mike R.", time: "5m ago", highlight: false }
+              { action: "Answered call", detail: "Booked $180 detail", customer: "John D.", time: "Just now", isAI: true },
+              { action: "Sent follow-up", detail: "Quote accepted", customer: "Sarah M.", time: "1m ago", isAI: true },
+              { action: "Recovered lead", detail: "Rescheduled no-show", customer: "Mike R.", time: "3m ago", isAI: true },
+              { action: "Upsold service", detail: "+$60 ceramic coat", customer: "Lisa K.", time: "5m ago", isAI: true },
+              { action: "Confirmed booking", detail: "Tomorrow 9am", customer: "David P.", time: "8m ago", isAI: true }
             ].map((activity, i) => (
               <div 
                 key={i} 
                 className={cn(
-                  "flex items-center justify-between p-2 rounded-lg transition-all",
-                  activity.highlight 
-                    ? "bg-accent/10 border border-accent/20" 
-                    : "bg-muted/20"
+                  "flex items-start justify-between p-2 rounded-lg transition-all",
+                  i === 0 
+                    ? "bg-accent/15 border border-accent/30" 
+                    : "bg-muted/20 border border-transparent"
                 )}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-start gap-2 min-w-0 flex-1">
                   <div className={cn(
-                    "w-1.5 h-1.5 rounded-full",
-                    activity.highlight ? "bg-accent animate-pulse" : "bg-muted-foreground/50"
+                    "w-1.5 h-1.5 rounded-full mt-1.5 shrink-0",
+                    i === 0 ? "bg-accent animate-pulse" : "bg-accent/50"
                   )} />
-                  <span className="text-[11px] text-foreground">{activity.action}</span>
-                  <span className="text-[11px] text-muted-foreground">• {activity.customer}</span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1">
+                      <span className="text-[10px] text-foreground font-medium">{activity.action}</span>
+                      {activity.isAI && (
+                        <span className="text-[8px] px-1 py-0.5 bg-accent/20 text-accent rounded">AI</span>
+                      )}
+                    </div>
+                    <div className="text-[9px] text-accent/80">{activity.detail}</div>
+                    <div className="text-[9px] text-muted-foreground">{activity.customer}</div>
+                  </div>
                 </div>
-                <span className="text-[10px] text-muted-foreground">{activity.time}</span>
+                <span className="text-[9px] text-muted-foreground shrink-0 ml-2">{activity.time}</span>
               </div>
             ))}
           </div>
         </div>
         
         {/* Bottom stats bar - positioned separately */}
-        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between pt-3 border-t border-border/30 bg-card/80">
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50">
           <div className="flex items-center gap-4">
             <div className="text-center">
-              <div className="text-lg font-bold text-accent">98%</div>
+              <div className="text-xl font-bold text-accent">98%</div>
               <div className="text-[9px] text-muted-foreground">Response Rate</div>
             </div>
-            <div className="w-px h-8 bg-border/50" />
+            <div className="w-px h-10 bg-border/50" />
             <div className="text-center">
-              <div className="text-lg font-bold text-foreground">2.3s</div>
+              <div className="text-xl font-bold text-foreground">2.3s</div>
               <div className="text-[9px] text-muted-foreground">Avg. Answer</div>
             </div>
+            <div className="w-px h-10 bg-border/50" />
+            <div className="text-center">
+              <div className="text-xl font-bold text-foreground">24/7</div>
+              <div className="text-[9px] text-muted-foreground">Coverage</div>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[9px] text-accent font-medium">AI Active</span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-accent/15 rounded-full border border-accent/30">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">AI Active</span>
           </div>
         </div>
         
