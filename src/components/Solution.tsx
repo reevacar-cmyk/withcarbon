@@ -228,18 +228,18 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="py-32 px-4 md:px-8 lg:px-16">
+    <section id="solution" className="py-16 md:py-32 px-4 md:px-8 lg:px-16">
       <div className="container mx-auto">
-        <div className="mb-16 fade-in">
-          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight text-foreground mb-4">
+        <div className="mb-10 md:mb-16 fade-in">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-3 md:mb-4">
             Carbon
           </h2>
-          <p className="text-xl text-muted-foreground max-w-xl">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
             Centralized, AI-native customer and job operations platform
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Feature toggles */}
           <div className="space-y-4 flex flex-col justify-center">
             {features.map((feature, index) => (
@@ -286,7 +286,7 @@ const Solution = () => {
           </div>
           
           {/* Dynamic visual */}
-          <div className="h-[480px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3">
+          <div className="h-[380px] md:h-[480px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3 order-first lg:order-last">
             {renderVisual()}
           </div>
         </div>

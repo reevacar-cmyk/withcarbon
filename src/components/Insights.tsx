@@ -209,36 +209,36 @@ const Insights = () => {
   };
 
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24">
+    <section className="py-16 md:py-32 px-4 md:px-12 lg:px-24">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 fade-in">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-3 md:mb-4 fade-in">
           Insights you didn't know you had
         </h2>
-        <p className="text-muted-foreground mb-12 max-w-xl fade-in" style={{ animationDelay: '0.1s' }}>
+        <p className="text-sm md:text-base text-muted-foreground mb-8 md:mb-12 max-w-xl fade-in" style={{ animationDelay: '0.1s' }}>
           Carbon surfaces patterns hidden in your data, turning everyday operations into strategic advantages.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {insights.map((insight, index) => {
             const Icon = insight.icon;
             return (
               <div
                 key={index}
-                className="group p-6 rounded-xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
+                className="group p-4 md:p-6 rounded-xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
                 style={{ animationDelay: `${(index + 2) * 0.1}s` }}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-accent" />
+                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                  <div className="w-6 md:w-8 h-6 md:h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Icon className="w-3 md:w-4 h-3 md:h-4 text-accent" />
                   </div>
-                  <h3 className="text-sm font-medium text-foreground">{insight.title}</h3>
+                  <h3 className="text-xs md:text-sm font-medium text-foreground">{insight.title}</h3>
                 </div>
                 
-                <div className="h-24 mb-4">
+                <div className="h-20 md:h-24 mb-3 md:mb-4">
                   {getVisual(insight.visual)}
                 </div>
                 
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-[10px] md:text-xs text-muted-foreground leading-relaxed">
                   {insight.description}
                 </p>
               </div>
