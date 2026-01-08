@@ -191,9 +191,9 @@ const Solution = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Feature toggles */}
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col justify-center">
             {features.map((feature, index) => (
               <button
                 key={index}
@@ -231,7 +231,7 @@ const Solution = () => {
           </div>
           
           {/* Dynamic visual */}
-          <div className="h-[420px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3">
+          <div className="h-[480px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden fade-in fade-in-delay-3">
             {renderVisual()}
           </div>
         </div>
