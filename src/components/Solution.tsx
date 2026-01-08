@@ -297,7 +297,7 @@ const Solution = () => {
             </div>
             
             {/* Visual */}
-            <div className="h-[320px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden">
+            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden [&_.text-foreground]:text-white [&_.text-muted-foreground]:text-white/60 [&_.bg-card\\/80]:bg-white/5 [&_.bg-muted\\/30]:bg-white/10 [&_.bg-muted\\/20]:bg-white/5 [&_.border-border\\/50]:border-white/10 [&_.border-border\\/30]:border-white/10 [&_.border-border\\/20]:border-white/10">
               {getVisualForIndex(activeIndex)}
             </div>
           </div>
