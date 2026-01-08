@@ -28,12 +28,15 @@ const ProblemStatement = () => {
     }
   ];
 
+  // Bright red for this section only
+  const red = "#FF0000";
+
   return (
     <section className="py-32 px-6 md:px-12 lg:px-24 relative">
       <div className="container mx-auto max-w-5xl">
         {/* Centered header */}
         <div className="text-center mb-20">
-          <p className="text-accent text-sm tracking-[0.3em] uppercase mb-6 fade-in">
+          <p className="text-sm tracking-[0.3em] uppercase mb-6 fade-in" style={{ color: red }}>
             The Problem
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
@@ -49,16 +52,25 @@ const ProblemStatement = () => {
             return (
               <div 
                 key={index}
-                className="group text-center p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                className="group text-center p-6 rounded-2xl bg-card/50 border border-border/50 transition-all duration-300 fade-in"
+                style={{ 
+                  animationDelay: `${0.2 + index * 0.1}s`,
+                }}
               >
                 {/* Icon */}
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300">
-                  <Icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
+                <div 
+                  className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center transition-all duration-300"
+                  style={{ 
+                    backgroundColor: `${red}15`,
+                    borderWidth: 1,
+                    borderColor: `${red}30`
+                  }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: red }} strokeWidth={1.5} />
                 </div>
                 
                 {/* Stat */}
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-1">
+                <div className="text-3xl md:text-4xl font-bold mb-1" style={{ color: red }}>
                   {problem.stat}
                 </div>
                 
