@@ -11,7 +11,7 @@ const Hero = () => {
       behavior: "smooth"
     });
   };
-  return <section className="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-[72px]">
+  return <section className="min-h-screen pb-24 px-6 md:px-12 lg:px-[16px] py-0 pt-[200px]">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
