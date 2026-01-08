@@ -20,7 +20,7 @@ const Hero = () => {
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-4 md:space-y-8">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground fade-in">
               AI-native customer + job operations platform
             </h1>
