@@ -424,11 +424,11 @@ const ValueProps = () => {
           </p>
         </div>
         
-        <div className="space-y-16 lg:space-y-24">
+        <div className="space-y-10 md:space-y-16 lg:space-y-24">
           {values.map((value, index) => (
             <div 
               key={index}
-              className="flex flex-col gap-8 lg:gap-10 fade-in"
+              className="flex flex-col gap-4 md:gap-8 lg:gap-10 fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Content - on top for mobile, below for desktop */}
