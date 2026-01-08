@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import AbstractGraphic from "./AbstractGraphic";
+
 const Hero = () => {
   const scrollToPartnerForm = () => {
     document.getElementById("partner-form")?.scrollIntoView({
@@ -11,8 +12,20 @@ const Hero = () => {
       behavior: "smooth"
     });
   };
-  return <section className="min-h-screen pb-24 px-6 md:px-12 lg:px-[16px] py-0 pt-[200px]">
-      <div className="container mx-auto">
+  
+  return (
+    <section className="min-h-screen pb-12 px-6 md:px-12 lg:px-4 pt-[180px] relative overflow-hidden">
+      {/* Background gradient blurs */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Primary accent glow - top right */}
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-accent/15 rounded-full blur-[120px]" />
+        {/* Secondary glow - bottom left */}
+        <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
+        {/* Subtle center glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-[150px]" />
+      </div>
+      
+      <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground fade-in">
@@ -35,6 +48,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
