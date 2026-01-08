@@ -27,8 +27,8 @@ const DisjointedTools = () => {
       visual: "voice"
     },
     {
-      name: "Automation Platforms",
-      price: "$1,200/mo",
+      name: "AI Builders",
+      price: "$200-1,400/mo",
       icon: Workflow,
       tagline: "Complexity you'll never use",
       painPoints: [
@@ -80,11 +80,7 @@ const DisjointedTools = () => {
         </div>
         <div className="text-[10px] text-muted-foreground">"I don't have any record of that..."</div>
       </div>
-      <div className="bg-muted/30 border border-border/50 rounded-lg p-2">
-        <div className="text-[9px] text-muted-foreground mb-0.5">Customer</div>
-        <div className="text-[10px] text-foreground/80">"I already gave my info twice!"</div>
-      </div>
-      <div className="flex items-center justify-between pt-1">
+      <div className="flex items-center justify-between pt-2">
         <div className="text-[9px] text-red-500/60 flex items-center gap-1">
           <X className="w-3 h-3" />
           Call ended
