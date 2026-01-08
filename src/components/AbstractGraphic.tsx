@@ -198,9 +198,9 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
         </div>
 
         {/* Response rate chart */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex flex-col">
           <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Response Rate Trend</div>
-          <div className="flex-1 flex items-end gap-1 min-h-[60px]">
+          <div className="flex items-end gap-1 h-12">
             {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 65].map((h, i) => (
               <div 
                 key={i}
@@ -209,7 +209,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               />
             ))}
           </div>
-          <div className="flex items-center justify-between mt-2 text-[9px] text-muted-foreground">
+          <div className="flex items-center justify-between mt-1 text-[9px] text-muted-foreground">
             <span>Week 1</span>
             <span>Now</span>
           </div>
