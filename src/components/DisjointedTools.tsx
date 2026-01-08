@@ -185,10 +185,10 @@ const DisjointedTools = () => {
         
         {/* Total cost callout */}
         <div className="mt-12 text-center fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-full">
-            <span className="text-sm text-muted-foreground">Total monthly cost:</span>
-            <span className="text-xl font-bold" style={{ color: "#FF0000" }}>$200–1,400/mo</span>
-            <span className="text-sm text-muted-foreground">for tools that don't talk to each other</span>
+          <div className="inline-flex flex-col md:flex-row items-center gap-1 md:gap-3 px-5 md:px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-2xl md:rounded-full">
+            <span className="text-xs md:text-sm text-muted-foreground">Total monthly cost:</span>
+            <span className="text-lg md:text-xl font-bold" style={{ color: "#FF0000" }}>$200–1,400/mo</span>
+            <span className="hidden md:inline text-sm text-muted-foreground">for tools that don't talk to each other</span>
           </div>
         </div>
       </div>
