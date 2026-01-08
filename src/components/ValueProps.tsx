@@ -433,7 +433,7 @@ const ValueProps = () => {
             >
               {/* Content - on top for mobile, below for desktop */}
               <div className="space-y-2 max-w-2xl md:order-2">
-                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-foreground tracking-tight">
+                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-foreground tracking-tight">
                   {value.metric}
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-white md:text-foreground">
