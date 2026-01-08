@@ -412,14 +412,14 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="pt-8 pb-16 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-transparent text-[hsl(0_0%_100%)] md:text-foreground">
+    <section className="pt-16 pb-16 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-transparent text-[hsl(0_0%_100%)] md:text-foreground">
       <div className="container mx-auto">
         {/* Mobile-only intro */}
         <div className="md:hidden mb-10 text-center space-y-2">
           <h2 className="text-4xl font-bold tracking-tight">
             Carbon AI
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-white/70 md:text-muted-foreground">
             AI-native customer and operations platform
           </p>
         </div>
@@ -433,13 +433,13 @@ const ValueProps = () => {
             >
               {/* Content - on top for mobile, below for desktop */}
               <div className="space-y-2 max-w-2xl md:order-2">
-                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-accent md:text-foreground tracking-tight">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-foreground tracking-tight">
                   {value.metric}
                 </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+                <h3 className="text-xl md:text-2xl font-semibold text-white md:text-foreground">
                   {value.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-snug max-w-lg">
+                <p className="text-sm text-white/70 md:text-muted-foreground leading-snug max-w-lg">
                   {value.description}
                 </p>
               </div>
