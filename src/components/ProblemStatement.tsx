@@ -22,7 +22,7 @@ const ProblemStatement = () => {
     },
     {
       icon: UserX,
-      stat: "1 in 3",
+      stat: "2 in 3",
       label: "customers gone",
       description: "After their first detail"
     }
