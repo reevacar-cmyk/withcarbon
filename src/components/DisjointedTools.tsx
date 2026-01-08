@@ -132,10 +132,12 @@ const DisjointedTools = () => {
         {/* Header */}
         <div className="text-center mb-8 md:mb-16">
           <p className="text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 fade-in" style={{ color: "#FF0000" }}>
-            The Status Quo
+            <span className="md:hidden">Why current tools fail</span>
+            <span className="hidden md:inline">The Status Quo</span>
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] md:leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-            Disconnected tools that drain time and money.
+            <span className="md:hidden">Built for desk jobs, not your work.</span>
+            <span className="hidden md:inline">Disconnected tools that drain time and money.</span>
           </h2>
         </div>
         

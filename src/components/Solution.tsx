@@ -57,17 +57,23 @@ const Solution = () => {
     {
       id: "unified",
       title: "All-in-one system that does the work",
-      description: "Manages customers, jobs, conversations, and follow-ups with full historical context."
+      mobileTitle: "Everything connected",
+      description: "Manages customers, jobs, conversations, and follow-ups with full historical context.",
+      mobileDescription: "Calls, texts, jobs, and customer history — all in one place."
     },
     {
       id: "visibility",
       title: "Intentional automations",
-      description: "Clear visibility into what's running, why it's running, and when AI escalates urgent issues."
+      mobileTitle: "You stay in control",
+      description: "Clear visibility into what's running, why it's running, and when AI escalates urgent issues.",
+      mobileDescription: "See what AI does, why, and when it escalates to you."
     },
     {
       id: "learning",
       title: "Learns and improves over time",
-      description: "No static workflows. Carbon tests message timing, wording, and follow-ups automatically."
+      mobileTitle: "Gets smarter over time",
+      description: "No static workflows. Carbon tests message timing, wording, and follow-ups automatically.",
+      mobileDescription: "AI tests and improves what works for your customers."
     }
   ];
 
@@ -289,10 +295,10 @@ const Solution = () => {
           <div className="space-y-3">
             <div className="fade-in">
               <h3 className="text-lg font-medium mb-1 text-white">
-                {features[activeIndex].title}
+                {features[activeIndex].mobileTitle}
               </h3>
               <p className="text-sm leading-relaxed text-white/60">
-                {features[activeIndex].description}
+                {features[activeIndex].mobileDescription}
               </p>
             </div>
             

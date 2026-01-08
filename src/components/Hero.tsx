@@ -22,10 +22,11 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="space-y-4 md:space-y-8">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground fade-in">
-              AI-native customer + job operations platform
+              <span className="md:hidden">AI that answers calls, books jobs, and brings customers back.</span>
+              <span className="hidden md:inline">AI-native customer + job operations platform</span>
             </h1>
             <p className="text-base md:text-xl text-muted-foreground max-w-lg fade-in fade-in-delay-1">
-              <span className="md:hidden">Automate scheduling, follow-ups, and customer ops — so you can focus on the work.</span>
+              <span className="md:hidden">So you can focus on the work, not the phone.</span>
               <span className="hidden md:inline">For operators too busy to answer every call — while customers, jobs, and revenue slip away.</span>
             </p>
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-2">
