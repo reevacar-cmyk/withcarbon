@@ -4,20 +4,26 @@ const ValueProps = () => {
   const values = [
     {
       metric: "40%",
-      title: "Increase booking rate",
+      title: "More bookings",
+      mobileTitle: "More jobs booked",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
+      mobileDescription: "AI answers every call and text — even when you're working.",
       visual: "booking"
     },
     {
       metric: "30%",
-      title: "Bring back more customers",
+      title: "More repeat customers",
+      mobileTitle: "Customers come back",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
+      mobileDescription: "Personalized follow-ups based on their car, history, and timing.",
       visual: "retention"
     },
     {
       metric: "4hrs",
       title: "Saved per day",
+      mobileTitle: "Saved daily",
       description: "Every call, text, lead, and job auto-logs into your calendar and CRM — whether AI or a human answered.",
+      mobileDescription: "Every call, text, and job auto-logged. No data entry.",
       visual: "automation"
     }
   ];
@@ -416,13 +422,10 @@ const ValueProps = () => {
       <div className="container mx-auto">
         {/* Mobile-only intro */}
         <div className="md:hidden pt-0 mb-10 text-center space-y-2">
-          <span className="text-xs uppercase tracking-widest text-white/50">Introducing</span>
-          <h2 className="text-6xl font-bold tracking-tight bg-gradient-to-b from-white to-black bg-clip-text text-transparent">
-            Carbon AI
+          <span className="text-xs uppercase tracking-widest text-accent">What you get</span>
+          <h2 className="text-4xl font-bold tracking-tight text-white leading-[1.1]">
+            Focus on detailing.<br/>Carbon handles the rest.
           </h2>
-          <p className="text-sm text-white/70">
-            AI-native customer and operations platform
-          </p>
         </div>
 
         {/* Desktop intro */}
@@ -444,15 +447,17 @@ const ValueProps = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Content - on top for mobile, below for desktop */}
-              <div className="space-y-2 max-w-2xl md:order-2">
-                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
+              <div className="space-y-1 md:space-y-2 max-w-2xl md:order-2">
+                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-accent tracking-tight">
                   {value.metric}
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-white">
-                  {value.title}
+                  <span className="md:hidden">{value.mobileTitle}</span>
+                  <span className="hidden md:inline">{value.title}</span>
                 </h3>
                 <p className="text-sm text-white/70 leading-snug max-w-lg">
-                  {value.description}
+                  <span className="md:hidden">{value.mobileDescription}</span>
+                  <span className="hidden md:inline">{value.description}</span>
                 </p>
               </div>
               
