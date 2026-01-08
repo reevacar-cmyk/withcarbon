@@ -12,7 +12,8 @@ const DisjointedTools = () => {
         "Contacts go stale in days",
         "No connection to calls or texts"
       ],
-      visual: "crm"
+      visual: "crm",
+      mobilePain: "Manual entry kills your time"
     },
     {
       name: "AI Voice Tools",
@@ -24,7 +25,8 @@ const DisjointedTools = () => {
         "No job or vehicle context",
         "Generic scripts, zero personalization"
       ],
-      visual: "voice"
+      visual: "voice",
+      mobilePain: "Bots forget everything"
     },
     {
       name: "AI Builders",
@@ -36,9 +38,12 @@ const DisjointedTools = () => {
         "Agencies charge $700+ to configure",
         "Breaks when anything changes"
       ],
-      visual: "automation"
+      visual: "automation",
+      mobilePain: "Too complex to maintain"
     }
   ];
+
+  const red = "#FF0000";
 
   // Visual for CRM - showing manual disconnected data
   const CRMVisual = () => (
@@ -129,20 +134,76 @@ const DisjointedTools = () => {
   return (
     <section className="pt-6 pb-12 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card">
       <div className="container mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-8 md:mb-16">
-          <p className="text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 fade-in" style={{ color: "#FF0000" }}>
-            <span className="md:hidden">Why current tools fail</span>
-            <span className="hidden md:inline">The Status Quo</span>
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] md:leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-            <span className="md:hidden">Built for desk jobs, not your work.</span>
-            <span className="hidden md:inline">Disconnected tools that drain time and money.</span>
+        {/* Mobile: Urgent header with warning aesthetic */}
+        <div className="md:hidden mb-6">
+          <div 
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 fade-in"
+            style={{ backgroundColor: `${red}15`, border: `1px solid ${red}30` }}
+          >
+            <AlertTriangle className="w-3 h-3" style={{ color: red }} />
+            <span className="text-xs font-medium tracking-wide uppercase" style={{ color: red }}>
+              The status quo
+            </span>
+          </div>
+          <h2 className="text-3xl font-bold leading-[1.05] fade-in text-foreground" style={{ animationDelay: '0.1s' }}>
+            Current tools are<br />
+            <span style={{ color: red }}>bleeding you dry.</span>
           </h2>
         </div>
+
+        {/* Desktop Header */}
+        <div className="hidden md:block text-center mb-16">
+          <p className="text-sm tracking-[0.3em] uppercase mb-4 fade-in" style={{ color: red }}>
+            The Status Quo
+          </p>
+          <h2 className="text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
+            Disconnected tools that drain time and money.
+          </h2>
+        </div>
+
+        {/* Mobile: Compact painful cost breakdown */}
+        <div className="md:hidden space-y-3 mb-6 fade-in" style={{ animationDelay: '0.2s' }}>
+          {tools.map((tool, index) => {
+            const Icon = tool.icon;
+            return (
+              <div 
+                key={index}
+                className="flex items-center gap-3 p-3 rounded-xl"
+                style={{ backgroundColor: `${red}08`, border: `1px solid ${red}15` }}
+              >
+                <div 
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${red}15` }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: red }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-foreground">{tool.name}</span>
+                    <span className="text-sm font-bold" style={{ color: red }}>{tool.price}</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">{tool.mobilePain}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile: Total cost callout - more urgent */}
+        <div 
+          className="md:hidden p-4 rounded-2xl text-center fade-in"
+          style={{ 
+            animationDelay: '0.3s',
+            backgroundColor: red,
+          }}
+        >
+          <div className="text-white/80 text-xs uppercase tracking-wider mb-1">You're burning</div>
+          <div className="text-white text-3xl font-bold">$200–1,400/mo</div>
+          <div className="text-white/60 text-xs mt-1">on tools that don't talk to each other</div>
+        </div>
         
-        {/* Tools grid */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        {/* Desktop: Tools grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6">
           {tools.map((tool, index) => {
             const Icon = tool.icon;
             return (
@@ -165,8 +226,8 @@ const DisjointedTools = () => {
                       <p className="text-xs text-muted-foreground">{tool.tagline}</p>
                     </div>
                     <div className="flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded-full">
-                      <DollarSign className="w-3 h-3" style={{ color: "#FF0000" }} />
-                      <span className="text-xs font-medium" style={{ color: "#FF0000" }}>{tool.price}</span>
+                      <DollarSign className="w-3 h-3" style={{ color: red }} />
+                      <span className="text-xs font-medium" style={{ color: red }}>{tool.price}</span>
                     </div>
                   </div>
                   
@@ -174,7 +235,7 @@ const DisjointedTools = () => {
                   <ul className="space-y-2">
                     {tool.painPoints.map((point, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#FF0000" }} />
+                        <X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: red }} />
                         {point}
                       </li>
                     ))}
@@ -185,12 +246,12 @@ const DisjointedTools = () => {
           })}
         </div>
         
-        {/* Total cost callout */}
-        <div className="mt-12 text-center fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="inline-flex flex-col md:flex-row items-center gap-1 md:gap-3 px-5 md:px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-2xl md:rounded-full">
-            <span className="text-xs md:text-sm text-muted-foreground">Total monthly cost:</span>
-            <span className="text-lg md:text-xl font-bold" style={{ color: "#FF0000" }}>$200–1,400/mo</span>
-            <span className="hidden md:inline text-sm text-muted-foreground">for tools that don't talk to each other</span>
+        {/* Desktop: Total cost callout */}
+        <div className="hidden md:block mt-12 text-center fade-in" style={{ animationDelay: '0.5s' }}>
+          <div className="inline-flex flex-row items-center gap-3 px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-full">
+            <span className="text-sm text-muted-foreground">Total monthly cost:</span>
+            <span className="text-xl font-bold" style={{ color: red }}>$200–1,400/mo</span>
+            <span className="text-sm text-muted-foreground">for tools that don't talk to each other</span>
           </div>
         </div>
       </div>
