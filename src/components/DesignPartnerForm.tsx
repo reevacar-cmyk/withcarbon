@@ -62,7 +62,7 @@ const DesignPartnerForm = () => {
   };
 
   return (
-    <section id="partner-form" className="py-16 md:py-32 px-4 md:px-12 lg:px-24">
+    <section id="partner-form" className="py-16 md:py-32 px-3 md:px-12 lg:px-24">
       <div className="container mx-auto max-w-xl">
         <div className="text-center space-y-4 md:space-y-6 mb-8 md:mb-12 fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">

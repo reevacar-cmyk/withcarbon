@@ -209,7 +209,7 @@ const Insights = () => {
   };
 
   return (
-    <section className="py-16 md:py-32 px-4 md:px-12 lg:px-24">
+    <section className="py-16 md:py-32 px-3 md:px-12 lg:px-24">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-3 md:mb-4 fade-in">
           Insights you didn't know you had

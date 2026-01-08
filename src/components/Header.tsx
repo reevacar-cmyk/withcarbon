@@ -6,7 +6,7 @@ const Header = () => {
     });
   };
   return <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto md:px-12 lg:px-24 px-[32px]">
+      <div className="container mx-auto px-3 md:px-12 lg:px-24">
         <div className="flex items-center justify-between h-16">
           <a href="/" className="text-xl font-semibold tracking-tight text-foreground">
             Carbon
