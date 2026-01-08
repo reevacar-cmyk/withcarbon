@@ -263,7 +263,7 @@ const Solution = () => {
                 className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                   activeIndex === index 
                     ? 'bg-accent/20 text-accent border border-accent/30' 
-                    : 'bg-muted text-muted-foreground border border-border/50'
+                    : 'bg-white/10 text-white/60 border border-white/20'
                 }`}
               >
                 <span className="text-sm font-bold">{index + 1}</span>
@@ -286,12 +286,12 @@ const Solution = () => {
           </div>
           
           {/* Feature content with visual */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="fade-in">
-              <h3 className="text-lg font-medium mb-1 text-foreground">
+              <h3 className="text-lg font-medium mb-1 text-white">
                 {features[activeIndex].title}
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-relaxed text-white/60">
                 {features[activeIndex].description}
               </p>
             </div>
