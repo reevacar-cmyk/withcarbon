@@ -414,17 +414,17 @@ const ValueProps = () => {
   return (
     <section className="py-16 md:py-24 px-3 md:px-8 lg:px-16">
       <div className="container mx-auto">
-        <div className="space-y-24 lg:space-y-32">
+        <div className="space-y-16 lg:space-y-24">
           {values.map((value, index) => (
             <div 
               key={index}
-              className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center fade-in ${
+              className={`grid lg:grid-cols-2 gap-6 lg:gap-12 items-center fade-in ${
                 index % 2 === 1 ? 'lg:grid-flow-dense' : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Content */}
-              <div className={`space-y-5 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+              <div className={`space-y-2 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                 <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
                   {value.metric}
                 </div>
