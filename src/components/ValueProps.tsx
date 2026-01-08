@@ -431,13 +431,8 @@ const ValueProps = () => {
               className="flex flex-col gap-8 lg:gap-10 fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Visual - now on top */}
-              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-xl md:rounded-2xl overflow-hidden">
-                {renderVisual(value.visual)}
-              </div>
-              
-              {/* Content - now below */}
-              <div className="space-y-2 max-w-2xl">
+              {/* Content - on top for mobile, below for desktop */}
+              <div className="space-y-2 max-w-2xl md:order-2">
                 <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
                   {value.metric}
                 </div>
@@ -447,6 +442,11 @@ const ValueProps = () => {
                 <p className="text-sm text-muted-foreground leading-snug max-w-lg">
                   {value.description}
                 </p>
+              </div>
+              
+              {/* Visual - below for mobile, on top for desktop */}
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-xl md:rounded-2xl overflow-hidden md:order-1">
+                {renderVisual(value.visual)}
               </div>
             </div>
           ))}
