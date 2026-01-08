@@ -1,33 +1,24 @@
-import { useState } from "react";
 import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw } from "lucide-react";
 
 const ValueProps = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const values = [
     {
       metric: "40%",
-      label: "Bookings",
       title: "Increase booking rate",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
-      visual: "booking",
-      icon: Calendar
+      visual: "booking"
     },
     {
       metric: "30%",
-      label: "Retention",
       title: "Bring back more customers",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
-      visual: "retention",
-      icon: RotateCcw
+      visual: "retention"
     },
     {
       metric: "~4hrs",
-      label: "Time Saved",
       title: "Save every week",
       description: "Every call, text, lead, and job auto-logs into your calendar and CRM — whether AI or a human answered.",
-      visual: "automation",
-      icon: Clock
+      visual: "automation"
     }
   ];
 
@@ -201,8 +192,8 @@ const ValueProps = () => {
     </div>
   );
 
-  const renderVisual = () => {
-    switch (values[activeIndex].visual) {
+  const renderVisual = (visual: string) => {
+    switch (visual) {
       case "booking":
         return <BookingVisual />;
       case "retention":
@@ -215,61 +206,38 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24">
+    <section className="py-24 px-6 md:px-12 lg:px-24">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Tabs and content */}
-          <div className="space-y-8">
-            {/* Tab buttons - improved with labels and icons */}
-            <div className="flex flex-col sm:flex-row gap-2">
-              {values.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 flex-1 ${
-                      activeIndex === index
-                        ? "bg-accent/10 border-2 border-accent"
-                        : "bg-muted/30 border border-border/50 hover:bg-muted/50 hover:border-border"
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      activeIndex === index ? "bg-accent" : "bg-muted"
-                    }`}>
-                      <Icon className={`w-5 h-5 ${activeIndex === index ? "text-accent-foreground" : "text-muted-foreground"}`} />
-                    </div>
-                    <div>
-                      <div className={`text-lg font-bold ${activeIndex === index ? "text-accent" : "text-foreground"}`}>
-                        {value.metric}
-                      </div>
-                      <div className={`text-xs ${activeIndex === index ? "text-foreground" : "text-muted-foreground"}`}>
-                        {value.label}
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-            
-            {/* Active content */}
-            <div className="space-y-4 min-h-[140px]">
-              <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight fade-in" key={`metric-${activeIndex}`}>
-                {values[activeIndex].metric}
+        <div className="space-y-24 lg:space-y-32">
+          {values.map((value, index) => (
+            <div 
+              key={index}
+              className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center fade-in ${
+                index % 2 === 1 ? 'lg:grid-flow-dense' : ''
+              }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Content */}
+              <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                <div className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground tracking-tight">
+                  {value.metric}
+                </div>
+                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
+                  {value.title}
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                  {value.description}
+                </p>
               </div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-foreground fade-in" style={{ animationDelay: '0.05s' }} key={`title-${activeIndex}`}>
-                {values[activeIndex].title}
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-lg fade-in" style={{ animationDelay: '0.1s' }} key={`desc-${activeIndex}`}>
-                {values[activeIndex].description}
-              </p>
+              
+              {/* Visual */}
+              <div className={`relative h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden ${
+                index % 2 === 1 ? 'lg:col-start-1' : ''
+              }`}>
+                {renderVisual(value.visual)}
+              </div>
             </div>
-          </div>
-          
-          {/* Right: Visual */}
-          <div className="relative h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-2xl overflow-hidden" key={`visual-${activeIndex}`}>
-            {renderVisual()}
-          </div>
+          ))}
         </div>
       </div>
     </section>
