@@ -1,9 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Users, Database, MessageSquare, Phone, Calendar, Eye, AlertCircle, CheckCircle, TrendingUp, Zap } from "lucide-react";
 import AbstractGraphic from "./AbstractGraphic";
 
 const Solution = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const progressRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const DURATION = 5000; // 5 seconds
+  const PROGRESS_INTERVAL = 50; // Update progress every 50ms
+
+  useEffect(() => {
+    // Progress bar animation
+    progressRef.current = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) return 100;
+        return prev + (PROGRESS_INTERVAL / DURATION) * 100;
+      });
+    }, PROGRESS_INTERVAL);
+
+    // Auto-advance timer
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+      setProgress(0);
+    }, DURATION);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, []);
+
+  const handleManualSelect = (index: number) => {
+    setActiveIndex(index);
+    setProgress(0);
+    
+    // Reset timers
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (progressRef.current) clearInterval(progressRef.current);
+    
+    progressRef.current = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) return 100;
+        return prev + (PROGRESS_INTERVAL / DURATION) * 100;
+      });
+    }, PROGRESS_INTERVAL);
+
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+      setProgress(0);
+    }, DURATION);
+  };
 
   const features = [
     {
@@ -197,14 +245,21 @@ const Solution = () => {
             {features.map((feature, index) => (
               <button
                 key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 fade-in ${
+                onClick={() => handleManualSelect(index)}
+                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 fade-in relative overflow-hidden ${
                   activeIndex === index 
                     ? 'bg-accent/5 border-accent/30' 
                     : 'bg-card/50 border-border/50 hover:border-border'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {/* Progress bar */}
+                {activeIndex === index && (
+                  <div 
+                    className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-75 ease-linear"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
                 <div className="flex items-start gap-4">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                     activeIndex === index 
