@@ -29,75 +29,171 @@ const Insights = () => {
   ];
 
   // Mini visualization components
+  
+  // Customer segments - shows distinct customer clusters with interconnected nodes
   const SegmentVisual = () => (
-    <div className="flex items-end gap-1 h-16">
-      {[40, 65, 85, 55, 30].map((height, i) => (
-        <div key={i} className="flex flex-col items-center gap-1">
-          <div 
-            className="w-6 rounded-t bg-gradient-to-t from-accent/60 to-accent/20"
-            style={{ height: `${height}%` }}
-          />
-          <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
-        </div>
-      ))}
-    </div>
-  );
-
-  const UpsellVisual = () => (
-    <div className="relative h-16 w-full">
-      <div className="absolute inset-0 flex items-center">
-        <div className="h-px w-full bg-border/50" />
-      </div>
-      <svg className="w-full h-full" viewBox="0 0 120 64" preserveAspectRatio="none">
-        <path
-          d="M0 50 Q20 48 40 35 T80 20 T120 8"
-          fill="none"
-          stroke="hsl(var(--accent))"
-          strokeWidth="2"
-          className="animate-pulse"
-        />
-        <circle cx="120" cy="8" r="4" fill="hsl(var(--accent))" className="animate-pulse" />
+    <div className="relative w-full h-full">
+      {/* Connection lines */}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80">
+        <line x1="25" y1="25" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
+        <line x1="75" y1="20" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
+        <line x1="20" y1="60" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
+        <line x1="80" y1="55" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
       </svg>
-      <div className="absolute top-0 right-0 text-xs text-accent font-mono">+24%</div>
+      
+      {/* Segment clusters */}
+      <div className="absolute top-3 left-3 flex -space-x-1.5">
+        <div className="w-4 h-4 rounded-full bg-accent/80 border border-background" />
+        <div className="w-4 h-4 rounded-full bg-accent/60 border border-background" />
+        <div className="w-4 h-4 rounded-full bg-accent/40 border border-background" />
+      </div>
+      <div className="absolute top-1 right-4 flex -space-x-1">
+        <div className="w-3 h-3 rounded-full bg-muted-foreground/40 border border-background" />
+        <div className="w-3 h-3 rounded-full bg-muted-foreground/30 border border-background" />
+      </div>
+      <div className="absolute bottom-3 left-2">
+        <div className="w-5 h-5 rounded-full bg-accent/50 border border-background" />
+      </div>
+      <div className="absolute bottom-2 right-3 flex -space-x-1.5">
+        <div className="w-4 h-4 rounded-full bg-muted-foreground/50 border border-background" />
+        <div className="w-4 h-4 rounded-full bg-muted-foreground/35 border border-background" />
+        <div className="w-4 h-4 rounded-full bg-muted-foreground/25 border border-background" />
+        <div className="w-4 h-4 rounded-full bg-muted-foreground/15 border border-background" />
+      </div>
+      
+      {/* Center hub */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />
+      </div>
+      
+      {/* Labels */}
+      <div className="absolute top-4 left-10 text-[9px] font-mono text-accent">Premium</div>
+      <div className="absolute bottom-1 right-14 text-[9px] font-mono text-muted-foreground">Regular</div>
     </div>
   );
 
-  const DurationVisual = () => (
-    <div className="flex flex-col gap-2 w-full">
-      {[
-        { label: "Detail", value: 75 },
-        { label: "Wash", value: 45 },
-        { label: "Coating", value: 90 }
-      ].map((item, i) => (
-        <div key={i} className="flex items-center gap-2">
-          <span className="text-[10px] text-muted-foreground w-12 font-mono">{item.label}</span>
-          <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-accent/70 rounded-full"
-              style={{ width: `${item.value}%` }}
-            />
-          </div>
+  // Upsell opportunities - shows current vs potential revenue comparison
+  const UpsellVisual = () => (
+    <div className="relative w-full h-full flex items-end gap-3 px-2">
+      {/* Current revenue stack */}
+      <div className="flex-1 flex flex-col items-center">
+        <div className="w-full flex flex-col-reverse gap-0.5">
+          <div className="h-8 w-full bg-muted-foreground/30 rounded-sm" />
+          <div className="h-5 w-full bg-muted-foreground/20 rounded-sm" />
+          <div className="h-3 w-full bg-muted-foreground/10 rounded-sm" />
         </div>
-      ))}
+        <span className="text-[9px] text-muted-foreground mt-1.5 font-mono">Current</span>
+      </div>
+      
+      {/* Arrow */}
+      <div className="flex flex-col items-center justify-center pb-4">
+        <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+          <path d="M0 6H16M16 6L11 1M16 6L11 11" stroke="hsl(var(--accent))" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      
+      {/* Potential revenue stack */}
+      <div className="flex-1 flex flex-col items-center">
+        <div className="w-full flex flex-col-reverse gap-0.5">
+          <div className="h-8 w-full bg-accent/80 rounded-sm" />
+          <div className="h-5 w-full bg-accent/60 rounded-sm" />
+          <div className="h-3 w-full bg-accent/40 rounded-sm" />
+          <div className="h-4 w-full bg-accent/90 rounded-sm border border-dashed border-accent animate-pulse" />
+        </div>
+        <span className="text-[9px] text-accent mt-1.5 font-mono">+$2.4k</span>
+      </div>
     </div>
   );
 
-  const RevenueVisual = () => (
-    <div className="relative h-16 w-full">
-      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-1">
-        {[35, 42, 38, 55, 48, 62, 58, 70].map((height, i) => (
-          <div
+  // Job duration trends - shows time distribution with clock-inspired visual
+  const DurationVisual = () => (
+    <div className="relative w-full h-full flex items-center gap-4">
+      {/* Mini clock */}
+      <div className="relative w-14 h-14 flex-shrink-0">
+        <div className="absolute inset-0 rounded-full border border-border/50" />
+        <div className="absolute inset-1 rounded-full border border-muted-foreground/20" />
+        {/* Hour markers */}
+        {[0, 90, 180, 270].map((deg, i) => (
+          <div 
             key={i}
-            className={`flex-1 rounded-t transition-all duration-300 ${
-              i >= 6 ? 'bg-accent' : 'bg-muted-foreground/20'
-            }`}
-            style={{ height: `${height}%` }}
+            className="absolute top-1/2 left-1/2 w-0.5 h-1.5 bg-muted-foreground/40 origin-bottom"
+            style={{ transform: `translate(-50%, -100%) rotate(${deg}deg) translateY(-20px)` }}
           />
         ))}
+        {/* Clock hands */}
+        <div className="absolute top-1/2 left-1/2 w-0.5 h-4 bg-accent origin-bottom -translate-x-1/2 -translate-y-full rotate-[60deg]" />
+        <div className="absolute top-1/2 left-1/2 w-0.5 h-3 bg-muted-foreground/60 origin-bottom -translate-x-1/2 -translate-y-full rotate-[-30deg]" />
+        <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 rounded-full bg-accent -translate-x-1/2 -translate-y-1/2" />
       </div>
-      <div className="absolute -top-1 right-0 flex items-center gap-1">
+      
+      {/* Time breakdown */}
+      <div className="flex-1 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] text-muted-foreground w-10 font-mono">Avg</span>
+          <div className="flex-1 h-2 bg-accent/20 rounded-full overflow-hidden">
+            <div className="h-full w-[65%] bg-accent rounded-full" />
+          </div>
+          <span className="text-[9px] text-accent font-mono">2.4h</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] text-muted-foreground w-10 font-mono">Peak</span>
+          <div className="flex-1 h-2 bg-muted-foreground/10 rounded-full overflow-hidden">
+            <div className="h-full w-[85%] bg-muted-foreground/40 rounded-full" />
+          </div>
+          <span className="text-[9px] text-muted-foreground font-mono">3.1h</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] text-muted-foreground w-10 font-mono">Min</span>
+          <div className="flex-1 h-2 bg-muted-foreground/10 rounded-full overflow-hidden">
+            <div className="h-full w-[35%] bg-muted-foreground/30 rounded-full" />
+          </div>
+          <span className="text-[9px] text-muted-foreground font-mono">1.2h</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Revenue per customer - shows individual customer value with comparison
+  const RevenueVisual = () => (
+    <div className="relative w-full h-full">
+      {/* Customer value cards */}
+      <div className="flex gap-2 h-full items-end">
+        {[
+          { value: "$340", label: "Low", height: 35, active: false },
+          { value: "$580", label: "Avg", height: 55, active: false },
+          { value: "$1.2k", label: "High", height: 85, active: true },
+        ].map((customer, i) => (
+          <div 
+            key={i} 
+            className="flex-1 flex flex-col items-center"
+          >
+            <div 
+              className={`w-full rounded-t flex flex-col items-center justify-end pb-1 transition-all ${
+                customer.active 
+                  ? 'bg-gradient-to-t from-accent to-accent/40' 
+                  : 'bg-gradient-to-t from-muted-foreground/30 to-muted-foreground/10'
+              }`}
+              style={{ height: `${customer.height}%` }}
+            >
+              <span className={`text-[10px] font-mono font-medium ${
+                customer.active ? 'text-background' : 'text-muted-foreground'
+              }`}>
+                {customer.value}
+              </span>
+            </div>
+            <span className={`text-[8px] mt-1 font-mono ${
+              customer.active ? 'text-accent' : 'text-muted-foreground'
+            }`}>
+              {customer.label}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Target indicator */}
+      <div className="absolute top-2 right-0 flex items-center gap-1">
+        <div className="h-px w-6 border-t border-dashed border-accent/50" />
         <TrendingUp className="w-3 h-3 text-accent" />
-        <span className="text-xs text-accent font-mono">↑</span>
       </div>
     </div>
   );
@@ -138,7 +234,7 @@ const Insights = () => {
                   <h3 className="text-sm font-medium text-foreground">{insight.title}</h3>
                 </div>
                 
-                <div className="h-20 mb-4 flex items-end">
+                <div className="h-24 mb-4">
                   {getVisual(insight.visual)}
                 </div>
                 
