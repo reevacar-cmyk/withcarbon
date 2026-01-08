@@ -414,7 +414,7 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24">
+    <section className="py-24 px-4 md:px-8 lg:px-16">
       <div className="container mx-auto">
         <div className="space-y-24 lg:space-y-32">
           {values.map((value, index) => (
@@ -433,7 +433,7 @@ const ValueProps = () => {
                 <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
                   {value.title}
                 </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                <p className="text-base text-muted-foreground leading-snug max-w-lg">
                   {value.description}
                 </p>
               </div>
