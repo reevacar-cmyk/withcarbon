@@ -33,7 +33,7 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="fade-in fade-in-delay-3 hidden md:block">
+          <div className="fade-in fade-in-delay-3">
             <AbstractGraphic variant="hero" />
           </div>
         </div>
