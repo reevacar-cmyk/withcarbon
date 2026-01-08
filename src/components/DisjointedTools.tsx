@@ -127,11 +127,11 @@ const DisjointedTools = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 bg-card">
+    <section className="py-12 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm tracking-[0.3em] uppercase mb-4 fade-in" style={{ color: "#FF0000" }}>
+        <div className="text-center mb-8 md:mb-16">
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 fade-in" style={{ color: "#FF0000" }}>
             The Status Quo
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
@@ -140,7 +140,7 @@ const DisjointedTools = () => {
         </div>
         
         {/* Tools grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
           {tools.map((tool, index) => {
             const Icon = tool.icon;
             return (

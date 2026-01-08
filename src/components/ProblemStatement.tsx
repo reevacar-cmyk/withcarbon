@@ -32,11 +32,11 @@ const ProblemStatement = () => {
   const red = "#FF0000";
 
   return (
-    <section className="pt-16 md:pt-4 pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-transparent">
+    <section className="py-10 md:pt-4 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-transparent">
       <div className="container mx-auto max-w-5xl">
         {/* Centered header */}
-        <div className="text-center mb-20">
-          <p className="text-sm tracking-[0.3em] uppercase mb-6 fade-in" style={{ color: red }}>
+        <div className="text-center mb-10 md:mb-20">
+          <p className="text-sm tracking-[0.3em] uppercase mb-4 md:mb-6 fade-in" style={{ color: red }}>
             The Problem
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
@@ -45,7 +45,7 @@ const ProblemStatement = () => {
         </div>
         
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
             
