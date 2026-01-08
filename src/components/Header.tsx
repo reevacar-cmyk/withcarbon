@@ -12,7 +12,7 @@ const Header = () => {
             Carbon
           </a>
           <Button onClick={scrollToPartnerForm} size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium">
-            Become a design partner
+            Book a demo
           </Button>
         </div>
       </div>
