@@ -28,7 +28,7 @@ const SocialProof = () => {
             <h2 className="text-2xl font-semibold text-white leading-tight mb-2">
               Built by engineers
               <br />
-              <span className="text-muted-foreground">who've been in the bay</span>
+              <span className="text-muted-foreground">who've worked the detail bay</span>
             </h2>
           </div>
 
