@@ -418,7 +418,7 @@ const ValueProps = () => {
           {values.map((value, index) => (
             <div 
               key={index}
-              className="flex flex-col gap-6 lg:gap-8 fade-in"
+              className="flex flex-col gap-8 lg:gap-10 fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Visual - now on top */}
