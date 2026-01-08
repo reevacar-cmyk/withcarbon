@@ -133,18 +133,18 @@ const ValueProps = () => {
       <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-lg font-bold text-accent">$850</div>
-            <div className="text-[9px] text-muted-foreground">Today</div>
+            <div className="text-base font-bold text-accent">$850</div>
+            <div className="text-[8px] text-muted-foreground">Today</div>
           </div>
-          <div className="w-px h-8 bg-border/50" />
+          <div className="w-px h-6 bg-border/50" />
           <div className="text-center">
-            <div className="text-lg font-bold text-foreground">100%</div>
-            <div className="text-[9px] text-muted-foreground">Answered</div>
+            <div className="text-base font-bold text-foreground">100%</div>
+            <div className="text-[8px] text-muted-foreground">Answered</div>
           </div>
-          <div className="w-px h-8 bg-border/50" />
+          <div className="w-px h-6 bg-border/50" />
           <div className="text-center">
-            <div className="text-lg font-bold text-foreground">3/3</div>
-            <div className="text-[9px] text-muted-foreground">CRM synced</div>
+            <div className="text-base font-bold text-foreground">3/3</div>
+            <div className="text-[8px] text-muted-foreground">CRM synced</div>
           </div>
         </div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
@@ -264,13 +264,13 @@ const ValueProps = () => {
       <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-lg font-bold text-accent">$650</div>
-            <div className="text-[9px] text-muted-foreground">Recovered</div>
+            <div className="text-base font-bold text-accent">$650</div>
+            <div className="text-[8px] text-muted-foreground">Recovered</div>
           </div>
-          <div className="w-px h-8 bg-border/50" />
+          <div className="w-px h-6 bg-border/50" />
           <div className="text-center">
-            <div className="text-lg font-bold text-foreground">67%</div>
-            <div className="text-[9px] text-muted-foreground">Response rate</div>
+            <div className="text-base font-bold text-foreground">67%</div>
+            <div className="text-[8px] text-muted-foreground">Response rate</div>
           </div>
         </div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
@@ -378,18 +378,18 @@ const ValueProps = () => {
       <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-lg font-bold text-foreground">142</div>
-            <div className="text-[9px] text-muted-foreground">Profiles</div>
+            <div className="text-base font-bold text-foreground">142</div>
+            <div className="text-[8px] text-muted-foreground">Profiles</div>
           </div>
-          <div className="w-px h-8 bg-border/50" />
+          <div className="w-px h-6 bg-border/50" />
           <div className="text-center">
-            <div className="text-lg font-bold text-accent">100%</div>
-            <div className="text-[9px] text-muted-foreground">Up to date</div>
+            <div className="text-base font-bold text-accent">100%</div>
+            <div className="text-[8px] text-muted-foreground">Up to date</div>
           </div>
-          <div className="w-px h-8 bg-border/50" />
+          <div className="w-px h-6 bg-border/50" />
           <div className="text-center">
-            <div className="text-lg font-bold text-foreground">0</div>
-            <div className="text-[9px] text-muted-foreground">Manual entry</div>
+            <div className="text-base font-bold text-foreground">0</div>
+            <div className="text-[8px] text-muted-foreground">Manual entry</div>
           </div>
         </div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
@@ -426,14 +426,14 @@ const ValueProps = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Content */}
-              <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <div className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground tracking-tight">
+              <div className={`space-y-5 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
                   {value.metric}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
+                <h3 className="text-xl md:text-2xl font-semibold text-foreground">
                   {value.title}
                 </h3>
-                <p className="text-base text-muted-foreground leading-snug max-w-lg">
+                <p className="text-sm text-muted-foreground leading-snug max-w-lg">
                   {value.description}
                 </p>
               </div>
