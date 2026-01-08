@@ -8,63 +8,109 @@ interface AbstractGraphicProps {
 const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) => {
   if (variant === "hero") {
     return (
-      <div className={cn("relative w-full aspect-[4/3] bg-card rounded-lg overflow-hidden", className)}>
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="grid grid-cols-8 grid-rows-6 h-full w-full gap-px bg-border">
-            {Array.from({ length: 48 }).map((_, i) => (
-              <div key={i} className="bg-background" />
+      <div className={cn("relative w-full aspect-[4/3] bg-card/80 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-12 grid-rows-8 h-full w-full gap-px">
+            {Array.from({ length: 96 }).map((_, i) => (
+              <div key={i} className="border-b border-r border-border/30" />
             ))}
           </div>
         </div>
         
-        {/* Abstract dashboard elements */}
-        <div className="absolute inset-6 space-y-4">
-          {/* Header bar */}
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-accent" />
-            <div className="h-2 w-24 bg-muted rounded-full" />
-            <div className="ml-auto h-2 w-16 bg-muted rounded-full" />
-          </div>
-          
-          {/* Content blocks */}
-          <div className="grid grid-cols-3 gap-3 pt-4">
-            <div className="space-y-2">
-              <div className="h-16 bg-muted/50 rounded" />
-              <div className="h-2 w-full bg-muted/30 rounded-full" />
-              <div className="h-2 w-2/3 bg-muted/30 rounded-full" />
+        {/* Main content area */}
+        <div className="absolute inset-5 space-y-4">
+          {/* Top bar - simulating app header */}
+          <div className="flex items-center justify-between pb-3 border-b border-border/30">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">Carbon AI</span>
             </div>
-            <div className="space-y-2">
-              <div className="h-16 bg-muted/50 rounded" />
-              <div className="h-2 w-full bg-muted/30 rounded-full" />
-              <div className="h-2 w-3/4 bg-muted/30 rounded-full" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-16 bg-accent/20 rounded border border-accent/30" />
-              <div className="h-2 w-full bg-muted/30 rounded-full" />
-              <div className="h-2 w-1/2 bg-muted/30 rounded-full" />
+            <div className="flex items-center gap-2">
+              <div className="px-2 py-0.5 bg-accent/10 rounded text-[9px] text-accent font-mono">LIVE</div>
             </div>
           </div>
           
-          {/* Timeline/chart */}
-          <div className="pt-4">
-            <div className="h-24 bg-muted/30 rounded flex items-end justify-between px-4 pb-3">
-              {[40, 65, 45, 80, 55, 70, 85, 60].map((h, i) => (
-                <div 
-                  key={i} 
-                  className={cn(
-                    "w-4 rounded-t",
-                    i === 7 ? "bg-accent" : "bg-muted"
-                  )}
-                  style={{ height: `${h}%` }}
-                />
-              ))}
+          {/* Active job cards row */}
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { label: "Incoming", count: "3", status: "active" },
+              { label: "Scheduled", count: "12", status: "normal" },
+              { label: "Completed", count: "28", status: "normal" }
+            ].map((item, i) => (
+              <div 
+                key={i} 
+                className={cn(
+                  "p-3 rounded-lg border",
+                  item.status === "active" 
+                    ? "bg-accent/10 border-accent/30" 
+                    : "bg-muted/30 border-border/50"
+                )}
+              >
+                <div className="text-[10px] text-muted-foreground mb-1">{item.label}</div>
+                <div className={cn(
+                  "text-2xl font-bold",
+                  item.status === "active" ? "text-accent" : "text-foreground"
+                )}>
+                  {item.count}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Recent activity feed */}
+          <div className="space-y-2 pt-2">
+            <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Recent Activity</div>
+            {[
+              { action: "Call answered", customer: "John D.", time: "Just now", highlight: true },
+              { action: "Job booked", customer: "Sarah M.", time: "2m ago", highlight: false },
+              { action: "Follow-up sent", customer: "Mike R.", time: "5m ago", highlight: false }
+            ].map((activity, i) => (
+              <div 
+                key={i} 
+                className={cn(
+                  "flex items-center justify-between p-2 rounded-lg transition-all",
+                  activity.highlight 
+                    ? "bg-accent/10 border border-accent/20" 
+                    : "bg-muted/20"
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <div className={cn(
+                    "w-1.5 h-1.5 rounded-full",
+                    activity.highlight ? "bg-accent animate-pulse" : "bg-muted-foreground/50"
+                  )} />
+                  <span className="text-[11px] text-foreground">{activity.action}</span>
+                  <span className="text-[11px] text-muted-foreground">• {activity.customer}</span>
+                </div>
+                <span className="text-[10px] text-muted-foreground">{activity.time}</span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Bottom stats bar */}
+          <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between pt-3 border-t border-border/30">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-lg font-bold text-accent">98%</div>
+                <div className="text-[9px] text-muted-foreground">Response Rate</div>
+              </div>
+              <div className="w-px h-8 bg-border/50" />
+              <div className="text-center">
+                <div className="text-lg font-bold text-foreground">2.3s</div>
+                <div className="text-[9px] text-muted-foreground">Avg. Answer</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[9px] text-accent font-medium">AI Active</span>
             </div>
           </div>
         </div>
         
-        {/* Glow effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl" />
       </div>
     );
   }
