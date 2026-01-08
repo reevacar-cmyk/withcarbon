@@ -78,21 +78,21 @@ const Solution = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">Customer 360</span>
+          <span className="text-xs text-white/60 md:text-muted-foreground uppercase tracking-wider">Customer 360</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Connected</span>
       </div>
       
       {/* Customer profile with connected data */}
       <div className="flex-1 space-y-3">
-        <div className="bg-card/80 border border-accent/30 rounded-xl p-4">
+        <div className="bg-white/10 md:bg-card/80 border border-accent/30 rounded-xl p-4">
           <div className="flex items-start gap-3 mb-3">
             <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-bold text-accent">
               JD
             </div>
             <div className="flex-1">
-              <div className="text-sm font-medium text-foreground">John Davidson</div>
-              <div className="text-[10px] text-muted-foreground">2021 Tesla Model 3 · Black</div>
+              <div className="text-sm font-medium text-white md:text-foreground">John Davidson</div>
+              <div className="text-[10px] text-white/60 md:text-muted-foreground">2021 Tesla Model 3 · Black</div>
             </div>
           </div>
           
@@ -104,13 +104,13 @@ const Solution = () => {
               { icon: Calendar, label: "Next job", value: "Tomorrow 10am", status: "$220 full detail" },
               { icon: Database, label: "History", value: "8 visits", status: "$1,440 lifetime" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between p-2 bg-muted/20 rounded-lg">
+              <div key={i} className="flex items-center justify-between p-2 bg-white/10 md:bg-muted/20 rounded-lg">
                 <div className="flex items-center gap-2">
                   <item.icon className="w-3.5 h-3.5 text-accent/70" />
-                  <span className="text-[10px] text-muted-foreground">{item.label}</span>
+                  <span className="text-[10px] text-white/60 md:text-muted-foreground">{item.label}</span>
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] text-foreground">{item.value}</div>
+                  <div className="text-[10px] text-white md:text-foreground">{item.value}</div>
                   <div className="text-[9px] text-accent">{item.status}</div>
                 </div>
               </div>
@@ -120,8 +120,8 @@ const Solution = () => {
       </div>
       
       {/* Stats */}
-      <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between">
-        <div className="text-[10px] text-muted-foreground">All data auto-synced</div>
+      <div className="mt-4 pt-3 border-t border-white/20 md:border-border/30 flex items-center justify-between">
+        <div className="text-[10px] text-white/60 md:text-muted-foreground">All data auto-synced</div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
           <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span className="text-[10px] text-accent font-medium">Live</span>
@@ -137,7 +137,7 @@ const Solution = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">Automation Status</span>
+          <span className="text-xs text-white/60 md:text-muted-foreground uppercase tracking-wider">Automation Status</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Transparent</span>
       </div>
@@ -175,7 +175,7 @@ const Solution = () => {
             className={`p-3 rounded-lg border ${
               auto.status === 'escalated' 
                 ? 'bg-accent/10 border-accent/30' 
-                : 'bg-card/80 border-border/50'
+                : 'bg-white/10 md:bg-card/80 border-white/20 md:border-border/50'
             }`}
           >
             <div className="flex items-center justify-between mb-1">
@@ -185,17 +185,17 @@ const Solution = () => {
                 ) : (
                   <CheckCircle className="w-3.5 h-3.5 text-accent/70" />
                 )}
-                <span className="text-[11px] font-medium text-foreground">{auto.name}</span>
+                <span className="text-[11px] font-medium text-white md:text-foreground">{auto.name}</span>
               </div>
               <span className={`text-[9px] px-1.5 py-0.5 rounded ${
                 auto.status === 'escalated' 
                   ? 'bg-accent/20 text-accent font-medium' 
-                  : 'bg-muted text-muted-foreground'
+                  : 'bg-white/10 md:bg-muted text-white/60 md:text-muted-foreground'
               }`}>
                 {auto.triggered}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-[9px] text-muted-foreground pl-5">
+            <div className="flex items-center gap-1 text-[9px] text-white/60 md:text-muted-foreground pl-5">
               <Eye className="w-3 h-3" />
               {auto.reason}
             </div>
@@ -204,8 +204,8 @@ const Solution = () => {
       </div>
       
       {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between">
-        <div className="text-[10px] text-muted-foreground">You see exactly what AI does</div>
+      <div className="mt-4 pt-3 border-t border-white/20 md:border-border/30 flex items-center justify-between">
+        <div className="text-[10px] text-white/60 md:text-muted-foreground">You see exactly what AI does</div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
           <Zap className="w-3 h-3 text-accent" />
           <span className="text-[10px] text-accent font-medium">4 active</span>
@@ -297,7 +297,7 @@ const Solution = () => {
             </div>
             
             {/* Visual */}
-            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden [&_.text-foreground]:text-white [&_.text-muted-foreground]:text-white/60 [&_.bg-card\\/80]:bg-white/5 [&_.bg-muted\\/30]:bg-white/10 [&_.bg-muted\\/20]:bg-white/5 [&_.border-border\\/50]:border-white/10 [&_.border-border\\/30]:border-white/10 [&_.border-border\\/20]:border-white/10">
+            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden">
               {getVisualForIndex(activeIndex)}
             </div>
           </div>
