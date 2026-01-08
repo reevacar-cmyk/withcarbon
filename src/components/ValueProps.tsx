@@ -418,13 +418,16 @@ const ValueProps = () => {
           {values.map((value, index) => (
             <div 
               key={index}
-              className={`grid lg:grid-cols-2 gap-6 lg:gap-12 items-center fade-in ${
-                index % 2 === 1 ? 'lg:grid-flow-dense' : ''
-              }`}
+              className="flex flex-col gap-6 lg:gap-8 fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Content */}
-              <div className={`space-y-2 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+              {/* Visual - now on top */}
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-xl md:rounded-2xl overflow-hidden">
+                {renderVisual(value.visual)}
+              </div>
+              
+              {/* Content - now below */}
+              <div className="space-y-2 max-w-2xl">
                 <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
                   {value.metric}
                 </div>
@@ -434,13 +437,6 @@ const ValueProps = () => {
                 <p className="text-sm text-muted-foreground leading-snug max-w-lg">
                   {value.description}
                 </p>
-              </div>
-              
-              {/* Visual */}
-              <div className={`relative h-[340px] md:h-80 lg:h-[420px] bg-muted/20 border border-border/50 rounded-xl md:rounded-2xl overflow-hidden ${
-                index % 2 === 1 ? 'lg:col-start-1' : ''
-              }`}>
-                {renderVisual(value.visual)}
               </div>
             </div>
           ))}
