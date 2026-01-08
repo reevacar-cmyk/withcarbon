@@ -1,67 +1,75 @@
-import { Phone, Database, Users, Clock } from "lucide-react";
+import { PhoneOff, CalendarX, DollarSign, UserX } from "lucide-react";
 
 const ProblemStatement = () => {
   const problems = [
     {
-      icon: Users,
-      text: "Our customers run multiple businesses at once.",
-      highlight: "multiple businesses"
+      icon: PhoneOff,
+      stat: "67%",
+      label: "of calls missed",
+      description: "While you're polishing a hood"
     },
     {
-      icon: Phone,
-      text: "Calls come in while they're on the road.",
-      highlight: "on the road"
+      icon: CalendarX,
+      stat: "23%",
+      label: "no-show rate",
+      description: "Bookings that never confirm"
     },
     {
-      icon: Database,
-      text: "CRMs don't get updated.",
-      highlight: "don't get updated"
+      icon: DollarSign,
+      stat: "$2,400",
+      label: "lost monthly",
+      description: "From customers who don't rebook"
     },
     {
-      icon: Clock,
-      text: "Past customers disappear.",
-      highlight: "disappear"
+      icon: UserX,
+      stat: "1 in 3",
+      label: "customers gone",
+      description: "After their first detail"
     }
   ];
 
   return (
     <section className="py-32 px-6 md:px-12 lg:px-24 relative">
-      {/* Subtle accent line */}
-      <div className="absolute left-6 md:left-12 lg:left-24 top-32 bottom-32 w-px bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
-      
-      <div className="container mx-auto max-w-4xl">
-        {/* Section label */}
-        <p className="text-accent text-sm tracking-[0.3em] uppercase mb-8 fade-in">
-          The Reality
-        </p>
+      <div className="container mx-auto max-w-5xl">
+        {/* Centered header */}
+        <div className="text-center mb-20">
+          <p className="text-accent text-sm tracking-[0.3em] uppercase mb-6 fade-in">
+            The Problem
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
+            You're too busy detailing cars to run your business.
+          </h2>
+        </div>
         
-        {/* Main headline */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 leading-tight fade-in" style={{ animationDelay: '0.1s' }}>
-          Field service operators don't work at desks.
-        </h2>
-        
-        {/* Problem grid */}
-        <div className="grid gap-8 md:gap-10">
+        {/* Stats grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
-            const parts = problem.text.split(problem.highlight);
             
             return (
               <div 
                 key={index}
-                className="flex items-start gap-5 group fade-in"
+                className="group text-center p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                {/* Icon container */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center group-hover:bg-accent/10 group-hover:border-accent/20 transition-all duration-300">
-                  <Icon className="w-5 h-5 text-accent/70" strokeWidth={1.5} />
+                {/* Icon */}
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300">
+                  <Icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
                 
-                {/* Text with highlight */}
-                <p className="text-xl md:text-2xl text-muted-foreground pt-2 leading-relaxed">
-                  {parts[0]}
-                  <span className="text-foreground font-medium">{problem.highlight}</span>
-                  {parts[1]}
+                {/* Stat */}
+                <div className="text-3xl md:text-4xl font-bold text-accent mb-1">
+                  {problem.stat}
+                </div>
+                
+                {/* Label */}
+                <div className="text-sm text-foreground font-medium mb-2">
+                  {problem.label}
+                </div>
+                
+                {/* Description */}
+                <p className="text-xs text-muted-foreground">
+                  {problem.description}
                 </p>
               </div>
             );
