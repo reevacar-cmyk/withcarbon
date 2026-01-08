@@ -22,7 +22,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="space-y-4 md:space-y-8">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground fade-in">
-              <span className="md:hidden">AI that answers calls, books jobs, and brings customers back.</span>
+              <span className="md:hidden">Your AI front desk that never clocks out.</span>
               <span className="hidden md:inline">AI-native customer + job operations platform</span>
             </h1>
             <p className="text-base md:text-xl text-muted-foreground max-w-lg fade-in fade-in-delay-1">
