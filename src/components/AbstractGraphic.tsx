@@ -19,7 +19,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
         </div>
         
         {/* Main content area */}
-        <div className="absolute inset-5 space-y-4">
+        <div className="absolute inset-5 bottom-20 space-y-4 overflow-hidden">
           {/* Top bar - simulating app header */}
           <div className="flex items-center justify-between pb-3 border-b border-border/30">
             <div className="flex items-center gap-2">
@@ -59,7 +59,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           </div>
           
           {/* Recent activity feed */}
-          <div className="space-y-2 pt-2 pb-16">
+          <div className="space-y-2 pt-2">
             <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">Recent Activity</div>
             {[
               { action: "Call answered", customer: "John D.", time: "Just now", highlight: true },
@@ -87,30 +87,30 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               </div>
             ))}
           </div>
-          
-          {/* Bottom stats bar */}
-          <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between pt-3 border-t border-border/30">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="text-lg font-bold text-accent">98%</div>
-                <div className="text-[9px] text-muted-foreground">Response Rate</div>
-              </div>
-              <div className="w-px h-8 bg-border/50" />
-              <div className="text-center">
-                <div className="text-lg font-bold text-foreground">2.3s</div>
-                <div className="text-[9px] text-muted-foreground">Avg. Answer</div>
-              </div>
+        </div>
+        
+        {/* Bottom stats bar - positioned separately */}
+        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between pt-3 border-t border-border/30 bg-card/80">
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-lg font-bold text-accent">98%</div>
+              <div className="text-[9px] text-muted-foreground">Response Rate</div>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[9px] text-accent font-medium">AI Active</span>
+            <div className="w-px h-8 bg-border/50" />
+            <div className="text-center">
+              <div className="text-lg font-bold text-foreground">2.3s</div>
+              <div className="text-[9px] text-muted-foreground">Avg. Answer</div>
             </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[9px] text-accent font-medium">AI Active</span>
           </div>
         </div>
         
         {/* Ambient glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl" />
+        <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
       </div>
     );
   }
