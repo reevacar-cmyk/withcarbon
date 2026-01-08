@@ -68,21 +68,28 @@ const DisjointedTools = () => {
 
   // Visual for Voice - showing disconnected conversations
   const VoiceVisual = () => (
-    <div className="h-full flex flex-col justify-center p-4 space-y-3">
-      <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-2.5">
-        <div className="text-[10px] text-muted-foreground mb-1">Incoming call</div>
-        <div className="text-[11px] text-foreground/80">"Hi, I called last week about my BMW..."</div>
+    <div className="h-full flex flex-col justify-center p-3 space-y-2">
+      <div className="bg-muted/30 border border-border/50 rounded-lg p-2">
+        <div className="text-[9px] text-muted-foreground mb-0.5">Customer</div>
+        <div className="text-[10px] text-foreground/80">"I called last week about my BMW..."</div>
       </div>
-      <div className="bg-muted/30 border border-border/50 rounded-lg p-2.5">
-        <div className="text-[10px] text-red-500/60 mb-1 flex items-center gap-1">
-          <X className="w-3 h-3" />
-          AI Response
+      <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-2">
+        <div className="text-[9px] text-red-500/60 mb-0.5 flex items-center gap-1">
+          <Brain className="w-2.5 h-2.5" />
+          AI Bot
         </div>
-        <div className="text-[11px] text-muted-foreground">"I don't have any record of that. Can you tell me your name again?"</div>
+        <div className="text-[10px] text-muted-foreground">"I don't have any record of that..."</div>
       </div>
-      <div className="text-[10px] text-red-500/60 flex items-center gap-1 pt-1">
-        <AlertTriangle className="w-3 h-3" />
-        Customer hung up
+      <div className="bg-muted/30 border border-border/50 rounded-lg p-2">
+        <div className="text-[9px] text-muted-foreground mb-0.5">Customer</div>
+        <div className="text-[10px] text-foreground/80">"I already gave my info twice!"</div>
+      </div>
+      <div className="flex items-center justify-between pt-1">
+        <div className="text-[9px] text-red-500/60 flex items-center gap-1">
+          <X className="w-3 h-3" />
+          Call ended
+        </div>
+        <div className="text-[9px] text-muted-foreground/50">Lead lost</div>
       </div>
     </div>
   );
@@ -147,7 +154,7 @@ const DisjointedTools = () => {
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 {/* Visual area */}
-                <div className="h-44 bg-red-500/[0.03] border-b border-red-500/10">
+                <div className="h-48 bg-red-500/[0.03] border-b border-red-500/10">
                   {renderVisual(tool.visual)}
                 </div>
                 
@@ -156,7 +163,7 @@ const DisjointedTools = () => {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground">{tool.name}</h3>
+                      <h3 className="text-lg font-semibold text-foreground leading-tight">{tool.name}</h3>
                       <p className="text-xs text-muted-foreground">{tool.tagline}</p>
                     </div>
                     <div className="flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded-full">
