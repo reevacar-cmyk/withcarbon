@@ -59,8 +59,8 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           </div>
           
           {/* Recent activity feed */}
-          <div className="space-y-2 pt-2">
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Recent Activity</div>
+          <div className="space-y-2 pt-2 pb-16">
+            <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">Recent Activity</div>
             {[
               { action: "Call answered", customer: "John D.", time: "Just now", highlight: true },
               { action: "Job booked", customer: "Sarah M.", time: "2m ago", highlight: false },

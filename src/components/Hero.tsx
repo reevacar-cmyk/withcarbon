@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import AbstractGraphic from "./AbstractGraphic";
+import heroPrismBg from "@/assets/hero-prism-bg.jpg";
 
 const Hero = () => {
   const scrollToPartnerForm = () => {
@@ -15,14 +16,16 @@ const Hero = () => {
   
   return (
     <section className="min-h-screen pb-12 px-6 md:px-12 lg:px-4 pt-[180px] relative overflow-hidden">
-      {/* Background gradient blurs */}
+      {/* Background prism image */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Primary accent glow - top right */}
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-accent/15 rounded-full blur-[120px]" />
-        {/* Secondary glow - bottom left */}
-        <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
-        {/* Subtle center glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-[150px]" />
+        <img 
+          src={heroPrismBg} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
       </div>
       
       <div className="container mx-auto relative z-10">
