@@ -35,16 +35,15 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           {/* AI Impact Stats */}
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: "Time Saved", value: "4.2h", sublabel: "today", icon: "⚡" },
-              { label: "Revenue", value: "$840", sublabel: "recovered", icon: "💰" },
-              { label: "Customers", value: "12", sublabel: "retained", icon: "🤝" }
+              { label: "Time Saved", value: "4.2h", sublabel: "today" },
+              { label: "Revenue", value: "$840", sublabel: "recovered" },
+              { label: "Customers", value: "12", sublabel: "retained" }
             ].map((item, i) => (
               <div 
                 key={i} 
                 className="p-2 rounded-lg bg-accent/5 border border-accent/20"
               >
-                <div className="text-[9px] text-muted-foreground flex items-center gap-1">
-                  <span>{item.icon}</span>
+                <div className="text-[9px] text-muted-foreground uppercase tracking-wider">
                   {item.label}
                 </div>
                 <div className="text-lg font-bold text-accent leading-tight">{item.value}</div>
@@ -53,18 +52,21 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
             ))}
           </div>
           
-          {/* AI Activity feed - More prominent */}
+          {/* AI Activity feed - Wins */}
           <div className="space-y-1.5 pt-1 flex-1">
             <div className="flex items-center justify-between mb-2">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">AI Activity</div>
-              <div className="text-[9px] text-accent">Live</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">AI Wins</div>
+              <div className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <div className="text-[9px] text-accent">Live</div>
+              </div>
             </div>
             {[
-              { action: "Answered call", detail: "Booked $180 detail", customer: "John D.", time: "Just now", isAI: true },
-              { action: "Sent follow-up", detail: "Quote accepted", customer: "Sarah M.", time: "1m ago", isAI: true },
-              { action: "Recovered lead", detail: "Rescheduled no-show", customer: "Mike R.", time: "3m ago", isAI: true },
-              { action: "Upsold service", detail: "+$60 ceramic coat", customer: "Lisa K.", time: "5m ago", isAI: true },
-              { action: "Confirmed booking", detail: "Tomorrow 9am", customer: "David P.", time: "8m ago", isAI: true }
+              { action: "Answered call", result: "+$180", detail: "Full detail booked", customer: "John D.", time: "Just now" },
+              { action: "Follow-up sent", result: "Won", detail: "Quote accepted", customer: "Sarah M.", time: "1m ago" },
+              { action: "Lead recovered", result: "Saved", detail: "Rescheduled no-show", customer: "Mike R.", time: "3m ago" },
+              { action: "Upsold service", result: "+$60", detail: "Ceramic coat added", customer: "Lisa K.", time: "5m ago" },
+              { action: "Booking confirmed", result: "Locked", detail: "Tomorrow 9am", customer: "David P.", time: "8m ago" }
             ].map((activity, i) => (
               <div 
                 key={i} 
@@ -77,18 +79,24 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               >
                 <div className="flex items-start gap-2 min-w-0 flex-1">
                   <div className={cn(
-                    "w-1.5 h-1.5 rounded-full mt-1.5 shrink-0",
-                    i === 0 ? "bg-accent animate-pulse" : "bg-accent/50"
-                  )} />
+                    "w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold shrink-0",
+                    i === 0 ? "bg-accent text-background" : "bg-accent/30 text-accent"
+                  )}>
+                    {activity.result.startsWith('+') ? activity.result : '✓'}
+                  </div>
                   <div className="min-w-0">
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <span className="text-[10px] text-foreground font-medium">{activity.action}</span>
-                      {activity.isAI && (
-                        <span className="text-[8px] px-1 py-0.5 bg-accent/20 text-accent rounded">AI</span>
-                      )}
+                      <span className={cn(
+                        "text-[8px] px-1.5 py-0.5 rounded font-semibold",
+                        activity.result.startsWith('+') 
+                          ? "bg-accent/20 text-accent" 
+                          : "bg-accent/10 text-accent"
+                      )}>
+                        {activity.result}
+                      </span>
                     </div>
-                    <div className="text-[9px] text-accent/80">{activity.detail}</div>
-                    <div className="text-[9px] text-muted-foreground">{activity.customer}</div>
+                    <div className="text-[9px] text-muted-foreground">{activity.detail} · {activity.customer}</div>
                   </div>
                 </div>
                 <span className="text-[9px] text-muted-foreground shrink-0 ml-2">{activity.time}</span>
