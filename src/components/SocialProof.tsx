@@ -15,7 +15,7 @@ const SocialProof = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-3 md:px-12 lg:px-24 bg-card">
+    <section className="py-16 md:py-32 px-[3px] md:px-12 lg:px-24 bg-card">
       <div className="container mx-auto max-w-5xl">
         {/* Main headline */}
         <div className="text-center mb-10 md:mb-16 fade-in">

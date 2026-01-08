@@ -412,7 +412,7 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 px-3 md:px-8 lg:px-16">
+    <section className="py-16 md:py-24 px-[3px] md:px-8 lg:px-16">
       <div className="container mx-auto">
         <div className="space-y-16 lg:space-y-24">
           {values.map((value, index) => (
