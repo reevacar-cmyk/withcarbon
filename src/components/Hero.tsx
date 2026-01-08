@@ -25,7 +25,7 @@ const Hero = () => {
               AI-native customer + job operations platform
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg fade-in fade-in-delay-1">
-              Built for operators with hands busy cleaning cars, on the road, and answering calls — while customers, jobs, and follow-ups fall through the cracks.
+              For operators too busy to answer every call — while customers, jobs, and revenue slip away.
             </p>
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-2">
               <Button onClick={scrollToPartnerForm} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8">

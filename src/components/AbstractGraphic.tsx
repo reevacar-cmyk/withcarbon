@@ -9,14 +9,11 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
   if (variant === "hero") {
     return (
       <div className={cn("relative w-full aspect-[4/5] bg-card/90 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 grid-rows-10 h-full w-full gap-px">
-            {Array.from({ length: 120 }).map((_, i) => (
-              <div key={i} className="border-b border-r border-border/30" />
-            ))}
-          </div>
-        </div>
+        {/* Grid pattern background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)',
+          backgroundSize: '20px 20px'
+        }} />
         
         {/* Main content area */}
         <div className="absolute inset-4 bottom-28 space-y-3 overflow-hidden">
@@ -79,10 +76,10 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               >
                 <div className="flex items-start gap-2 min-w-0 flex-1">
                   <div className={cn(
-                    "w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold shrink-0",
+                    "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0",
                     i === 0 ? "bg-accent text-background" : "bg-accent/30 text-accent"
                   )}>
-                    {activity.result.startsWith('+') ? activity.result : '✓'}
+                    ✓
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
