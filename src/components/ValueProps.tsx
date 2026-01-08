@@ -68,75 +68,126 @@ const ValueProps = () => {
   );
 
   const RetentionVisual = () => (
-    <div className="relative w-full h-full flex items-center justify-center p-6">
-      {/* Customer journey timeline */}
-      <div className="w-full max-w-md">
-        {/* Timeline header */}
-        <div className="flex items-center justify-between mb-6 fade-in">
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">Customer Timeline</span>
-          <span className="text-xs text-accent">Auto-triggered</span>
+    <div className="relative w-full h-full flex flex-col p-5">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4 fade-in">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">AI Follow-ups</span>
         </div>
-        
-        {/* Timeline with customers */}
-        <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-accent/50 to-border" />
-          
-          {/* Timeline events */}
-          <div className="space-y-4">
-            {[
-              { name: "John D.", action: "Service completed", time: "30 days ago", status: "followup", message: "Time for your next oil change?" },
-              { name: "Sarah M.", action: "Estimate sent", time: "7 days ago", status: "reminder", message: "Ready to schedule your brake service?" },
-              { name: "Mike R.", action: "Missed call", time: "2 days ago", status: "urgent", message: "We tried reaching you about your appointment" }
-            ].map((event, i) => (
-              <div 
-                key={i} 
-                className="relative pl-14 fade-in"
-                style={{ animationDelay: `${i * 0.15}s` }}
-              >
-                {/* Timeline dot */}
-                <div className={`absolute left-4 top-3 w-4 h-4 rounded-full border-2 ${
-                  event.status === 'urgent' ? 'bg-accent border-accent' : 
-                  event.status === 'followup' ? 'bg-accent/20 border-accent' : 
-                  'bg-muted border-border'
-                }`}>
-                  {event.status === 'urgent' && (
-                    <Bell className="w-2 h-2 text-accent-foreground absolute top-0.5 left-0.5" />
-                  )}
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Personalized</span>
+      </div>
+      
+      {/* Main conversation thread */}
+      <div className="flex-1 space-y-3 overflow-hidden">
+        {[
+          { 
+            name: "John D.", 
+            vehicle: "2021 Tesla Model 3",
+            lastService: "Full detail · 45 days ago",
+            message: "Hey John! Your Model 3 is probably due for another detail. Want me to book you in this week?",
+            response: "Yes! Thursday works",
+            outcome: "Booked",
+            value: "$180"
+          },
+          { 
+            name: "Sarah M.", 
+            vehicle: "2019 BMW X5",
+            lastService: "Ceramic coat · 6 months ago",
+            message: "Hi Sarah, your ceramic coating maintenance is coming up. Ready for a quick refresh?",
+            response: "Can you do Saturday?",
+            outcome: "Booked",
+            value: "$120"
+          },
+          { 
+            name: "Mike R.", 
+            vehicle: "2022 Ford F-150",
+            lastService: "Interior clean · 30 days ago",
+            message: "Mike, noticed you do a lot of highway miles. Time for a paint correction?",
+            response: null,
+            outcome: "Sent",
+            value: "$350"
+          }
+        ].map((customer, i) => (
+          <div 
+            key={i} 
+            className="bg-card/80 border border-border/50 rounded-xl p-3 fade-in hover:border-accent/30 transition-colors"
+            style={{ animationDelay: `${i * 0.15}s` }}
+          >
+            {/* Customer header */}
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-[10px] font-bold text-accent">
+                  {customer.name.split(' ').map(n => n[0]).join('')}
                 </div>
-                
-                {/* Event card */}
-                <div className="bg-muted/30 border border-border/50 rounded-lg p-3 hover:border-accent/30 transition-colors">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-3 h-3 text-accent/70" />
-                      <span className="text-sm font-medium text-foreground">{event.name}</span>
-                    </div>
-                    <span className="text-[10px] text-muted-foreground">{event.time}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mb-2">{event.action}</p>
-                  
-                  {/* Auto-sent message preview */}
-                  <div className="flex items-start gap-2 p-2 bg-accent/5 border border-accent/20 rounded-md">
-                    <Send className="w-3 h-3 text-accent mt-0.5 flex-shrink-0" />
-                    <p className="text-[11px] text-foreground/80 italic">"{event.message}"</p>
-                  </div>
+                <div>
+                  <div className="text-xs font-medium text-foreground">{customer.name}</div>
+                  <div className="text-[10px] text-muted-foreground">{customer.vehicle}</div>
                 </div>
               </div>
-            ))}
+              <div className="text-right">
+                <div className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                  customer.outcome === 'Booked' 
+                    ? 'bg-accent/20 text-accent' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {customer.outcome}
+                </div>
+              </div>
+            </div>
+            
+            {/* Context */}
+            <div className="text-[10px] text-muted-foreground mb-2 flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {customer.lastService}
+            </div>
+            
+            {/* AI Message */}
+            <div className="bg-accent/5 border border-accent/20 rounded-lg p-2 mb-2">
+              <div className="flex items-start gap-2">
+                <div className="w-4 h-4 rounded bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Send className="w-2.5 h-2.5 text-accent" />
+                </div>
+                <p className="text-[11px] text-foreground/90 leading-relaxed">"{customer.message}"</p>
+              </div>
+            </div>
+            
+            {/* Customer response if exists */}
+            {customer.response && (
+              <div className="flex justify-end">
+                <div className="bg-muted/50 rounded-lg px-2 py-1.5 max-w-[70%]">
+                  <p className="text-[11px] text-foreground">"{customer.response}"</p>
+                </div>
+              </div>
+            )}
+            
+            {/* Value indicator for booked */}
+            {customer.outcome === 'Booked' && (
+              <div className="mt-2 pt-2 border-t border-border/30 flex items-center justify-between">
+                <span className="text-[10px] text-muted-foreground">Revenue recovered</span>
+                <span className="text-xs font-bold text-accent">{customer.value}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      
+      {/* Summary stats */}
+      <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-bold text-accent">$650</div>
+            <div className="text-[9px] text-muted-foreground">Recovered</div>
+          </div>
+          <div className="w-px h-8 bg-border/50" />
+          <div className="text-center">
+            <div className="text-lg font-bold text-foreground">67%</div>
+            <div className="text-[9px] text-muted-foreground">Response rate</div>
           </div>
         </div>
-        
-        {/* Stats bar */}
-        <div className="mt-6 pt-4 border-t border-border/30 flex items-center justify-between fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="flex items-center gap-2">
-            <RotateCcw className="w-4 h-4 text-accent" />
-            <span className="text-xs text-foreground">12 customers re-engaged this week</span>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] text-accent font-medium">AI Active</span>
-          </div>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">AI Active</span>
         </div>
       </div>
     </div>
