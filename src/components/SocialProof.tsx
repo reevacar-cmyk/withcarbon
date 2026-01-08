@@ -3,10 +3,10 @@ import { MapPin, Users, Calendar } from "lucide-react";
 const SocialProof = () => {
   // University logos as styled text badges
   const universities = [
-    { name: "Cornell", mobileColor: "bg-red-500/20 text-red-400 border-red-500/30", desktopColor: "md:bg-red-900/20 md:text-red-400/80 md:border-red-900/30" },
-    { name: "MIT", mobileColor: "bg-zinc-500/20 text-zinc-300 border-zinc-500/30", desktopColor: "md:bg-zinc-700/30 md:text-zinc-300 md:border-zinc-600/30" },
-    { name: "Boston College", mobileColor: "bg-amber-500/20 text-amber-400 border-amber-500/30", desktopColor: "md:bg-amber-900/20 md:text-amber-500/80 md:border-amber-900/30" },
-    { name: "Northeastern", mobileColor: "bg-red-500/20 text-red-400 border-red-500/30", desktopColor: "md:bg-red-950/20 md:text-red-500/70 md:border-red-950/30" },
+    { name: "Cornell", mobileColor: "bg-red-500/20 text-red-400 border-red-500/30", desktopColor: "md:bg-red-100 md:text-red-700 md:border-red-200" },
+    { name: "MIT", mobileColor: "bg-zinc-500/20 text-zinc-300 border-zinc-500/30", desktopColor: "md:bg-zinc-200 md:text-zinc-700 md:border-zinc-300" },
+    { name: "Boston College", mobileColor: "bg-amber-500/20 text-amber-400 border-amber-500/30", desktopColor: "md:bg-amber-100 md:text-amber-700 md:border-amber-200" },
+    { name: "Northeastern", mobileColor: "bg-red-500/20 text-red-400 border-red-500/30", desktopColor: "md:bg-red-100 md:text-red-700 md:border-red-200" },
   ];
 
   const stats = [
@@ -15,7 +15,7 @@ const SocialProof = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-[3px] md:px-12 lg:px-24 bg-black md:bg-card">
+    <section className="py-16 md:py-32 px-[3px] md:px-12 lg:px-24 bg-black md:bg-background">
       <div className="container mx-auto max-w-5xl">
         
         {/* Mobile Layout */}

@@ -135,28 +135,28 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
 
   // Solution variant - A/B testing visualization
   return (
-    <div className={cn("relative w-full h-full bg-[hsl(0_0%_8%)] md:bg-card rounded-lg overflow-hidden", className)}>
+    <div className={cn("relative w-full h-full bg-[hsl(0_0%_8%)] rounded-lg overflow-hidden", className)}>
       <div className="absolute inset-5 flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs text-white/60 md:text-muted-foreground uppercase tracking-wider">AI Learning</span>
+            <span className="text-xs text-white/60 uppercase tracking-wider">AI Learning</span>
           </div>
           <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Auto-optimizing</span>
         </div>
 
         {/* A/B Test cards */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="p-3 bg-white/10 md:bg-muted/30 rounded-xl border border-white/20 md:border-border/50">
-            <div className="text-[10px] text-white/60 md:text-muted-foreground mb-2 uppercase tracking-wider">Variant A</div>
+          <div className="p-3 bg-white/10 rounded-xl border border-white/20">
+            <div className="text-[10px] text-white/60 mb-2 uppercase tracking-wider">Variant A</div>
             <div className="space-y-1.5 mb-3">
-              <div className="h-2 w-full bg-white/20 md:bg-muted/50 rounded-full" />
-              <div className="h-2 w-3/4 bg-white/20 md:bg-muted/50 rounded-full" />
+              <div className="h-2 w-full bg-white/20 rounded-full" />
+              <div className="h-2 w-3/4 bg-white/20 rounded-full" />
             </div>
-            <div className="text-2xl font-bold text-white/60 md:text-muted-foreground mb-1">42%</div>
-            <div className="h-1.5 bg-white/10 md:bg-muted rounded-full overflow-hidden">
-              <div className="w-[42%] h-full bg-white/40 md:bg-muted-foreground/50" />
+            <div className="text-2xl font-bold text-white/60 mb-1">42%</div>
+            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div className="w-[42%] h-full bg-white/40" />
             </div>
           </div>
           <div className="p-3 bg-accent/10 rounded-xl border border-accent/30">
@@ -168,15 +168,15 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               <div className="h-2 w-2/3 bg-accent/30 rounded-full" />
             </div>
             <div className="text-2xl font-bold text-accent mb-1">58%</div>
-            <div className="h-1.5 bg-white/10 md:bg-muted rounded-full overflow-hidden">
+            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
               <div className="w-[58%] h-full bg-accent" />
             </div>
           </div>
         </div>
 
         {/* What AI learned */}
-        <div className="bg-white/10 md:bg-card/80 border border-white/20 md:border-border/50 rounded-xl p-3 mb-4">
-          <div className="text-[10px] text-white/60 md:text-muted-foreground uppercase tracking-wider mb-2">What AI learned</div>
+        <div className="bg-white/10 border border-white/20 rounded-xl p-3 mb-4">
+          <div className="text-[10px] text-white/60 uppercase tracking-wider mb-2">What AI learned</div>
           <div className="space-y-2">
             {[
               { insight: "Mentioning vehicle model increases response by 23%", status: "Applied" },
@@ -184,11 +184,11 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               { insight: "Follow-up on day 3 beats day 7", status: "Testing" }
             ].map((item, i) => (
               <div key={i} className="flex items-center justify-between text-[10px]">
-                <span className="text-white/80 md:text-foreground/80">{item.insight}</span>
+                <span className="text-white/80">{item.insight}</span>
                 <span className={`px-1.5 py-0.5 rounded text-[9px] ${
                   item.status === 'Applied' 
                     ? 'bg-accent/20 text-accent' 
-                    : 'bg-white/10 md:bg-muted text-white/60 md:text-muted-foreground'
+                    : 'bg-white/10 text-white/60'
                 }`}>
                   {item.status}
                 </span>
@@ -199,7 +199,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
 
         {/* Response rate chart */}
         <div className="flex flex-col">
-          <div className="text-[10px] text-white/60 md:text-muted-foreground uppercase tracking-wider mb-2">Response Rate Trend</div>
+          <div className="text-[10px] text-white/60 uppercase tracking-wider mb-2">Response Rate Trend</div>
           <div className="flex items-end gap-1 h-12">
             {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 65].map((h, i) => (
               <div 
@@ -209,7 +209,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               />
             ))}
           </div>
-          <div className="flex items-center justify-between mt-1 text-[9px] text-white/60 md:text-muted-foreground">
+          <div className="flex items-center justify-between mt-1 text-[9px] text-white/60">
             <span>Week 1</span>
             <span>Now</span>
           </div>
