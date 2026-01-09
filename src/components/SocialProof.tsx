@@ -15,7 +15,7 @@ const SocialProof = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 px-[3px] md:px-12 lg:px-24 bg-black md:bg-background">
+    <section className="py-16 md:py-16 px-[3px] md:px-12 lg:px-24 bg-black md:bg-background">
       <div className="container mx-auto max-w-5xl">
         
         {/* Mobile Layout */}
@@ -79,46 +79,56 @@ const SocialProof = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Distinctive bordered section */}
+        {/* Desktop Layout - Bold dark card */}
         <div className="hidden md:block">
-          <div className="border border-border rounded-2xl p-10 lg:p-12 bg-[hsl(40_20%_97%)]">
-            <div className="flex items-center justify-between">
-              {/* Left - Main statement */}
-              <div className="max-w-md">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-foreground leading-tight mb-2">
-                  Built by engineers who've detailed cars
+          <div className="relative overflow-hidden rounded-2xl bg-[hsl(0_0%_8%)] p-10 lg:p-14">
+            {/* Subtle grid pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: 'linear-gradient(hsl(0 0% 100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }} />
+            
+            <div className="relative">
+              {/* Top row - Large statement */}
+              <div className="mb-10">
+                <h3 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] max-w-2xl">
+                  Built by engineers who've 
+                  <span className="text-accent"> detailed cars</span>
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  We've been in the bay. We know what it takes.
-                </p>
               </div>
               
-              {/* Right - Credentials grid */}
-              <div className="flex items-center gap-10 lg:gap-14">
-                {/* Universities */}
-                <div className="text-right">
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Team from</div>
-                  <div className="flex items-center gap-2">
+              {/* Bottom row - Credentials */}
+              <div className="flex items-end justify-between">
+                {/* Left - Tagline */}
+                <p className="text-base text-white/60 max-w-xs">
+                  We've been in the bay. We know what it takes to run a detail business.
+                </p>
+                
+                {/* Right - Stats and schools */}
+                <div className="flex items-center gap-10">
+                  {/* Schools */}
+                  <div className="flex items-center gap-3">
                     {['Cornell', 'MIT', 'BC', 'NEU'].map((uni, i) => (
-                      <span key={i} className="text-sm font-medium text-foreground px-2.5 py-1 bg-background border border-border rounded-md">
+                      <span key={i} className="text-xs font-medium text-white/50 px-3 py-1.5 border border-white/10 rounded-full">
                         {uni}
                       </span>
                     ))}
                   </div>
-                </div>
-                
-                {/* Divider */}
-                <div className="w-px h-12 bg-border" />
-                
-                {/* Stats */}
-                <div className="flex items-center gap-8">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-foreground">40+</div>
-                    <div className="text-xs text-muted-foreground">Partners</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-foreground">MA & NY</div>
-                    <div className="text-xs text-muted-foreground">Active regions</div>
+                  
+                  {/* Divider */}
+                  <div className="w-px h-8 bg-white/20" />
+                  
+                  {/* Stats */}
+                  <div className="flex items-center gap-6">
+                    <div>
+                      <span className="text-2xl font-bold text-white">40+</span>
+                      <span className="text-sm text-white/50 ml-2">partners</span>
+                    </div>
+                    <div>
+                      <span className="text-2xl font-bold text-white">MA</span>
+                      <span className="text-sm text-white/50 mx-1">&</span>
+                      <span className="text-2xl font-bold text-white">NY</span>
+                    </div>
                   </div>
                 </div>
               </div>
