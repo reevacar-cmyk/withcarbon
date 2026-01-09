@@ -440,26 +440,28 @@ const ValueProps = () => {
           {values.map((value, index) => (
             <div 
               key={index}
-              className="flex flex-col gap-6 md:gap-8 lg:gap-10 fade-in"
+              className={`flex flex-col md:flex-row md:items-center gap-6 md:gap-12 lg:gap-16 fade-in ${
+                index % 2 === 1 ? 'md:flex-row-reverse' : ''
+              }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Content - on top for mobile, below for desktop */}
-              <div className="space-y-1 md:space-y-2 max-w-2xl md:order-2">
+              {/* Content */}
+              <div className="space-y-1 md:space-y-3 md:flex-1">
                 <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-accent tracking-tight">
                   {value.metric}
                 </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-white">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white">
                   <span className="md:hidden">{value.mobileTitle}</span>
                   <span className="hidden md:inline">{value.title}</span>
                 </h3>
-                <p className="text-sm text-white/70 leading-snug max-w-lg">
+                <p className="text-sm md:text-base text-white/70 leading-snug max-w-lg">
                   <span className="md:hidden">{value.mobileDescription}</span>
                   <span className="hidden md:inline">{value.description}</span>
                 </p>
               </div>
               
-              {/* Visual - below for mobile, on top for desktop */}
-              <div className="relative h-[340px] md:h-80 lg:h-[420px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-xl md:rounded-2xl overflow-hidden md:order-1">
+              {/* Visual */}
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] md:flex-1 bg-[hsl(0_0%_8%)] border border-white/10 rounded-xl md:rounded-2xl overflow-hidden">
                 {renderVisual(value.visual)}
               </div>
             </div>
