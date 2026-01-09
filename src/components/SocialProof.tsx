@@ -28,7 +28,7 @@ const SocialProof = () => {
             <h2 className="text-2xl font-semibold text-white leading-tight mb-2">
               Built by engineers
               <br />
-              <span className="text-muted-foreground">who've detailed cars</span>
+              <span className="text-muted-foreground">who've detailed 300+ cars</span>
             </h2>
           </div>
 
@@ -93,7 +93,7 @@ const SocialProof = () => {
               <div className="mb-10">
                 <h3 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] max-w-2xl">
                   Built by engineers who've 
-                  <span className="text-accent"> detailed cars</span>
+                  <span className="text-accent"> detailed 300+ cars</span>
                 </h3>
               </div>
               
