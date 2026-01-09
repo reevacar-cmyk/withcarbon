@@ -79,21 +79,25 @@ const Solution = () => {
 
   // Visual for unified system - showing connected data
   const UnifiedVisual = () => (
-    <div className="h-full flex flex-col p-5">
+    <div className="h-full flex flex-col p-5 relative overflow-hidden">
+      {/* Mobile shimmer overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] md:animate-none pointer-events-none" />
+      
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           <span className="text-xs text-white/60 uppercase tracking-wider">Customer 360</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Connected</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent animate-[shimmer_2s_ease-in-out_infinite] md:animate-none">Connected</span>
       </div>
       
       {/* Customer profile with connected data */}
-      <div className="flex-1 space-y-3">
-        <div className="bg-white/10 border border-accent/30 rounded-xl p-4">
+      <div className="flex-1 space-y-3 relative z-10">
+        <div className="bg-white/10 border border-accent/30 rounded-xl p-4 animate-[cardGlow_3s_ease-in-out_infinite] md:animate-none">
           <div className="flex items-start gap-3 mb-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-bold text-accent">
+            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-bold text-accent relative">
+              <div className="absolute inset-0 rounded-full bg-accent/20 animate-ping md:animate-none opacity-75" style={{ animationDuration: '2s' }} />
               JD
             </div>
             <div className="flex-1">
@@ -110,14 +114,18 @@ const Solution = () => {
               { icon: Calendar, label: "Next job", value: "Tomorrow 10am", status: "$220 full detail" },
               { icon: Database, label: "History", value: "8 visits", status: "$1,440 lifetime" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between p-2 bg-white/10 rounded-lg">
+              <div 
+                key={i} 
+                className="flex items-center justify-between p-2 bg-white/10 rounded-lg animate-[float_3s_ease-in-out_infinite] md:animate-none"
+                style={{ animationDelay: `${i * 0.2}s` }}
+              >
                 <div className="flex items-center gap-2">
-                  <item.icon className="w-3.5 h-3.5 text-accent/70" />
+                  <item.icon className="w-3.5 h-3.5 text-accent/70 animate-pulse md:animate-none" style={{ animationDelay: `${i * 0.3}s` }} />
                   <span className="text-[10px] text-white/60">{item.label}</span>
                 </div>
                 <div className="text-right">
                   <div className="text-[10px] text-white">{item.value}</div>
-                  <div className="text-[9px] text-accent">{item.status}</div>
+                  <div className="text-[9px] text-accent animate-[shimmer_2s_ease-in-out_infinite] md:animate-none" style={{ animationDelay: `${i * 0.15}s` }}>{item.status}</div>
                 </div>
               </div>
             ))}
@@ -126,9 +134,9 @@ const Solution = () => {
       </div>
       
       {/* Stats */}
-      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
+      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between relative z-10">
         <div className="text-[10px] text-white/60">All data auto-synced</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full animate-[cardGlow_2s_ease-in-out_infinite] md:animate-none">
           <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span className="text-[10px] text-accent font-medium">Live</span>
         </div>
@@ -138,18 +146,21 @@ const Solution = () => {
 
   // Visual for visibility - showing automation dashboard
   const VisibilityVisual = () => (
-    <div className="h-full flex flex-col p-5">
+    <div className="h-full flex flex-col p-5 relative overflow-hidden">
+      {/* Mobile shimmer overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] md:animate-none pointer-events-none" />
+      
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           <span className="text-xs text-white/60 uppercase tracking-wider">Automation Status</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Transparent</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent animate-[shimmer_2s_ease-in-out_infinite] md:animate-none">Transparent</span>
       </div>
       
       {/* Active automations */}
-      <div className="flex-1 space-y-2">
+      <div className="flex-1 space-y-2 relative z-10">
         {[
           { 
             name: "Follow-up after detail", 
@@ -178,31 +189,32 @@ const Solution = () => {
         ].map((auto, i) => (
           <div 
             key={i} 
-            className={`p-3 rounded-lg border ${
+            className={`p-3 rounded-lg border animate-[float_3s_ease-in-out_infinite] md:animate-none ${
               auto.status === 'escalated' 
-                ? 'bg-accent/10 border-accent/30' 
+                ? 'bg-accent/10 border-accent/30 animate-[cardGlow_2s_ease-in-out_infinite] md:animate-none' 
                 : 'bg-white/10 border-white/20'
             }`}
+            style={{ animationDelay: `${i * 0.15}s` }}
           >
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2">
                 {auto.status === 'escalated' ? (
-                  <AlertCircle className="w-3.5 h-3.5 text-accent" />
+                  <AlertCircle className="w-3.5 h-3.5 text-accent animate-pulse" />
                 ) : (
-                  <CheckCircle className="w-3.5 h-3.5 text-accent/70" />
+                  <CheckCircle className="w-3.5 h-3.5 text-accent/70 animate-pulse md:animate-none" style={{ animationDelay: `${i * 0.2}s` }} />
                 )}
                 <span className="text-[11px] font-medium text-white">{auto.name}</span>
               </div>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded ${
+              <span className={`text-[9px] px-1.5 py-0.5 rounded animate-[shimmer_2s_ease-in-out_infinite] md:animate-none ${
                 auto.status === 'escalated' 
                   ? 'bg-accent/20 text-accent font-medium' 
                   : 'bg-white/10 text-white/60'
-              }`}>
+              }`} style={{ animationDelay: `${i * 0.1}s` }}>
                 {auto.triggered}
               </span>
             </div>
             <div className="flex items-center gap-1 text-[9px] text-white/60 pl-5">
-              <Eye className="w-3 h-3" />
+              <Eye className="w-3 h-3 animate-pulse md:animate-none" style={{ animationDelay: `${i * 0.25}s` }} />
               {auto.reason}
             </div>
           </div>
@@ -210,10 +222,10 @@ const Solution = () => {
       </div>
       
       {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
+      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between relative z-10">
         <div className="text-[10px] text-white/60">You see exactly what AI does</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <Zap className="w-3 h-3 text-accent" />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full animate-[cardGlow_2s_ease-in-out_infinite] md:animate-none">
+          <Zap className="w-3 h-3 text-accent animate-[bounce_1s_ease-in-out_infinite] md:animate-none" />
           <span className="text-[10px] text-accent font-medium">4 active</span>
         </div>
       </div>
