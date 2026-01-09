@@ -354,6 +354,42 @@ const Essentials = () => {
               <span className="text-[7px] text-muted-foreground font-mono">12 min left</span>
             </div>
           </div>
+
+          {/* Alex T. */}
+          <div className="bg-background rounded-xl border border-border p-2.5 h-[72px] flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">AT</div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-[1.5px] border-background" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] font-medium text-foreground">Alex T.</div>
+                <div className="text-[8px] text-accent font-mono">PPF Install</div>
+              </div>
+              <div className="text-[7px] text-muted-foreground font-mono">3h 10m</div>
+            </div>
+            <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
+              <div className="h-full w-[55%] bg-accent rounded-full" />
+            </div>
+          </div>
+
+          {/* Chris M. */}
+          <div className="bg-background rounded-xl border border-border p-2.5 h-[72px] flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">CM</div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-[1.5px] border-background" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] font-medium text-foreground">Chris M.</div>
+                <div className="text-[8px] text-accent font-mono">Wash</div>
+              </div>
+              <div className="text-[7px] text-muted-foreground font-mono">20m</div>
+            </div>
+            <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
+              <div className="h-full w-[15%] bg-accent rounded-full" />
+            </div>
+          </div>
         </div>
       </div>
 
