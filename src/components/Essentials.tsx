@@ -536,7 +536,7 @@ const Essentials = () => {
     {
       title: "Clear scheduling",
       subtitle: "CALENDAR",
-      description: "A clean modern calendar built for real operations. See your week at a glance, drag to reschedule, and never double-book again.",
+      description: "A modern calendar for real operations—see your week and never double-book.",
       visual: <CalendarVisual />
     },
     {
