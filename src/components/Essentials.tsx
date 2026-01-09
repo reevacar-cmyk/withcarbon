@@ -1,7 +1,7 @@
 import { Calendar, FileText, Users, Globe, Check, Send, Clock, MapPin, Star } from "lucide-react";
 
 const Essentials = () => {
-  // Light mode Calendar Visual - detailed weekly view
+  // Light mode Calendar Visual - 5 day view for better readability
   const CalendarVisual = () => (
     <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
       {/* Header */}
@@ -21,15 +21,15 @@ const Essentials = () => {
             </div>
           </div>
         </div>
-        <div className="px-2.5 py-1 rounded-lg bg-accent/10 text-[10px] font-mono text-accent">Week</div>
+        <div className="px-2.5 py-1 rounded-lg bg-accent/10 text-[10px] font-mono text-accent">5 Day</div>
       </div>
 
-      {/* Days header */}
-      <div className="grid grid-cols-7 gap-1 px-3 py-2.5 border-b border-border/20">
-        {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, i) => (
+      {/* Days header - 5 days only */}
+      <div className="grid grid-cols-5 gap-2 px-4 py-3 border-b border-border/20">
+        {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((day, i) => (
           <div key={i} className="text-center">
-            <div className="text-[8px] text-muted-foreground font-mono mb-1">{day}</div>
-            <div className={`text-[11px] font-medium w-7 h-7 mx-auto rounded-full flex items-center justify-center ${
+            <div className="text-[9px] text-muted-foreground font-mono mb-1.5">{day}</div>
+            <div className={`text-xs font-medium w-8 h-8 mx-auto rounded-full flex items-center justify-center ${
               i === 2 ? 'bg-accent text-background' : 'text-foreground/70'
             }`} style={i === 2 ? { animation: 'pulse 3s ease-in-out infinite' } : undefined}>
               {11 + i}
@@ -38,99 +38,93 @@ const Essentials = () => {
         ))}
       </div>
 
-      {/* Time slots */}
-      <div className="px-3 py-2.5 space-y-1.5">
+      {/* Time slots - 5 columns */}
+      <div className="px-4 py-3 space-y-2">
         {/* 9 AM Row */}
-        <div className="flex items-center gap-2">
-          <div className="text-[9px] text-muted-foreground font-mono w-8 shrink-0">9 AM</div>
-          <div className="flex-1 grid grid-cols-7 gap-1">
-            <div className="h-7 rounded bg-muted/30" />
+        <div className="flex items-center gap-3">
+          <div className="text-[10px] text-muted-foreground font-mono w-10 shrink-0">9 AM</div>
+          <div className="flex-1 grid grid-cols-5 gap-2">
+            <div className="h-9 rounded-lg bg-muted/30" />
             <div 
-              className="h-7 rounded bg-accent/20 border border-accent/30 flex items-center justify-center relative overflow-hidden"
+              className="h-9 rounded-lg bg-accent/20 border border-accent/30 flex items-center justify-center relative overflow-hidden"
               style={{ animation: 'pulse 3s ease-in-out infinite' }}
             >
-              <span className="text-[8px] text-accent font-mono relative z-10">Detail</span>
+              <span className="text-[10px] text-accent font-mono relative z-10">Detail</span>
               <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0" style={{ animation: 'shimmer 2.5s ease-in-out infinite' }} />
             </div>
-            <div className="h-7 rounded bg-accent flex items-center justify-center" style={{ animation: 'pulse 2s ease-in-out infinite' }}>
-              <span className="text-[8px] text-background font-mono font-medium">Full</span>
+            <div className="h-9 rounded-lg bg-accent flex items-center justify-center" style={{ animation: 'pulse 2s ease-in-out infinite' }}>
+              <span className="text-[10px] text-background font-mono font-medium">Full</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/15 flex items-center justify-center">
-              <span className="text-[8px] text-accent/80 font-mono">Wash</span>
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/15 flex items-center justify-center">
+              <span className="text-[10px] text-accent/80 font-mono">Wash</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
           </div>
         </div>
 
         {/* 11 AM Row */}
-        <div className="flex items-center gap-2">
-          <div className="text-[9px] text-muted-foreground font-mono w-8 shrink-0">11 AM</div>
-          <div className="flex-1 grid grid-cols-7 gap-1">
-            <div className="h-7 rounded bg-accent/15 flex items-center justify-center">
-              <span className="text-[8px] text-accent/80 font-mono">Polish</span>
+        <div className="flex items-center gap-3">
+          <div className="text-[10px] text-muted-foreground font-mono w-10 shrink-0">11 AM</div>
+          <div className="flex-1 grid grid-cols-5 gap-2">
+            <div className="h-9 rounded-lg bg-accent/15 flex items-center justify-center">
+              <span className="text-[10px] text-accent/80 font-mono">Polish</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/20 border border-accent/30 flex items-center justify-center">
-              <span className="text-[7px] text-accent font-mono">Ceramic</span>
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/20 border border-accent/30 flex items-center justify-center">
+              <span className="text-[10px] text-accent font-mono">Ceramic</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/15 flex items-center justify-center">
-              <span className="text-[8px] text-accent/80 font-mono">Detail</span>
-            </div>
-            <div className="h-7 rounded bg-muted/30" />
+            <div className="h-9 rounded-lg bg-muted/30" />
           </div>
         </div>
 
         {/* 2 PM Row */}
-        <div className="flex items-center gap-2">
-          <div className="text-[9px] text-muted-foreground font-mono w-8 shrink-0">2 PM</div>
-          <div className="flex-1 grid grid-cols-7 gap-1">
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/15 flex items-center justify-center">
-              <span className="text-[8px] text-accent/80 font-mono">Interior</span>
+        <div className="flex items-center gap-3">
+          <div className="text-[10px] text-muted-foreground font-mono w-10 shrink-0">2 PM</div>
+          <div className="flex-1 grid grid-cols-5 gap-2">
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/15 flex items-center justify-center">
+              <span className="text-[10px] text-accent/80 font-mono">Interior</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/20 border border-accent/30 flex items-center justify-center">
-              <span className="text-[8px] text-accent font-mono">PPF</span>
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/20 border border-accent/30 flex items-center justify-center">
+              <span className="text-[10px] text-accent font-mono">PPF</span>
             </div>
           </div>
         </div>
 
         {/* 4 PM Row */}
-        <div className="flex items-center gap-2">
-          <div className="text-[9px] text-muted-foreground font-mono w-8 shrink-0">4 PM</div>
-          <div className="flex-1 grid grid-cols-7 gap-1">
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/15 flex items-center justify-center">
-              <span className="text-[8px] text-accent/80 font-mono">Wash</span>
+        <div className="flex items-center gap-3">
+          <div className="text-[10px] text-muted-foreground font-mono w-10 shrink-0">4 PM</div>
+          <div className="flex-1 grid grid-cols-5 gap-2">
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/15 flex items-center justify-center">
+              <span className="text-[10px] text-accent/80 font-mono">Wash</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-accent/20 border border-accent/30 flex items-center justify-center">
-              <span className="text-[8px] text-accent font-mono">Detail</span>
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-muted/30" />
+            <div className="h-9 rounded-lg bg-accent/20 border border-accent/30 flex items-center justify-center">
+              <span className="text-[10px] text-accent font-mono">Detail</span>
             </div>
-            <div className="h-7 rounded bg-muted/30" />
-            <div className="h-7 rounded bg-muted/30" />
           </div>
         </div>
       </div>
 
-      {/* Bottom info bar */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-2.5 bg-gradient-to-t from-card via-card to-transparent">
-        <div className="flex items-center justify-between">
+      {/* Overlay widget - bottom right */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-            <span className="text-[10px] text-foreground font-medium">Today: Full Detail</span>
-            <span className="text-[9px] text-muted-foreground">9 AM</span>
+            <div className="w-2.5 h-2.5 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+            <div>
+              <div className="text-[11px] text-foreground font-medium">Full Detail</div>
+              <div className="text-[9px] text-muted-foreground font-mono">Today · 9 AM</div>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 bg-accent/10 border border-accent/20 rounded-full px-2.5 py-1">
-            <span className="text-[9px] font-mono text-accent font-medium">12 jobs</span>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <div className="text-sm font-semibold text-accent">12</div>
+            <div className="text-[8px] text-muted-foreground font-mono">jobs</div>
           </div>
         </div>
       </div>
