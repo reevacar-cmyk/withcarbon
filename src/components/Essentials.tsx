@@ -266,78 +266,143 @@ const Essentials = () => {
     </div>
   );
 
-  // Light mode Team Visual
+  // Light mode Team Visual - reimagined dispatch board
   const TeamVisual = () => (
     <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/30">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
         <div className="flex items-center gap-2">
-          <div className="text-sm font-medium text-foreground">Team</div>
+          <div className="text-sm font-medium text-foreground">Dispatch</div>
           <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
             <div className="w-1.5 h-1.5 rounded-full bg-accent" style={{ animation: 'pulse 1.5s ease-in-out infinite' }} />
             <span className="text-[8px] font-mono text-accent font-medium">LIVE</span>
           </div>
         </div>
-        <div className="text-[10px] text-muted-foreground font-mono">4 active</div>
+        <div className="text-[10px] text-muted-foreground font-mono">Today</div>
       </div>
 
-      {/* Team members */}
-      <div className="p-2.5 space-y-2">
+      {/* Map-like visualization area */}
+      <div className="relative h-24 bg-muted/20 border-b border-border/30 overflow-hidden">
+        {/* Grid lines */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/3 left-0 right-0 h-px bg-border" />
+          <div className="absolute top-2/3 left-0 right-0 h-px bg-border" />
+          <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
+          <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
+        </div>
+        
+        {/* Location pins */}
+        <div className="absolute top-4 left-8">
+          <div className="relative">
+            <div className="w-7 h-7 rounded-full bg-accent flex items-center justify-center shadow-md" style={{ animation: 'pulse 2s ease-in-out infinite' }}>
+              <span className="text-[8px] font-medium text-background">MR</span>
+            </div>
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-accent" />
+          </div>
+        </div>
+        
+        <div className="absolute top-12 right-16">
+          <div className="relative">
+            <div className="w-7 h-7 rounded-full bg-accent flex items-center justify-center shadow-md" style={{ animation: 'pulse 2.5s ease-in-out infinite' }}>
+              <span className="text-[8px] font-medium text-background">ED</span>
+            </div>
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-accent" />
+          </div>
+        </div>
+        
+        <div className="absolute top-8 left-1/2">
+          <div className="relative">
+            <div className="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center shadow-md">
+              <span className="text-[8px] font-medium text-background">SK</span>
+            </div>
+            {/* Movement indicator */}
+            <div className="absolute -right-6 top-1/2 -translate-y-1/2 flex items-center gap-0.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />
+              <div className="w-1 h-1 rounded-full bg-amber-400/40" />
+              <div className="w-0.5 h-0.5 rounded-full bg-amber-400/20" />
+            </div>
+          </div>
+        </div>
+        
+        {/* HQ marker */}
+        <div className="absolute bottom-3 right-6 flex items-center gap-1.5 bg-background/90 backdrop-blur-sm border border-border rounded-full px-2 py-1">
+          <div className="w-2 h-2 rounded-full bg-muted-foreground/50" />
+          <span className="text-[8px] font-mono text-muted-foreground">HQ</span>
+        </div>
+      </div>
+
+      {/* Team list */}
+      <div className="p-2.5 space-y-1.5">
         {[
-          { name: "Mike R.", role: "Lead", status: "on-site", job: "Tesla Model S", time: "2h 15m", avatar: "MR" },
-          { name: "Sarah K.", role: "Tech", status: "transit", job: "BMW X5", time: "ETA 12m", avatar: "SK" },
-          { name: "James L.", role: "Tech", status: "available", job: "Available", time: "Ready", avatar: "JL" },
-          { name: "Emma D.", role: "Jr", status: "on-site", job: "Audi Q7", time: "45m", avatar: "ED" },
+          { name: "Mike Rodriguez", role: "Lead", status: "on-site", vehicle: "Tesla Model S", service: "Full Detail", progress: 75, avatar: "MR" },
+          { name: "Sarah Kim", role: "Tech", status: "transit", vehicle: "BMW X5", service: "Ceramic", progress: 0, avatar: "SK" },
+          { name: "Emma Davis", role: "Jr", status: "on-site", vehicle: "Audi Q7", service: "Interior", progress: 45, avatar: "ED" },
         ].map((member, i) => (
           <div 
             key={i}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-background border border-border/50"
+            className="flex items-center gap-2.5 p-2 rounded-lg bg-background border border-border/50"
           >
-            {/* Avatar */}
+            {/* Avatar with status */}
             <div className="relative shrink-0">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 flex items-center justify-center">
-                <span className="text-[10px] font-medium text-accent">{member.avatar}</span>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                member.status === 'on-site' ? 'bg-accent' : 'bg-amber-400'
+              }`}>
+                <span className="text-[9px] font-medium text-background">{member.avatar}</span>
               </div>
-              <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-card ${
-                member.status === 'on-site' ? 'bg-accent' : 
-                member.status === 'transit' ? 'bg-amber-400' : 'bg-muted-foreground/30'
-              }`} style={member.status === 'on-site' ? { animation: 'pulse 2s ease-in-out infinite' } : undefined} />
             </div>
 
             {/* Info */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="text-[11px] font-medium text-foreground truncate">{member.name}</span>
-                <span className="text-[8px] text-muted-foreground/60 font-mono shrink-0">{member.role}</span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[10px] font-medium text-foreground truncate">{member.name}</span>
+                <span className="text-[7px] text-muted-foreground/60 font-mono shrink-0 px-1 py-0.5 bg-muted/30 rounded">{member.role}</span>
               </div>
-              <div className="flex items-center gap-1">
-                {member.status === 'on-site' && <MapPin className="w-2.5 h-2.5 text-accent shrink-0" />}
-                {member.status === 'transit' && <Clock className="w-2.5 h-2.5 text-amber-500 shrink-0" />}
-                <span className="text-[9px] text-muted-foreground truncate">{member.job}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-[8px] text-muted-foreground truncate">{member.vehicle}</span>
+                <span className="text-[8px] text-muted-foreground">·</span>
+                <span className="text-[8px] text-accent font-medium">{member.service}</span>
               </div>
-            </div>
-
-            {/* Time */}
-            <div className={`text-[10px] font-mono font-medium shrink-0 ${
-              member.status === 'on-site' ? 'text-accent' : 
-              member.status === 'transit' ? 'text-amber-500' : 'text-muted-foreground/60'
-            }`}>
-              {member.time}
+              {/* Progress bar */}
+              {member.status === 'on-site' && (
+                <div className="mt-1.5 h-1 bg-muted/30 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-accent rounded-full relative overflow-hidden" 
+                    style={{ width: `${member.progress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+                  </div>
+                </div>
+              )}
+              {member.status === 'transit' && (
+                <div className="mt-1.5 flex items-center gap-1">
+                  <Clock className="w-2.5 h-2.5 text-amber-500" />
+                  <span className="text-[8px] text-amber-500 font-mono">ETA 12 min</span>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Bottom stats */}
-      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-3 bg-background/90 backdrop-blur-sm border border-border rounded-lg px-3 py-2">
-        <div className="text-right">
-          <div className="text-[8px] text-muted-foreground font-mono">Today</div>
-          <div className="text-[11px] font-medium text-foreground">32.5 hrs</div>
-        </div>
-        <div className="w-px h-5 bg-border" />
-        <div className="text-right">
-          <div className="text-[8px] text-muted-foreground font-mono">Revenue</div>
-          <div className="text-[11px] font-medium text-accent">$2,840</div>
+      {/* Bottom stats overlay */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-semibold text-foreground">32.5</div>
+            <div className="text-[8px] text-muted-foreground font-mono">hours</div>
+          </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span className="text-[9px] text-muted-foreground">3 on-site</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="text-[9px] text-muted-foreground">1 transit</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
