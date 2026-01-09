@@ -290,8 +290,8 @@ const Essentials = () => {
             key={i}
             className={`relative p-3 rounded-xl border ${
               member.status === 'working' 
-                ? 'bg-background border-accent/20' 
-                : 'bg-muted/30 border-border/50'
+                ? 'bg-background border-border' 
+                : 'bg-muted/30 border-border'
             }`}
           >
             {/* Avatar centered */}
@@ -343,33 +343,32 @@ const Essentials = () => {
       </div>
 
       {/* Bottom stats widget */}
-      <div className="absolute bottom-3 left-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-lg">
-        <div className="flex items-center justify-between">
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl px-3 py-2.5 shadow-lg">
+        <div className="flex items-center gap-3">
           {/* Overlapping profile circles */}
-          <div className="flex items-center">
-            <div className="flex -space-x-2">
-              {['MR', 'SK', 'JL', 'ED'].map((initials, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full bg-accent/90 border-2 border-background flex items-center justify-center shadow-sm"
-                  style={{ zIndex: 4 - i }}
-                >
-                  <span className="text-[9px] font-semibold text-background">{initials}</span>
-                </div>
-              ))}
-            </div>
+          <div className="flex -space-x-1.5">
+            {['MR', 'SK', 'JL', 'ED'].map((initials, i) => (
+              <div
+                key={i}
+                className="w-5 h-5 rounded-full bg-accent border-[1.5px] border-background flex items-center justify-center"
+                style={{ zIndex: 4 - i }}
+              >
+                <span className="text-[6px] font-semibold text-background">{initials}</span>
+              </div>
+            ))}
           </div>
 
+          <div className="w-px h-6 bg-border" />
+
           {/* Stats */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-center">
-              <div className="text-lg font-semibold text-foreground">19h</div>
-              <div className="text-[8px] text-muted-foreground font-mono">today</div>
+              <div className="text-sm font-semibold text-foreground">19h</div>
+              <div className="text-[7px] text-muted-foreground font-mono">today</div>
             </div>
-            <div className="w-px h-7 bg-border" />
             <div className="text-center">
-              <div className="text-lg font-semibold text-accent">8</div>
-              <div className="text-[8px] text-muted-foreground font-mono">jobs</div>
+              <div className="text-sm font-semibold text-accent">8</div>
+              <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
             </div>
           </div>
         </div>
