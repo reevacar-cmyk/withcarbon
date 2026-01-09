@@ -13,7 +13,7 @@ const ValueProps = () => {
     {
       metric: "30%",
       title: "More repeat customers",
-      mobileTitle: "Customers come back",
+      mobileTitle: "More repeat customers",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
       mobileDescription: "Personalized follow-ups based on their car, history, and timing.",
       visual: "retention"
