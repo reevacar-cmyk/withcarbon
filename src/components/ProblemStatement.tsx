@@ -1,3 +1,5 @@
+import { X } from "lucide-react";
+
 const ProblemStatement = () => {
   const problems = [
     { stat: "67%", label: "CALLS MISSED" },
@@ -81,7 +83,7 @@ const ProblemStatement = () => {
                 className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: 'rgb(255 0 0 / 0.1)', border: '1px solid rgb(255 0 0 / 0.2)' }}
               >
-                <div className="w-5 h-5 text-red-500">✕</div>
+                <X className="w-5 h-5 text-red-500" />
               </div>
               <div className="text-4xl font-bold mb-1 text-red-500">
                 {problem.stat}
