@@ -430,13 +430,10 @@ const ValueProps = () => {
 
         {/* Desktop intro */}
         <div className="hidden md:block pt-0 mb-16 text-center space-y-3">
-          <span className="text-xs uppercase tracking-widest text-white/50">Introducing</span>
+          <span className="text-xs uppercase tracking-widest text-white/50">What is Carbon?</span>
           <h2 className="text-5xl lg:text-6xl font-bold tracking-tight text-white">
-            Carbon AI
+            One system to run your customer operations.
           </h2>
-          <p className="text-base text-white/70 max-w-xl mx-auto">
-            AI-native customer and operations platform for field service businesses
-          </p>
         </div>
         
         <div className="space-y-14 md:space-y-16 lg:space-y-24">
