@@ -519,7 +519,7 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="pt-16 pb-16 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
+    <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile-only intro */}
         <div className="md:hidden pt-0 mb-10 text-center space-y-2">
