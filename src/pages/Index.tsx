@@ -5,6 +5,7 @@ import ValueProps from "@/components/ValueProps";
 import DisjointedTools from "@/components/DisjointedTools";
 import Solution from "@/components/Solution";
 import Insights from "@/components/Insights";
+import Essentials from "@/components/Essentials";
 import SocialProof from "@/components/SocialProof";
 import DesignPartnerForm from "@/components/DesignPartnerForm";
 import Newsletter from "@/components/Newsletter";
@@ -32,6 +33,7 @@ const Index = () => {
           <Solution />
         </div>
         <Insights />
+        <Essentials />
         <SocialProof />
         <DesignPartnerForm />
         <Newsletter />
