@@ -7,7 +7,7 @@ const ProblemStatement = () => {
   ];
 
   return (
-    <section className="pt-16 md:pt-4 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-[hsl(40_20%_94%)]">
+    <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
         {/* Mobile: Minimal industrial design */}
         <div className="md:hidden">
