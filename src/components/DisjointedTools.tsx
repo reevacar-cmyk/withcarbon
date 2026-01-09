@@ -158,8 +158,8 @@ const DisjointedTools = () => {
                       {/* Pain points */}
                       <div className="space-y-1.5">
                         {tool.painPoints.map((point, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-red-500/80">
-                            <X className="w-3 h-3 flex-shrink-0" />
+                          <div key={i} className="flex items-center gap-2 text-xs text-red-600 font-medium">
+                            <X className="w-3.5 h-3.5 flex-shrink-0" />
                             {point}
                           </div>
                         ))}
@@ -240,7 +240,7 @@ const DisjointedTools = () => {
                     {/* Pain points */}
                     <div className="space-y-2 pt-3 border-t border-border/50">
                       {tool.painPoints.map((point, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-red-500/80">
+                        <div key={i} className="flex items-center gap-2 text-sm text-red-600 font-medium">
                           <X className="w-4 h-4 flex-shrink-0" />
                           {point}
                         </div>
