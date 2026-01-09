@@ -254,7 +254,7 @@ const Insights = () => {
   };
 
   return (
-    <section className="pt-16 pb-8 md:py-32 px-[3px] md:px-12 lg:px-24">
+    <section className="pt-16 pb-8 md:pt-32 md:pb-16 px-[3px] md:px-12 lg:px-24">
       <div className="container mx-auto max-w-6xl">
         <div className="md:text-center">
           <span className="text-xs md:text-sm font-mono text-accent tracking-wider uppercase mb-2 md:mb-4 block fade-in">The Data</span>
