@@ -16,23 +16,17 @@ const Index = () => {
       <main>
         <Hero />
         <ProblemStatement />
-        {/* Mobile: DisjointedTools first, then ValueProps, then Solution */}
-        <div className="md:hidden">
-          <DisjointedTools />
-        </div>
+        <DisjointedTools />
+        {/* Mobile: ValueProps, then Solution */}
         <div className="md:hidden">
           <ValueProps />
         </div>
         <div className="md:hidden">
           <Solution />
         </div>
-        {/* Desktop: ValueProps in normal position */}
+        {/* Desktop: ValueProps after DisjointedTools, then Solution */}
         <div className="hidden md:block">
           <ValueProps />
-        </div>
-        {/* Desktop: DisjointedTools appears after ValueProps, then Solution */}
-        <div className="hidden md:block">
-          <DisjointedTools />
         </div>
         <div className="hidden md:block">
           <Solution />

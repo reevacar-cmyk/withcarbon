@@ -36,7 +36,7 @@ const ProblemStatement = () => {
   const red = "#FF0000";
 
   return (
-    <section className="pt-16 md:pt-4 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-transparent">
+    <section className="pt-16 md:pt-4 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
         {/* Mobile: Urgent banner-style header */}
         <div className="md:hidden mb-8">
