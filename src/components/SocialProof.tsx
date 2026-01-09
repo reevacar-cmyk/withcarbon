@@ -79,58 +79,22 @@ const SocialProof = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Distinctive horizontal band */}
-        <div className="hidden md:block">
-          <div className="relative py-8 px-12 lg:px-16 bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border-y border-accent/20 -mx-12 lg:-mx-24">
-            {/* Subtle pattern overlay */}
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--accent) / 0.15) 1px, transparent 0)',
-              backgroundSize: '24px 24px'
-            }} />
-            
-            <div className="relative flex items-center justify-between gap-8 max-w-6xl mx-auto">
-              {/* Left - Team identity */}
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-2">
-                  {['C', 'M', 'B', 'N'].map((letter, i) => (
-                    <div 
-                      key={i}
-                      className="w-10 h-10 rounded-full bg-background border-2 border-accent/30 flex items-center justify-center text-sm font-bold text-foreground shadow-sm"
-                    >
-                      {letter}
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground">Engineers who've detailed cars</p>
-                  <p className="text-xs text-muted-foreground">Cornell · MIT · Boston College · Northeastern</p>
-                </div>
-              </div>
-              
-              {/* Center - Stats */}
-              <div className="flex items-center gap-8">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-foreground font-mono">40+</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Partners</div>
-                </div>
-                <div className="w-px h-8 bg-border" />
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-foreground font-mono">6</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Months</div>
-                </div>
-              </div>
-              
-              {/* Right - Location */}
-              <div className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-accent" />
-                <div className="text-sm">
-                  <span className="text-muted-foreground">Active in </span>
-                  <span className="text-foreground font-medium">MA</span>
-                  <span className="text-muted-foreground"> & </span>
-                  <span className="text-foreground font-medium">NY</span>
-                </div>
-              </div>
-            </div>
+        {/* Desktop Layout - Minimal typographic strip */}
+        <div className="hidden md:block py-6">
+          <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
+            <span className="text-foreground font-medium">40+ partners</span>
+            <span className="text-border">—</span>
+            <span>Built by engineers from</span>
+            <span className="text-foreground">Cornell</span>
+            <span className="text-border">·</span>
+            <span className="text-foreground">MIT</span>
+            <span className="text-border">·</span>
+            <span className="text-foreground">BC</span>
+            <span className="text-border">·</span>
+            <span className="text-foreground">NEU</span>
+            <span className="text-border">—</span>
+            <span>Active in</span>
+            <span className="text-foreground font-medium">MA & NY</span>
           </div>
         </div>
       </div>
