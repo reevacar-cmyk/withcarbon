@@ -249,13 +249,12 @@ const Solution = () => {
   return (
     <section id="solution" className="pt-16 pb-24 md:py-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
-        <div className="hidden md:block mb-10 md:mb-16 fade-in">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-3 md:mb-4">
-            Carbon
+        {/* Desktop header */}
+        <div className="hidden md:block mb-12 lg:mb-16 text-center fade-in">
+          <span className="text-xs uppercase tracking-widest text-white/50 mb-3 block">What is Carbon?</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
+            One system to run your customer operations.
           </h2>
-          <p className="text-lg md:text-xl text-white/70 max-w-xl">
-            Centralized, AI-native customer and job operations platform
-          </p>
         </div>
 
         {/* Mobile layout */}
@@ -309,56 +308,47 @@ const Solution = () => {
           </div>
         </div>
 
-        {/* Desktop layout */}
-        <div className="hidden md:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Feature toggles */}
-          <div className="space-y-4 flex flex-col justify-center">
+        {/* Desktop layout - reimagined */}
+        <div className="hidden md:block">
+          {/* Horizontal tab navigation */}
+          <div className="flex justify-center gap-2 mb-10">
             {features.map((feature, index) => (
               <button
                 key={index}
                 onClick={() => handleManualSelect(index)}
-                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 fade-in relative overflow-hidden ${
+                className={`relative px-6 py-3 rounded-full transition-all duration-300 ${
                   activeIndex === index 
-                    ? 'bg-accent/5 border-accent/30' 
-                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                    ? 'bg-white text-[hsl(0_0%_5%)]' 
+                    : 'bg-white/10 text-white/70 hover:bg-white/15 hover:text-white'
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Progress bar */}
+                <span className="text-sm font-medium">{feature.title}</span>
+                {/* Progress indicator */}
                 {activeIndex === index && (
-                  <div 
-                    className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-75 ease-linear"
-                    style={{ width: `${progress}%` }}
-                  />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-0.5 bg-accent/30 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-accent transition-all duration-75 ease-linear"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
                 )}
-                <div className="flex items-start gap-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                    activeIndex === index 
-                      ? 'bg-accent/20 text-accent' 
-                      : 'bg-white/10 text-white/60'
-                  }`}>
-                    <span className="text-sm font-bold">{index + 1}</span>
-                  </div>
-                  <div>
-                    <h3 className={`text-lg font-medium mb-1 transition-colors ${
-                      activeIndex === index ? 'text-white' : 'text-white/80'
-                    }`}>
-                      {feature.title}
-                    </h3>
-                    <p className={`text-sm leading-relaxed transition-colors ${
-                      activeIndex === index ? 'text-white/70' : 'text-white/50'
-                    }`}>
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
               </button>
             ))}
           </div>
-          
-          {/* Dynamic visual */}
-          <div className="h-[480px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden fade-in fade-in-delay-3">
-            {renderVisual()}
+
+          {/* Content and Visual */}
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+            {/* Description */}
+            <div className="lg:col-span-2 flex flex-col justify-center pt-8">
+              <p className="text-lg lg:text-xl text-white/80 leading-relaxed fade-in">
+                {features[activeIndex].description}
+              </p>
+            </div>
+            
+            {/* Visual - larger */}
+            <div className="lg:col-span-3 h-[420px] lg:h-[480px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden fade-in">
+              {renderVisual()}
+            </div>
           </div>
         </div>
       </div>
