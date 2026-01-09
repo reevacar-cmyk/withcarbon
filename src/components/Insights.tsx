@@ -256,6 +256,7 @@ const Insights = () => {
   return (
     <section className="pt-16 pb-8 md:py-32 px-[3px] md:px-12 lg:px-24">
       <div className="container mx-auto max-w-6xl">
+        <span className="text-xs md:text-sm font-mono text-accent tracking-wider uppercase mb-2 block fade-in">The Data</span>
         <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-3 md:mb-4 fade-in">
           Insights you didn't know you had
         </h2>
