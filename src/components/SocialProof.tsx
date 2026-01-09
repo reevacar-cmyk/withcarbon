@@ -79,22 +79,50 @@ const SocialProof = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Minimal typographic strip */}
-        <div className="hidden md:block py-6">
-          <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
-            <span className="text-foreground font-medium">40+ partners</span>
-            <span className="text-border">—</span>
-            <span>Built by engineers from</span>
-            <span className="text-foreground">Cornell</span>
-            <span className="text-border">·</span>
-            <span className="text-foreground">MIT</span>
-            <span className="text-border">·</span>
-            <span className="text-foreground">BC</span>
-            <span className="text-border">·</span>
-            <span className="text-foreground">NEU</span>
-            <span className="text-border">—</span>
-            <span>Active in</span>
-            <span className="text-foreground font-medium">MA & NY</span>
+        {/* Desktop Layout - Distinctive bordered section */}
+        <div className="hidden md:block">
+          <div className="border border-border rounded-2xl p-10 lg:p-12 bg-[hsl(40_20%_97%)]">
+            <div className="flex items-center justify-between">
+              {/* Left - Main statement */}
+              <div className="max-w-md">
+                <h3 className="text-2xl lg:text-3xl font-semibold text-foreground leading-tight mb-2">
+                  Built by engineers who've detailed cars
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  We've been in the bay. We know what it takes.
+                </p>
+              </div>
+              
+              {/* Right - Credentials grid */}
+              <div className="flex items-center gap-10 lg:gap-14">
+                {/* Universities */}
+                <div className="text-right">
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Team from</div>
+                  <div className="flex items-center gap-2">
+                    {['Cornell', 'MIT', 'BC', 'NEU'].map((uni, i) => (
+                      <span key={i} className="text-sm font-medium text-foreground px-2.5 py-1 bg-background border border-border rounded-md">
+                        {uni}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Divider */}
+                <div className="w-px h-12 bg-border" />
+                
+                {/* Stats */}
+                <div className="flex items-center gap-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-foreground">40+</div>
+                    <div className="text-xs text-muted-foreground">Partners</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-foreground">MA & NY</div>
+                    <div className="text-xs text-muted-foreground">Active regions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
