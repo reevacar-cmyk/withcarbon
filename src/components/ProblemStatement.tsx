@@ -44,7 +44,7 @@ const ProblemStatement = () => {
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 fade-in"
             style={{ backgroundColor: `${red}15`, border: `1px solid ${red}30` }}
           >
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: red }} />
+            <div className="w-2 h-2 rounded-full animate-pulse mobile-glow" style={{ backgroundColor: red }} />
             <span className="text-xs font-medium tracking-wide uppercase" style={{ color: red }}>
               Revenue leak
             </span>
@@ -94,7 +94,7 @@ const ProblemStatement = () => {
         >
           <div className="flex items-center gap-3">
             <div 
-              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mobile-pulse-subtle"
               style={{ backgroundColor: `${red}20` }}
             >
               <DollarSign className="w-5 h-5" style={{ color: red }} />
