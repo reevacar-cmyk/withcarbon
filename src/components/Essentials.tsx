@@ -564,8 +564,8 @@ const Essentials = () => {
       <div className="container mx-auto max-w-6xl">
         {/* Section header */}
         <div className="mb-10">
-          <div className="text-[10px] font-mono text-accent tracking-widest mb-3 fade-in">THE ESSENTIALS</div>
-          <h2 className="text-xl font-semibold text-foreground mb-3 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+          <div className="text-[10px] font-mono text-accent tracking-widest mb-2 fade-in">THE ESSENTIALS</div>
+          <h2 className="text-xl font-semibold text-foreground mb-2 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
             Designed to feel better.<br />Built to work better.
           </h2>
           <p className="text-sm text-muted-foreground max-w-sm fade-in leading-snug" style={{ animationDelay: '0.2s' }}>
