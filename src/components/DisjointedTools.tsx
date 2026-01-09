@@ -138,7 +138,7 @@ const DisjointedTools = () => {
         {/* Mobile: Minimal industrial design */}
         <div className="md:hidden">
           {/* Monospace label */}
-          <div className="mb-6 fade-in">
+          <div className="mb-3 fade-in">
             <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase">
               STATUS QUO
             </span>
