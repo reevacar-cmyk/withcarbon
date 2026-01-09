@@ -512,7 +512,7 @@ const Essentials = () => {
     <section className="py-16 px-[3px] md:hidden bg-background">
       <div className="container mx-auto max-w-6xl">
         {/* Section header */}
-        <div className="mb-8">
+        <div className="mb-12">
           <div className="text-[10px] font-mono text-accent tracking-widest mb-3 fade-in">THE ESSENTIALS</div>
           <h2 className="text-xl font-semibold text-foreground mb-3 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
             Designed to feel better.<br />Built to work better.
