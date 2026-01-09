@@ -15,6 +15,12 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           backgroundSize: '20px 20px'
         }} />
         
+        {/* Mobile gradient sweep animation */}
+        <div 
+          className="absolute inset-0 md:hidden pointer-events-none bg-gradient-to-r from-transparent via-accent/5 to-transparent"
+          style={{ animation: 'shimmer 4s ease-in-out infinite' }}
+        />
+        
         {/* Main content area */}
         <div className="absolute inset-4 bottom-28 space-y-3 overflow-hidden">
           {/* Top bar - simulating app header */}
@@ -23,9 +29,14 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
               <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">Carbon AI</span>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-accent/10 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[9px] text-accent font-medium">Working</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-accent/10 rounded-full relative overflow-hidden">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse relative z-10" />
+              <span className="text-[9px] text-accent font-medium relative z-10">Working</span>
+              {/* Mobile badge shimmer */}
+              <span 
+                className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/30 to-accent/0"
+                style={{ animation: 'shimmer 2s ease-in-out infinite' }}
+              />
             </div>
           </div>
           
@@ -38,13 +49,19 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
             ].map((item, i) => (
               <div 
                 key={i} 
-                className="p-2 rounded-lg bg-accent/5 border border-accent/20"
+                className="p-2 rounded-lg bg-accent/5 border border-accent/20 relative overflow-hidden"
+                style={{ animation: `float ${3 + i * 0.3}s ease-in-out infinite` }}
               >
-                <div className="text-[9px] text-muted-foreground uppercase tracking-wider">
+                {/* Mobile stat glow */}
+                <div 
+                  className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/10 to-transparent"
+                  style={{ animation: `pulse ${2 + i * 0.5}s ease-in-out infinite` }}
+                />
+                <div className="text-[9px] text-muted-foreground uppercase tracking-wider relative z-10">
                   {item.label}
                 </div>
-                <div className="text-lg font-bold text-accent leading-tight">{item.value}</div>
-                <div className="text-[8px] text-muted-foreground">{item.sublabel}</div>
+                <div className="text-lg font-bold text-accent leading-tight relative z-10">{item.value}</div>
+                <div className="text-[8px] text-muted-foreground relative z-10">{item.sublabel}</div>
               </div>
             ))}
           </div>
@@ -53,9 +70,14 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           <div className="space-y-1.5 pt-1 flex-1">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider">AI Wins</div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 relative">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                 <div className="text-[9px] text-accent">Live</div>
+                {/* Mobile live indicator ping */}
+                <span 
+                  className="absolute -inset-1 md:hidden rounded-full border border-accent/30"
+                  style={{ animation: 'ping 2s ease-in-out infinite' }}
+                />
               </div>
             </div>
             {[
@@ -68,43 +90,78 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               <div 
                 key={i} 
                 className={cn(
-                  "flex items-start justify-between p-2 rounded-lg transition-all",
+                  "flex items-start justify-between p-2 rounded-lg transition-all relative overflow-hidden",
                   i === 0 
                     ? "bg-accent/15 border border-accent/30" 
                     : "bg-muted/20 border border-transparent"
                 )}
               >
-                <div className="flex items-start gap-2 min-w-0 flex-1">
+                {/* Mobile activity card animations */}
+                {i === 0 && (
+                  <div 
+                    className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0"
+                    style={{ animation: 'shimmer 2s ease-in-out infinite' }}
+                  />
+                )}
+                <div 
+                  className="absolute inset-0 md:hidden"
+                  style={{ 
+                    background: i === 0 ? 'radial-gradient(circle at 0% 50%, hsl(var(--accent) / 0.15) 0%, transparent 50%)' : 'none',
+                    animation: 'float 3s ease-in-out infinite'
+                  }}
+                />
+                
+                <div className="flex items-start gap-2 min-w-0 flex-1 relative z-10">
                   <div className={cn(
-                    "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0",
+                    "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 relative",
                     i === 0 ? "bg-accent text-background" : "bg-accent/30 text-accent"
                   )}>
                     ✓
+                    {/* Mobile checkmark pulse for first item */}
+                    {i === 0 && (
+                      <span 
+                        className="absolute inset-0 md:hidden rounded-full border border-accent"
+                        style={{ animation: 'ping 1.5s ease-in-out infinite' }}
+                      />
+                    )}
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] text-foreground font-medium">{activity.action}</span>
                       <span className={cn(
-                        "text-[8px] px-1.5 py-0.5 rounded font-semibold",
+                        "text-[8px] px-1.5 py-0.5 rounded font-semibold relative overflow-hidden",
                         activity.result.startsWith('+') 
                           ? "bg-accent/20 text-accent" 
                           : "bg-accent/10 text-accent"
                       )}>
-                        {activity.result}
+                        <span className="relative z-10">{activity.result}</span>
+                        {/* Mobile result badge shimmer */}
+                        {activity.result.startsWith('+') && (
+                          <span 
+                            className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/40 to-accent/0"
+                            style={{ animation: 'shimmer 1.5s ease-in-out infinite' }}
+                          />
+                        )}
                       </span>
                     </div>
                     <div className="text-[9px] text-muted-foreground">{activity.detail} · {activity.customer}</div>
                   </div>
                 </div>
-                <span className="text-[9px] text-muted-foreground shrink-0 ml-2">{activity.time}</span>
+                <span className="text-[9px] text-muted-foreground shrink-0 ml-2 relative z-10">{activity.time}</span>
               </div>
             ))}
           </div>
         </div>
         
         {/* Bottom stats bar - positioned separately */}
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50">
-          <div className="flex items-center gap-4">
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50 relative overflow-hidden">
+          {/* Mobile stats bar glow */}
+          <div 
+            className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/5 via-transparent to-accent/5"
+            style={{ animation: 'shimmer 5s ease-in-out infinite' }}
+          />
+          
+          <div className="flex items-center gap-4 relative z-10">
             <div className="text-center">
               <div className="text-xl font-bold text-accent">98%</div>
               <div className="text-[9px] text-muted-foreground">Response Rate</div>
@@ -126,9 +183,15 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           </div>
         </div>
         
-        {/* Ambient glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
+        {/* Ambient glow - with mobile animation */}
+        <div 
+          className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl pointer-events-none"
+          style={{ animation: 'float 6s ease-in-out infinite' }}
+        />
+        <div 
+          className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none"
+          style={{ animation: 'float 5s ease-in-out infinite reverse' }}
+        />
       </div>
     );
   }
