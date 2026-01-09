@@ -560,44 +560,87 @@ const Essentials = () => {
   ];
 
   return (
-    <section className="pt-10 pb-24 px-[3px] md:hidden bg-background">
-      <div className="container mx-auto max-w-6xl">
-        {/* Section header */}
-        <div className="mb-10">
-          <div className="text-[10px] font-mono text-accent tracking-widest mb-3 fade-in">THE ESSENTIALS</div>
-          <h2 className="text-xl font-semibold text-foreground mb-3 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
-            Designed to feel better.<br />Built to work better.
-          </h2>
-          <p className="text-sm text-muted-foreground max-w-sm fade-in leading-snug" style={{ animationDelay: '0.2s' }}>
-            Carbon includes the essentials that are thoughtfully designed so everything feels simple, fast, and trustworthy.
-          </p>
-        </div>
-        
-        {/* Feature blocks */}
-        <div className="flex flex-col gap-12">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="fade-in"
-              style={{ animationDelay: `${(index + 3) * 0.1}s` }}
-            >
-              {/* Visual */}
-              <div className="h-[280px] mb-4">
-                {feature.visual}
+    <>
+      {/* Mobile Layout */}
+      <section className="pt-10 pb-24 px-[3px] md:hidden bg-background">
+        <div className="container mx-auto max-w-6xl">
+          {/* Section header */}
+          <div className="mb-10">
+            <div className="text-[10px] font-mono text-accent tracking-widest mb-3 fade-in">THE ESSENTIALS</div>
+            <h2 className="text-xl font-semibold text-foreground mb-3 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+              Designed to feel better.<br />Built to work better.
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-sm fade-in leading-snug" style={{ animationDelay: '0.2s' }}>
+              Carbon includes the essentials that are thoughtfully designed so everything feels simple, fast, and trustworthy.
+            </p>
+          </div>
+          
+          {/* Feature blocks */}
+          <div className="flex flex-col gap-12">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="fade-in"
+                style={{ animationDelay: `${(index + 3) * 0.1}s` }}
+              >
+                {/* Visual */}
+                <div className="h-[280px] mb-4">
+                  {feature.visual}
+                </div>
+                
+                {/* Content */}
+                <div>
+                  <h3 className="text-base font-medium text-foreground mb-0.5">{feature.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-snug">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-              
-              {/* Content */}
-              <div>
-                <h3 className="text-base font-medium text-foreground mb-0.5">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground leading-snug">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Desktop Layout */}
+      <section className="hidden md:block py-24 px-8 lg:px-16 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          {/* Section header */}
+          <div className="text-center mb-16">
+            <div className="text-sm font-mono text-accent tracking-widest mb-4 fade-in">THE ESSENTIALS</div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+              Designed to feel better.<br />Built to work better.
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto fade-in leading-snug" style={{ animationDelay: '0.2s' }}>
+              Carbon includes the essentials that are thoughtfully designed so everything feels simple, fast, and trustworthy.
+            </p>
+          </div>
+          
+          {/* Feature grid - 2x2 */}
+          <div className="grid grid-cols-2 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="fade-in group"
+                style={{ animationDelay: `${(index + 3) * 0.1}s` }}
+              >
+                {/* Visual */}
+                <div className="h-[320px] mb-5 rounded-2xl overflow-hidden border border-border/50 group-hover:border-accent/30 transition-colors">
+                  {feature.visual}
+                </div>
+                
+                {/* Content */}
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-snug">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
