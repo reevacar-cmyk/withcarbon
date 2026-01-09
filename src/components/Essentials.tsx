@@ -560,7 +560,7 @@ const Essentials = () => {
   ];
 
   return (
-    <section className="py-16 px-[3px] md:hidden bg-background">
+    <section className="pt-16 pb-24 px-[3px] md:hidden bg-background">
       <div className="container mx-auto max-w-6xl">
         {/* Section header */}
         <div className="mb-10">
