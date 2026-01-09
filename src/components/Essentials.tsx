@@ -542,7 +542,7 @@ const Essentials = () => {
     {
       title: "Smart invoicing",
       subtitle: "BILLING",
-      description: "Invoices that send themselves the moment a job is done. Automatic payment reminders and collection tracking built in.",
+      description: "Invoices that auto-send when jobs complete, with built-in payment reminders.",
       visual: <InvoicingVisual />
     },
     {
