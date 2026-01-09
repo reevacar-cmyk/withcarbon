@@ -13,7 +13,8 @@ const DisjointedTools = () => {
         "No connection to calls or texts"
       ],
       visual: "crm",
-      mobilePain: "Manual entry kills your time"
+      code: "CRM_01",
+      loss: "4hrs/wk"
     },
     {
       name: "AI Voice Tools",
@@ -26,7 +27,8 @@ const DisjointedTools = () => {
         "Generic scripts, zero personalization"
       ],
       visual: "voice",
-      mobilePain: "Bots forget everything"
+      code: "VOX_02",
+      loss: "No memory"
     },
     {
       name: "AI Builders",
@@ -39,11 +41,10 @@ const DisjointedTools = () => {
         "Breaks when anything changes"
       ],
       visual: "automation",
-      mobilePain: "Too complex to maintain"
+      code: "AUT_03",
+      loss: "40hr setup"
     }
   ];
-
-  const red = "#FF0000";
 
   // Visual for CRM - showing manual disconnected data
   const CRMVisual = () => (
@@ -134,72 +135,75 @@ const DisjointedTools = () => {
   return (
     <section className="pt-6 pb-12 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-6xl">
-        {/* Mobile: Urgent header with warning aesthetic */}
-        <div className="md:hidden mb-6">
-          <div 
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 fade-in"
-            style={{ backgroundColor: `${red}15`, border: `1px solid ${red}30` }}
-          >
-            <AlertTriangle className="w-3 h-3" style={{ color: red }} />
-            <span className="text-xs font-medium tracking-wide uppercase" style={{ color: red }}>
-              The status quo
+        {/* Mobile: Minimal industrial design */}
+        <div className="md:hidden">
+          {/* Monospace label */}
+          <div className="mb-6 fade-in">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase">
+              // STATUS_QUO
             </span>
           </div>
-          <h2 className="text-3xl font-bold leading-[1.05] fade-in text-foreground" style={{ animationDelay: '0.1s' }}>
-            Current tools are<br />
-            <span style={{ color: red }}>bleeding you dry.</span>
+
+          {/* Industrial headline */}
+          <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-8" style={{ animationDelay: '0.1s' }}>
+            <span className="text-foreground">Tools that</span>
+            <br />
+            <span className="text-red-500">don't connect.</span>
           </h2>
+
+          {/* Industrial tool list - stark, monospace aesthetic */}
+          <div className="border border-border/60 divide-y divide-border/60 fade-in" style={{ animationDelay: '0.2s' }}>
+            {tools.map((tool, index) => (
+              <div key={index} className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  {/* Code identifier */}
+                  <div className="font-mono text-[10px] text-muted-foreground/50 w-12">
+                    {tool.code}
+                  </div>
+                  {/* Tool info */}
+                  <div>
+                    <div className="text-sm font-medium text-foreground">{tool.name}</div>
+                    <div className="font-mono text-[9px] text-muted-foreground uppercase tracking-wider">
+                      {tool.loss}
+                    </div>
+                  </div>
+                </div>
+                {/* Price - stark red */}
+                <div className="text-base font-bold text-red-500 font-mono">
+                  {tool.price}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Total burn rate */}
+          <div className="mt-6 border border-red-500/40 bg-red-500/5 p-4 fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="font-mono text-[9px] tracking-[0.2em] text-red-500/60 uppercase mb-1">
+                  Monthly burn
+                </div>
+                <div className="text-2xl font-bold text-red-500 tracking-tight">
+                  $200–1.4K
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                  Zero integration
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Desktop Header */}
         <div className="hidden md:block text-center mb-16">
-          <p className="text-sm tracking-[0.3em] uppercase mb-4 fade-in" style={{ color: red }}>
+          <p className="text-sm tracking-[0.3em] uppercase mb-4 fade-in text-red-500">
             The Status Quo
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
             Disconnected tools that drain time and money.
           </h2>
-        </div>
-
-        {/* Mobile: Compact painful cost breakdown */}
-        <div className="md:hidden space-y-3 mb-6 fade-in" style={{ animationDelay: '0.2s' }}>
-          {tools.map((tool, index) => {
-            const Icon = tool.icon;
-            return (
-              <div 
-                key={index}
-                className="flex items-center gap-3 p-3 rounded-xl"
-                style={{ backgroundColor: `${red}08`, border: `1px solid ${red}15` }}
-              >
-                <div 
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: `${red}15` }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: red }} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-foreground">{tool.name}</span>
-                    <span className="text-sm font-bold" style={{ color: red }}>{tool.price}</span>
-                  </div>
-                  <div className="text-xs text-muted-foreground">{tool.mobilePain}</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Mobile: Total cost callout - more urgent */}
-        <div 
-          className="md:hidden p-4 rounded-2xl text-center fade-in"
-          style={{ 
-            animationDelay: '0.3s',
-            backgroundColor: red,
-          }}
-        >
-          <div className="text-white/80 text-xs uppercase tracking-wider mb-1">You're burning</div>
-          <div className="text-white text-3xl font-bold">$200–1,400/mo</div>
-          <div className="text-white/60 text-xs mt-1">on tools that don't talk to each other</div>
         </div>
         
         {/* Desktop: Tools grid */}
@@ -226,8 +230,8 @@ const DisjointedTools = () => {
                       <p className="text-xs text-muted-foreground">{tool.tagline}</p>
                     </div>
                     <div className="flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded-full">
-                      <DollarSign className="w-3 h-3" style={{ color: red }} />
-                      <span className="text-xs font-medium" style={{ color: red }}>{tool.price}</span>
+                      <DollarSign className="w-3 h-3 text-red-500" />
+                      <span className="text-xs font-medium text-red-500">{tool.price}</span>
                     </div>
                   </div>
                   
@@ -235,7 +239,7 @@ const DisjointedTools = () => {
                   <ul className="space-y-2">
                     {tool.painPoints.map((point, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: red }} />
+                        <X className="w-4 h-4 mt-0.5 flex-shrink-0 text-red-500" />
                         {point}
                       </li>
                     ))}
@@ -250,7 +254,7 @@ const DisjointedTools = () => {
         <div className="hidden md:block mt-12 text-center fade-in" style={{ animationDelay: '0.5s' }}>
           <div className="inline-flex flex-row items-center gap-3 px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-full">
             <span className="text-sm text-muted-foreground">Total monthly cost:</span>
-            <span className="text-xl font-bold" style={{ color: red }}>$200–1,400/mo</span>
+            <span className="text-xl font-bold text-red-500">$200–1,400/mo</span>
             <span className="text-sm text-muted-foreground">for tools that don't talk to each other</span>
           </div>
         </div>
