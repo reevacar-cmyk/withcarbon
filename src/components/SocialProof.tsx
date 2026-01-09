@@ -37,8 +37,7 @@ const SocialProof = () => {
             {universities.map((uni, index) => (
               <div
                 key={index}
-                className={`px-3 py-1.5 rounded-full border ${uni.mobileColor} font-mono text-[10px] tracking-wide mobile-pulse-subtle`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`px-3 py-1.5 rounded-full border ${uni.mobileColor} font-mono text-[10px] tracking-wide`}
               >
                 {uni.name}
               </div>
@@ -52,8 +51,7 @@ const SocialProof = () => {
               return (
                 <div 
                   key={index} 
-                  className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 text-center mobile-float"
-                  style={{ animationDelay: `${index * 0.5}s` }}
+                  className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 text-center"
                 >
                   <Icon className="w-4 h-4 text-muted-foreground mx-auto mb-2" />
                   <div className="text-2xl font-semibold text-white mb-0.5 font-mono">
@@ -69,7 +67,7 @@ const SocialProof = () => {
 
           {/* Mobile Location */}
           <div className="text-center px-2">
-            <div className="inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-full px-4 py-2 mobile-shimmer">
+            <div className="inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-full px-4 py-2">
               <MapPin className="w-3 h-3 text-muted-foreground" />
               <span className="text-xs text-muted-foreground">Working with detailers in</span>
             </div>

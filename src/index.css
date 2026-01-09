@@ -105,118 +105,12 @@
   .fade-in-delay-4 {
     animation-delay: 0.4s;
   }
-
-  /* Mobile-only subtle animations */
-  @media (max-width: 767px) {
-    .mobile-float {
-      animation: mobileFloat 3s ease-in-out infinite;
-    }
-
-    .mobile-float-delayed {
-      animation: mobileFloat 3s ease-in-out infinite;
-      animation-delay: 1s;
-    }
-
-    .mobile-pulse-subtle {
-      animation: mobilePulseSubtle 2s ease-in-out infinite;
-    }
-
-    .mobile-shimmer {
-      animation: mobileShimmer 2.5s ease-in-out infinite;
-    }
-
-    .mobile-glow {
-      animation: mobileGlow 2s ease-in-out infinite;
-    }
-
-    .mobile-slide-up {
-      animation: mobileSlideUp 0.8s ease-out forwards;
-      opacity: 0;
-    }
-
-    .mobile-slide-up-delay-1 {
-      animation-delay: 0.15s;
-    }
-
-    .mobile-slide-up-delay-2 {
-      animation-delay: 0.3s;
-    }
-
-    .mobile-slide-up-delay-3 {
-      animation-delay: 0.45s;
-    }
-  }
-
-  /* Desktop fallback - no animation */
-  @media (min-width: 768px) {
-    .mobile-float,
-    .mobile-float-delayed,
-    .mobile-pulse-subtle,
-    .mobile-shimmer,
-    .mobile-glow,
-    .mobile-slide-up,
-    .mobile-slide-up-delay-1,
-    .mobile-slide-up-delay-2,
-    .mobile-slide-up-delay-3 {
-      animation: none;
-      opacity: 1;
-    }
-  }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes mobileFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes mobilePulseSubtle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes mobileShimmer {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes mobileGlow {
-  0%, 100% {
-    box-shadow: 0 0 8px 0 hsl(var(--accent) / 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px 4px hsl(var(--accent) / 0.3);
-  }
-}
-
-@keyframes mobileSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
   }
   to {
     opacity: 1;

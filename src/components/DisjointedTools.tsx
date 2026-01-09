@@ -172,7 +172,7 @@ const DisjointedTools = () => {
                 style={{ backgroundColor: `${red}08`, border: `1px solid ${red}15` }}
               >
                 <div 
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mobile-pulse-subtle"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${red}15` }}
                 >
                   <Icon className="w-5 h-5" style={{ color: red }} />
@@ -191,7 +191,7 @@ const DisjointedTools = () => {
 
         {/* Mobile: Total cost callout - more urgent */}
         <div 
-          className="md:hidden p-4 rounded-2xl text-center fade-in mobile-glow"
+          className="md:hidden p-4 rounded-2xl text-center fade-in"
           style={{ 
             animationDelay: '0.3s',
             backgroundColor: red,
