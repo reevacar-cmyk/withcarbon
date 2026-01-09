@@ -447,7 +447,7 @@ const ValueProps = () => {
             >
               {/* Content */}
               <div className="space-y-1 md:space-y-3 md:flex-1">
-                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-accent tracking-tight">
+                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
                   {value.metric}
                 </div>
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white">
