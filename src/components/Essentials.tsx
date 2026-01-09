@@ -266,106 +266,119 @@ const Essentials = () => {
     </div>
   );
 
-  // Light mode Team Visual - schedule & hours focused
+  // Light mode Team Visual - employee-focused
   const TeamVisual = () => (
     <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
         <div className="flex items-center gap-2">
-          <div className="text-sm font-medium text-foreground">Team</div>
-          <div className="px-2 py-0.5 rounded-lg bg-accent/10 text-[9px] font-mono text-accent">4 members</div>
+          <div className="text-sm font-medium text-foreground">Your Team</div>
         </div>
-        <div className="text-[10px] text-muted-foreground font-mono">Today</div>
+        <div className="px-2 py-0.5 rounded-lg bg-accent/10 text-[9px] font-mono text-accent">4 active today</div>
       </div>
 
-      {/* Schedule timeline header */}
-      <div className="px-4 py-2 border-b border-border/20 bg-muted/10">
-        <div className="flex items-center">
-          <div className="w-20 shrink-0" />
-          <div className="flex-1 grid grid-cols-4 gap-1">
-            {['9 AM', '12 PM', '3 PM', '6 PM'].map((time, i) => (
-              <div key={i} className="text-[8px] text-muted-foreground font-mono text-center">{time}</div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Team schedule rows */}
-      <div className="p-3 space-y-2.5">
+      {/* Team members - larger cards focused on who they are */}
+      <div className="p-3 space-y-2">
         {[
-          { name: "Mike R.", role: "Lead", hours: "8.5h", scheduled: [[0, 45], [55, 100]], avatar: "MR", jobs: 3 },
-          { name: "Sarah K.", role: "Tech", hours: "7.0h", scheduled: [[10, 50], [60, 90]], avatar: "SK", jobs: 2 },
-          { name: "James L.", role: "Tech", hours: "6.5h", scheduled: [[0, 35], [45, 75]], avatar: "JL", jobs: 2 },
-          { name: "Emma D.", role: "Jr", hours: "5.5h", scheduled: [[20, 65]], avatar: "ED", jobs: 1 },
+          { 
+            name: "Mike Rodriguez", 
+            role: "Lead Detailer", 
+            avatar: "MR", 
+            status: "working",
+            currentJob: "Full Detail",
+            vehicle: "Tesla Model S",
+            hoursToday: "6.5h"
+          },
+          { 
+            name: "Sarah Kim", 
+            role: "Ceramic Specialist", 
+            avatar: "SK", 
+            status: "working",
+            currentJob: "Ceramic Coating",
+            vehicle: "BMW X5",
+            hoursToday: "5.0h"
+          },
+          { 
+            name: "James Lee", 
+            role: "Technician", 
+            avatar: "JL", 
+            status: "break",
+            currentJob: "On break",
+            vehicle: "—",
+            hoursToday: "4.5h"
+          },
+          { 
+            name: "Emma Davis", 
+            role: "Junior Tech", 
+            avatar: "ED", 
+            status: "working",
+            currentJob: "Interior Clean",
+            vehicle: "Audi Q7",
+            hoursToday: "3.0h"
+          },
         ].map((member, i) => (
-          <div key={i} className="flex items-center gap-2">
-            {/* Member info */}
-            <div className="w-20 shrink-0 flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-accent/15 border border-accent/20 flex items-center justify-center">
-                <span className="text-[9px] font-medium text-accent">{member.avatar}</span>
+          <div 
+            key={i}
+            className="flex items-center gap-3 p-3 rounded-xl bg-background border border-border/50"
+          >
+            {/* Large avatar */}
+            <div className="relative shrink-0">
+              <div className={`w-11 h-11 rounded-full flex items-center justify-center ${
+                member.status === 'working' 
+                  ? 'bg-gradient-to-br from-accent/30 to-accent/10 border-2 border-accent/40' 
+                  : 'bg-muted/50 border-2 border-border'
+              }`}>
+                <span className={`text-sm font-semibold ${member.status === 'working' ? 'text-accent' : 'text-muted-foreground'}`}>
+                  {member.avatar}
+                </span>
               </div>
-              <div className="min-w-0">
-                <div className="text-[10px] font-medium text-foreground truncate">{member.name}</div>
-                <div className="text-[8px] text-muted-foreground font-mono">{member.hours}</div>
-              </div>
-            </div>
-            
-            {/* Timeline bar */}
-            <div className="flex-1 h-8 bg-muted/20 rounded-lg relative overflow-hidden">
-              {member.scheduled.map((block, j) => (
-                <div 
-                  key={j}
-                  className="absolute top-1 bottom-1 bg-accent/80 rounded relative overflow-hidden"
-                  style={{ left: `${block[0]}%`, width: `${block[1] - block[0]}%` }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/20 to-accent/0" style={{ animation: 'shimmer 3s ease-in-out infinite' }} />
-                </div>
-              ))}
-              {/* Current time indicator */}
-              {i === 0 && (
-                <div className="absolute top-0 bottom-0 w-0.5 bg-foreground/60" style={{ left: '45%' }}>
-                  <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-foreground/60" />
-                </div>
+              {member.status === 'working' && (
+                <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-accent border-2 border-background" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
               )}
             </div>
-            
-            {/* Jobs count */}
-            <div className="w-8 shrink-0 text-right">
-              <div className="text-[10px] font-medium text-accent">{member.jobs}</div>
-              <div className="text-[7px] text-muted-foreground">jobs</div>
+
+            {/* Employee info */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-[11px] font-semibold text-foreground truncate">{member.name}</span>
+              </div>
+              <div className="text-[9px] text-muted-foreground mb-1.5">{member.role}</div>
+              
+              {/* Current task */}
+              <div className="flex items-center gap-2">
+                <div className={`px-1.5 py-0.5 rounded text-[8px] font-mono ${
+                  member.status === 'working' 
+                    ? 'bg-accent/15 text-accent' 
+                    : 'bg-muted/50 text-muted-foreground'
+                }`}>
+                  {member.currentJob}
+                </div>
+                {member.vehicle !== '—' && (
+                  <span className="text-[8px] text-muted-foreground truncate">{member.vehicle}</span>
+                )}
+              </div>
+            </div>
+
+            {/* Hours today */}
+            <div className="shrink-0 text-right">
+              <div className="text-sm font-semibold text-foreground">{member.hoursToday}</div>
+              <div className="text-[8px] text-muted-foreground">today</div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Quick actions */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex -space-x-1.5">
-            {['MR', 'SK', 'JL', 'ED'].map((initials, i) => (
-              <div 
-                key={i} 
-                className="w-6 h-6 rounded-full bg-accent/15 border-2 border-card flex items-center justify-center"
-              >
-                <span className="text-[7px] font-medium text-accent">{initials}</span>
-              </div>
-            ))}
+      {/* Bottom stats overlay */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-semibold text-foreground">19h</div>
+            <div className="text-[8px] text-muted-foreground font-mono">total</div>
           </div>
-          <span className="text-[9px] text-muted-foreground">All available</span>
-        </div>
-        
-        {/* Stats badge */}
-        <div className="bg-background/95 backdrop-blur-sm border border-border rounded-lg px-3 py-2 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="text-center">
-              <div className="text-sm font-semibold text-foreground">27.5</div>
-              <div className="text-[7px] text-muted-foreground font-mono">hours</div>
-            </div>
-            <div className="w-px h-6 bg-border" />
-            <div className="text-center">
-              <div className="text-sm font-semibold text-accent">8</div>
-              <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
-            </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <div className="text-lg font-semibold text-accent">3</div>
+            <div className="text-[8px] text-muted-foreground font-mono">active</div>
           </div>
         </div>
       </div>
@@ -493,7 +506,7 @@ const Essentials = () => {
     {
       title: "Team coordination",
       subtitle: "DISPATCH",
-      description: "Manage employee communication, dispatching, and hours with real-time location and status tracking.",
+      description: "Manage employee communication, dispatching, and hours easily.",
       visual: <TeamVisual />
     },
     {
