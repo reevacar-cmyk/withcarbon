@@ -281,79 +281,77 @@ const Essentials = () => {
         <div className="text-[10px] text-muted-foreground font-mono">4 team members</div>
       </div>
 
-      {/* Activity timeline */}
-      <div className="p-3 space-y-2.5">
-        {/* Active job with progress */}
-        <div className="bg-background rounded-xl border border-accent/30 p-3 relative overflow-hidden">
-          <div className="flex items-start gap-3">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-background">
-                MR
+      {/* Activity grid - 2x2 equal height cards */}
+      <div className="p-3">
+        <div className="grid grid-cols-2 gap-2">
+          {/* Mike R. */}
+          <div className="bg-background rounded-xl border border-accent/30 p-2.5 h-[72px] flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-accent flex items-center justify-center text-[10px] font-semibold text-background">MR</div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-[1.5px] border-background" />
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background flex items-center justify-center">
-                <div className="w-1.5 h-1.5 rounded-full bg-white" />
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] font-medium text-foreground">Mike R.</div>
+                <div className="text-[8px] text-accent font-mono">Full Detail</div>
               </div>
+              <div className="text-[7px] text-muted-foreground font-mono">2h 15m</div>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-1">
-                <div className="text-[11px] font-semibold text-foreground">Mike R.</div>
-                <div className="text-[8px] text-muted-foreground font-mono">2h 15m</div>
-              </div>
-              <div className="text-[9px] text-accent font-medium mb-2">Full Detail · Bay 1</div>
-              <div className="h-1.5 bg-muted/40 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-accent rounded-full relative overflow-hidden"
-                  style={{ width: '72%' }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
-                </div>
+            <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
+              <div className="h-full w-[72%] bg-accent rounded-full relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Compact activity row */}
-        <div className="grid grid-cols-2 gap-2">
-          <div className="bg-background rounded-xl border border-border p-2.5">
-            <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">SK</div>
-              <div>
+          {/* Sarah K. */}
+          <div className="bg-background rounded-xl border border-border p-2.5 h-[72px] flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">SK</div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-[1.5px] border-background" />
+              </div>
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-medium text-foreground">Sarah K.</div>
                 <div className="text-[8px] text-accent font-mono">Ceramic</div>
               </div>
+              <div className="text-[7px] text-muted-foreground font-mono">1h 20m</div>
             </div>
             <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
               <div className="h-full w-[35%] bg-accent rounded-full" />
             </div>
           </div>
-          
-          <div className="bg-background rounded-xl border border-border p-2.5">
-            <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">ED</div>
-              <div>
+
+          {/* Emma D. */}
+          <div className="bg-background rounded-xl border border-border p-2.5 h-[72px] flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">ED</div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-[1.5px] border-background" />
+              </div>
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-medium text-foreground">Emma D.</div>
                 <div className="text-[8px] text-accent font-mono">Interior</div>
               </div>
+              <div className="text-[7px] text-muted-foreground font-mono">45m</div>
             </div>
             <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
               <div className="h-full w-[88%] bg-accent rounded-full" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
             </div>
           </div>
-        </div>
 
-        {/* Break status */}
-        <div className="bg-muted/20 rounded-xl border border-dashed border-border p-2.5">
-          <div className="flex items-center justify-between">
+          {/* James L. - Break */}
+          <div className="bg-muted/20 rounded-xl border border-dashed border-border p-2.5 h-[72px] flex flex-col justify-between">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-[10px] font-semibold text-muted-foreground">JL</div>
-              <div>
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-medium text-foreground/70">James L.</div>
                 <div className="text-[8px] text-muted-foreground font-mono">On break</div>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-muted/50">
+            <div className="flex items-center gap-1.5">
               <Coffee className="w-3 h-3 text-muted-foreground" />
-              <span className="text-[8px] text-muted-foreground font-mono">12 min left</span>
+              <span className="text-[7px] text-muted-foreground font-mono">12 min left</span>
             </div>
           </div>
         </div>
