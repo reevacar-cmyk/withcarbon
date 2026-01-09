@@ -266,80 +266,97 @@ const Essentials = () => {
     </div>
   );
 
-  // Light mode Team Visual - employee-focused
+  // Light mode Team Visual - activity feed style
   const TeamVisual = () => (
     <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
-        <div className="text-sm font-medium text-foreground">Team</div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-          <span className="text-[9px] font-mono text-accent">3 working</span>
+        <div className="flex items-center gap-2">
+          <div className="text-sm font-medium text-foreground">Live Activity</div>
+          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-500/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500" style={{ animation: 'pulse 1.5s ease-in-out infinite' }} />
+            <span className="text-[8px] font-mono text-green-600 font-medium">LIVE</span>
+          </div>
         </div>
+        <div className="text-[10px] text-muted-foreground font-mono">4 team members</div>
       </div>
 
-      {/* 2x2 Grid of team members */}
-      <div className="grid grid-cols-2 gap-2 p-3">
-        {[
-          { name: "Mike R.", role: "Lead", avatar: "MR", status: "working", task: "Full Detail", progress: 72 },
-          { name: "Sarah K.", role: "Ceramic", avatar: "SK", status: "working", task: "Coating", progress: 35 },
-          { name: "James L.", role: "Tech", avatar: "JL", status: "break", task: "Break", progress: 0 },
-          { name: "Emma D.", role: "Junior", avatar: "ED", status: "working", task: "Interior", progress: 88 },
-        ].map((member, i) => (
-          <div 
-            key={i}
-            className={`relative p-3 rounded-xl border ${
-              member.status === 'working' 
-                ? 'bg-background border-border' 
-                : 'bg-muted/30 border-border'
-            }`}
-          >
-            {/* Avatar centered */}
-            <div className="flex flex-col items-center mb-2">
-              <div className="relative mb-2">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-base font-semibold ${
-                  member.status === 'working'
-                    ? 'bg-accent text-background'
-                    : 'bg-muted text-muted-foreground'
-                }`}>
-                  {member.avatar}
-                </div>
-                {member.status === 'working' && (
-                  <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                  </div>
-                )}
+      {/* Activity timeline */}
+      <div className="p-3 space-y-2.5">
+        {/* Active job with progress */}
+        <div className="bg-background rounded-xl border border-accent/30 p-3 relative overflow-hidden">
+          <div className="flex items-start gap-3">
+            <div className="relative">
+              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-background">
+                MR
               </div>
-              <div className="text-[11px] font-semibold text-foreground text-center">{member.name}</div>
-              <div className="text-[8px] text-muted-foreground font-mono">{member.role}</div>
+              <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background flex items-center justify-center">
+                <div className="w-1.5 h-1.5 rounded-full bg-white" />
+              </div>
             </div>
-
-            {/* Task & Progress */}
-            <div className="space-y-1.5">
-              <div className={`text-center text-[9px] font-medium ${
-                member.status === 'working' ? 'text-accent' : 'text-muted-foreground'
-              }`}>
-                {member.task}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-1">
+                <div className="text-[11px] font-semibold text-foreground">Mike R.</div>
+                <div className="text-[8px] text-muted-foreground font-mono">2h 15m</div>
               </div>
-              {member.status === 'working' && (
-                <div className="h-1.5 bg-muted/40 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-accent rounded-full relative overflow-hidden"
-                    style={{ width: `${member.progress}%` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
-                  </div>
+              <div className="text-[9px] text-accent font-medium mb-2">Full Detail · Bay 1</div>
+              <div className="h-1.5 bg-muted/40 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-accent rounded-full relative overflow-hidden"
+                  style={{ width: '72%' }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
                 </div>
-              )}
-              {member.status === 'break' && (
-                <div className="flex items-center justify-center gap-1">
-                  <Coffee className="w-3 h-3 text-muted-foreground" />
-                  <span className="text-[8px] text-muted-foreground">15 min</span>
-                </div>
-              )}
+              </div>
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Compact activity row */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="bg-background rounded-xl border border-border p-2.5">
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">SK</div>
+              <div>
+                <div className="text-[10px] font-medium text-foreground">Sarah K.</div>
+                <div className="text-[8px] text-accent font-mono">Ceramic</div>
+              </div>
+            </div>
+            <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
+              <div className="h-full w-[35%] bg-accent rounded-full" />
+            </div>
+          </div>
+          
+          <div className="bg-background rounded-xl border border-border p-2.5">
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="w-7 h-7 rounded-full bg-accent/80 flex items-center justify-center text-[10px] font-semibold text-background">ED</div>
+              <div>
+                <div className="text-[10px] font-medium text-foreground">Emma D.</div>
+                <div className="text-[8px] text-accent font-mono">Interior</div>
+              </div>
+            </div>
+            <div className="h-1 bg-muted/40 rounded-full overflow-hidden">
+              <div className="h-full w-[88%] bg-accent rounded-full" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Break status */}
+        <div className="bg-muted/20 rounded-xl border border-dashed border-border p-2.5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-[10px] font-semibold text-muted-foreground">JL</div>
+              <div>
+                <div className="text-[10px] font-medium text-foreground/70">James L.</div>
+                <div className="text-[8px] text-muted-foreground font-mono">On break</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-muted/50">
+              <Coffee className="w-3 h-3 text-muted-foreground" />
+              <span className="text-[8px] text-muted-foreground font-mono">12 min left</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Bottom stats widget */}
