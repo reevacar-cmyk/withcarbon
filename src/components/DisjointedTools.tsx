@@ -140,7 +140,7 @@ const DisjointedTools = () => {
           {/* Monospace label */}
           <div className="mb-6 fade-in">
             <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase">
-              // STATUS_QUO
+              STATUS QUO
             </span>
           </div>
 
@@ -151,8 +151,8 @@ const DisjointedTools = () => {
             <span className="text-red-500">don't connect.</span>
           </h2>
 
-          {/* Industrial tool list - stark, monospace aesthetic */}
-          <div className="border border-border/60 divide-y divide-border/60 fade-in" style={{ animationDelay: '0.2s' }}>
+          {/* Industrial tool list - rounded corners */}
+          <div className="border border-border/60 divide-y divide-border/60 rounded-2xl overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
             {tools.map((tool, index) => (
               <div key={index} className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -177,7 +177,7 @@ const DisjointedTools = () => {
           </div>
 
           {/* Total burn rate */}
-          <div className="mt-6 border border-red-500/40 bg-red-500/5 p-4 fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="mt-6 border border-red-500/40 bg-red-500/5 p-4 rounded-2xl fade-in" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center justify-between">
               <div>
                 <div className="font-mono text-[9px] tracking-[0.2em] text-red-500/60 uppercase mb-1">

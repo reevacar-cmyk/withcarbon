@@ -14,7 +14,7 @@ const ProblemStatement = () => {
           {/* Monospace label */}
           <div className="mb-6 fade-in">
             <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase">
-              // SYSTEM_ALERT
+              THE PROBLEM
             </span>
           </div>
 
@@ -25,8 +25,8 @@ const ProblemStatement = () => {
             <span className="text-red-500">bleeding out.</span>
           </h2>
 
-          {/* Industrial grid - 2x2 with stark lines */}
-          <div className="border border-border/60 fade-in" style={{ animationDelay: '0.2s' }}>
+          {/* Industrial grid - 2x2 with rounded corners */}
+          <div className="border border-border/60 rounded-2xl overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="grid grid-cols-2">
               {problems.map((problem, index) => (
                 <div 
