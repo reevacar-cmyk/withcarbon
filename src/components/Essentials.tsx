@@ -602,7 +602,7 @@ const Essentials = () => {
       </section>
 
       {/* Desktop Layout */}
-      <section className="hidden md:block py-24 px-8 lg:px-16 bg-background">
+      <section className="hidden md:block pt-12 pb-24 px-8 lg:px-16 bg-background">
         <div className="container mx-auto max-w-6xl">
           {/* Section header */}
           <div className="text-center mb-16">
