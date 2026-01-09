@@ -39,22 +39,27 @@ const Insights = () => {
         <line x1="75" y1="20" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
         <line x1="20" y1="60" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
         <line x1="80" y1="55" x2="50" y2="40" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2" strokeWidth="1" />
+        {/* Mobile animated connection pulse */}
+        <circle className="md:hidden" cx="50" cy="40" r="3" fill="none" stroke="hsl(var(--accent))" strokeOpacity="0.3">
+          <animate attributeName="r" values="3;20;3" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" />
+        </circle>
       </svg>
       
-      {/* Segment clusters */}
-      <div className="absolute top-2 left-1 md:top-3 md:left-3 flex -space-x-1">
-        <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent/80 border border-background" />
+      {/* Segment clusters - with mobile floating animation */}
+      <div className="absolute top-2 left-1 md:top-3 md:left-3 flex -space-x-1" style={{ animation: 'float 3s ease-in-out infinite' }}>
+        <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent/80 border border-background md:animate-none" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
         <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent/60 border border-background" />
         <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent/40 border border-background" />
       </div>
-      <div className="absolute top-1 right-2 md:right-4 flex -space-x-1">
+      <div className="absolute top-1 right-2 md:right-4 flex -space-x-1" style={{ animation: 'float 3.5s ease-in-out infinite reverse' }}>
         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-muted-foreground/40 border border-background" />
         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-muted-foreground/30 border border-background" />
       </div>
-      <div className="absolute bottom-2 left-1 md:bottom-3 md:left-2">
+      <div className="absolute bottom-2 left-1 md:bottom-3 md:left-2" style={{ animation: 'float 4s ease-in-out infinite' }}>
         <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-accent/50 border border-background" />
       </div>
-      <div className="absolute bottom-2 right-1 md:bottom-2 md:right-3 flex -space-x-1">
+      <div className="absolute bottom-2 right-1 md:bottom-2 md:right-3 flex -space-x-1" style={{ animation: 'float 3.2s ease-in-out infinite reverse' }}>
         <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-muted-foreground/50 border border-background" />
         <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-muted-foreground/35 border border-background" />
         <div className="hidden md:block w-4 h-4 rounded-full bg-muted-foreground/25 border border-background" />
@@ -64,6 +69,8 @@ const Insights = () => {
       {/* Center hub */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-accent animate-pulse" />
+        {/* Mobile glow ring */}
+        <div className="absolute inset-0 md:hidden rounded-full border border-accent/50" style={{ animation: 'ping 2s ease-in-out infinite' }} />
       </div>
       
       {/* Labels */}
@@ -85,20 +92,28 @@ const Insights = () => {
         <span className="text-[8px] md:text-[9px] text-muted-foreground mt-1 font-mono">Current</span>
       </div>
       
-      {/* Arrow */}
+      {/* Arrow - with mobile animation */}
       <div className="flex flex-col items-center justify-center pb-3 md:pb-4 flex-shrink-0">
-        <svg width="14" height="10" viewBox="0 0 20 12" fill="none" className="md:w-5 md:h-3">
+        <svg width="14" height="10" viewBox="0 0 20 12" fill="none" className="md:w-5 md:h-3" style={{ animation: 'bounceX 1.5s ease-in-out infinite' }}>
           <path d="M0 6H16M16 6L11 1M16 6L11 11" stroke="hsl(var(--accent))" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       
       {/* Potential revenue stack */}
       <div className="flex-1 flex flex-col items-center min-w-0">
-        <div className="w-full flex flex-col-reverse gap-0.5">
+        <div className="w-full flex flex-col-reverse gap-0.5 relative">
           <div className="h-6 md:h-8 w-full bg-accent/80 rounded-sm" />
           <div className="h-4 md:h-5 w-full bg-accent/60 rounded-sm" />
           <div className="h-2 md:h-3 w-full bg-accent/40 rounded-sm" />
-          <div className="h-3 md:h-4 w-full bg-accent/90 rounded-sm border border-dashed border-accent animate-pulse" />
+          <div className="h-3 md:h-4 w-full bg-accent/90 rounded-sm border border-dashed border-accent animate-pulse relative overflow-hidden">
+            {/* Mobile shimmer on upsell bar */}
+            <div className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/40 to-accent/0" style={{ animation: 'shimmer 1.5s ease-in-out infinite' }} />
+          </div>
+          {/* Mobile stack glow */}
+          <div 
+            className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/20 to-transparent pointer-events-none"
+            style={{ animation: 'pulse 2s ease-in-out infinite' }}
+          />
         </div>
         <span className="text-[8px] md:text-[9px] text-accent mt-1 font-mono">+$2.4k</span>
       </div>
@@ -120,18 +135,32 @@ const Insights = () => {
             style={{ transform: `translate(-50%, -100%) rotate(${deg}deg) translateY(-14px)` }}
           />
         ))}
-        {/* Clock hands */}
-        <div className="absolute top-1/2 left-1/2 w-0.5 h-3 md:h-4 bg-accent origin-bottom -translate-x-1/2 -translate-y-full rotate-[60deg]" />
+        {/* Clock hands - with mobile rotation animation */}
+        <div 
+          className="absolute top-1/2 left-1/2 w-0.5 h-3 md:h-4 bg-accent origin-bottom -translate-x-1/2 -translate-y-full"
+          style={{ animation: 'clockHand 8s linear infinite', transform: 'translateX(-50%) translateY(-100%) rotate(60deg)' }}
+        />
         <div className="absolute top-1/2 left-1/2 w-0.5 h-2 md:h-3 bg-muted-foreground/60 origin-bottom -translate-x-1/2 -translate-y-full rotate-[-30deg]" />
         <div className="absolute top-1/2 left-1/2 w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent -translate-x-1/2 -translate-y-1/2" />
+        {/* Mobile clock glow */}
+        <div 
+          className="absolute inset-0 md:hidden rounded-full border-2 border-accent/20"
+          style={{ animation: 'pulse 3s ease-in-out infinite' }}
+        />
       </div>
       
       {/* Time breakdown */}
       <div className="flex-1 flex flex-col gap-1 md:gap-1.5 min-w-0">
         <div className="flex items-center gap-1 md:gap-2">
           <span className="text-[8px] md:text-[9px] text-muted-foreground w-6 md:w-10 font-mono">Avg</span>
-          <div className="flex-1 h-1.5 md:h-2 bg-accent/20 rounded-full overflow-hidden">
-            <div className="h-full w-[65%] bg-accent rounded-full" />
+          <div className="flex-1 h-1.5 md:h-2 bg-accent/20 rounded-full overflow-hidden relative">
+            <div 
+              className="h-full w-[65%] bg-accent rounded-full relative overflow-hidden"
+              style={{ animation: 'progressPulse 2s ease-in-out infinite' }}
+            >
+              {/* Mobile bar shimmer */}
+              <div className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+            </div>
           </div>
           <span className="text-[8px] md:text-[9px] text-accent font-mono">2.4h</span>
         </div>
@@ -168,14 +197,27 @@ const Insights = () => {
             className="flex-1 flex flex-col items-center min-w-0"
           >
             <div 
-              className={`w-full rounded-t flex flex-col items-center justify-end pb-0.5 md:pb-1 transition-all ${
+              className={`w-full rounded-t flex flex-col items-center justify-end pb-0.5 md:pb-1 transition-all relative overflow-hidden ${
                 customer.active 
                   ? 'bg-gradient-to-t from-accent to-accent/40' 
                   : 'bg-gradient-to-t from-muted-foreground/30 to-muted-foreground/10'
               }`}
               style={{ height: `${customer.height}%` }}
             >
-              <span className={`text-[8px] md:text-[10px] font-mono font-medium ${
+              {/* Mobile bar animations */}
+              {customer.active && (
+                <>
+                  <div 
+                    className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/30 to-transparent"
+                    style={{ animation: 'pulse 2s ease-in-out infinite' }}
+                  />
+                  <div 
+                    className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-white/20 to-accent/0"
+                    style={{ animation: 'shimmer 2s ease-in-out infinite' }}
+                  />
+                </>
+              )}
+              <span className={`text-[8px] md:text-[10px] font-mono font-medium relative z-10 ${
                 customer.active ? 'text-background' : 'text-muted-foreground'
               }`}>
                 {customer.value}
@@ -190,10 +232,13 @@ const Insights = () => {
         ))}
       </div>
       
-      {/* Target indicator */}
+      {/* Target indicator - with mobile animation */}
       <div className="absolute top-1 right-0 md:top-2 flex items-center gap-0.5 md:gap-1">
         <div className="h-px w-4 md:w-6 border-t border-dashed border-accent/50" />
-        <TrendingUp className="w-2.5 h-2.5 md:w-3 md:h-3 text-accent" />
+        <TrendingUp 
+          className="w-2.5 h-2.5 md:w-3 md:h-3 text-accent"
+          style={{ animation: 'bounce 2s ease-in-out infinite' }}
+        />
       </div>
     </div>
   );
