@@ -38,6 +38,23 @@ const ValueProps = () => {
         />
       </div>
       
+      {/* Desktop gradient shine overlay */}
+      <div className="absolute inset-0 hidden md:block pointer-events-none">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
+          style={{ animation: 'shimmer 6s ease-in-out infinite' }}
+        />
+      </div>
+      
+      {/* Desktop ambient glow */}
+      <div 
+        className="absolute top-0 right-0 w-40 h-40 hidden md:block pointer-events-none"
+        style={{ 
+          background: 'radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, transparent 70%)',
+          animation: 'pulse 4s ease-in-out infinite'
+        }}
+      />
+      
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
         <div className="flex items-center gap-1.5 md:gap-2">
@@ -198,6 +215,23 @@ const ValueProps = () => {
         />
       </div>
       
+      {/* Desktop gradient shine overlay */}
+      <div className="absolute inset-0 hidden md:block pointer-events-none">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
+          style={{ animation: 'shimmer 7s ease-in-out infinite' }}
+        />
+      </div>
+      
+      {/* Desktop ambient glow */}
+      <div 
+        className="absolute bottom-0 left-0 w-48 h-48 hidden md:block pointer-events-none"
+        style={{ 
+          background: 'radial-gradient(circle, hsl(var(--accent) / 0.06) 0%, transparent 70%)',
+          animation: 'pulse 5s ease-in-out infinite'
+        }}
+      />
+      
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
         <div className="flex items-center gap-1.5 md:gap-2">
@@ -351,6 +385,23 @@ const ValueProps = () => {
           style={{ animation: 'shimmer 3.5s ease-in-out infinite' }}
         />
       </div>
+      
+      {/* Desktop gradient shine overlay */}
+      <div className="absolute inset-0 hidden md:block pointer-events-none">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
+          style={{ animation: 'shimmer 5s ease-in-out infinite' }}
+        />
+      </div>
+      
+      {/* Desktop ambient glow */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 hidden md:block pointer-events-none"
+        style={{ 
+          background: 'radial-gradient(ellipse, hsl(var(--accent) / 0.05) 0%, transparent 60%)',
+          animation: 'pulse 6s ease-in-out infinite'
+        }}
+      />
       
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
