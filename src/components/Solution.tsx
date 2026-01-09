@@ -310,45 +310,46 @@ const Solution = () => {
 
         {/* Desktop layout - reimagined */}
         <div className="hidden md:block">
-          {/* Horizontal tab navigation */}
-          <div className="flex justify-center gap-2 mb-10">
+          {/* Minimal text tabs with underline */}
+          <div className="flex justify-center items-center gap-12 lg:gap-16 mb-12">
             {features.map((feature, index) => (
               <button
                 key={index}
                 onClick={() => handleManualSelect(index)}
-                className={`relative px-6 py-3 rounded-full transition-all duration-300 ${
-                  activeIndex === index 
-                    ? 'bg-white text-[hsl(0_0%_5%)]' 
-                    : 'bg-white/10 text-white/70 hover:bg-white/15 hover:text-white'
-                }`}
+                className="group relative py-2"
               >
-                <span className="text-sm font-medium">{feature.title}</span>
-                {/* Progress indicator */}
+                <span className={`text-base lg:text-lg font-medium transition-colors duration-300 ${
+                  activeIndex === index 
+                    ? 'text-white' 
+                    : 'text-white/40 hover:text-white/70'
+                }`}>
+                  {feature.title}
+                </span>
+                {/* Underline */}
+                <div className={`absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${
+                  activeIndex === index ? 'w-full' : 'w-0 group-hover:w-1/2'
+                }`} />
+                {/* Progress overlay on active */}
                 {activeIndex === index && (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-0.5 bg-accent/30 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-accent transition-all duration-75 ease-linear"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
+                  <div 
+                    className="absolute -bottom-1 left-0 h-px bg-accent transition-all duration-75 ease-linear"
+                    style={{ width: `${progress}%` }}
+                  />
                 )}
               </button>
             ))}
           </div>
 
-          {/* Content and Visual */}
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-            {/* Description */}
-            <div className="lg:col-span-2 flex flex-col justify-center pt-8">
-              <p className="text-lg lg:text-xl text-white/80 leading-relaxed fade-in">
-                {features[activeIndex].description}
-              </p>
-            </div>
-            
-            {/* Visual - larger */}
-            <div className="lg:col-span-3 h-[420px] lg:h-[480px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden fade-in">
-              {renderVisual()}
-            </div>
+          {/* Description centered */}
+          <div className="text-center mb-10">
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">
+              {features[activeIndex].description}
+            </p>
+          </div>
+
+          {/* Visual - full width, larger */}
+          <div className="max-w-4xl mx-auto h-[480px] lg:h-[520px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden">
+            {renderVisual()}
           </div>
         </div>
       </div>
