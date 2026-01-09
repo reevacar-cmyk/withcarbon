@@ -247,16 +247,8 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="pt-16 pb-24 md:py-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
+    <section id="solution" className="pt-16 pb-24 md:pt-20 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
-        {/* Desktop header */}
-        <div className="hidden md:block mb-12 lg:mb-16 text-center fade-in">
-          <span className="text-xs uppercase tracking-widest text-white/50 mb-3 block">What is Carbon?</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
-            One system to run your customer operations.
-          </h2>
-        </div>
-
         {/* Mobile layout */}
         <div className="md:hidden">
           {/* Number toggles */}
@@ -308,47 +300,71 @@ const Solution = () => {
           </div>
         </div>
 
-        {/* Desktop layout - reimagined */}
-        <div className="hidden md:block">
-          {/* Minimal text tabs with underline */}
-          <div className="flex justify-center items-center gap-12 lg:gap-16 mb-12">
+        {/* Desktop layout */}
+        <div className="hidden md:grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          {/* Left side - toggles */}
+          <div className="space-y-3">
+            {/* Header */}
+            <div className="mb-8">
+              <span className="text-xs uppercase tracking-widest text-white/50 mb-3 block">What is Carbon?</span>
+              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+                One system to run your customer operations.
+              </h2>
+            </div>
+            
+            {/* Number toggles with content */}
             {features.map((feature, index) => (
               <button
                 key={index}
                 onClick={() => handleManualSelect(index)}
-                className="group relative py-2"
-              >
-                <span className={`text-base lg:text-lg font-medium transition-colors duration-300 ${
+                className={`w-full text-left flex items-start gap-4 p-4 rounded-xl transition-all duration-300 ${
                   activeIndex === index 
-                    ? 'text-white' 
-                    : 'text-white/40 hover:text-white/70'
+                    ? 'bg-white/5' 
+                    : 'hover:bg-white/[0.02]'
+                }`}
+              >
+                {/* Number indicator */}
+                <div className={`relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                  activeIndex === index 
+                    ? 'bg-accent/20 text-accent' 
+                    : 'bg-white/10 text-white/40'
                 }`}>
-                  {feature.title}
-                </span>
-                {/* Underline */}
-                <div className={`absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${
-                  activeIndex === index ? 'w-full' : 'w-0 group-hover:w-1/2'
-                }`} />
-                {/* Progress overlay on active */}
-                {activeIndex === index && (
-                  <div 
-                    className="absolute -bottom-1 left-0 h-px bg-accent transition-all duration-75 ease-linear"
-                    style={{ width: `${progress}%` }}
-                  />
-                )}
+                  <span className="text-sm font-bold">{index + 1}</span>
+                  {activeIndex === index && (
+                    <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 32 32">
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="14"
+                        fill="none"
+                        stroke="hsl(var(--accent))"
+                        strokeWidth="2"
+                        strokeDasharray={`${(progress / 100) * 88} 88`}
+                        className="transition-all duration-75 ease-linear"
+                      />
+                    </svg>
+                  )}
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 pt-0.5">
+                  <h3 className={`text-lg font-medium mb-1 transition-colors duration-300 ${
+                    activeIndex === index ? 'text-white' : 'text-white/60'
+                  }`}>
+                    {feature.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed transition-all duration-300 ${
+                    activeIndex === index ? 'text-white/60 opacity-100' : 'text-white/40 opacity-70'
+                  }`}>
+                    {feature.description}
+                  </p>
+                </div>
               </button>
             ))}
           </div>
-
-          {/* Description centered */}
-          <div className="text-center mb-10">
-            <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {features[activeIndex].description}
-            </p>
-          </div>
-
-          {/* Visual - full width, larger */}
-          <div className="max-w-4xl mx-auto h-[480px] lg:h-[520px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden">
+          
+          {/* Right side - Visual */}
+          <div className="h-[520px] lg:h-[560px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden sticky top-8">
             {renderVisual()}
           </div>
         </div>
