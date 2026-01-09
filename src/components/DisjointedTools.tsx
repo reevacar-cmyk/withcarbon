@@ -6,8 +6,10 @@ const TIMER_DURATION = 16000; // 16 seconds
 const DisjointedTools = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
   const [progress, setProgress] = useState(0);
+  const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   const tools = [
     {
@@ -69,20 +71,44 @@ const DisjointedTools = () => {
     }, TIMER_DURATION);
   };
 
+  // Intersection Observer to detect when section is in view
   useEffect(() => {
-    startTimer();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Only run timer when section is in view
+  useEffect(() => {
+    if (isInView) {
+      startTimer();
+    } else {
+      // Pause timer when out of view
+      if (intervalRef.current) clearTimeout(intervalRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    }
+    
     return () => {
       if (intervalRef.current) clearTimeout(intervalRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [openIndex]);
+  }, [openIndex, isInView]);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(index);
   };
 
   return (
-    <section className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(40_20%_94%)]">
+    <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-6xl">
         {/* Mobile Layout */}
         <div className="md:hidden">
