@@ -528,7 +528,7 @@ const ValueProps = () => {
             A new kind of business partner
           </h2>
           <p className="text-base text-white/60 leading-relaxed px-4">
-            A system that cares. It books jobs, builds customer relationships, handles all the boring tasks
+            Books jobs, builds relationships, and handles the boring stuff—so you don't have to.
           </p>
         </div>
 
