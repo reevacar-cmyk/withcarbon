@@ -141,98 +141,127 @@ const Essentials = () => {
     </div>
   );
 
-  // Light mode Invoicing Visual
+  // Light mode Invoicing Visual - reimagined
   const InvoicingVisual = () => (
-    <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden p-4">
-      <div className="flex gap-3 h-full">
-        {/* Invoice Preview */}
-        <div className="flex-1 bg-background rounded-xl border border-border p-3 relative shadow-sm">
-          {/* Invoice header */}
-          <div className="flex items-start justify-between mb-3">
-            <div>
-              <div className="text-[10px] font-medium text-foreground mb-0.5">INVOICE</div>
-              <div className="text-[9px] text-muted-foreground font-mono">#INV-0847</div>
+    <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
+        <div className="flex items-center gap-2">
+          <div className="text-sm font-medium text-foreground">Invoices</div>
+          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent" style={{ animation: 'pulse 1.5s ease-in-out infinite' }} />
+            <span className="text-[8px] font-mono text-accent font-medium">AUTO</span>
+          </div>
+        </div>
+        <div className="text-[10px] text-muted-foreground font-mono">March 2024</div>
+      </div>
+
+      {/* Invoice list */}
+      <div className="p-3 space-y-2">
+        {/* Invoice 1 - Paid */}
+        <div className="bg-background rounded-xl border border-border/50 p-3 relative overflow-hidden">
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                <span className="text-[10px] font-medium text-accent">MC</span>
+              </div>
+              <div>
+                <div className="text-[11px] font-medium text-foreground">Marcus Chen</div>
+                <div className="text-[9px] text-muted-foreground font-mono">#INV-0847</div>
+              </div>
             </div>
-            <div className="px-1.5 py-0.5 rounded bg-accent/15 text-[8px] font-mono text-accent font-medium relative overflow-hidden">
-              <span className="relative z-10">PAID</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent/15 relative overflow-hidden">
+              <Check className="w-3 h-3 text-accent" />
+              <span className="text-[8px] font-mono text-accent font-medium relative z-10">PAID</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/15 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
             </div>
           </div>
-
-          {/* Line items */}
-          <div className="space-y-2 mb-3">
-            <div className="flex justify-between text-[9px]">
-              <span className="text-muted-foreground truncate mr-2">Full Detail</span>
-              <span className="text-foreground font-mono shrink-0">$350</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="text-[9px] text-muted-foreground">Full Detail + Ceramic</div>
             </div>
-            <div className="flex justify-between text-[9px]">
-              <span className="text-muted-foreground truncate mr-2">Ceramic Coating</span>
-              <span className="text-foreground font-mono shrink-0">$200</span>
-            </div>
-            <div className="flex justify-between text-[9px]">
-              <span className="text-muted-foreground truncate mr-2">Interior</span>
-              <span className="text-foreground font-mono shrink-0">$85</span>
-            </div>
+            <div className="text-sm font-semibold text-foreground">$635</div>
           </div>
-
-          {/* Divider & Total */}
-          <div className="border-t border-border pt-2">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] text-muted-foreground">Total</span>
-              <span className="text-sm font-semibold text-accent">$635</span>
-            </div>
+          {/* Progress bar */}
+          <div className="mt-2 h-1 bg-muted/30 rounded-full overflow-hidden">
+            <div className="h-full w-full bg-accent rounded-full" />
           </div>
         </div>
 
-        {/* Automation Flow */}
-        <div className="w-16 flex flex-col items-center justify-center gap-2.5 shrink-0">
-          {/* Step 1 */}
-          <div className="flex flex-col items-center gap-1">
-            <div 
-              className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center relative"
-              style={{ animation: 'pulse 2s ease-in-out infinite' }}
-            >
-              <Check className="w-4 h-4 text-accent" />
-              <div className="absolute inset-0 rounded-full border border-accent/20" style={{ animation: 'ping 3s ease-in-out infinite' }} />
+        {/* Invoice 2 - Sent */}
+        <div className="bg-background rounded-xl border border-border/50 p-3 relative">
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-muted/50 flex items-center justify-center">
+                <span className="text-[10px] font-medium text-muted-foreground">JW</span>
+              </div>
+              <div>
+                <div className="text-[11px] font-medium text-foreground">James Wilson</div>
+                <div className="text-[9px] text-muted-foreground font-mono">#INV-0848</div>
+              </div>
             </div>
-            <span className="text-[7px] text-muted-foreground font-mono">Done</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-400/15">
+              <Send className="w-2.5 h-2.5 text-amber-500" />
+              <span className="text-[8px] font-mono text-amber-600 font-medium">SENT</span>
+            </div>
           </div>
-
-          {/* Arrow */}
-          <div className="w-px h-3 bg-gradient-to-b from-accent/40 to-border" />
-
-          {/* Step 2 */}
-          <div className="flex flex-col items-center gap-1">
-            <div 
-              className="w-8 h-8 rounded-full bg-muted/50 border border-border flex items-center justify-center"
-              style={{ animation: 'pulse 2.5s ease-in-out infinite 0.5s' }}
-            >
-              <Send className="w-3.5 h-3.5 text-muted-foreground" />
-            </div>
-            <span className="text-[7px] text-muted-foreground font-mono">Send</span>
+          <div className="flex items-center justify-between">
+            <div className="text-[9px] text-muted-foreground">Interior Detail</div>
+            <div className="text-sm font-semibold text-foreground">$285</div>
           </div>
+          {/* Progress bar */}
+          <div className="mt-2 h-1 bg-muted/30 rounded-full overflow-hidden">
+            <div className="h-full w-2/3 bg-amber-400 rounded-full" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+          </div>
+        </div>
 
-          {/* Arrow */}
-          <div className="w-px h-3 bg-gradient-to-b from-border to-accent/40" />
-
-          {/* Step 3 */}
-          <div className="flex flex-col items-center gap-1">
-            <div 
-              className="w-8 h-8 rounded-full bg-accent flex items-center justify-center relative overflow-hidden"
-              style={{ animation: 'pulse 3s ease-in-out infinite 1s' }}
-            >
-              <span className="text-xs font-semibold text-background relative z-10">$</span>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+        {/* Invoice 3 - Draft */}
+        <div className="bg-background rounded-xl border border-dashed border-border p-3 relative">
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center border border-dashed border-border">
+                <span className="text-[10px] font-medium text-muted-foreground">SK</span>
+              </div>
+              <div>
+                <div className="text-[11px] font-medium text-foreground/70">Sarah Kim</div>
+                <div className="text-[9px] text-muted-foreground/60 font-mono">Generating...</div>
+              </div>
             </div>
-            <span className="text-[7px] text-accent font-mono font-medium">Paid</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-muted/30">
+              <Clock className="w-2.5 h-2.5 text-muted-foreground" />
+              <span className="text-[8px] font-mono text-muted-foreground">DRAFT</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="text-[9px] text-muted-foreground/60">PPF Installation</div>
+            <div className="text-sm font-semibold text-foreground/70">$1,200</div>
+          </div>
+          {/* Progress bar */}
+          <div className="mt-2 h-1 bg-muted/30 rounded-full overflow-hidden">
+            <div className="h-full w-1/4 bg-muted-foreground/30 rounded-full" />
           </div>
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="absolute top-3 right-3 text-right">
-        <div className="text-[9px] text-muted-foreground">This month</div>
-        <div className="text-sm font-semibold text-accent">$12,485</div>
+      {/* Bottom stats overlay */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-lg font-semibold text-accent">$12.4k</div>
+            <div className="text-[8px] text-muted-foreground font-mono">collected</div>
+          </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span className="text-[9px] text-muted-foreground">24 paid</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="text-[9px] text-muted-foreground">3 pending</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
