@@ -256,13 +256,15 @@ const Insights = () => {
   return (
     <section className="pt-16 pb-8 md:py-32 px-[3px] md:px-12 lg:px-24">
       <div className="container mx-auto max-w-6xl">
-        <span className="text-xs md:text-sm font-mono text-accent tracking-wider uppercase mb-2 block fade-in">The Data</span>
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-3 md:mb-4 fade-in">
-          Insights you didn't know you had
-        </h2>
-        <p className="text-sm md:text-base text-muted-foreground mb-8 md:mb-12 max-w-xl fade-in" style={{ animationDelay: '0.1s' }}>
-          Carbon surfaces patterns hidden in your data, turning everyday operations into strategic advantages.
-        </p>
+        <div className="md:text-center">
+          <span className="text-xs md:text-sm font-mono text-accent tracking-wider uppercase mb-2 md:mb-4 block fade-in">The Data</span>
+          <h2 className="text-xl md:text-4xl lg:text-5xl font-semibold md:font-bold text-foreground mb-3 md:mb-4 fade-in">
+            Insights you didn't know you had
+          </h2>
+          <p className="text-sm md:text-lg text-muted-foreground mb-8 md:mb-16 max-w-xl md:max-w-2xl md:mx-auto fade-in" style={{ animationDelay: '0.1s' }}>
+            Carbon surfaces patterns hidden in your data, turning everyday operations into strategic advantages.
+          </p>
+        </div>
         
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {insights.map((insight, index) => {
