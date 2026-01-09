@@ -523,7 +523,7 @@ const Essentials = () => {
         </div>
         
         {/* Feature blocks */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-12">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -537,7 +537,6 @@ const Essentials = () => {
               
               {/* Content */}
               <div>
-                <div className="text-[9px] font-mono text-accent/70 tracking-wider mb-1">{feature.subtitle}</div>
                 <h3 className="text-base font-medium text-foreground mb-1.5">{feature.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {feature.description}
