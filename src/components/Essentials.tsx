@@ -568,7 +568,7 @@ const Essentials = () => {
           <h2 className="text-xl font-semibold text-foreground mb-3 fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
             Designed to feel better.<br />Built to work better.
           </h2>
-          <p className="text-sm text-muted-foreground max-w-sm fade-in leading-relaxed" style={{ animationDelay: '0.2s' }}>
+          <p className="text-sm text-muted-foreground max-w-sm fade-in leading-snug" style={{ animationDelay: '0.2s' }}>
             Carbon includes the essentials that are thoughtfully designed so everything feels simple, fast, and trustworthy.
           </p>
         </div>
@@ -589,7 +589,7 @@ const Essentials = () => {
               {/* Content */}
               <div>
                 <h3 className="text-base font-medium text-foreground mb-0.5">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-snug">
                   {feature.description}
                 </p>
               </div>
