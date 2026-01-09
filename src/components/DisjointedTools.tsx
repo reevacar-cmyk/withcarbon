@@ -228,7 +228,8 @@ const DisjointedTools = () => {
               The Status Quo
             </p>
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-              Tools that cost you money and never get better.
+              <span className="text-foreground">Tools that</span>{" "}
+              <span className="text-red-500">don't work.</span>
             </h2>
           </div>
           
