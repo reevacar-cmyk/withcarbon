@@ -288,7 +288,7 @@ const Solution = () => {
               <h3 className="text-lg font-medium mb-1 text-white">
                 {features[activeIndex].mobileTitle}
               </h3>
-              <p className="text-sm leading-relaxed text-white/60">
+              <p className="text-sm leading-snug text-white/60">
                 {features[activeIndex].mobileDescription}
               </p>
             </div>
@@ -346,7 +346,7 @@ const Solution = () => {
                   }`}>
                     {feature.title}
                   </h3>
-                  <p className={`text-sm leading-relaxed transition-all duration-300 ${
+                  <p className={`text-sm leading-snug transition-all duration-300 ${
                     activeIndex === index ? 'text-white/60 opacity-100' : 'text-white/40 opacity-70'
                   }`}>
                     {feature.description}
