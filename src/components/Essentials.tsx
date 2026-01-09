@@ -1,4 +1,4 @@
-import { Calendar, FileText, Users, Globe, Check, Send, Clock, MapPin, Star } from "lucide-react";
+import { Calendar, FileText, Users, Globe, Check, Send, Clock, MapPin, Star, Coffee } from "lucide-react";
 
 const Essentials = () => {
   // Light mode Calendar Visual - 7 day week view
@@ -271,114 +271,94 @@ const Essentials = () => {
     <div className="relative w-full h-full bg-card rounded-2xl border border-border/50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
-        <div className="flex items-center gap-2">
-          <div className="text-sm font-medium text-foreground">Your Team</div>
+        <div className="text-sm font-medium text-foreground">Team</div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+          <span className="text-[9px] font-mono text-accent">3 working</span>
         </div>
-        <div className="px-2 py-0.5 rounded-lg bg-accent/10 text-[9px] font-mono text-accent">4 active today</div>
       </div>
 
-      {/* Team members - larger cards focused on who they are */}
-      <div className="p-3 space-y-2">
+      {/* 2x2 Grid of team members */}
+      <div className="grid grid-cols-2 gap-2 p-3">
         {[
-          { 
-            name: "Mike Rodriguez", 
-            role: "Lead Detailer", 
-            avatar: "MR", 
-            status: "working",
-            currentJob: "Full Detail",
-            vehicle: "Tesla Model S",
-            hoursToday: "6.5h"
-          },
-          { 
-            name: "Sarah Kim", 
-            role: "Ceramic Specialist", 
-            avatar: "SK", 
-            status: "working",
-            currentJob: "Ceramic Coating",
-            vehicle: "BMW X5",
-            hoursToday: "5.0h"
-          },
-          { 
-            name: "James Lee", 
-            role: "Technician", 
-            avatar: "JL", 
-            status: "break",
-            currentJob: "On break",
-            vehicle: "—",
-            hoursToday: "4.5h"
-          },
-          { 
-            name: "Emma Davis", 
-            role: "Junior Tech", 
-            avatar: "ED", 
-            status: "working",
-            currentJob: "Interior Clean",
-            vehicle: "Audi Q7",
-            hoursToday: "3.0h"
-          },
+          { name: "Mike R.", role: "Lead", avatar: "MR", status: "working", task: "Full Detail", progress: 72 },
+          { name: "Sarah K.", role: "Ceramic", avatar: "SK", status: "working", task: "Coating", progress: 35 },
+          { name: "James L.", role: "Tech", avatar: "JL", status: "break", task: "Break", progress: 0 },
+          { name: "Emma D.", role: "Junior", avatar: "ED", status: "working", task: "Interior", progress: 88 },
         ].map((member, i) => (
           <div 
             key={i}
-            className="flex items-center gap-3 p-3 rounded-xl bg-background border border-border/50"
+            className={`relative p-3 rounded-xl border ${
+              member.status === 'working' 
+                ? 'bg-background border-accent/20' 
+                : 'bg-muted/30 border-border/50'
+            }`}
           >
-            {/* Large avatar */}
-            <div className="relative shrink-0">
-              <div className={`w-11 h-11 rounded-full flex items-center justify-center ${
-                member.status === 'working' 
-                  ? 'bg-gradient-to-br from-accent/30 to-accent/10 border-2 border-accent/40' 
-                  : 'bg-muted/50 border-2 border-border'
-              }`}>
-                <span className={`text-sm font-semibold ${member.status === 'working' ? 'text-accent' : 'text-muted-foreground'}`}>
-                  {member.avatar}
-                </span>
-              </div>
-              {member.status === 'working' && (
-                <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-accent border-2 border-background" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-              )}
-            </div>
-
-            {/* Employee info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="text-[11px] font-semibold text-foreground truncate">{member.name}</span>
-              </div>
-              <div className="text-[9px] text-muted-foreground mb-1.5">{member.role}</div>
-              
-              {/* Current task */}
-              <div className="flex items-center gap-2">
-                <div className={`px-1.5 py-0.5 rounded text-[8px] font-mono ${
-                  member.status === 'working' 
-                    ? 'bg-accent/15 text-accent' 
-                    : 'bg-muted/50 text-muted-foreground'
+            {/* Avatar centered */}
+            <div className="flex flex-col items-center mb-2">
+              <div className="relative mb-2">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-base font-semibold ${
+                  member.status === 'working'
+                    ? 'bg-accent text-background'
+                    : 'bg-muted text-muted-foreground'
                 }`}>
-                  {member.currentJob}
+                  {member.avatar}
                 </div>
-                {member.vehicle !== '—' && (
-                  <span className="text-[8px] text-muted-foreground truncate">{member.vehicle}</span>
+                {member.status === 'working' && (
+                  <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                  </div>
                 )}
               </div>
+              <div className="text-[11px] font-semibold text-foreground text-center">{member.name}</div>
+              <div className="text-[8px] text-muted-foreground font-mono">{member.role}</div>
             </div>
 
-            {/* Hours today */}
-            <div className="shrink-0 text-right">
-              <div className="text-sm font-semibold text-foreground">{member.hoursToday}</div>
-              <div className="text-[8px] text-muted-foreground">today</div>
+            {/* Task & Progress */}
+            <div className="space-y-1.5">
+              <div className={`text-center text-[9px] font-medium ${
+                member.status === 'working' ? 'text-accent' : 'text-muted-foreground'
+              }`}>
+                {member.task}
+              </div>
+              {member.status === 'working' && (
+                <div className="h-1.5 bg-muted/40 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-accent rounded-full relative overflow-hidden"
+                    style={{ width: `${member.progress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-white/30 to-accent/0" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+                  </div>
+                </div>
+              )}
+              {member.status === 'break' && (
+                <div className="flex items-center justify-center gap-1">
+                  <Coffee className="w-3 h-3 text-muted-foreground" />
+                  <span className="text-[8px] text-muted-foreground">15 min</span>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Bottom stats overlay */}
-      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <div className="text-lg font-semibold text-foreground">19h</div>
-            <div className="text-[8px] text-muted-foreground font-mono">total</div>
-          </div>
-          <div className="w-px h-8 bg-border" />
-          <div className="text-center">
-            <div className="text-lg font-semibold text-accent">3</div>
-            <div className="text-[8px] text-muted-foreground font-mono">active</div>
+      {/* Bottom stats */}
+      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+        <div className="flex items-center gap-1.5 text-[9px] text-muted-foreground">
+          <Users className="w-3.5 h-3.5" />
+          <span>4 members</span>
+        </div>
+        <div className="bg-background/95 backdrop-blur-sm border border-border rounded-lg px-3 py-1.5 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="text-center">
+              <div className="text-sm font-semibold text-foreground">19h</div>
+              <div className="text-[7px] text-muted-foreground font-mono">today</div>
+            </div>
+            <div className="w-px h-5 bg-border" />
+            <div className="text-center">
+              <div className="text-sm font-semibold text-accent">8</div>
+              <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
+            </div>
           </div>
         </div>
       </div>
