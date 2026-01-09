@@ -283,7 +283,7 @@ const Solution = () => {
           </div>
           
           {/* Feature content with visual */}
-          <div className="space-y-5">
+          <div className="space-y-6">
             <div className="fade-in">
               <h3 className="text-lg font-medium mb-1 text-white">
                 {features[activeIndex].mobileTitle}
@@ -302,7 +302,7 @@ const Solution = () => {
 
         {/* Desktop layout */}
         <div className="hidden md:block">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
           {/* Left side - toggles */}
           <div className="space-y-3">
             {/* Number toggles with content */}
