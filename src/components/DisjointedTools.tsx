@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, RefreshCw, PhoneOff, Cog, X } from "lucide-react";
 
-const TIMER_DURATION = 8000; // 8 seconds
+const TIMER_DURATION = 12000; // 12 seconds
 
 const DisjointedTools = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
