@@ -6,11 +6,11 @@ const DisjointedTools = () => {
       name: "Traditional CRMs",
       price: "$200/mo",
       icon: Clock,
-      tagline: "Built for desk workers",
+      tagline: "Endless manual work",
       painPoints: [
-        "4+ hours/week manual data entry",
-        "Contacts go stale in days",
-        "No connection to calls or texts"
+        "You become the data entry clerk",
+        "Contacts go stale unless you update daily",
+        "Disconnected from calls, texts, and real conversations"
       ],
       visual: "crm",
       code: "CRM_01",
@@ -20,11 +20,11 @@ const DisjointedTools = () => {
       name: "AI Voice Tools",
       price: "$650/mo",
       icon: Brain,
-      tagline: "Dumb bots with no memory",
+      tagline: "Just answers the phone",
       painPoints: [
-        "Forgets customers instantly",
-        "No job or vehicle context",
-        "Generic scripts, zero personalization"
+        "Vapi wrapper that forgets everything",
+        "Never learns or improves over time",
+        "Overpriced for what's essentially a script reader"
       ],
       visual: "voice",
       code: "VOX_02",
@@ -34,11 +34,11 @@ const DisjointedTools = () => {
       name: "AI Builders",
       price: "$1,200/mo",
       icon: Workflow,
-      tagline: "Complexity you'll never use",
+      tagline: "Expensive complexity",
       painPoints: [
-        "Requires technical setup",
-        "Agencies charge $700+ to configure",
-        "Breaks when anything changes"
+        "Agencies charge $700+ just to set it up",
+        "Static automations that break constantly",
+        "You're paying enterprise prices for basic workflows"
       ],
       visual: "automation",
       code: "AUT_03",
