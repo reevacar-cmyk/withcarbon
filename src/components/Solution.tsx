@@ -283,7 +283,7 @@ const Solution = () => {
           </div>
           
           {/* Feature content with visual */}
-          <div className="space-y-3">
+          <div className="space-y-5">
             <div className="fade-in">
               <h3 className="text-lg font-medium mb-1 text-white">
                 {features[activeIndex].mobileTitle}
