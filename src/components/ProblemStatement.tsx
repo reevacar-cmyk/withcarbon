@@ -62,7 +62,9 @@ const ProblemStatement = () => {
             The Problem
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold leading-tight fade-in max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>
-            You're too busy detailing cars to run your business.
+            <span className="text-foreground">Revenue</span>
+            <br />
+            <span className="text-red-500">bleeding out.</span>
           </h2>
         </div>
 
