@@ -294,7 +294,7 @@ const Solution = () => {
             </div>
             
             {/* Visual */}
-            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden">
+            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden mobile-float">
               {getVisualForIndex(activeIndex)}
             </div>
           </div>

@@ -8,7 +8,7 @@ interface AbstractGraphicProps {
 const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) => {
   if (variant === "hero") {
     return (
-      <div className={cn("relative w-full aspect-[4/5] bg-card/90 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm", className)}>
+      <div className={cn("relative w-full aspect-[4/5] bg-card/90 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm mobile-float", className)}>
         {/* Grid pattern background */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: 'linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)',
@@ -103,7 +103,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
         </div>
         
         {/* Bottom stats bar - positioned separately */}
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50">
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50 mobile-glow">
           <div className="flex items-center gap-4">
             <div className="text-center">
               <div className="text-xl font-bold text-accent">98%</div>

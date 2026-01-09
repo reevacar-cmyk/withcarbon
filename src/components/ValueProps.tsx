@@ -29,7 +29,7 @@ const ValueProps = () => {
   ];
 
   const BookingVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5">
+    <div className="relative w-full h-full flex flex-col p-3 md:p-5 mobile-slide-up">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in">
         <div className="flex items-center gap-1.5 md:gap-2">
@@ -162,7 +162,7 @@ const ValueProps = () => {
   );
 
   const RetentionVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5">
+    <div className="relative w-full h-full flex flex-col p-3 md:p-5 mobile-slide-up">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in">
         <div className="flex items-center gap-1.5 md:gap-2">
@@ -286,7 +286,7 @@ const ValueProps = () => {
   );
 
   const AutomationVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5">
+    <div className="relative w-full h-full flex flex-col p-3 md:p-5 mobile-slide-up">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-4 fade-in">
         <div className="flex items-center gap-1.5 md:gap-2">
