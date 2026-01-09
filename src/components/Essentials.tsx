@@ -537,7 +537,7 @@ const Essentials = () => {
               
               {/* Content */}
               <div>
-                <h3 className="text-base font-medium text-foreground mb-1.5">{feature.title}</h3>
+                <h3 className="text-base font-medium text-foreground mb-0.5">{feature.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
