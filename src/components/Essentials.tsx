@@ -271,27 +271,27 @@ const Essentials = () => {
           Carbon includes the essentials that are thoughtfully designed so everything feels simple, fast, and trustworthy.
         </p>
         
-        <div className="grid grid-cols-2 gap-3">
+        <div className="flex flex-col gap-4">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className="group p-4 rounded-xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
+                className="group p-5 rounded-2xl bg-card/50 border border-border/50 hover:border-accent/30 transition-all duration-300 fade-in"
                 style={{ animationDelay: `${(index + 2) * 0.1}s` }}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                    <Icon className="w-3 h-3 text-accent" />
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-accent" />
                   </div>
-                  <h3 className="text-xs font-medium text-foreground">{feature.title}</h3>
+                  <h3 className="text-sm font-medium text-foreground">{feature.title}</h3>
                 </div>
                 
-                <div className="h-20 mb-3">
+                <div className="h-32 mb-4">
                   {getVisual(feature.visual)}
                 </div>
                 
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>
