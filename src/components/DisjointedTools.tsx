@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronDown, RefreshCw, PhoneOff, Cog, X } from "lucide-react";
 
+const TIMER_DURATION = 8000; // 8 seconds
+
 const DisjointedTools = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number>(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const progressRef = useRef<NodeJS.Timeout | null>(null);
 
   const tools = [
     {
@@ -43,8 +48,37 @@ const DisjointedTools = () => {
     }
   ];
 
+  const startTimer = () => {
+    // Clear existing timers
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (progressRef.current) clearInterval(progressRef.current);
+    
+    setProgress(0);
+    
+    // Progress animation (update every 50ms for smooth animation)
+    progressRef.current = setInterval(() => {
+      setProgress(prev => {
+        const newProgress = prev + (50 / TIMER_DURATION) * 100;
+        return newProgress >= 100 ? 100 : newProgress;
+      });
+    }, 50);
+    
+    // Auto-advance timer
+    intervalRef.current = setTimeout(() => {
+      setOpenIndex(prev => (prev + 1) % 3);
+    }, TIMER_DURATION);
+  };
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (intervalRef.current) clearTimeout(intervalRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, [openIndex]);
+
   const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndex(index);
   };
 
   return (
@@ -75,14 +109,24 @@ const DisjointedTools = () => {
               return (
                 <div 
                   key={index}
-                  className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+                  className={`relative border rounded-2xl overflow-hidden transition-all duration-300 ${
                     isOpen ? 'border-red-500/40 bg-red-500/[0.02]' : 'border-border/60'
                   }`}
                 >
+                  {/* Progress bar on the left */}
+                  {isOpen && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-500/20">
+                      <div 
+                        className="w-full bg-red-500 transition-all duration-50 ease-linear"
+                        style={{ height: `${progress}%` }}
+                      />
+                    </div>
+                  )}
+                  
                   {/* Header - always visible */}
                   <button
                     onClick={() => toggleAccordion(index)}
-                    className="w-full p-4 flex items-center justify-between"
+                    className="w-full p-4 pl-5 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
@@ -102,11 +146,9 @@ const DisjointedTools = () => {
 
                   {/* Expandable content */}
                   <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="px-4 pb-4">
-                      {/* Tagline */}
-                      <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-3 mb-3">
-                        <p className="text-sm font-medium text-foreground/90">{tool.tagline}</p>
-                      </div>
+                    <div className="px-4 pl-5 pb-4">
+                      {/* Tagline - bold, red, left-aligned */}
+                      <p className="text-sm font-bold text-red-500 mb-3">{tool.tagline}</p>
                       
                       {/* Description */}
                       <p className="text-xs text-muted-foreground leading-relaxed mb-3">
