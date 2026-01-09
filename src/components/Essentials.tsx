@@ -342,22 +342,34 @@ const Essentials = () => {
         ))}
       </div>
 
-      {/* Bottom stats */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-[9px] text-muted-foreground">
-          <Users className="w-3.5 h-3.5" />
-          <span>4 members</span>
-        </div>
-        <div className="bg-background/95 backdrop-blur-sm border border-border rounded-lg px-3 py-1.5 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="text-center">
-              <div className="text-sm font-semibold text-foreground">19h</div>
-              <div className="text-[7px] text-muted-foreground font-mono">today</div>
+      {/* Bottom stats widget */}
+      <div className="absolute bottom-3 left-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-lg">
+        <div className="flex items-center justify-between">
+          {/* Overlapping profile circles */}
+          <div className="flex items-center">
+            <div className="flex -space-x-2">
+              {['MR', 'SK', 'JL', 'ED'].map((initials, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 rounded-full bg-accent/90 border-2 border-background flex items-center justify-center shadow-sm"
+                  style={{ zIndex: 4 - i }}
+                >
+                  <span className="text-[9px] font-semibold text-background">{initials}</span>
+                </div>
+              ))}
             </div>
-            <div className="w-px h-5 bg-border" />
+          </div>
+
+          {/* Stats */}
+          <div className="flex items-center gap-4">
             <div className="text-center">
-              <div className="text-sm font-semibold text-accent">8</div>
-              <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
+              <div className="text-lg font-semibold text-foreground">19h</div>
+              <div className="text-[8px] text-muted-foreground font-mono">today</div>
+            </div>
+            <div className="w-px h-7 bg-border" />
+            <div className="text-center">
+              <div className="text-lg font-semibold text-accent">8</div>
+              <div className="text-[8px] text-muted-foreground font-mono">jobs</div>
             </div>
           </div>
         </div>
