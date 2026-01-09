@@ -247,7 +247,7 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="pt-12 pb-24 md:pt-8 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
+    <section id="solution" className="pt-10 pb-24 md:pt-6 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile layout */}
         <div className="md:hidden">
