@@ -522,11 +522,14 @@ const ValueProps = () => {
     <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile-only intro */}
-        <div className="md:hidden pt-0 mb-10 text-center space-y-2">
+        <div className="md:hidden pt-0 mb-10 text-center space-y-3">
           <span className="text-xs uppercase tracking-widest text-white/50">What is Carbon</span>
           <h2 className="text-4xl font-bold tracking-tight text-white leading-[1.1]">
-            A system designed to run your customer operations
+            A new kind of business partner
           </h2>
+          <p className="text-base text-white/60 leading-relaxed px-4">
+            Qualifies leads, books jobs, remembers customers, and sends personalized follow-ups that build real relationships and bring people back
+          </p>
         </div>
 
         {/* Desktop intro */}
