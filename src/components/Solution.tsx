@@ -301,17 +301,18 @@ const Solution = () => {
         </div>
 
         {/* Desktop layout */}
-        <div className="hidden md:grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="hidden md:block">
+          {/* Header - centered above everything */}
+          <div className="text-center mb-12">
+            <span className="text-xs uppercase tracking-widest text-white/50 mb-3 block">What is Carbon?</span>
+            <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+              One system to run your customer operations.
+            </h2>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left side - toggles */}
           <div className="space-y-3">
-            {/* Header */}
-            <div className="mb-8">
-              <span className="text-xs uppercase tracking-widest text-white/50 mb-3 block">What is Carbon?</span>
-              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">
-                One system to run your customer operations.
-              </h2>
-            </div>
-            
             {/* Number toggles with content */}
             {features.map((feature, index) => (
               <button
@@ -366,6 +367,7 @@ const Solution = () => {
           {/* Right side - Visual */}
           <div className="h-[520px] lg:h-[560px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden sticky top-8">
             {renderVisual()}
+          </div>
           </div>
         </div>
       </div>
