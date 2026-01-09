@@ -11,8 +11,8 @@ const Header = () => {
           <a href="/" className="text-xl font-semibold tracking-tight text-foreground">
             Carbon
           </a>
-          <Button onClick={scrollToPartnerForm} size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium">
-            Become a design partner
+          <Button onClick={scrollToPartnerForm} size="sm" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
+            Book a demo
           </Button>
         </div>
       </div>
