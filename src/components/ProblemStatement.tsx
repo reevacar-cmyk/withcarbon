@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { PhoneMissed, UserX, DollarSign, UserMinus } from "lucide-react";
 
 const ProblemStatement = () => {
   const problems = [
@@ -71,22 +71,24 @@ const ProblemStatement = () => {
         {/* Desktop: Stats grid */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { stat: "67%", label: "of calls missed", description: "While you're polishing a hood" },
-            { stat: "23%", label: "no-show rate", description: "Bookings that never confirm" },
-            { stat: "$2.4k", label: "lost monthly", description: "From customers who don't rebook" },
-            { stat: "2 in 3", label: "customers gone", description: "After their first detail" }
-          ].map((problem, index) => (
-            <div 
-              key={index}
-              className="group text-center p-6 rounded-2xl bg-card/50 border border-border/50 transition-all duration-300 fade-in"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
+            { stat: "67%", label: "of calls missed", description: "While you're polishing a hood", icon: PhoneMissed },
+            { stat: "23%", label: "no-show rate", description: "Bookings that never confirm", icon: UserX },
+            { stat: "$2.4k", label: "lost monthly", description: "From customers who don't rebook", icon: DollarSign },
+            { stat: "2 in 3", label: "customers gone", description: "After their first detail", icon: UserMinus }
+          ].map((problem, index) => {
+            const Icon = problem.icon;
+            return (
               <div 
-                className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: 'rgb(255 0 0 / 0.1)', border: '1px solid rgb(255 0 0 / 0.2)' }}
+                key={index}
+                className="group text-center p-6 rounded-2xl bg-card/50 border border-border/50 transition-all duration-300 fade-in"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                <X className="w-5 h-5 text-red-500" />
-              </div>
+                <div 
+                  className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center"
+                  style={{ backgroundColor: 'rgb(255 0 0 / 0.1)', border: '1px solid rgb(255 0 0 / 0.2)' }}
+                >
+                  <Icon className="w-5 h-5 text-red-500" />
+                </div>
               <div className="text-4xl font-bold mb-1 text-red-500">
                 {problem.stat}
               </div>
@@ -96,8 +98,9 @@ const ProblemStatement = () => {
               <p className="text-xs text-muted-foreground">
                 {problem.description}
               </p>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
