@@ -107,7 +107,7 @@ const Hero = () => {
                         {activity.action}
                       </p>
                       {activity.amount && (
-                        <span className={`text-[10px] font-bold shrink-0 ${index === 0 ? 'text-accent' : 'text-muted-foreground'}`}>{activity.amount}</span>
+                        <span className={`text-[10px] font-bold shrink-0 ${index === 0 ? 'text-emerald-600' : 'text-emerald-600/70'}`}>{activity.amount}</span>
                       )}
                     </div>
                   </div>
