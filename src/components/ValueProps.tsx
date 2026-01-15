@@ -1,4 +1,63 @@
 import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+// Count-up animation component
+const CountUpMetric = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  // Extract number from value string (e.g., "37%" -> 37, "18hrs" -> 18)
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
+  const textSuffix = value.replace(/[0-9]/g, '');
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    const duration = 600;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out cubic for snappy feel
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * numericValue);
+      
+      setCount(current);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [hasStarted, numericValue]);
+
+  return (
+    <div ref={ref}>
+      {count}{textSuffix}
+    </div>
+  );
+};
 
 const ValueProps = () => {
   const values = [
@@ -522,7 +581,7 @@ const ValueProps = () => {
               {/* Content */}
               <div className="space-y-1 md:space-y-3 md:flex-1">
                 <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-accent md:text-white tracking-tight">
-                  {value.metric}
+                  <CountUpMetric value={value.metric} />
                 </div>
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-accent md:text-white">
                   <span className="md:hidden">{value.mobileTitle}</span>
