@@ -12,16 +12,16 @@ const Hero = () => {
   // Mobile Hero Visual - Animated AI activity feed with fixed height
   const MobileHeroVisual = () => {
     const allActivities = [
-      { action: "AI booked new customer", detail: "Full detail + ceramic coat", amount: "+$280" },
-      { action: "Follow-up sent", detail: "Customer from 52 days ago", amount: "" },
-      { action: "Josh took call", detail: "Booked interior clean for tomorrow", amount: "+$120" },
-      { action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", amount: "+$180" },
-      { action: "CRM updated", detail: "Job details synced automatically", amount: "" },
-      { action: "AI answered call", detail: "Scheduled window tint for Friday", amount: "+$350" },
-      { action: "Reminder sent", detail: "Appointment confirmation for Mike R.", amount: "" },
-      { action: "Lead recovered", detail: "Rescheduled no-show from last week", amount: "+$95" },
-      { action: "Quote accepted", detail: "Customer replied yes via SMS", amount: "+$220" },
-      { action: "Calendar synced", detail: "3 new appointments added", amount: "" },
+      { action: "AI answered inbound call and booked a full detail for Mike R.", amount: "+$280" },
+      { action: "Sent personalized follow-up to customer who booked 52 days ago", amount: "" },
+      { action: "Josh took a call — interior clean scheduled for tomorrow AM", amount: "+$120" },
+      { action: "New Google Ads lead qualified via AI SMS and booked", amount: "+$180" },
+      { action: "Job completed — customer and payment synced to CRM", amount: "" },
+      { action: "AI scheduled window tint appointment for Friday", amount: "+$350" },
+      { action: "Appointment reminder sent to Sarah K. for tomorrow", amount: "" },
+      { action: "Recovered no-show from last week — rescheduled for Monday", amount: "+$95" },
+      { action: "Customer replied 'yes' to quote — job confirmed via SMS", amount: "+$220" },
+      { action: "3 new appointments synced to team calendar", amount: "" },
     ];
     
     const [visibleActivities, setVisibleActivities] = useState<Array<typeof allActivities[0] & { id: number }>>(() => 
@@ -78,34 +78,33 @@ const Hero = () => {
           
           {/* Fixed height activity feed with smooth animations */}
           <div className="p-4 h-[240px] overflow-hidden relative">
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className={`transform transition-all duration-500 ease-out ${
-                    index === 0 ? 'animate-[heroCardSlideIn_0.5s_ease-out]' : ''
+                  className={`transform transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                    index === 0 ? 'animate-[heroCardSlideSmooth_0.7s_cubic-bezier(0.4,0,0.2,1)]' : ''
                   }`}
                 >
                   {/* All cards same size - top card is always orange highlighted */}
-                  <div className={`p-2.5 rounded-xl flex items-center justify-between ${
+                  <div className={`py-2.5 px-3 rounded-xl flex items-start gap-2 ${
                     index === 0 
                       ? 'bg-accent/10 border border-accent/20' 
                       : 'bg-muted/30 border border-border/20'
                   }`}>
-                    <div className="flex items-center gap-2">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
-                        index === 0 ? 'bg-accent' : 'bg-muted'
-                      }`}>
-                        <span className={`text-xs font-bold ${index === 0 ? 'text-background' : 'text-muted-foreground'}`}>✓</span>
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-medium text-foreground truncate">{activity.action}</div>
-                        <div className="text-[10px] text-muted-foreground truncate">{activity.detail}</div>
-                      </div>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                      index === 0 ? 'bg-accent' : 'bg-muted'
+                    }`}>
+                      <span className={`text-[10px] font-bold ${index === 0 ? 'text-background' : 'text-muted-foreground'}`}>✓</span>
                     </div>
-                    {activity.amount && (
-                      <span className={`text-[10px] font-bold shrink-0 ml-2 ${index === 0 ? 'text-accent' : 'text-muted-foreground'}`}>{activity.amount}</span>
-                    )}
+                    <div className="flex-1 min-w-0 flex items-start justify-between gap-2">
+                      <p className={`text-[11px] leading-snug ${index === 0 ? 'text-foreground' : 'text-foreground/80'}`}>
+                        {activity.action}
+                      </p>
+                      {activity.amount && (
+                        <span className={`text-[10px] font-bold shrink-0 ${index === 0 ? 'text-accent' : 'text-muted-foreground'}`}>{activity.amount}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -113,36 +112,36 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Curved lines connecting icons to bottom center of visual */}
+        {/* Curved lines connecting icons to bottom center of visual - convex curves */}
         <div className="relative h-12 w-full">
           <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
-            {/* Line from icon 1 (12.5%) curving to center bottom of card */}
+            {/* Line from icon 1 - convex curve (bulging outward) */}
             <path 
-              d="M 40 48 Q 40 24, 160 0" 
+              d="M 40 48 Q 100 0, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 2 (37.5%) curving to center */}
+            {/* Line from icon 2 - convex curve */}
             <path 
-              d="M 120 48 Q 120 20, 160 0" 
+              d="M 120 48 Q 140 10, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 3 (62.5%) curving to center */}
+            {/* Line from icon 3 - convex curve */}
             <path 
-              d="M 200 48 Q 200 20, 160 0" 
+              d="M 200 48 Q 180 10, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 4 (87.5%) curving to center */}
+            {/* Line from icon 4 - convex curve (bulging outward) */}
             <path 
-              d="M 280 48 Q 280 24, 160 0" 
+              d="M 280 48 Q 220 0, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
@@ -198,7 +197,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-base md:text-xl max-w-md fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
-              <span className="md:hidden text-muted-foreground">Manage the busy work and give each customer white glove service.</span>
+              <span className="md:hidden text-muted-foreground">Manage the busy work and give each customer a white glove service.</span>
               <span className="hidden md:inline text-muted-foreground">Carbon is an AI-native CRM that manages calls, booking, and follow-ups with full context.</span>
             </p>
             
