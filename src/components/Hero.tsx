@@ -117,10 +117,11 @@ const Hero = () => {
           <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
             {/* Define paths for reuse */}
             <defs>
-              <path id="line1" d="M 40 48 C 40 24, 160 24, 160 0" />
-              <path id="line2" d="M 120 48 C 120 24, 160 24, 160 0" />
-              <path id="line3" d="M 200 48 C 200 24, 160 24, 160 0" />
-              <path id="line4" d="M 280 48 C 280 24, 160 24, 160 0" />
+              {/* Paths now go from center to icons */}
+              <path id="line1" d="M 160 0 C 160 24, 40 24, 40 48" />
+              <path id="line2" d="M 160 0 C 160 24, 120 24, 120 48" />
+              <path id="line3" d="M 160 0 C 160 24, 200 24, 200 48" />
+              <path id="line4" d="M 160 0 C 160 24, 280 24, 280 48" />
             </defs>
             
             {/* Static dashed lines */}
@@ -129,71 +130,71 @@ const Hero = () => {
             <use href="#line3" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             <use href="#line4" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             
-            {/* Line 1 pulse with trail */}
+            {/* Line 1 pulse with trail - faster */}
             <g>
               <circle r="1" fill="hsl(var(--accent))" opacity="0.15">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="-0.12s"><mpath href="#line1" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.06s"><mpath href="#line1" /></animateMotion>
               </circle>
               <circle r="1.5" fill="hsl(var(--accent))" opacity="0.3">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="-0.08s"><mpath href="#line1" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.04s"><mpath href="#line1" /></animateMotion>
               </circle>
               <circle r="2" fill="hsl(var(--accent))" opacity="0.5">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="-0.04s"><mpath href="#line1" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.02s"><mpath href="#line1" /></animateMotion>
               </circle>
               <circle r="2.5" fill="hsl(var(--accent))">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="0s"><mpath href="#line1" /></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0s" />
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0s"><mpath href="#line1" /></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" dur="1s" repeatCount="indefinite" begin="0s" />
               </circle>
             </g>
             
-            {/* Line 2 pulse with trail */}
+            {/* Line 2 pulse with trail - faster */}
             <g>
               <circle r="1" fill="hsl(var(--accent))" opacity="0.15">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.38s"><mpath href="#line2" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.31s"><mpath href="#line2" /></animateMotion>
               </circle>
               <circle r="1.5" fill="hsl(var(--accent))" opacity="0.3">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.42s"><mpath href="#line2" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.29s"><mpath href="#line2" /></animateMotion>
               </circle>
               <circle r="2" fill="hsl(var(--accent))" opacity="0.5">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.46s"><mpath href="#line2" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.27s"><mpath href="#line2" /></animateMotion>
               </circle>
               <circle r="2.5" fill="hsl(var(--accent))">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.5s"><mpath href="#line2" /></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.5s" />
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.25s"><mpath href="#line2" /></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" begin="0.25s" />
               </circle>
             </g>
             
-            {/* Line 3 pulse with trail */}
+            {/* Line 3 pulse with trail - faster */}
             <g>
               <circle r="1" fill="hsl(var(--accent))" opacity="0.15">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.18s"><mpath href="#line3" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.21s"><mpath href="#line3" /></animateMotion>
               </circle>
               <circle r="1.5" fill="hsl(var(--accent))" opacity="0.3">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.22s"><mpath href="#line3" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.19s"><mpath href="#line3" /></animateMotion>
               </circle>
               <circle r="2" fill="hsl(var(--accent))" opacity="0.5">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.26s"><mpath href="#line3" /></animateMotion>
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.17s"><mpath href="#line3" /></animateMotion>
               </circle>
               <circle r="2.5" fill="hsl(var(--accent))">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.3s"><mpath href="#line3" /></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.3s" />
+                <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.15s"><mpath href="#line3" /></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" begin="0.15s" />
               </circle>
             </g>
             
-            {/* Line 4 pulse with trail */}
+            {/* Line 4 pulse with trail - faster */}
             <g>
               <circle r="1" fill="hsl(var(--accent))" opacity="0.15">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="0.68s"><mpath href="#line4" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.46s"><mpath href="#line4" /></animateMotion>
               </circle>
               <circle r="1.5" fill="hsl(var(--accent))" opacity="0.3">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="0.72s"><mpath href="#line4" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.44s"><mpath href="#line4" /></animateMotion>
               </circle>
               <circle r="2" fill="hsl(var(--accent))" opacity="0.5">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="0.76s"><mpath href="#line4" /></animateMotion>
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.42s"><mpath href="#line4" /></animateMotion>
               </circle>
               <circle r="2.5" fill="hsl(var(--accent))">
-                <animateMotion dur="2s" repeatCount="indefinite" begin="0.8s"><mpath href="#line4" /></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0.8s" />
+                <animateMotion dur="1s" repeatCount="indefinite" begin="0.4s"><mpath href="#line4" /></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" dur="1s" repeatCount="indefinite" begin="0.4s" />
               </circle>
             </g>
           </svg>
