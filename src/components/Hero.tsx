@@ -24,10 +24,11 @@ const Hero = () => {
       { action: "3 new appointments synced to team calendar", amount: "" },
     ];
     
-    const [visibleActivities, setVisibleActivities] = useState<Array<typeof allActivities[0] & { id: number }>>(() => 
-      allActivities.slice(0, 5).map((a, i) => ({ ...a, id: i }))
+    const [visibleActivities, setVisibleActivities] = useState<Array<typeof allActivities[0] & { id: number; isNew: boolean }>>(() => 
+      allActivities.slice(0, 5).map((a, i) => ({ ...a, id: i, isNew: false }))
     );
     const [currentIndex, setCurrentIndex] = useState(5);
+    const [animationKey, setAnimationKey] = useState(0);
     
     const contextItems = [
       { icon: Users, label: "Customers" },
@@ -44,13 +45,18 @@ const Hero = () => {
           
           // Reset to beginning if we've cycled through all 10
           if (nextIndex === 0) {
-            setVisibleActivities(allActivities.slice(0, 5).map((a, i) => ({ ...a, id: Date.now() + i })));
+            setVisibleActivities(allActivities.slice(0, 5).map((a, i) => ({ ...a, id: Date.now() + i, isNew: false })));
           } else {
             setVisibleActivities(current => {
-              const newActivity = { ...allActivities[nextIndex], id: Date.now() };
-              return [newActivity, ...current.slice(0, 4)];
+              const newActivity = { ...allActivities[nextIndex], id: Date.now(), isNew: true };
+              // Mark existing cards as not new
+              const existingCards = current.slice(0, 4).map(c => ({ ...c, isNew: false }));
+              return [newActivity, ...existingCards];
             });
           }
+          
+          // Trigger animation key change to re-run shift animation
+          setAnimationKey(k => k + 1);
           
           return nextIndex;
         });
@@ -76,13 +82,13 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Fixed height activity feed - new card slides in, others transition down */}
+          {/* Fixed height activity feed - new card slides in, others shift down */}
           <div className="p-4 h-[240px] overflow-hidden relative">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2" key={animationKey}>
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className={index === 0 
+                  className={activity.isNew 
                     ? 'animate-[heroCardSlideIn_0.5s_ease-out]' 
                     : 'animate-[heroCardShiftDown_0.5s_ease-out]'
                   }
