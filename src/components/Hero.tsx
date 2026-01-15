@@ -76,15 +76,14 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Fixed height activity feed with smooth animations */}
+          {/* Fixed height activity feed with smooth push-down animations */}
           <div className="p-4 h-[240px] overflow-hidden relative">
             <div className="flex flex-col gap-2">
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className={`transform transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                    index === 0 ? 'animate-[heroCardSlideSmooth_0.7s_cubic-bezier(0.4,0,0.2,1)]' : ''
-                  }`}
+                  className="animate-[heroCardPushDown_0.5s_ease-out]"
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {/* All cards same size - top card uses darker bone white */}
                   <div className={`py-2.5 px-3 rounded-xl flex items-start gap-2 ${
@@ -92,10 +91,8 @@ const Hero = () => {
                       ? 'bg-[hsl(40_20%_92%)] border border-[hsl(40_15%_85%)]' 
                       : 'bg-muted/30 border border-border/20'
                   }`}>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                      index === 0 ? 'bg-accent' : 'bg-muted'
-                    }`}>
-                      <span className={`text-[10px] font-bold ${index === 0 ? 'text-background' : 'text-muted-foreground'}`}>✓</span>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-accent">
+                      <span className="text-[10px] font-bold text-background">✓</span>
                     </div>
                     <div className="flex-1 min-w-0 flex items-start justify-between gap-2">
                       <p className={`text-[11px] leading-snug ${index === 0 ? 'text-foreground' : 'text-foreground/80'}`}>
