@@ -164,7 +164,7 @@ const Hero = () => {
         
         {/* Caption */}
         <p className="text-center text-xs text-muted-foreground mt-4 leading-snug max-w-[300px] mx-auto">
-          Everything in one system so Carbon can work on your business with full context and save you money.
+          Everything in one system so Carbon can work on your business with full context and make you more money.
         </p>
       </div>
     );
