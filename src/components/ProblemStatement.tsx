@@ -1,58 +1,82 @@
-import { PhoneMissed, UserX, DollarSign, UserMinus } from "lucide-react";
+import { PhoneMissed, UserX, DollarSign, UserMinus, AlertTriangle } from "lucide-react";
 
 const ProblemStatement = () => {
   const problems = [
-    { stat: "67%", label: "CALLS MISSED" },
-    { stat: "23%", label: "NO-SHOWS" },
-    { stat: "$2.4K", label: "LOST/MO" },
-    { stat: "2:3", label: "DON'T RETURN" }
+    { stat: "67%", label: "CALLS MISSED", icon: PhoneMissed },
+    { stat: "23%", label: "NO-SHOWS", icon: UserX },
+    { stat: "$2.4K", label: "LOST/MO", icon: DollarSign },
+    { stat: "2:3", label: "DON'T RETURN", icon: UserMinus }
   ];
 
   return (
     <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-background md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
-        {/* Mobile: Minimal industrial design - light mode */}
+        {/* Mobile: Minimal industrial scientific design */}
         <div className="md:hidden">
-          {/* Monospace label */}
-          <div className="mb-3 fade-in">
-            <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-              THE PROBLEM
+          {/* Section label with warning indicator */}
+          <div className="mb-4 fade-in flex items-center gap-2">
+            <div className="w-5 h-5 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+              <AlertTriangle className="w-3 h-3 text-red-500" />
+            </div>
+            <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase font-medium">
+              PROBLEM
             </span>
           </div>
 
-          {/* Industrial headline */}
-          <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-8" style={{ animationDelay: '0.1s' }}>
-            <span className="text-foreground">Revenue</span>
-            <br />
-            <span className="text-foreground">bleeding out.</span>
+          {/* Clinical headline */}
+          <h2 className="text-[28px] font-bold leading-[1] tracking-tight fade-in mb-6" style={{ animationDelay: '0.1s' }}>
+            Revenue bleeding out.
           </h2>
 
-          {/* Industrial grid - 2x2 with rounded corners */}
-          <div className="border border-border rounded-2xl overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="grid grid-cols-2">
-              {problems.map((problem, index) => (
-                <div 
-                  key={index}
-                  className={`p-4 ${index < 2 ? 'border-b border-border' : ''} ${index % 2 === 0 ? 'border-r border-border' : ''}`}
-                >
-                  <div className="text-3xl font-bold text-foreground tracking-tight leading-none mb-1">
-                    {problem.stat}
+          {/* Industrial data grid - scientific aesthetic */}
+          <div className="border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
+            {/* Header row */}
+            <div className="bg-muted/50 border-b border-border px-3 py-2 flex items-center justify-between">
+              <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                DIAGNOSTIC DATA
+              </span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="font-mono text-[8px] text-red-500 uppercase">CRITICAL</span>
+              </div>
+            </div>
+            
+            {/* Data rows */}
+            <div className="divide-y divide-border">
+              {problems.map((problem, index) => {
+                const Icon = problem.icon;
+                return (
+                  <div 
+                    key={index}
+                    className="flex items-center justify-between px-3 py-3 bg-background"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-sm bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-red-500" />
+                      </div>
+                      <span className="font-mono text-[10px] tracking-[0.1em] text-muted-foreground uppercase">
+                        {problem.label}
+                      </span>
+                    </div>
+                    <div className="font-mono text-lg font-bold text-foreground tracking-tight">
+                      {problem.stat}
+                    </div>
                   </div>
-                  <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
-                    {problem.label}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          {/* Bottom indicator line */}
-          <div className="mt-6 flex items-center gap-3 fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="h-px flex-1 bg-border" />
-            <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
-              While you work
-            </span>
-            <div className="h-px flex-1 bg-border" />
+          {/* Bottom context line */}
+          <div className="mt-4 px-3 py-2 border border-border rounded-sm bg-muted/30 fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[9px] tracking-[0.1em] text-muted-foreground uppercase">
+                While you're working
+              </span>
+              <span className="font-mono text-[9px] tracking-[0.1em] text-red-500 uppercase font-medium">
+                Revenue lost
+              </span>
+            </div>
           </div>
         </div>
 

@@ -110,111 +110,117 @@ const DisjointedTools = () => {
   return (
     <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-background md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-6xl">
-        {/* Mobile Layout - light mode */}
+        {/* Mobile Layout - Minimal industrial scientific */}
         <div className="md:hidden">
-          {/* Monospace label */}
-          <div className="mb-3 fade-in">
+          {/* Section label with status indicator */}
+          <div className="mb-4 fade-in flex items-center gap-2">
+            <div className="w-5 h-5 rounded-sm bg-muted border border-border flex items-center justify-center">
+              <Cog className="w-3 h-3 text-muted-foreground" />
+            </div>
             <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
               STATUS QUO
             </span>
           </div>
 
-          {/* Industrial headline */}
-          <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-6" style={{ animationDelay: '0.1s' }}>
-            <span className="text-foreground">Tools that</span>
-            <br />
-            <span className="text-foreground">don't work.</span>
+          {/* Clinical headline */}
+          <h2 className="text-[28px] font-bold leading-[1] tracking-tight fade-in mb-6" style={{ animationDelay: '0.1s' }}>
+            Tools that don't work.
           </h2>
 
-          {/* Accordion cards */}
-          <div className="space-y-3 fade-in" style={{ animationDelay: '0.2s' }}>
-            {tools.map((tool, index) => {
-              const Icon = tool.icon;
-              const isOpen = openIndex === index;
-              
-              return (
-                <div 
-                  key={index}
-                  className={`relative border rounded-2xl overflow-hidden transition-all duration-300 ${
-                    isOpen ? 'border-foreground/30 bg-muted/50' : 'border-border'
-                  }`}
-                >
-                  {/* Progress bar on the left */}
-                  {isOpen && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-foreground/20">
-                      <div 
-                        className="w-full bg-foreground transition-all duration-50 ease-linear"
-                        style={{ height: `${progress}%` }}
-                      />
-                    </div>
-                  )}
-                  
-                  {/* Header - always visible */}
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full p-4 pl-5 flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                        isOpen ? 'bg-foreground/10' : 'bg-muted'
-                      }`}>
-                        <Icon className={`w-5 h-5 transition-colors ${isOpen ? 'text-foreground' : 'text-muted-foreground'}`} />
+          {/* Industrial tool analysis grid */}
+          <div className="border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
+            {/* Header row */}
+            <div className="bg-muted/50 border-b border-border px-3 py-2 flex items-center justify-between">
+              <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                TOOL ANALYSIS
+              </span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                <span className="font-mono text-[8px] text-muted-foreground uppercase">INEFFICIENT</span>
+              </div>
+            </div>
+            
+            {/* Tool rows with accordion */}
+            <div className="divide-y divide-border">
+              {tools.map((tool, index) => {
+                const Icon = tool.icon;
+                const isOpen = openIndex === index;
+                
+                return (
+                  <div key={index} className="bg-background">
+                    {/* Row header */}
+                    <button
+                      onClick={() => toggleAccordion(index)}
+                      className="w-full flex items-center justify-between px-3 py-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-8 h-8 rounded-sm border flex items-center justify-center transition-colors ${
+                          isOpen ? 'bg-foreground/10 border-foreground/30' : 'bg-muted border-border'
+                        }`}>
+                          <Icon className={`w-4 h-4 transition-colors ${isOpen ? 'text-foreground' : 'text-muted-foreground'}`} />
+                        </div>
+                        <div className="text-left">
+                          <span className="font-mono text-[11px] text-foreground font-medium block">
+                            {tool.name}
+                          </span>
+                          <span className="font-mono text-[9px] text-muted-foreground">
+                            {tool.price}
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-left">
-                        <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
-                        <span className={`text-xs font-medium transition-colors ${isOpen ? 'text-foreground' : 'text-muted-foreground'}`}>
-                          {tool.price}
-                        </span>
-                      </div>
-                    </div>
-                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {/* Expandable content */}
-                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="px-4 pl-5 pb-4">
-                      {/* Tagline - bold, left-aligned */}
-                      <p className="text-sm font-bold text-foreground mb-3">{tool.tagline}</p>
-                      
-                      {/* Description */}
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                        {tool.description}
-                      </p>
-
-                      {/* Pain points */}
-                      <div className="space-y-1.5">
-                        {tool.painPoints.map((point, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
-                            <X className="w-3.5 h-3.5 flex-shrink-0" />
-                            {point}
+                      <div className="flex items-center gap-2">
+                        {isOpen && (
+                          <div className="h-1 w-12 bg-foreground/20 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-foreground transition-all duration-50 ease-linear"
+                              style={{ width: `${progress}%` }}
+                            />
                           </div>
-                        ))}
+                        )}
+                        <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                      </div>
+                    </button>
+
+                    {/* Expandable content */}
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-3 pb-3 border-t border-border/50 pt-3 bg-muted/30">
+                        {/* Tagline */}
+                        <p className="font-mono text-[10px] text-foreground font-medium mb-2 uppercase tracking-wide">
+                          "{tool.tagline}"
+                        </p>
+                        
+                        {/* Pain points as data rows */}
+                        <div className="space-y-1">
+                          {tool.painPoints.map((point, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <X className="w-3 h-3 text-red-500 flex-shrink-0" />
+                              <span className="font-mono text-[9px] text-muted-foreground">{point}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
 
-          {/* Total burn rate */}
-          <div className="mt-6 border border-border bg-muted/50 p-4 rounded-2xl fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-center justify-between">
+          {/* Summary footer */}
+          <div className="mt-4 border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="bg-muted/50 px-3 py-2 border-b border-border">
+              <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                MONTHLY COST ANALYSIS
+              </span>
+            </div>
+            <div className="px-3 py-3 bg-background flex items-center justify-between">
               <div>
-                <div className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground uppercase mb-1">
-                  Monthly burn
-                </div>
-                <div className="text-2xl font-bold text-foreground tracking-tight">
-                  $200–2K
-                </div>
+                <span className="font-mono text-[9px] text-muted-foreground uppercase block">Total burn</span>
+                <span className="font-mono text-lg font-bold text-foreground">$200–2K</span>
               </div>
               <div className="text-right">
-                <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
-                  For tools that
-                </div>
-                <div className="font-mono text-[9px] tracking-[0.15em] text-foreground uppercase">
-                  don't learn
-                </div>
+                <span className="font-mono text-[9px] text-red-500 uppercase block">Status</span>
+                <span className="font-mono text-[10px] text-foreground">No improvement</span>
               </div>
             </div>
           </div>
