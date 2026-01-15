@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, Users, TrendingUp, ArrowRight, UserCheck } from "lucide-react";
+import { Calendar, MessageSquare, Users, ArrowRight, Briefcase } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
   const scrollToPartnerForm = () => {
@@ -8,8 +9,55 @@ const Hero = () => {
     });
   };
 
-  // Mobile Hero Visual - Reimagined as a clean "AI in action" preview
+  // Mobile Hero Visual - Animated AI activity feed
   const MobileHeroVisual = () => {
+    const allActivities = [
+      { id: 1, action: "AI booked new customer", detail: "Full detail + ceramic coat", highlight: true, amount: "+$280" },
+      { id: 2, action: "Follow-up sent", detail: "Customer from 52 days ago", highlight: false },
+      { id: 3, action: "Josh took call", detail: "Booked interior clean for tomorrow", highlight: true, amount: "+$120" },
+      { id: 4, action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", highlight: true, amount: "+$180" },
+      { id: 5, action: "CRM updated", detail: "Job details synced automatically", highlight: false },
+      { id: 6, action: "AI answered call", detail: "Scheduled window tint for Friday", highlight: true, amount: "+$350" },
+      { id: 7, action: "Reminder sent", detail: "Appointment confirmation for Mike R.", highlight: false },
+      { id: 8, action: "Lead recovered", detail: "Rescheduled no-show from last week", highlight: true, amount: "+$95" },
+    ];
+    
+    const [activities, setActivities] = useState(allActivities.slice(0, 3));
+    const [activityIndex, setActivityIndex] = useState(3);
+    
+    const contextItems = [
+      { icon: Users, label: "Customers" },
+      { icon: Calendar, label: "Calendar" },
+      { icon: Briefcase, label: "Jobs" },
+    ];
+    
+    const [contextIndex, setContextIndex] = useState(0);
+    
+    // Rotate activities - new one pops at top
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setActivityIndex(prev => {
+          const nextIndex = (prev + 1) % allActivities.length;
+          setActivities(current => {
+            const newActivity = { ...allActivities[nextIndex], id: Date.now() };
+            return [newActivity, ...current.slice(0, 2)];
+          });
+          return nextIndex;
+        });
+      }, 3000);
+      return () => clearInterval(interval);
+    }, []);
+    
+    // Cycle context icons
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setContextIndex(prev => (prev + 1) % contextItems.length);
+      }, 2500);
+      return () => clearInterval(interval);
+    }, []);
+    
+    const CurrentContextIcon = contextItems[contextIndex].icon;
+    
     return (
       <div className="relative w-full max-w-[320px] mx-auto">
         {/* Main card - simulated AI activity */}
@@ -28,68 +76,62 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Activity feed */}
-          <div className="p-4 space-y-3">
-            {/* Latest win - highlighted */}
-            <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
-                    <span className="text-xs font-bold text-background">✓</span>
+          {/* Animated Activity feed */}
+          <div className="p-4 space-y-3 min-h-[180px]">
+            {activities.map((activity, index) => (
+              <div 
+                key={activity.id}
+                className={`transition-all duration-500 ease-out ${
+                  index === 0 ? 'animate-[slideDown_0.4s_ease-out]' : ''
+                }`}
+              >
+                {activity.highlight ? (
+                  <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
+                          <span className="text-xs font-bold text-background">✓</span>
+                        </div>
+                        <span className="text-sm font-medium text-foreground">{activity.action}</span>
+                      </div>
+                      {activity.amount && (
+                        <span className="text-xs font-bold text-accent">{activity.amount}</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
                   </div>
-                  <span className="text-sm font-medium text-foreground">New booking</span>
-                </div>
-                <span className="text-xs font-bold text-accent">+$180</span>
-              </div>
-              <p className="text-xs text-muted-foreground pl-8">AI answered call → booked full detail</p>
-            </div>
-            
-            {/* Secondary activities */}
-            {[
-              { action: "Follow-up sent", detail: "John D. · Tesla Model 3", time: "2m" },
-              { action: "Lead qualified", detail: "New inquiry via SMS", time: "5m" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
-                    <span className="text-[10px] text-muted-foreground">✓</span>
+                ) : (
+                  <div className="flex items-center justify-between py-2 border-b border-border/30">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
+                        <span className="text-[10px] text-muted-foreground">✓</span>
+                      </div>
+                      <div>
+                        <div className="text-xs font-medium text-foreground">{activity.action}</div>
+                        <div className="text-[10px] text-muted-foreground">{activity.detail}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs font-medium text-foreground">{item.action}</div>
-                    <div className="text-[10px] text-muted-foreground">{item.detail}</div>
-                  </div>
-                </div>
-                <span className="text-[10px] text-muted-foreground">{item.time}</span>
+                )}
               </div>
             ))}
           </div>
           
-          {/* Bottom stats */}
+          {/* Bottom - cycling context icons */}
           <div className="px-4 py-3 bg-muted/30 border-t border-border/30 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="text-lg font-bold text-accent">$420</div>
-                <div className="text-[9px] text-muted-foreground">Today</div>
-              </div>
-              <div className="w-px h-6 bg-border" />
-              <div className="text-center">
-                <div className="text-lg font-bold text-foreground">8</div>
-                <div className="text-[9px] text-muted-foreground">Jobs</div>
-              </div>
-              <div className="w-px h-6 bg-border" />
-              <div className="text-center">
-                <div className="text-lg font-bold text-foreground">100%</div>
-                <div className="text-[9px] text-muted-foreground">Answered</div>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-muted-foreground">Connected sources</span>
+            </div>
+            <div className="flex items-center gap-2 min-w-[100px] justify-end">
+              <div 
+                key={contextIndex}
+                className="flex items-center gap-1.5 animate-[fadeInOut_2.5s_ease-in-out]"
+              >
+                <CurrentContextIcon className="w-4 h-4 text-foreground" />
+                <span className="text-xs font-medium text-foreground">{contextItems[contextIndex].label}</span>
               </div>
             </div>
-          </div>
-        </div>
-        
-        {/* Floating notification */}
-        <div className="absolute -top-3 -right-2 bg-background border border-accent/30 rounded-xl px-3 py-2 shadow-lg animate-[float_3s_ease-in-out_infinite]">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-accent" />
-            <span className="text-xs font-medium text-foreground">New lead</span>
           </div>
         </div>
       </div>
