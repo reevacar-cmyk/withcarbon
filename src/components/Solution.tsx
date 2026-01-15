@@ -77,26 +77,26 @@ const Solution = () => {
     }
   ];
 
-  // Visual for unified system - simplified, more visual
+  // Visual for unified system - with strategic orange highlights
   const UnifiedVisual = () => (
     <div className="h-full flex flex-col p-5">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-white/60 md:bg-accent animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           <span className="text-xs text-white/60 uppercase tracking-wider">All-in-One</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-white/10 md:bg-accent/10 border border-white/20 md:border-accent/20 rounded-full text-white/80 md:text-accent">Connected</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Connected</span>
       </div>
       
       {/* Visual - Central hub with spokes */}
       <div className="flex-1 flex items-center justify-center relative">
-        {/* Center hub */}
+        {/* Center hub - orange highlight */}
         <div className="relative">
-          <div className="w-20 h-20 rounded-2xl bg-white/20 md:bg-accent/20 border border-white/40 md:border-accent/40 flex items-center justify-center">
-            <span className="text-2xl font-bold text-white md:text-accent">C</span>
+          <div className="w-20 h-20 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center">
+            <span className="text-2xl font-bold text-accent">C</span>
           </div>
-          <div className="absolute inset-0 rounded-2xl border border-white/20 md:border-accent/20" style={{ animation: 'ping 2s ease-in-out infinite' }} />
+          <div className="absolute inset-0 rounded-2xl border border-accent/20" style={{ animation: 'ping 2s ease-in-out infinite' }} />
         </div>
         
         {/* Connected nodes */}
@@ -113,7 +113,6 @@ const Solution = () => {
               </div>
               <span className="text-[10px] text-white/60">{node.label}</span>
             </div>
-            {/* Connection line would go here in a real implementation */}
           </div>
         ))}
       </div>
@@ -121,24 +120,24 @@ const Solution = () => {
       {/* Stats */}
       <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
         <div className="text-[10px] text-white/60">Everything in one place</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-white/10 md:bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-white/60 md:bg-accent animate-pulse" />
-          <span className="text-[10px] text-white/80 md:text-accent font-medium">Live</span>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">Live</span>
         </div>
       </div>
     </div>
   );
 
-  // Visual for visibility - simplified, more explanatory
+  // Visual for visibility - with strategic orange highlights
   const VisibilityVisual = () => (
     <div className="h-full flex flex-col p-5">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-white/60 md:bg-accent animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           <span className="text-xs text-white/60 uppercase tracking-wider">Transparency</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-white/10 md:bg-accent/10 border border-white/20 md:border-accent/20 rounded-full text-white/80 md:text-accent">You see everything</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">You see everything</span>
       </div>
       
       {/* Visual - Simple automation feed */}
@@ -167,17 +166,17 @@ const Solution = () => {
             key={i} 
             className={`p-3 rounded-xl border ${
               item.status === 'Urgent' 
-                ? 'bg-white/10 md:bg-accent/10 border-white/30 md:border-accent/30' 
+                ? 'bg-accent/10 border-accent/30' 
+                : item.status === 'Booked'
+                ? 'bg-accent/10 border-accent/30'
                 : 'bg-white/5 border-white/10'
             }`}
           >
             <div className="flex items-start justify-between mb-1">
               <span className="text-sm text-white font-medium">{item.action}</span>
               <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                item.status === 'Urgent' 
-                  ? 'bg-white/20 md:bg-accent/20 text-white md:text-accent' 
-                  : item.status === 'Booked'
-                  ? 'bg-white/20 md:bg-accent/20 text-white md:text-accent'
+                item.status === 'Urgent' || item.status === 'Booked'
+                  ? 'bg-accent/20 text-accent' 
                   : 'bg-white/10 text-white/60'
               }`}>
                 {item.status}
@@ -191,9 +190,9 @@ const Solution = () => {
       {/* Footer */}
       <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
         <div className="text-[10px] text-white/60">AI shows you what it does & why</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-white/10 md:bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-white/60 md:bg-accent animate-pulse" />
-          <span className="text-[10px] text-white/80 md:text-accent font-medium">3 active</span>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">3 active</span>
         </div>
       </div>
     </div>
