@@ -1,11 +1,13 @@
 import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Count-up animation component - resets when out of view
+// Count-up animation component - resets after 10s out of view
 const CountUpMetric = ({ value }: { value: string }) => {
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Extract number from value string (e.g., "37%" -> 37, "18hrs" -> 18)
   const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
@@ -16,11 +18,19 @@ const CountUpMetric = ({ value }: { value: string }) => {
       (entries) => {
         const entry = entries[0];
         if (entry.isIntersecting) {
+          // Clear any pending reset
+          if (resetTimeoutRef.current) {
+            clearTimeout(resetTimeoutRef.current);
+            resetTimeoutRef.current = null;
+          }
           setIsInView(true);
         } else {
-          // Reset when out of view
           setIsInView(false);
-          setCount(0);
+          // Delay reset by 10 seconds
+          resetTimeoutRef.current = setTimeout(() => {
+            setCount(0);
+            setHasAnimated(false);
+          }, 10000);
         }
       },
       { threshold: 0.3 }
@@ -30,21 +40,27 @@ const CountUpMetric = ({ value }: { value: string }) => {
       observer.observe(ref.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || hasAnimated) return;
 
-    const duration = 1000; // Slower animation
+    setHasAnimated(true);
+    const duration = 1200;
     const startTime = Date.now();
     
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // Ease out cubic for snappy feel
-      const eased = 1 - Math.pow(1 - progress, 3);
+      // Ease out quint - slows down more dramatically at the end
+      const eased = 1 - Math.pow(1 - progress, 5);
       const current = Math.round(eased * numericValue);
       
       setCount(current);
@@ -55,7 +71,7 @@ const CountUpMetric = ({ value }: { value: string }) => {
     };
     
     requestAnimationFrame(animate);
-  }, [isInView, numericValue]);
+  }, [isInView, hasAnimated, numericValue]);
 
   return (
     <div ref={ref}>
