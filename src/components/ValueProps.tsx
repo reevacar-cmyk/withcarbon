@@ -108,450 +108,431 @@ const ValueProps = () => {
     }
   ];
 
-  // Simplified Booking Visual - with strategic orange highlights
+  // Minimal Industrial Booking Visual
   const BookingVisual = () => (
-    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Clean visual with orange highlights on key moments */}
-      <div className="md:hidden h-full flex flex-col p-4">
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Mobile */}
+      <div className="md:hidden h-full flex flex-col p-5">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <div className="text-sm font-medium text-foreground">Inbound Leads</div>
-            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-foreground/10 border border-foreground/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[8px] font-mono text-foreground font-medium">24/7</span>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Lead → Booking</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[9px] font-mono text-accent">LIVE</span>
           </div>
         </div>
         
-        {/* Flow visualization */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-3">
-          {/* Incoming message */}
-          <div className="w-full max-w-[260px] p-3 bg-background rounded-xl border border-border shadow-sm">
+        {/* Flow diagram */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          {/* Input node */}
+          <div className="w-full max-w-[240px] p-4 bg-muted/30 border border-border rounded-sm">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-muted-foreground" />
+              <div className="w-8 h-8 border border-border rounded-sm flex items-center justify-center">
+                <MessageSquare className="w-4 h-4 text-muted-foreground" />
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-foreground">New SMS Lead</div>
-                <div className="text-xs text-muted-foreground">"How much for a detail?"</div>
+                <div className="text-[10px] font-mono text-muted-foreground uppercase">Inbound</div>
+                <div className="text-xs text-foreground">"How much for a detail?"</div>
               </div>
             </div>
           </div>
           
-          {/* Arrow connector - orange highlight */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-0.5 h-4 bg-accent/40" />
-            <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-accent" />
+          {/* Connector */}
+          <div className="flex flex-col items-center">
+            <div className="w-px h-6 bg-border" />
+            <div className="w-6 h-6 border border-accent bg-accent/10 rounded-sm flex items-center justify-center">
+              <Zap className="w-3 h-3 text-accent" />
             </div>
-            <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
-            <div className="w-0.5 h-4 bg-accent/40" />
+            <div className="text-[9px] font-mono text-accent mt-1">2s response</div>
+            <div className="w-px h-6 bg-border" />
           </div>
           
-          {/* Result card - orange highlight on success */}
-          <div className="w-full max-w-[260px] p-3 bg-accent/10 rounded-xl border border-accent/30">
+          {/* Output node */}
+          <div className="w-full max-w-[240px] p-4 bg-accent/5 border border-accent/30 rounded-sm">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-accent" />
+              <div className="w-8 h-8 border border-accent/30 bg-accent/10 rounded-sm flex items-center justify-center">
+                <Calendar className="w-4 h-4 text-accent" />
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-accent">Booked!</div>
-                <div className="text-xs text-muted-foreground">Tomorrow 10am · $220</div>
+                <div className="text-[10px] font-mono text-accent uppercase">Booked</div>
+                <div className="text-xs text-foreground">Tomorrow 10am · $220</div>
               </div>
-              <CheckCircle className="w-5 h-5 text-accent" />
+              <CheckCircle className="w-4 h-4 text-accent" />
             </div>
           </div>
         </div>
         
-        {/* Bottom stats overlay */}
-        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+        {/* Stats bar */}
+        <div className="mt-6 pt-4 border-t border-border">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="text-lg font-semibold text-accent">$850</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Today</div>
+            <div className="flex items-center gap-6">
+              <div>
+                <div className="text-lg font-mono font-semibold text-accent">$850</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Today</div>
               </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">100%</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Response</div>
+              <div>
+                <div className="text-lg font-mono font-semibold text-foreground">100%</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Response</div>
               </div>
-            </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] text-accent font-medium">Active</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Desktop: Original dark mode visual */}
-      <div className="hidden md:flex flex-col h-full p-5">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs text-white/60 uppercase tracking-wider">Inbound Leads</span>
-          </div>
-          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">24/7 Active</span>
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-center space-y-4">
-          <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-white/10 border border-white/20 rounded-xl">
-            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-              <MessageSquare className="w-5 h-5 text-accent" />
-            </div>
-            <div className="flex-1">
-              <div className="text-sm font-medium text-white">New SMS Lead</div>
-              <div className="text-xs text-white/60">"How much for a full detail?"</div>
-            </div>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-0.5 h-6 bg-accent/40" />
-            <Zap className="w-5 h-5 text-accent animate-pulse" />
-            <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
-            <div className="w-0.5 h-6 bg-accent/40" />
-          </div>
-          <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-accent/10 border border-accent/30 rounded-xl">
-            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-              <Calendar className="w-5 h-5 text-accent" />
-            </div>
-            <div className="flex-1">
-              <div className="text-sm font-medium text-accent">Booked!</div>
-              <div className="text-xs text-white/60">Tomorrow 10am · $220</div>
-            </div>
-            <CheckCircle className="w-5 h-5 text-accent" />
-          </div>
-        </div>
-        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-lg font-bold text-accent">$850</div>
-              <div className="text-[9px] text-white/60">Today</div>
-            </div>
-            <div className="w-px h-8 bg-white/20" />
-            <div className="text-center">
-              <div className="text-lg font-bold text-white">100%</div>
-              <div className="text-[9px] text-white/60">Response</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+      {/* Desktop */}
+      <div className="hidden md:flex flex-col h-full p-6">
+        <div className="flex items-center justify-between mb-8">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Lead → Booking</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] text-accent font-medium">AI Active</span>
+            <span className="text-[9px] font-mono text-accent">24/7</span>
+          </div>
+        </div>
+        
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <div className="w-full max-w-[260px] p-4 bg-white/5 border border-white/10 rounded-sm">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 border border-white/20 rounded-sm flex items-center justify-center">
+                <MessageSquare className="w-4 h-4 text-white/60" />
+              </div>
+              <div className="flex-1">
+                <div className="text-[10px] font-mono text-white/40 uppercase">Inbound SMS</div>
+                <div className="text-xs text-white">"How much for a full detail?"</div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col items-center">
+            <div className="w-px h-8 bg-white/20" />
+            <div className="w-6 h-6 border border-accent bg-accent/10 rounded-sm flex items-center justify-center">
+              <Zap className="w-3 h-3 text-accent" />
+            </div>
+            <div className="text-[9px] font-mono text-accent mt-1">AI · 2s</div>
+            <div className="w-px h-8 bg-white/20" />
+          </div>
+          
+          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-sm">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 border border-accent/30 bg-accent/20 rounded-sm flex items-center justify-center">
+                <Calendar className="w-4 h-4 text-accent" />
+              </div>
+              <div className="flex-1">
+                <div className="text-[10px] font-mono text-accent uppercase">Confirmed</div>
+                <div className="text-xs text-white">Tomorrow 10am · $220</div>
+              </div>
+              <CheckCircle className="w-4 h-4 text-accent" />
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <div>
+              <div className="text-lg font-mono font-bold text-accent">$850</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Today</div>
+            </div>
+            <div>
+              <div className="text-lg font-mono font-bold text-white">100%</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Response</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 
-  // Simplified Retention Visual - with strategic orange highlights
+  // Minimal Industrial Retention Visual
   const RetentionVisual = () => (
-    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Clean visual with orange highlights on key moments */}
-      <div className="md:hidden h-full flex flex-col p-4">
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Mobile */}
+      <div className="md:hidden h-full flex flex-col p-5">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <div className="text-sm font-medium text-foreground">AI Follow-ups</div>
-            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-foreground/10 border border-foreground/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[8px] font-mono text-foreground font-medium">AUTO</span>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Customer → Rebook</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[9px] font-mono text-accent">AUTO</span>
           </div>
         </div>
         
-        {/* Customer profile card */}
+        {/* Profile card */}
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[280px] p-4 bg-background rounded-xl border border-border shadow-sm">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center text-lg font-bold text-foreground">
+          <div className="w-full max-w-[260px] p-4 bg-muted/30 border border-border rounded-sm">
+            {/* Customer header */}
+            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
+              <div className="w-10 h-10 border border-border rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
                 JD
               </div>
               <div>
-                <div className="text-sm font-medium text-foreground">John D.</div>
-                <div className="text-xs text-muted-foreground">2021 Tesla Model 3</div>
+                <div className="text-xs font-medium text-foreground">John D.</div>
+                <div className="text-[10px] font-mono text-muted-foreground">Tesla Model 3</div>
               </div>
             </div>
             
-            {/* Memory points */}
-            <div className="space-y-2 mb-3 p-2.5 bg-muted/50 rounded-lg">
-              <div className="flex items-center gap-2 text-xs">
-                <Repeat className="w-3.5 h-3.5 text-muted-foreground" />
-                <span className="text-foreground/80">Last detail: 45 days ago</span>
+            {/* Data points */}
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="font-mono text-muted-foreground uppercase">Last service</span>
+                <span className="text-foreground">45 days ago</span>
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <TrendingUp className="w-3.5 h-3.5 text-muted-foreground" />
-                <span className="text-foreground/80">$1,440 lifetime value</span>
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="font-mono text-muted-foreground uppercase">LTV</span>
+                <span className="text-foreground">$1,440</span>
               </div>
             </div>
             
-            {/* AI action - orange highlight */}
-            <div className="p-2.5 bg-accent/10 border border-accent/30 rounded-lg">
-              <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
+            {/* AI action */}
+            <div className="p-3 bg-accent/5 border border-accent/30 rounded-sm">
+              <div className="flex items-center gap-2 text-[10px] font-mono text-accent uppercase mb-1">
                 <Send className="w-3 h-3" />
-                AI sent follow-up
+                AI Follow-up Sent
               </div>
-              <div className="text-[11px] text-muted-foreground italic">"Hey John! Your Model 3 is probably due..."</div>
+              <div className="text-[10px] text-muted-foreground">"Hey John! Your Model 3 is due..."</div>
             </div>
           </div>
           
-          {/* Result badge - orange highlight */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full">
-            <CheckCircle className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Booked for Thursday</span>
+          {/* Result */}
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-sm">
+            <CheckCircle className="w-3.5 h-3.5 text-accent" />
+            <span className="text-xs font-mono text-accent">Rebooked Thursday</span>
           </div>
         </div>
         
-        {/* Bottom stats overlay */}
-        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+        {/* Stats bar */}
+        <div className="mt-6 pt-4 border-t border-border">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="text-lg font-semibold text-accent">$650</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Recovered</div>
+            <div className="flex items-center gap-6">
+              <div>
+                <div className="text-lg font-mono font-semibold text-accent">$650</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Recovered</div>
               </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">67%</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Rebook rate</div>
+              <div>
+                <div className="text-lg font-mono font-semibold text-foreground">67%</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Rebook</div>
               </div>
-            </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] text-accent font-medium">Active</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Desktop: Original dark mode visual */}
-      <div className="hidden md:flex flex-col h-full p-5">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs text-white/60 uppercase tracking-wider">AI Follow-ups</span>
-          </div>
-          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">Personalized</span>
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-center space-y-4">
-          <div className="w-full max-w-[260px] p-4 bg-white/10 border border-white/20 rounded-xl">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-lg font-bold text-accent">JD</div>
-              <div>
-                <div className="text-sm font-medium text-white">John D.</div>
-                <div className="text-xs text-white/60">2021 Tesla Model 3</div>
-              </div>
-            </div>
-            <div className="space-y-2 mb-3">
-              <div className="flex items-center gap-2 text-xs">
-                <Repeat className="w-3.5 h-3.5 text-accent" />
-                <span className="text-white/80">Last detail: 45 days ago</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs">
-                <TrendingUp className="w-3.5 h-3.5 text-accent" />
-                <span className="text-white/80">$1,440 lifetime value</span>
-              </div>
-            </div>
-            <div className="p-2 bg-accent/10 border border-accent/30 rounded-lg">
-              <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
-                <Send className="w-3 h-3" />
-                AI sent follow-up
-              </div>
-              <div className="text-[11px] text-white/70 italic">"Hey John! Your Model 3 is probably due..."</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full">
-            <CheckCircle className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Booked for Thursday</span>
-          </div>
-        </div>
-        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-lg font-bold text-accent">$650</div>
-              <div className="text-[9px] text-white/60">Recovered</div>
-            </div>
-            <div className="w-px h-8 bg-white/20" />
-            <div className="text-center">
-              <div className="text-lg font-bold text-white">67%</div>
-              <div className="text-[9px] text-white/60">Rebook rate</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+      {/* Desktop */}
+      <div className="hidden md:flex flex-col h-full p-6">
+        <div className="flex items-center justify-between mb-8">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Customer → Rebook</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] text-accent font-medium">AI Active</span>
+            <span className="text-[9px] font-mono text-accent">AUTO</span>
+          </div>
+        </div>
+        
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <div className="w-full max-w-[280px] p-4 bg-white/5 border border-white/10 rounded-sm">
+            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+              <div className="w-10 h-10 border border-white/20 rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent">
+                JD
+              </div>
+              <div>
+                <div className="text-xs font-medium text-white">John D.</div>
+                <div className="text-[10px] font-mono text-white/50">Tesla Model 3</div>
+              </div>
+            </div>
+            
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="font-mono text-white/40 uppercase">Last service</span>
+                <span className="text-white">45 days ago</span>
+              </div>
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="font-mono text-white/40 uppercase">LTV</span>
+                <span className="text-white">$1,440</span>
+              </div>
+            </div>
+            
+            <div className="p-3 bg-accent/10 border border-accent/30 rounded-sm">
+              <div className="flex items-center gap-2 text-[10px] font-mono text-accent uppercase mb-1">
+                <Send className="w-3 h-3" />
+                AI Follow-up
+              </div>
+              <div className="text-[10px] text-white/60">"Hey John! Your Model 3 is due..."</div>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-sm">
+            <CheckCircle className="w-3.5 h-3.5 text-accent" />
+            <span className="text-xs font-mono text-accent">Rebooked Thursday</span>
+          </div>
+        </div>
+        
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <div>
+              <div className="text-lg font-mono font-bold text-accent">$650</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Recovered</div>
+            </div>
+            <div>
+              <div className="text-lg font-mono font-bold text-white">67%</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Rebook</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 
-  // Simplified Automation Visual - with strategic orange highlights
+  // Minimal Industrial Automation Visual
   const AutomationVisual = () => (
-    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Clean visual with orange highlights on key moments */}
-      <div className="md:hidden h-full flex flex-col p-4">
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Mobile */}
+      <div className="md:hidden h-full flex flex-col p-5">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <div className="text-sm font-medium text-foreground">Auto-Sync</div>
-            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[8px] font-mono text-accent font-medium">LIVE</span>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Data → CRM</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[9px] font-mono text-accent">SYNC</span>
           </div>
         </div>
         
-        {/* Data flow visualization */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-3">
-          {/* Data sources */}
-          <div className="flex items-center justify-center gap-3 w-full">
+        {/* Flow diagram */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          {/* Input sources */}
+          <div className="flex items-center justify-center gap-4 w-full">
             {[
               { icon: Phone, label: "Calls" },
               { icon: MessageSquare, label: "Texts" },
               { icon: Calendar, label: "Jobs" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-background border border-border rounded-xl shadow-sm">
-                <item.icon className="w-5 h-5 text-muted-foreground" />
-                <span className="text-[10px] text-muted-foreground">{item.label}</span>
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-muted/30 border border-border rounded-sm">
+                <item.icon className="w-4 h-4 text-muted-foreground" />
+                <span className="text-[9px] font-mono text-muted-foreground uppercase">{item.label}</span>
               </div>
             ))}
           </div>
           
-          {/* Arrows flowing down - orange */}
-          <div className="flex items-center justify-center gap-6">
+          {/* Connectors */}
+          <div className="flex items-center justify-center gap-8">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="w-0.5 h-4 bg-accent/40" />
-                <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
-              </div>
+              <div key={i} className="w-px h-6 bg-border" />
             ))}
           </div>
           
-          {/* CRM destination - orange highlight */}
-          <div className="w-full max-w-[280px] p-4 bg-accent/10 border border-accent/30 rounded-xl">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                <Database className="w-5 h-5 text-accent" />
+          {/* Central processor */}
+          <div className="w-full max-w-[240px] p-4 bg-accent/5 border border-accent/30 rounded-sm">
+            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent/20">
+              <div className="w-8 h-8 border border-accent/30 bg-accent/10 rounded-sm flex items-center justify-center">
+                <Database className="w-4 h-4 text-accent" />
               </div>
               <div>
-                <div className="text-sm font-medium text-foreground">Your CRM</div>
-                <div className="text-xs text-accent font-medium">100% up to date</div>
+                <div className="text-[10px] font-mono text-accent uppercase">CRM</div>
+                <div className="text-xs text-foreground">Auto-synced</div>
               </div>
             </div>
             
-            {/* Recent auto-logs */}
-            <div className="space-y-1.5">
+            {/* Log entries */}
+            <div className="space-y-2">
               {[
-                { action: "Call logged", time: "Just now" },
-                { action: "Job created", time: "2m ago" },
-                { action: "SMS synced", time: "5m ago" }
+                { action: "Call logged", time: "Now" },
+                { action: "Job created", time: "2m" },
+                { action: "SMS synced", time: "5m" }
               ].map((log, i) => (
-                <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-border/50 last:border-0">
+                <div key={i} className="flex items-center justify-between text-[10px]">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-accent" />
                     <span className="text-foreground/80">{log.action}</span>
                   </div>
-                  <span className="text-muted-foreground text-[10px]">{log.time}</span>
+                  <span className="font-mono text-muted-foreground">{log.time}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
         
-        {/* Bottom stats overlay */}
-        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+        {/* Stats bar */}
+        <div className="mt-6 pt-4 border-t border-border">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">142</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Profiles</div>
+            <div className="flex items-center gap-6">
+              <div>
+                <div className="text-lg font-mono font-semibold text-foreground">142</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Profiles</div>
               </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-center">
-                <div className="text-lg font-semibold text-accent">0</div>
-                <div className="text-[9px] text-muted-foreground font-mono">Manual entry</div>
+              <div>
+                <div className="text-lg font-mono font-semibold text-accent">0</div>
+                <div className="text-[9px] font-mono text-muted-foreground uppercase">Manual</div>
               </div>
-            </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] text-accent font-medium">Synced</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Desktop: Original dark mode visual */}
-      <div className="hidden md:flex flex-col h-full p-5">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs text-white/60 uppercase tracking-wider">Auto-Sync</span>
+      {/* Desktop */}
+      <div className="hidden md:flex flex-col h-full p-6">
+        <div className="flex items-center justify-between mb-8">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Data → CRM</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 border border-accent/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[9px] font-mono text-accent">LIVE</span>
           </div>
-          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">Zero Manual Entry</span>
         </div>
-        <div className="flex-1 flex flex-col items-center justify-center space-y-3">
-          <div className="flex items-center justify-center gap-3 w-full">
+        
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 w-full">
             {[
               { icon: Phone, label: "Calls" },
               { icon: MessageSquare, label: "Texts" },
               { icon: Calendar, label: "Jobs" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white/10 border border-white/20 rounded-xl">
-                <item.icon className="w-5 h-5 text-white/70" />
-                <span className="text-[10px] text-white/60">{item.label}</span>
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white/5 border border-white/10 rounded-sm">
+                <item.icon className="w-4 h-4 text-white/60" />
+                <span className="text-[9px] font-mono text-white/40 uppercase">{item.label}</span>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-center gap-6">
+          
+          <div className="flex items-center justify-center gap-8">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="w-0.5 h-4 bg-accent/40" />
-                <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
-              </div>
+              <div key={i} className="w-px h-6 bg-white/20" />
             ))}
           </div>
-          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-xl">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                <Database className="w-5 h-5 text-accent" />
+          
+          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-sm">
+            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent/20">
+              <div className="w-8 h-8 border border-accent/30 bg-accent/20 rounded-sm flex items-center justify-center">
+                <Database className="w-4 h-4 text-accent" />
               </div>
               <div>
-                <div className="text-sm font-medium text-white">Your CRM</div>
-                <div className="text-xs text-accent">100% up to date</div>
+                <div className="text-[10px] font-mono text-accent uppercase">CRM</div>
+                <div className="text-xs text-white">Auto-synced</div>
               </div>
             </div>
-            <div className="space-y-1.5">
+            
+            <div className="space-y-2">
               {[
-                { action: "Call logged", time: "Just now" },
-                { action: "Job created", time: "2m ago" },
-                { action: "SMS synced", time: "5m ago" }
+                { action: "Call logged", time: "Now" },
+                { action: "Job created", time: "2m" },
+                { action: "SMS synced", time: "5m" }
               ].map((log, i) => (
-                <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-white/10 last:border-0">
+                <div key={i} className="flex items-center justify-between text-[10px]">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-accent" />
                     <span className="text-white/80">{log.action}</span>
                   </div>
-                  <span className="text-white/50 text-[10px]">{log.time}</span>
+                  <span className="font-mono text-white/40">{log.time}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-lg font-bold text-white">142</div>
-              <div className="text-[9px] text-white/60">Profiles</div>
+        
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <div>
+              <div className="text-lg font-mono font-bold text-white">142</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Profiles</div>
             </div>
-            <div className="w-px h-8 bg-white/20" />
-            <div className="text-center">
-              <div className="text-lg font-bold text-accent">0</div>
-              <div className="text-[9px] text-white/60">Manual entry</div>
+            <div>
+              <div className="text-lg font-mono font-bold text-accent">0</div>
+              <div className="text-[9px] font-mono text-white/40 uppercase">Manual</div>
             </div>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] text-accent font-medium">Synced</span>
           </div>
         </div>
       </div>
