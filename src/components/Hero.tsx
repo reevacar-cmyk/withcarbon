@@ -8,62 +8,50 @@ const Hero = () => {
     });
   };
 
-// Mobile Hero Visual - Centralized system diagram
+  // Mobile Hero Visual - Animated orbiting icons around central C hub
   const MobileHeroVisual = () => (
-    <div className="relative w-full max-w-[340px] mx-auto py-6">
+    <div className="relative w-full aspect-square max-w-[300px] mx-auto">
+      {/* Orbit rings */}
+      <div className="absolute inset-4 rounded-full border border-border/50" />
+      <div className="absolute inset-12 rounded-full border border-border/30" />
+      
       {/* Central hub */}
-      <div className="relative flex flex-col items-center">
-        {/* Main Carbon hub */}
-        <div className="w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg mb-6">
-          <span className="text-2xl font-semibold text-background">C</span>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg z-10">
+        <span className="text-2xl font-semibold text-background">C</span>
+      </div>
+      
+      {/* Orbiting icons - animated */}
+      <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
+        {/* Calendar - top */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+          <Calendar className="w-5 h-5 text-foreground" />
         </div>
-        
-        {/* Connection lines container */}
-        <div className="relative w-full">
-          {/* Horizontal line */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[280px] h-px bg-border" />
-          
-          {/* Vertical connectors */}
-          <div className="absolute top-0 left-[calc(50%-140px)] w-px h-4 bg-border" />
-          <div className="absolute top-0 left-[calc(50%-70px)] w-px h-4 bg-border" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-4 bg-border" />
-          <div className="absolute top-0 left-[calc(50%+70px)] w-px h-4 bg-border" />
-          <div className="absolute top-0 left-[calc(50%+140px)] w-px h-4 bg-border" />
+        {/* Users - right */}
+        <div className="absolute top-1/2 right-4 -translate-y-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+          <Users className="w-5 h-5 text-foreground" />
         </div>
-        
-        {/* Feature cards row */}
-        <div className="flex items-start justify-center gap-3 mt-4 w-full px-2">
-          {[
-            { icon: Calendar, label: "Calendar", desc: "Jobs & scheduling" },
-            { icon: Users, label: "Customers", desc: "Full context" },
-            { icon: MessageSquare, label: "AI SMS", desc: "Auto follow-ups" },
-            { icon: TrendingUp, label: "Insights", desc: "Real metrics" }
-          ].map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div key={i} className="flex flex-col items-center text-center flex-1 min-w-0">
-                <div className="w-11 h-11 rounded-lg bg-muted border border-border flex items-center justify-center mb-2">
-                  <Icon className="w-5 h-5 text-foreground" />
-                </div>
-                <span className="text-[11px] font-medium text-foreground leading-tight">{item.label}</span>
-                <span className="text-[9px] text-muted-foreground leading-tight mt-0.5">{item.desc}</span>
-              </div>
-            );
-          })}
+        {/* MessageSquare - bottom */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+          <MessageSquare className="w-5 h-5 text-foreground" />
         </div>
-        
-        {/* Bottom summary line */}
-        <div className="mt-6 pt-4 border-t border-border w-full text-center">
-          <p className="text-xs text-muted-foreground">
-            One system. Full visibility. Real relationships.
-          </p>
+        {/* TrendingUp - left */}
+        <div className="absolute top-1/2 left-4 -translate-y-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+          <TrendingUp className="w-5 h-5 text-foreground" />
         </div>
       </div>
+      
+      {/* Connection lines - static dashed */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 300">
+        <line x1="150" y1="80" x2="150" y2="120" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="220" y1="150" x2="180" y2="150" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="150" y1="220" x2="150" y2="180" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="80" y1="150" x2="120" y2="150" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
+      </svg>
     </div>
   );
   
   return (
-    <section className="min-h-screen pb-8 md:pb-8 px-6 md:px-8 lg:px-12 pt-20 md:pt-32 relative overflow-hidden bg-background">
+    <section className="min-h-screen pb-4 md:pb-8 px-6 md:px-8 lg:px-12 pt-24 md:pt-32 relative overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none bg-background" />
       
@@ -73,13 +61,13 @@ const Hero = () => {
             {/* Mobile: Tertiary callout badge */}
             <div className="md:hidden flex items-center justify-center gap-2 fade-in">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
-                <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
+                <span className="px-2 py-0.5 rounded bg-accent text-background text-xs font-medium">NEW</span>
                 <span className="text-muted-foreground">AI-powered operations</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </span>
             </div>
             
-            {/* Mobile: Large title with Inter-like lighter weight */}
+            {/* Mobile: Large title with lighter weight */}
             <h1 className="fade-in fade-in-delay-1">
               <span className="md:hidden block text-[2.75rem] font-medium tracking-tight leading-[0.95] text-foreground">
                 Your new AI<br />
@@ -94,7 +82,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
-              <Button onClick={scrollToPartnerForm} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium px-8 w-full sm:w-auto">
+              <Button onClick={scrollToPartnerForm} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
             </div>

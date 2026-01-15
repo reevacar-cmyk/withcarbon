@@ -3,7 +3,7 @@ import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, R
 const ValueProps = () => {
   const values = [
     {
-      metric: "40%",
+      metric: "37%",
       title: "More bookings",
       mobileTitle: "More jobs booked",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
@@ -11,7 +11,7 @@ const ValueProps = () => {
       visual: "booking"
     },
     {
-      metric: "30%",
+      metric: "40%",
       title: "More repeat customers",
       mobileTitle: "More repeat customers",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
@@ -495,9 +495,9 @@ const ValueProps = () => {
     <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-background md:bg-[hsl(0_0%_5%)] md:text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile-only intro - builds from hero vision */}
-        <div className="md:hidden pt-0 mb-10 text-center space-y-3">
+        <div className="md:hidden pt-0 mb-6 text-center space-y-2">
           <span className="text-xs uppercase tracking-widest text-muted-foreground">The Results</span>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h2 className="text-3xl font-normal tracking-tight text-foreground leading-[1.1]">
             Here's what that looks like
           </h2>
         </div>
