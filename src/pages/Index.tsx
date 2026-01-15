@@ -16,24 +16,29 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ProblemStatement />
-        <DisjointedTools />
-        {/* Mobile: ValueProps, then Solution */}
+        {/* Mobile: Vision-first storytelling flow */}
         <div className="md:hidden">
+          {/* Metrics come right after hero vision */}
           <ValueProps />
-        </div>
-        <div className="md:hidden">
+          {/* Then problem and status quo */}
+          <ProblemStatement />
+          <DisjointedTools />
+          {/* How it works / solution */}
           <Solution />
+          {/* The data */}
+          <Insights />
+          {/* Essentials */}
+          <Essentials />
         </div>
-        {/* Desktop: ValueProps after DisjointedTools, then Solution */}
+        {/* Desktop: Original order */}
         <div className="hidden md:block">
+          <ProblemStatement />
+          <DisjointedTools />
           <ValueProps />
-        </div>
-        <div className="hidden md:block">
           <Solution />
+          <Insights />
+          <Essentials />
         </div>
-        <Insights />
-        <Essentials />
         <SocialProof />
         <DesignPartnerForm />
         <Newsletter />

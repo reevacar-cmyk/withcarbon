@@ -77,57 +77,50 @@ const Solution = () => {
     }
   ];
 
-  // Visual for unified system - showing connected data
+  // Visual for unified system - simplified, more visual
   const UnifiedVisual = () => (
     <div className="h-full flex flex-col p-5">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-white/60 uppercase tracking-wider">Customer 360</span>
+          <span className="text-xs text-white/60 uppercase tracking-wider">All-in-One</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Connected</span>
       </div>
       
-      {/* Customer profile with connected data */}
-      <div className="flex-1 space-y-3">
-        <div className="bg-white/10 border border-accent/30 rounded-xl p-4">
-          <div className="flex items-start gap-3 mb-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-bold text-accent">
-              JD
-            </div>
-            <div className="flex-1">
-              <div className="text-sm font-medium text-white">John Davidson</div>
-              <div className="text-[10px] text-white/60">2021 Tesla Model 3 · Black</div>
-            </div>
+      {/* Visual - Central hub with spokes */}
+      <div className="flex-1 flex items-center justify-center relative">
+        {/* Center hub */}
+        <div className="relative">
+          <div className="w-20 h-20 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center">
+            <span className="text-2xl font-bold text-accent">C</span>
           </div>
-          
-          {/* Connected data streams */}
-          <div className="space-y-2">
-            {[
-              { icon: Phone, label: "Last call", value: "Today 2:15pm", status: "Booked full detail" },
-              { icon: MessageSquare, label: "Last text", value: "Yesterday", status: "Confirmed appointment" },
-              { icon: Calendar, label: "Next job", value: "Tomorrow 10am", status: "$220 full detail" },
-              { icon: Database, label: "History", value: "8 visits", status: "$1,440 lifetime" }
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between p-2 bg-white/10 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <item.icon className="w-3.5 h-3.5 text-accent/70" />
-                  <span className="text-[10px] text-white/60">{item.label}</span>
-                </div>
-                <div className="text-right">
-                  <div className="text-[10px] text-white">{item.value}</div>
-                  <div className="text-[9px] text-accent">{item.status}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div className="absolute inset-0 rounded-2xl border border-accent/20" style={{ animation: 'ping 2s ease-in-out infinite' }} />
         </div>
+        
+        {/* Connected nodes */}
+        {[
+          { icon: "📞", label: "Calls", position: "-translate-x-24 -translate-y-12" },
+          { icon: "💬", label: "Texts", position: "translate-x-24 -translate-y-12" },
+          { icon: "📅", label: "Jobs", position: "-translate-x-24 translate-y-12" },
+          { icon: "👤", label: "Customers", position: "translate-x-24 translate-y-12" }
+        ].map((node, i) => (
+          <div key={i} className={`absolute ${node.position}`}>
+            <div className="flex flex-col items-center gap-1">
+              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-lg">
+                {node.icon}
+              </div>
+              <span className="text-[10px] text-white/60">{node.label}</span>
+            </div>
+            {/* Connection line would go here in a real implementation */}
+          </div>
+        ))}
       </div>
       
       {/* Stats */}
       <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-        <div className="text-[10px] text-white/60">All data auto-synced</div>
+        <div className="text-[10px] text-white/60">Everything in one place</div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
           <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span className="text-[10px] text-accent font-medium">Live</span>
@@ -136,85 +129,71 @@ const Solution = () => {
     </div>
   );
 
-  // Visual for visibility - showing automation dashboard
+  // Visual for visibility - simplified, more explanatory
   const VisibilityVisual = () => (
     <div className="h-full flex flex-col p-5">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-white/60 uppercase tracking-wider">Automation Status</span>
+          <span className="text-xs text-white/60 uppercase tracking-wider">Transparency</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Transparent</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">You see everything</span>
       </div>
       
-      {/* Active automations */}
-      <div className="flex-1 space-y-2">
+      {/* Visual - Simple automation feed */}
+      <div className="flex-1 space-y-3">
         {[
           { 
-            name: "Follow-up after detail", 
-            status: "active", 
-            triggered: "3 today",
-            reason: "Service completed > 24hrs ago"
+            action: "Sent follow-up to John D.", 
+            reason: "45 days since last detail",
+            status: "Booked",
+            isHighlight: true
           },
           { 
-            name: "Quote reminder", 
-            status: "active", 
-            triggered: "1 today",
-            reason: "Quote sent > 48hrs, no response"
+            action: "Answered call from new lead", 
+            reason: "AI qualified and booked",
+            status: "Done",
+            isHighlight: false
           },
           { 
-            name: "Re-engagement campaign", 
-            status: "active", 
-            triggered: "5 this week",
-            reason: "Last visit > 60 days"
-          },
-          { 
-            name: "Urgent escalation", 
-            status: "escalated", 
-            triggered: "Just now",
-            reason: "Customer requested callback"
+            action: "Escalated to you", 
+            reason: "Customer requested callback",
+            status: "Urgent",
+            isHighlight: true
           }
-        ].map((auto, i) => (
+        ].map((item, i) => (
           <div 
             key={i} 
-            className={`p-3 rounded-lg border ${
-              auto.status === 'escalated' 
+            className={`p-3 rounded-xl border ${
+              item.status === 'Urgent' 
                 ? 'bg-accent/10 border-accent/30' 
-                : 'bg-white/10 border-white/20'
+                : 'bg-white/5 border-white/10'
             }`}
           >
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex items-center gap-2">
-                {auto.status === 'escalated' ? (
-                  <AlertCircle className="w-3.5 h-3.5 text-accent" />
-                ) : (
-                  <CheckCircle className="w-3.5 h-3.5 text-accent/70" />
-                )}
-                <span className="text-[11px] font-medium text-white">{auto.name}</span>
-              </div>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded ${
-                auto.status === 'escalated' 
-                  ? 'bg-accent/20 text-accent font-medium' 
+            <div className="flex items-start justify-between mb-1">
+              <span className="text-sm text-white font-medium">{item.action}</span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded ${
+                item.status === 'Urgent' 
+                  ? 'bg-accent/20 text-accent' 
+                  : item.status === 'Booked'
+                  ? 'bg-accent/20 text-accent'
                   : 'bg-white/10 text-white/60'
               }`}>
-                {auto.triggered}
+                {item.status}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-[9px] text-white/60 pl-5">
-              <Eye className="w-3 h-3" />
-              {auto.reason}
-            </div>
+            <div className="text-xs text-white/50">{item.reason}</div>
           </div>
         ))}
       </div>
       
       {/* Footer */}
       <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-        <div className="text-[10px] text-white/60">You see exactly what AI does</div>
+        <div className="text-[10px] text-white/60">AI shows you what it does & why</div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <Zap className="w-3 h-3 text-accent" />
-          <span className="text-[10px] text-accent font-medium">4 active</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">3 active</span>
         </div>
       </div>
     </div>
