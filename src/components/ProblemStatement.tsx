@@ -9,9 +9,9 @@ const ProblemStatement = () => {
   ];
 
   return (
-    <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-card md:bg-[hsl(40_20%_94%)]">
+    <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-[hsl(0_0%_5%)] md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
-        {/* Mobile: Minimal industrial design */}
+        {/* Mobile: Minimal industrial design - dark mode */}
         <div className="md:hidden">
           {/* Monospace label */}
           <div className="mb-3 fade-in">
@@ -22,23 +22,23 @@ const ProblemStatement = () => {
 
           {/* Industrial headline */}
           <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-8" style={{ animationDelay: '0.1s' }}>
-            <span className="text-foreground">Revenue</span>
+            <span className="text-white">Revenue</span>
             <br />
             <span className="text-red-500">bleeding out.</span>
           </h2>
 
           {/* Industrial grid - 2x2 with rounded corners */}
-          <div className="border border-border/60 rounded-2xl overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="border border-white/20 rounded-2xl overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="grid grid-cols-2">
               {problems.map((problem, index) => (
                 <div 
                   key={index}
-                  className={`p-4 ${index < 2 ? 'border-b border-border/60' : ''} ${index % 2 === 0 ? 'border-r border-border/60' : ''}`}
+                  className={`p-4 ${index < 2 ? 'border-b border-white/20' : ''} ${index % 2 === 0 ? 'border-r border-white/20' : ''}`}
                 >
                   <div className="text-3xl font-bold text-red-500 tracking-tight leading-none mb-1">
                     {problem.stat}
                   </div>
-                  <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                  <div className="font-mono text-[9px] tracking-[0.15em] text-white/60 uppercase">
                     {problem.label}
                   </div>
                 </div>

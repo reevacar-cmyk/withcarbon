@@ -226,10 +226,17 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="pt-8 pb-24 md:pt-4 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
+    <section id="solution" className="pt-8 pb-24 md:pt-4 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(0_0%_5%)] md:text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
-        {/* Mobile layout */}
+        {/* Mobile layout - light mode */}
         <div className="md:hidden">
+          {/* Section label */}
+          <div className="mb-3 fade-in">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+              HOW IT WORKS
+            </span>
+          </div>
+          
           {/* Number toggles */}
           <div className="flex gap-2 mb-6">
             {features.map((_, index) => (
@@ -239,7 +246,7 @@ const Solution = () => {
                 className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                   activeIndex === index 
                     ? 'bg-accent/20 text-accent border border-accent/30' 
-                    : 'bg-white/10 text-white/60 border border-white/20'
+                    : 'bg-muted/50 text-muted-foreground border border-border/50'
                 }`}
               >
                 <span className="text-sm font-bold">{index + 1}</span>
@@ -264,16 +271,16 @@ const Solution = () => {
           {/* Feature content with visual */}
           <div className="space-y-6">
             <div className="fade-in">
-              <h3 className="text-lg font-medium mb-1 text-white">
+              <h3 className="text-lg font-medium mb-1 text-foreground">
                 {features[activeIndex].mobileTitle}
               </h3>
-              <p className="text-sm leading-snug text-white/60">
+              <p className="text-sm leading-snug text-muted-foreground">
                 {features[activeIndex].mobileDescription}
               </p>
             </div>
             
-            {/* Visual */}
-            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden">
+            {/* Visual - light mode styling */}
+            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-border/50 rounded-2xl overflow-hidden">
               {getVisualForIndex(activeIndex)}
             </div>
           </div>

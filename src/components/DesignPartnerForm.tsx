@@ -62,39 +62,69 @@ const DesignPartnerForm = () => {
   };
 
   return (
-    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24">
-      <div className="container mx-auto max-w-xl">
-        <div className="text-center space-y-4 md:space-y-6 mb-8 md:mb-12 fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
-            Become a design partner
+    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-[hsl(0_0%_5%)]">
+      <div className="container mx-auto max-w-2xl">
+        {/* Grand header */}
+        <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-14 fade-in">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-mono">
+            Limited Availability
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05]">
+            Shape the future<br />
+            <span className="text-accent">with us.</span>
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground">
-            Only accepting 100 more teams
+          <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto leading-relaxed">
+            We're looking for 100 detail businesses to join our design partner program — 
+            work directly with our team to build the AI platform you actually need.
           </p>
         </div>
 
-        <div className="space-y-3 md:space-y-4 mb-8 md:mb-12 fade-in fade-in-delay-1">
-          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-            Early access to features
-          </div>
-          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-            Influence the product direction
-          </div>
-          <div className="flex items-center gap-3 text-sm md:text-base text-muted-foreground">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-            Lifetime discounts before full launch
-          </div>
+        {/* What you get */}
+        <div className="grid md:grid-cols-3 gap-4 mb-10 md:mb-12 fade-in fade-in-delay-1">
+          {[
+            {
+              title: "Direct Access",
+              description: "Weekly or bi-weekly calls with our engineering team"
+            },
+            {
+              title: "Shape the Product",
+              description: "Your feedback directly influences what we build next"
+            },
+            {
+              title: "Lifetime Benefits",
+              description: "Locked-in discounts and priority access forever"
+            }
+          ].map((item, i) => (
+            <div 
+              key={i} 
+              className="p-4 md:p-5 bg-white/5 border border-white/10 rounded-xl text-center"
+            >
+              <h3 className="text-sm font-semibold text-white mb-1.5">{item.title}</h3>
+              <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 fade-in fade-in-delay-2">
+        {/* Spots remaining indicator */}
+        <div className="flex items-center justify-center gap-3 mb-8 fade-in fade-in-delay-1">
+          <div className="flex -space-x-2">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="w-8 h-8 rounded-full bg-accent/20 border-2 border-[hsl(0_0%_5%)] flex items-center justify-center">
+                <span className="text-[10px] text-accent font-bold">✓</span>
+              </div>
+            ))}
+          </div>
+          <span className="text-sm text-white/60">40+ partners already joined</span>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4 fade-in fade-in-delay-2 max-w-md mx-auto">
           <Input
             type="text"
             placeholder="Your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="bg-card border-border text-foreground placeholder:text-muted-foreground h-12"
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-accent"
             required
             maxLength={100}
           />
@@ -103,17 +133,20 @@ const DesignPartnerForm = () => {
             placeholder="Your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-card border-border text-foreground placeholder:text-muted-foreground h-12"
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-accent"
             required
             maxLength={255}
           />
           <Button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium h-12"
+            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-12 text-base"
           >
-            {isSubmitting ? "Submitting..." : "Become a design partner"}
+            {isSubmitting ? "Submitting..." : "Apply to become a design partner"}
           </Button>
+          <p className="text-[11px] text-white/40 text-center">
+            We'll reach out within 48 hours to schedule your first call.
+          </p>
         </form>
       </div>
     </section>
