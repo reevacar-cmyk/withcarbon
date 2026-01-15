@@ -94,7 +94,7 @@ const Hero = () => {
                   }
                 >
                   {/* All cards same size - top card uses darker bone white */}
-                  <div className={`py-2.5 px-3 rounded-xl flex items-start gap-2 ${
+                  <div className={`py-2.5 px-3 rounded-sm flex items-start gap-2 ${
                     index === 0 
                       ? 'bg-[hsl(40_20%_92%)] border border-[hsl(40_15%_85%)]' 
                       : 'bg-muted/30 border border-border/20'
