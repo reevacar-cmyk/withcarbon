@@ -1,4 +1,4 @@
-import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database } from "lucide-react";
+import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
 
 const ValueProps = () => {
   const values = [
@@ -7,7 +7,7 @@ const ValueProps = () => {
       title: "More bookings",
       mobileTitle: "More jobs booked",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
-      mobileDescription: "AI answers every call and text — even when you're working.",
+      mobileDescription: "AI SMS handles your inbound leads, increasing booking and making the most of your ad spend.",
       visual: "booking"
     },
     {
@@ -28,13 +28,14 @@ const ValueProps = () => {
     }
   ];
 
+  // Simplified Booking Visual - more visual, less dense
   const BookingVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
       {/* Mobile gradient shine overlay */}
       <div className="absolute inset-0 md:hidden pointer-events-none">
         <div 
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer_3s_ease-in-out_infinite]"
-          style={{ transform: 'translateX(-100%)', animation: 'shimmer 3s ease-in-out infinite' }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+          style={{ animation: 'shimmer 3s ease-in-out infinite' }}
         />
       </div>
       
@@ -46,167 +47,76 @@ const ValueProps = () => {
         />
       </div>
       
-      {/* Desktop ambient glow */}
-      <div 
-        className="absolute top-0 right-0 w-40 h-40 hidden md:block pointer-events-none"
-        style={{ 
-          background: 'radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, transparent 70%)',
-          animation: 'pulse 4s ease-in-out infinite'
-        }}
-      />
-      
       {/* Header */}
-      <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
-        <div className="flex items-center gap-1.5 md:gap-2">
-          <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-accent animate-pulse md:animate-pulse" />
-          <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">Live Leads</span>
+      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-white/60 uppercase tracking-wider">Inbound Leads</span>
         </div>
-        <span className="text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent relative overflow-hidden">
-          <span className="relative z-10">24/7 Active</span>
-          <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 animate-[shimmer_2s_ease-in-out_infinite]" />
+        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
+          24/7 Active
         </span>
       </div>
       
-      {/* Lead cards */}
-      <div className="flex-1 space-y-2 md:space-y-3 overflow-hidden relative z-10">
-        {[
-          { 
-            name: "New Lead",
-            phone: "(555) 123-4567",
-            source: "Missed call",
-            time: "Just now",
-            aiAction: "Answered & qualified",
-            request: "Full detail for BMW X5",
-            outcome: "Booked",
-            slot: "Tomorrow 10am",
-            value: "$220",
-            crmStatus: "Synced"
-          },
-          { 
-            name: "Maria G.",
-            phone: "(555) 987-6543",
-            source: "Text message",
-            time: "2 min ago",
-            aiAction: "Sent quote",
-            request: "Ceramic coating estimate",
-            outcome: "Quote sent",
-            slot: null,
-            value: "$450",
-            crmStatus: "Synced"
-          },
-          { 
-            name: "David L.",
-            phone: "(555) 456-7890",
-            source: "Website form",
-            time: "5 min ago",
-            aiAction: "Auto-responded",
-            request: "Interior + exterior",
-            outcome: "Booked",
-            slot: "Friday 2pm",
-            value: "$180",
-            crmStatus: "Synced"
-          }
-        ].map((lead, i) => (
-          <div 
-            key={i} 
-            className="bg-white/10 border border-white/20 rounded-lg md:rounded-xl p-2 md:p-3 fade-in hover:border-accent/30 transition-colors relative overflow-hidden group"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          >
-            {/* Mobile card glow effect */}
-            <div 
-              className="absolute inset-0 md:hidden opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{ 
-                background: 'radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.1) 0%, transparent 70%)',
-                animation: `cardGlow ${2 + i * 0.5}s ease-in-out infinite`
-              }}
-            />
-            
-            {/* Lead header */}
-            <div className="flex items-center justify-between mb-1.5 md:mb-2 relative z-10">
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <div className="w-5 md:w-7 h-5 md:h-7 rounded-full bg-accent/10 flex items-center justify-center relative">
-                  <PhoneIncoming className="w-2.5 md:w-3.5 h-2.5 md:h-3.5 text-accent" />
-                  {/* Mobile pulse ring */}
-                  <span className="absolute inset-0 md:hidden rounded-full border border-accent/30 animate-ping" style={{ animationDuration: '2s' }} />
-                </div>
-                <div>
-                  <div className="text-[10px] md:text-xs font-medium text-white">{lead.name}</div>
-                  <div className="text-[8px] md:text-[10px] text-white/60">{lead.source} · {lead.time}</div>
-                </div>
-              </div>
-              <div className={`text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded font-medium relative overflow-hidden ${
-                lead.outcome === 'Booked' 
-                  ? 'bg-accent/20 text-accent' 
-                  : 'bg-muted text-muted-foreground'
-              }`}>
-                {lead.outcome}
-                {lead.outcome === 'Booked' && (
-                  <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/30 to-accent/0 animate-[shimmer_1.5s_ease-in-out_infinite]" />
-                )}
-              </div>
-            </div>
-            
-            {/* Request */}
-            <div className="bg-white/10 rounded-md md:rounded-lg px-1.5 md:px-2 py-1 md:py-1.5 mb-1.5 md:mb-2 relative z-10">
-              <p className="text-[9px] md:text-[11px] text-white truncate">"{lead.request}"</p>
-            </div>
-            
-            {/* AI action + result row */}
-            <div className="flex items-center justify-between text-[8px] md:text-[10px] relative z-10">
-              <div className="flex items-center gap-1 text-accent">
-                <CheckCircle className="w-2.5 md:w-3 h-2.5 md:h-3" />
-                <span className="truncate">{lead.aiAction}</span>
-              </div>
-              {lead.slot && (
-                <div className="flex items-center gap-1 text-white">
-                  <Calendar className="w-2.5 md:w-3 h-2.5 md:h-3 text-accent/70" />
-                  <span>{lead.slot}</span>
-                </div>
-              )}
-            </div>
-            
-            {/* Bottom row - value + CRM sync */}
-            <div className="mt-1.5 md:mt-2 pt-1.5 md:pt-2 border-t border-white/20 flex items-center justify-between relative z-10">
-              <div className="flex items-center gap-1 text-[8px] md:text-[10px] text-white/60">
-                <Database className="w-2.5 md:w-3 h-2.5 md:h-3 text-accent/70" />
-                <span>{lead.crmStatus}</span>
-              </div>
-              <span className="text-[10px] md:text-xs font-bold text-accent">{lead.value}</span>
-            </div>
+      {/* Visual illustration - SMS conversation flow */}
+      <div className="flex-1 flex flex-col items-center justify-center space-y-4 relative z-10">
+        {/* Incoming lead indicator */}
+        <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-white/10 border border-white/20 rounded-xl relative overflow-hidden">
+          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+            <MessageSquare className="w-5 h-5 text-accent" />
           </div>
-        ))}
+          <div className="flex-1">
+            <div className="text-sm font-medium text-white">New SMS Lead</div>
+            <div className="text-xs text-white/60">"How much for a full detail?"</div>
+          </div>
+          <div className="absolute inset-0 md:hidden bg-gradient-to-r from-transparent via-white/5 to-transparent" style={{ animation: 'shimmer 2s ease-in-out infinite' }} />
+        </div>
+        
+        {/* Arrow down */}
+        <div className="flex flex-col items-center gap-1">
+          <div className="w-0.5 h-6 bg-accent/40" />
+          <Zap className="w-5 h-5 text-accent animate-pulse" />
+          <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
+          <div className="w-0.5 h-6 bg-accent/40" />
+        </div>
+        
+        {/* Result */}
+        <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-accent/10 border border-accent/30 rounded-xl">
+          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+            <Calendar className="w-5 h-5 text-accent" />
+          </div>
+          <div className="flex-1">
+            <div className="text-sm font-medium text-accent">Booked!</div>
+            <div className="text-xs text-white/60">Tomorrow 10am · $220</div>
+          </div>
+          <CheckCircle className="w-5 h-5 text-accent" />
+        </div>
       </div>
       
       {/* Summary stats */}
-      <div className="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10" style={{ animationDelay: '0.5s' }}>
-        <div className="flex items-center gap-2 md:gap-4">
+      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10">
+        <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-accent">{/* Mobile number counter effect */}$850</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Today</div>
+            <div className="text-lg font-bold text-accent">$850</div>
+            <div className="text-[9px] text-white/60">Today</div>
           </div>
-          <div className="w-px h-4 md:h-6 bg-white/20" />
+          <div className="w-px h-8 bg-white/20" />
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-white">100%</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Answered</div>
-          </div>
-          <div className="w-px h-4 md:h-6 bg-white/20" />
-          <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-white">3/3</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">CRM synced</div>
+            <div className="text-lg font-bold text-white">100%</div>
+            <div className="text-[9px] text-white/60">Response</div>
           </div>
         </div>
-        <div className="flex items-center gap-1 md:gap-1.5 px-1.5 md:px-2 py-0.5 md:py-1 bg-accent/10 rounded-full relative overflow-hidden">
-          <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-accent animate-pulse relative z-10" />
-          <span className="text-[8px] md:text-[10px] text-accent font-medium relative z-10">AI Active</span>
-          {/* Mobile glow pulse */}
-          <span className="absolute inset-0 md:hidden bg-accent/20 animate-ping rounded-full" style={{ animationDuration: '2s' }} />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">AI Active</span>
         </div>
       </div>
     </div>
   );
 
+  // Simplified Retention Visual - more visual, less dense
   const RetentionVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
       {/* Mobile gradient shine overlay */}
       <div className="absolute inset-0 md:hidden pointer-events-none">
         <div 
@@ -223,161 +133,86 @@ const ValueProps = () => {
         />
       </div>
       
-      {/* Desktop ambient glow */}
-      <div 
-        className="absolute bottom-0 left-0 w-48 h-48 hidden md:block pointer-events-none"
-        style={{ 
-          background: 'radial-gradient(circle, hsl(var(--accent) / 0.06) 0%, transparent 70%)',
-          animation: 'pulse 5s ease-in-out infinite'
-        }}
-      />
-      
       {/* Header */}
-      <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
-        <div className="flex items-center gap-1.5 md:gap-2">
-          <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">AI Follow-ups</span>
+      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-white/60 uppercase tracking-wider">AI Follow-ups</span>
         </div>
-        <span className="text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent relative overflow-hidden">
-          <span className="relative z-10">Personalized</span>
-          <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 animate-[shimmer_2s_ease-in-out_infinite]" />
+        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
+          Personalized
         </span>
       </div>
       
-      {/* Main conversation thread */}
-      <div className="flex-1 space-y-2 md:space-y-3 overflow-hidden relative z-10">
-        {[
-          { 
-            name: "John D.", 
-            vehicle: "2021 Tesla Model 3",
-            lastService: "Full detail · 45 days ago",
-            message: "Hey John! Your Model 3 is probably due for another detail.",
-            response: "Yes! Thursday works",
-            outcome: "Booked",
-            value: "$180"
-          },
-          { 
-            name: "Sarah M.", 
-            vehicle: "2019 BMW X5",
-            lastService: "Ceramic coat · 6 months ago",
-            message: "Hi Sarah, your ceramic coating maintenance is coming up.",
-            response: "Can you do Saturday?",
-            outcome: "Booked",
-            value: "$120"
-          },
-          { 
-            name: "Mike R.", 
-            vehicle: "2022 Ford F-150",
-            lastService: "Interior clean · 30 days ago",
-            message: "Mike, noticed you do a lot of highway miles.",
-            response: null,
-            outcome: "Sent",
-            value: "$350"
-          }
-        ].map((customer, i) => (
-          <div 
-            key={i} 
-            className="bg-white/10 border border-white/20 rounded-lg md:rounded-xl p-2 md:p-3 fade-in hover:border-accent/30 transition-colors relative overflow-hidden"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          >
-            {/* Mobile subtle glow */}
-            <div 
-              className="absolute inset-0 md:hidden"
-              style={{ 
-                background: 'radial-gradient(ellipse at 20% 50%, hsl(var(--accent) / 0.08) 0%, transparent 60%)',
-                animation: `float ${3 + i * 0.3}s ease-in-out infinite`
-              }}
-            />
-            
-            {/* Customer header */}
-            <div className="flex items-center justify-between mb-1.5 md:mb-2 relative z-10">
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <div className="w-5 md:w-7 h-5 md:h-7 rounded-full bg-accent/10 flex items-center justify-center text-[8px] md:text-[10px] font-bold text-accent relative">
-                  {customer.name.split(' ').map(n => n[0]).join('')}
-                  {/* Mobile avatar ring animation */}
-                  <span className="absolute inset-0 md:hidden rounded-full border border-accent/40" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-                </div>
-                <div>
-                  <div className="text-[10px] md:text-xs font-medium text-white">{customer.name}</div>
-                  <div className="text-[8px] md:text-[10px] text-white/60 truncate max-w-[80px] md:max-w-none">{customer.vehicle}</div>
-                </div>
-              </div>
-              <div className={`text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded font-medium relative overflow-hidden ${
-                customer.outcome === 'Booked' 
-                  ? 'bg-accent/20 text-accent' 
-                  : 'bg-muted text-muted-foreground'
-              }`}>
-                {customer.outcome}
-                {customer.outcome === 'Booked' && (
-                  <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/30 to-accent/0 animate-[shimmer_1.5s_ease-in-out_infinite]" />
-                )}
-              </div>
+      {/* Visual illustration - Customer memory */}
+      <div className="flex-1 flex flex-col items-center justify-center space-y-4 relative z-10">
+        {/* Customer profile card */}
+        <div className="w-full max-w-[260px] p-4 bg-white/10 border border-white/20 rounded-xl relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-lg font-bold text-accent">
+              JD
             </div>
-            
-            {/* Context */}
-            <div className="text-[8px] md:text-[10px] text-white/60 mb-1.5 md:mb-2 flex items-center gap-1 relative z-10">
-              <Clock className="w-2.5 md:w-3 h-2.5 md:h-3" />
-              {customer.lastService}
+            <div>
+              <div className="text-sm font-medium text-white">John D.</div>
+              <div className="text-xs text-white/60">2021 Tesla Model 3</div>
             </div>
-            
-            {/* AI Message */}
-            <div className="bg-accent/5 border border-accent/20 rounded-md md:rounded-lg p-1.5 md:p-2 mb-1.5 md:mb-2 relative overflow-hidden z-10">
-              {/* Mobile message typing effect */}
-              <div className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0" style={{ animation: 'shimmer 3s ease-in-out infinite' }} />
-              <div className="flex items-start gap-1.5 md:gap-2 relative z-10">
-                <div className="w-3 md:w-4 h-3 md:h-4 rounded bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Send className="w-2 md:w-2.5 h-2 md:h-2.5 text-accent" />
-                </div>
-                <p className="text-[9px] md:text-[11px] text-white/90 leading-relaxed line-clamp-2">"{customer.message}"</p>
-              </div>
-            </div>
-            
-            {/* Customer response if exists */}
-            {customer.response && (
-              <div className="flex justify-end relative z-10">
-                <div className="bg-white/10 rounded-md md:rounded-lg px-1.5 md:px-2 py-1 md:py-1.5 max-w-[70%] relative overflow-hidden">
-                  <p className="text-[9px] md:text-[11px] text-white relative z-10">"{customer.response}"</p>
-                  {/* Mobile response glow */}
-                  <div className="absolute inset-0 md:hidden bg-gradient-to-l from-white/5 via-transparent to-transparent" style={{ animation: 'float 2s ease-in-out infinite' }} />
-                </div>
-              </div>
-            )}
-            
-            {/* Value indicator for booked */}
-            {customer.outcome === 'Booked' && (
-              <div className="mt-1.5 md:mt-2 pt-1.5 md:pt-2 border-t border-white/20 flex items-center justify-between relative z-10">
-                <span className="text-[8px] md:text-[10px] text-white/60">Revenue recovered</span>
-                <span className="text-[10px] md:text-xs font-bold text-accent">{customer.value}</span>
-              </div>
-            )}
           </div>
-        ))}
+          
+          {/* Memory points */}
+          <div className="space-y-2 mb-3">
+            <div className="flex items-center gap-2 text-xs">
+              <Repeat className="w-3.5 h-3.5 text-accent" />
+              <span className="text-white/80">Last detail: 45 days ago</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <TrendingUp className="w-3.5 h-3.5 text-accent" />
+              <span className="text-white/80">$1,440 lifetime value</span>
+            </div>
+          </div>
+          
+          {/* AI action */}
+          <div className="p-2 bg-accent/10 border border-accent/30 rounded-lg">
+            <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
+              <Send className="w-3 h-3" />
+              AI sent follow-up
+            </div>
+            <div className="text-[11px] text-white/70 italic">"Hey John! Your Model 3 is probably due..."</div>
+          </div>
+          
+          <div className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/5 to-transparent pointer-events-none" />
+        </div>
+        
+        {/* Result badge */}
+        <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full">
+          <CheckCircle className="w-4 h-4 text-accent" />
+          <span className="text-sm font-medium text-accent">Booked for Thursday</span>
+        </div>
       </div>
       
       {/* Summary stats */}
-      <div className="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10" style={{ animationDelay: '0.5s' }}>
-        <div className="flex items-center gap-2 md:gap-4">
+      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10">
+        <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-accent">$650</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Recovered</div>
+            <div className="text-lg font-bold text-accent">$650</div>
+            <div className="text-[9px] text-white/60">Recovered</div>
           </div>
-          <div className="w-px h-4 md:h-6 bg-white/20" />
+          <div className="w-px h-8 bg-white/20" />
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-white">67%</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Response rate</div>
+            <div className="text-lg font-bold text-white">67%</div>
+            <div className="text-[9px] text-white/60">Rebook rate</div>
           </div>
         </div>
-        <div className="flex items-center gap-1 md:gap-1.5 px-1.5 md:px-2 py-0.5 md:py-1 bg-accent/10 rounded-full relative overflow-hidden">
-          <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-accent animate-pulse relative z-10" />
-          <span className="text-[8px] md:text-[10px] text-accent font-medium relative z-10">AI Active</span>
-          <span className="absolute inset-0 md:hidden bg-accent/20 animate-ping rounded-full" style={{ animationDuration: '2s' }} />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">AI Active</span>
         </div>
       </div>
     </div>
   );
 
+  // Simplified Automation Visual - more visual, less dense
   const AutomationVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-3 md:p-5 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
       {/* Mobile gradient shine overlay */}
       <div className="absolute inset-0 md:hidden pointer-events-none">
         <div 
@@ -394,163 +229,92 @@ const ValueProps = () => {
         />
       </div>
       
-      {/* Desktop ambient glow */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 hidden md:block pointer-events-none"
-        style={{ 
-          background: 'radial-gradient(ellipse, hsl(var(--accent) / 0.05) 0%, transparent 60%)',
-          animation: 'pulse 6s ease-in-out infinite'
-        }}
-      />
-      
       {/* Header */}
-      <div className="flex items-center justify-between mb-2 md:mb-4 fade-in relative z-10">
-        <div className="flex items-center gap-1.5 md:gap-2">
-          <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">CRM Dashboard</span>
+      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs text-white/60 uppercase tracking-wider">Auto-Sync</span>
         </div>
-        <span className="text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent relative overflow-hidden">
-          <span className="relative z-10">Auto-sync</span>
-          <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 animate-[shimmer_2s_ease-in-out_infinite]" />
+        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
+          Zero Manual Entry
         </span>
       </div>
       
-      {/* Main content - Customer profile card */}
-      <div className="flex-1 space-y-2 md:space-y-3 overflow-hidden relative z-10">
-        {/* Featured customer profile */}
-        <div className="bg-white/10 border border-accent/30 rounded-lg md:rounded-xl p-2.5 md:p-4 fade-in relative overflow-hidden">
-          {/* Mobile profile glow */}
-          <div 
-            className="absolute inset-0 md:hidden"
-            style={{ 
-              background: 'radial-gradient(circle at 30% 30%, hsl(var(--accent) / 0.15) 0%, transparent 50%)',
-              animation: 'float 4s ease-in-out infinite'
-            }}
-          />
-          
-          <div className="flex items-start gap-2 md:gap-3 mb-2 md:mb-3 relative z-10">
-            <div className="w-7 md:w-10 h-7 md:h-10 rounded-full bg-accent/10 flex items-center justify-center text-[10px] md:text-sm font-bold text-accent relative">
-              JD
-              {/* Mobile VIP ring */}
-              <span className="absolute inset-0 md:hidden rounded-full border-2 border-accent/30" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <div className="text-[11px] md:text-sm font-medium text-white truncate">John Davidson</div>
-                <div className="text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 bg-accent/20 text-accent rounded flex-shrink-0 relative overflow-hidden">
-                  VIP
-                  <span className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/0 via-accent/40 to-accent/0 animate-[shimmer_1.5s_ease-in-out_infinite]" />
-                </div>
-              </div>
-              <div className="text-[8px] md:text-[10px] text-white/60 truncate">2021 Tesla Model 3</div>
-            </div>
-          </div>
-          
-          {/* Customer stats */}
-          <div className="grid grid-cols-3 gap-1.5 md:gap-2 mb-2 md:mb-3 relative z-10">
-            {[
-              { value: "8", label: "Visits", isAccent: false },
-              { value: "$1,440", label: "Lifetime", isAccent: true },
-              { value: "45d", label: "Avg. cycle", isAccent: false }
-            ].map((stat, i) => (
-              <div key={i} className="text-center p-1.5 md:p-2 bg-white/10 rounded-md md:rounded-lg relative overflow-hidden">
-                <div className={`text-[11px] md:text-sm font-bold ${stat.isAccent ? 'text-accent' : 'text-white'}`}>{stat.value}</div>
-                <div className="text-[7px] md:text-[9px] text-white/60">{stat.label}</div>
-                {/* Mobile stat highlight */}
-                {stat.isAccent && (
-                  <div 
-                    className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/10 to-transparent"
-                    style={{ animation: 'pulse 3s ease-in-out infinite' }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Recent activity log */}
-          <div className="space-y-1 relative z-10">
-            <div className="text-[8px] md:text-[10px] text-white/60 uppercase tracking-wider mb-1 md:mb-2">Activity Log</div>
-            {[
-              { action: "Call answered", detail: "Booked", time: "Today", icon: Phone },
-              { action: "SMS sent", detail: "Reminder", time: "Yday", icon: MessageSquare },
-              { action: "Completed", detail: "Full detail", time: "45d", icon: CheckCircle }
-            ].map((log, i) => (
-              <div key={i} className="flex items-center justify-between text-[8px] md:text-[10px] py-0.5 md:py-1 border-b border-white/10 last:border-0 relative">
-                <div className="flex items-center gap-1 md:gap-2 min-w-0">
-                  <log.icon className="w-2.5 md:w-3 h-2.5 md:h-3 text-accent/70 flex-shrink-0" />
-                  <span className="text-white truncate">{log.action}</span>
-                  <span className="text-white/60 hidden md:inline">· {log.detail}</span>
-                </div>
-                <span className="text-white/60 flex-shrink-0">{log.time}</span>
-                {/* Mobile log entry flash */}
-                {i === 0 && (
-                  <div 
-                    className="absolute inset-0 md:hidden bg-gradient-to-r from-accent/10 via-accent/5 to-transparent"
-                    style={{ animation: 'shimmer 4s ease-in-out infinite' }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Other customers in CRM */}
-        <div className="grid grid-cols-2 gap-1.5 md:gap-2">
+      {/* Visual illustration - Auto-logging flow */}
+      <div className="flex-1 flex flex-col items-center justify-center space-y-3 relative z-10">
+        {/* Data sources */}
+        <div className="flex items-center justify-center gap-3 w-full">
           {[
-            { initials: "SM", name: "Sarah M.", vehicle: "BMW X5", visits: 5, value: "$920" },
-            { initials: "MR", name: "Mike R.", vehicle: "F-150", visits: 3, value: "$540" }
-          ].map((customer, i) => (
-            <div 
-              key={i} 
-              className="bg-white/10 border border-white/20 rounded-md md:rounded-lg p-2 md:p-2.5 fade-in hover:border-accent/30 transition-colors relative overflow-hidden"
-              style={{ animationDelay: `${0.3 + i * 0.1}s` }}
-            >
-              {/* Mobile card shimmer */}
-              <div 
-                className="absolute inset-0 md:hidden bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                style={{ animation: `shimmer ${3 + i * 0.5}s ease-in-out infinite` }}
-              />
-              
-              <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 relative z-10">
-                <div className="w-5 md:w-6 h-5 md:h-6 rounded-full bg-accent/10 flex items-center justify-center text-[7px] md:text-[9px] font-bold text-accent">
-                  {customer.initials}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[9px] md:text-[11px] font-medium text-white truncate">{customer.name}</div>
-                  <div className="text-[7px] md:text-[9px] text-white/60 truncate">{customer.vehicle}</div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between text-[8px] md:text-[10px] relative z-10">
-                <span className="text-white/60">{customer.visits} visits</span>
-                <span className="text-accent font-medium">{customer.value}</span>
-              </div>
+            { icon: Phone, label: "Calls" },
+            { icon: MessageSquare, label: "Texts" },
+            { icon: Calendar, label: "Jobs" }
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white/10 border border-white/20 rounded-xl">
+              <item.icon className="w-5 h-5 text-white/70" />
+              <span className="text-[10px] text-white/60">{item.label}</span>
             </div>
           ))}
+        </div>
+        
+        {/* Arrows flowing down */}
+        <div className="flex items-center justify-center gap-6">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="flex flex-col items-center">
+              <div className="w-0.5 h-4 bg-accent/40" />
+              <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
+            </div>
+          ))}
+        </div>
+        
+        {/* CRM destination */}
+        <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-xl relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+              <Database className="w-5 h-5 text-accent" />
+            </div>
+            <div>
+              <div className="text-sm font-medium text-white">Your CRM</div>
+              <div className="text-xs text-accent">100% up to date</div>
+            </div>
+          </div>
+          
+          {/* Recent auto-logs */}
+          <div className="space-y-1.5">
+            {[
+              { action: "Call logged", time: "Just now" },
+              { action: "Job created", time: "2m ago" },
+              { action: "SMS synced", time: "5m ago" }
+            ].map((log, i) => (
+              <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-white/10 last:border-0">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-3 h-3 text-accent" />
+                  <span className="text-white/80">{log.action}</span>
+                </div>
+                <span className="text-white/50 text-[10px]">{log.time}</span>
+              </div>
+            ))}
+          </div>
+          
+          <div className="absolute inset-0 md:hidden bg-gradient-to-t from-accent/10 to-transparent pointer-events-none" />
         </div>
       </div>
       
       {/* Summary stats */}
-      <div className="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10" style={{ animationDelay: '0.5s' }}>
-        <div className="flex items-center gap-2 md:gap-4">
+      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between fade-in relative z-10">
+        <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-white">142</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Profiles</div>
+            <div className="text-lg font-bold text-white">142</div>
+            <div className="text-[9px] text-white/60">Profiles</div>
           </div>
-          <div className="w-px h-4 md:h-6 bg-white/20" />
+          <div className="w-px h-8 bg-white/20" />
           <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-accent">100%</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Up to date</div>
-          </div>
-          <div className="w-px h-4 md:h-6 bg-white/20" />
-          <div className="text-center">
-            <div className="text-sm md:text-base font-bold text-white">0</div>
-            <div className="text-[7px] md:text-[8px] text-white/60">Manual</div>
+            <div className="text-lg font-bold text-accent">0</div>
+            <div className="text-[9px] text-white/60">Manual entry</div>
           </div>
         </div>
-        <div className="flex items-center gap-1 md:gap-1.5 px-1.5 md:px-2 py-0.5 md:py-1 bg-accent/10 rounded-full relative overflow-hidden">
-          <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-accent animate-pulse relative z-10" />
-          <span className="text-[8px] md:text-[10px] text-accent font-medium relative z-10">Synced</span>
-          <span className="absolute inset-0 md:hidden bg-accent/20 animate-ping rounded-full" style={{ animationDuration: '2s' }} />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[10px] text-accent font-medium">Synced</span>
         </div>
       </div>
     </div>
@@ -572,15 +336,12 @@ const ValueProps = () => {
   return (
     <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
-        {/* Mobile-only intro */}
+        {/* Mobile-only intro - builds from hero vision */}
         <div className="md:hidden pt-0 mb-10 text-center space-y-3">
-          <span className="text-xs uppercase tracking-widest text-white/50">What is Carbon</span>
-          <h2 className="text-4xl font-bold tracking-tight text-white leading-[1.1]">
-            A new kind of business partner
+          <span className="text-xs uppercase tracking-widest text-white/50">The Results</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white leading-[1.1]">
+            Here's what that looks like
           </h2>
-          <p className="text-base text-white/60 leading-relaxed px-4">
-            Books jobs, builds relationships, and handles the boring stuff—so you don't have to.
-          </p>
         </div>
 
         {/* Desktop intro */}
