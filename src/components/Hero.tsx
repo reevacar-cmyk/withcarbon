@@ -24,19 +24,16 @@ const Hero = () => {
       { action: "Calendar synced", detail: "3 new appointments added", highlight: false },
     ];
     
-    const [visibleActivities, setVisibleActivities] = useState(() => 
-      allActivities.slice(0, 3).map((a, i) => ({ ...a, id: i }))
+    const [visibleActivities, setVisibleActivities] = useState<Array<typeof allActivities[0] & { id: number }>>(() => 
+      allActivities.slice(0, 4).map((a, i) => ({ ...a, id: i }))
     );
-    const [currentIndex, setCurrentIndex] = useState(3);
-    const [animationKey, setAnimationKey] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(4);
     
     const contextItems = [
       { icon: Users, label: "Customers" },
       { icon: Calendar, label: "Calendar" },
       { icon: Briefcase, label: "Jobs" },
     ];
-    
-    const [contextIndex, setContextIndex] = useState(0);
     
     // Rotate activities - new one appears at top, pushes others down
     useEffect(() => {
@@ -46,14 +43,12 @@ const Hero = () => {
           
           // Reset to beginning if we've cycled through all 10
           if (nextIndex === 0) {
-            setVisibleActivities(allActivities.slice(0, 3).map((a, i) => ({ ...a, id: Date.now() + i })));
-            setAnimationKey(k => k + 1);
+            setVisibleActivities(allActivities.slice(0, 4).map((a, i) => ({ ...a, id: Date.now() + i })));
           } else {
             setVisibleActivities(current => {
               const newActivity = { ...allActivities[nextIndex], id: Date.now() };
-              return [newActivity, current[0], current[1]];
+              return [newActivity, ...current.slice(0, 3)];
             });
-            setAnimationKey(k => k + 1);
           }
           
           return nextIndex;
@@ -62,20 +57,10 @@ const Hero = () => {
       return () => clearInterval(interval);
     }, []);
     
-    // Cycle context icons
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setContextIndex(prev => (prev + 1) % contextItems.length);
-      }, 2500);
-      return () => clearInterval(interval);
-    }, []);
-    
-    const CurrentContextIcon = contextItems[contextIndex].icon;
-    
     return (
       <div className="relative w-full max-w-[320px] mx-auto">
         {/* Main card - simulated AI activity */}
-        <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg">
+        <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg relative z-10">
           {/* Header */}
           <div className="px-4 py-3 border-b border-border/50 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -92,26 +77,27 @@ const Hero = () => {
           
           {/* Fixed height activity feed with smooth animations */}
           <div className="p-4 h-[200px] overflow-hidden relative">
-            <div 
-              key={animationKey}
-              className="space-y-3"
-            >
+            <div className="space-y-2">
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className={`transform transition-all duration-500 ease-out ${
-                    index === 0 ? 'animate-[heroCardSlideIn_0.5s_ease-out]' : ''
+                  className={`transform transition-all duration-700 ease-out ${
+                    index === 0 ? 'animate-[heroCardSlideIn_0.6s_ease-out]' : ''
                   }`}
-                  style={{
-                    opacity: index === 2 ? 0.5 : 1,
-                  }}
                 >
-                  {index === 0 && activity.highlight ? (
-                    <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
+                  {index === 0 ? (
+                    // Highlighted new card
+                    <div className={`p-3 rounded-xl ${
+                      activity.highlight 
+                        ? 'bg-accent/10 border border-accent/20' 
+                        : 'bg-muted/50 border border-border'
+                    }`}>
                       <div className="flex items-center justify-between mb-1.5">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
-                            <span className="text-xs font-bold text-background">✓</span>
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                            activity.highlight ? 'bg-accent' : 'bg-foreground/10'
+                          }`}>
+                            <span className={`text-xs font-bold ${activity.highlight ? 'text-background' : 'text-foreground'}`}>✓</span>
                           </div>
                           <span className="text-sm font-medium text-foreground">{activity.action}</span>
                         </div>
@@ -121,20 +107,9 @@ const Hero = () => {
                       </div>
                       <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
                     </div>
-                  ) : index === 0 ? (
-                    <div className="p-3 bg-muted/50 border border-border rounded-xl">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center">
-                            <span className="text-xs text-foreground">✓</span>
-                          </div>
-                          <span className="text-sm font-medium text-foreground">{activity.action}</span>
-                        </div>
-                      </div>
-                      <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
-                    </div>
                   ) : (
-                    <div className="flex items-center justify-between py-2 px-1 border-b border-border/30">
+                    // Regular card style for older cards
+                    <div className="flex items-center justify-between py-2 px-3 bg-muted/30 rounded-lg border border-border/20">
                       <div className="flex items-center gap-2">
                         <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
                           <span className="text-[10px] text-muted-foreground">✓</span>
@@ -153,24 +128,36 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          
-          {/* Bottom - cycling context icons */}
-          <div className="px-4 py-3 bg-muted/30 border-t border-border/30 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] text-muted-foreground">Connected sources</span>
-            </div>
-            <div className="flex items-center gap-2 min-w-[100px] justify-end">
-              <div 
-                key={contextIndex}
-                className="flex items-center gap-1.5 animate-[fadeInOut_2.5s_ease-in-out]"
-              >
-                <CurrentContextIcon className="w-4 h-4 text-foreground" />
-                <span className="text-xs font-medium text-foreground">{contextItems[contextIndex].label}</span>
-              </div>
-            </div>
-          </div>
         </div>
+        
+        {/* Faint lines connecting to icons below */}
+        <div className="relative h-10 w-full">
+          <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+            {/* Left line */}
+            <line x1="25%" y1="0" x2="25%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
+            {/* Center line */}
+            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
+            {/* Right line */}
+            <line x1="75%" y1="0" x2="75%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
+          </svg>
+        </div>
+        
+        {/* Connected source icons in circles */}
+        <div className="flex items-center justify-center gap-8">
+          {contextItems.map((item, i) => (
+            <div key={i} className="flex flex-col items-center gap-1.5">
+              <div className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center">
+                <item.icon className="w-4 h-4 text-muted-foreground" />
+              </div>
+              <span className="text-[10px] text-muted-foreground">{item.label}</span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Caption */}
+        <p className="text-center text-xs text-muted-foreground mt-4 leading-snug max-w-[280px] mx-auto">
+          All in one system that gives AI full context — automations that work together seamlessly.
+        </p>
       </div>
     );
   };
