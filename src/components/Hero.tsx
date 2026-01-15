@@ -130,26 +130,30 @@ const Hero = () => {
             <use href="#line3" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             <use href="#line4" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             
-            {/* Single dots that go back and forth */}
+            {/* Single dots that travel one way, disappear, pause, then go back */}
             <circle r="2.5" fill="hsl(var(--accent))">
-              <animateMotion dur="1.6s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1">
+              <animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1;1;0;0" keyTimes="0;0.35;0.5;0.85;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
                 <mpath href="#line1" />
               </animateMotion>
+              <animate attributeName="opacity" values="1;1;0;0;1;1;0;0" keyTimes="0;0.33;0.35;0.5;0.52;0.83;0.85;1" dur="2.4s" repeatCount="indefinite" />
             </circle>
             <circle r="2.5" fill="hsl(var(--accent))">
-              <animateMotion dur="1.4s" repeatCount="indefinite" begin="0.3s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1">
+              <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.3s" keyPoints="0;1;1;0;0" keyTimes="0;0.35;0.5;0.85;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
                 <mpath href="#line2" />
               </animateMotion>
+              <animate attributeName="opacity" values="1;1;0;0;1;1;0;0" keyTimes="0;0.33;0.35;0.5;0.52;0.83;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.3s" />
             </circle>
             <circle r="2.5" fill="hsl(var(--accent))">
-              <animateMotion dur="1.4s" repeatCount="indefinite" begin="0.15s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1">
+              <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.15s" keyPoints="0;1;1;0;0" keyTimes="0;0.35;0.5;0.85;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
                 <mpath href="#line3" />
               </animateMotion>
+              <animate attributeName="opacity" values="1;1;0;0;1;1;0;0" keyTimes="0;0.33;0.35;0.5;0.52;0.83;0.85;1" dur="2.2s" repeatCount="indefinite" begin="0.15s" />
             </circle>
             <circle r="2.5" fill="hsl(var(--accent))">
-              <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.5s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1">
+              <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.5s" keyPoints="0;1;1;0;0" keyTimes="0;0.35;0.5;0.85;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
                 <mpath href="#line4" />
               </animateMotion>
+              <animate attributeName="opacity" values="1;1;0;0;1;1;0;0" keyTimes="0;0.33;0.35;0.5;0.52;0.83;0.85;1" dur="2.4s" repeatCount="indefinite" begin="0.5s" />
             </circle>
           </svg>
         </div>
