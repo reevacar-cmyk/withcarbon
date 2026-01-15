@@ -125,9 +125,9 @@ const ValueProps = () => {
         {/* Flow diagram */}
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           {/* Input node */}
-          <div className="w-full max-w-[240px] p-4 bg-muted/30 border border-border rounded-sm">
+          <div className="w-full max-w-[240px] p-4 bg-background border border-border rounded-sm shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border border-border rounded-sm flex items-center justify-center">
+              <div className="w-8 h-8 bg-muted border border-border rounded-sm flex items-center justify-center">
                 <MessageSquare className="w-4 h-4 text-muted-foreground" />
               </div>
               <div className="flex-1">
@@ -140,24 +140,24 @@ const ValueProps = () => {
           {/* Connector */}
           <div className="flex flex-col items-center">
             <div className="w-px h-6 bg-border" />
-            <div className="w-6 h-6 border border-accent bg-accent/10 rounded-sm flex items-center justify-center">
-              <Zap className="w-3 h-3 text-accent" />
+            <div className="w-6 h-6 bg-accent rounded-sm flex items-center justify-center">
+              <Zap className="w-3 h-3 text-accent-foreground" />
             </div>
             <div className="text-[9px] font-mono text-accent mt-1">2s response</div>
             <div className="w-px h-6 bg-border" />
           </div>
           
           {/* Output node */}
-          <div className="w-full max-w-[240px] p-4 bg-accent/5 border border-accent/30 rounded-sm">
+          <div className="w-full max-w-[240px] p-4 bg-accent border border-accent rounded-sm shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border border-accent/30 bg-accent/10 rounded-sm flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-accent" />
+              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                <Calendar className="w-4 h-4 text-accent-foreground" />
               </div>
               <div className="flex-1">
-                <div className="text-[10px] font-mono text-accent uppercase">Booked</div>
-                <div className="text-xs text-foreground">Tomorrow 10am · $220</div>
+                <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Booked</div>
+                <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
               </div>
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <CheckCircle className="w-4 h-4 text-accent-foreground" />
             </div>
           </div>
         </div>
@@ -190,37 +190,37 @@ const ValueProps = () => {
         </div>
         
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[260px] p-4 bg-white/5 border border-white/10 rounded-sm">
+          <div className="w-full max-w-[260px] p-4 bg-white border border-white/20 rounded-sm shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border border-white/20 rounded-sm flex items-center justify-center">
-                <MessageSquare className="w-4 h-4 text-white/60" />
+              <div className="w-8 h-8 bg-neutral-100 rounded-sm flex items-center justify-center">
+                <MessageSquare className="w-4 h-4 text-neutral-500" />
               </div>
               <div className="flex-1">
-                <div className="text-[10px] font-mono text-white/40 uppercase">Inbound SMS</div>
-                <div className="text-xs text-white">"How much for a full detail?"</div>
+                <div className="text-[10px] font-mono text-neutral-400 uppercase">Inbound SMS</div>
+                <div className="text-xs text-neutral-900">"How much for a full detail?"</div>
               </div>
             </div>
           </div>
           
           <div className="flex flex-col items-center">
             <div className="w-px h-8 bg-white/20" />
-            <div className="w-6 h-6 border border-accent bg-accent/10 rounded-sm flex items-center justify-center">
-              <Zap className="w-3 h-3 text-accent" />
+            <div className="w-6 h-6 bg-accent rounded-sm flex items-center justify-center">
+              <Zap className="w-3 h-3 text-accent-foreground" />
             </div>
             <div className="text-[9px] font-mono text-accent mt-1">AI · 2s</div>
             <div className="w-px h-8 bg-white/20" />
           </div>
           
-          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-sm">
+          <div className="w-full max-w-[260px] p-4 bg-accent border border-accent rounded-sm shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border border-accent/30 bg-accent/20 rounded-sm flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-accent" />
+              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                <Calendar className="w-4 h-4 text-accent-foreground" />
               </div>
               <div className="flex-1">
-                <div className="text-[10px] font-mono text-accent uppercase">Confirmed</div>
-                <div className="text-xs text-white">Tomorrow 10am · $220</div>
+                <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Confirmed</div>
+                <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
               </div>
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <CheckCircle className="w-4 h-4 text-accent-foreground" />
             </div>
           </div>
         </div>
@@ -257,10 +257,10 @@ const ValueProps = () => {
         
         {/* Profile card */}
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[260px] p-4 bg-muted/30 border border-border rounded-sm">
+          <div className="w-full max-w-[260px] p-4 bg-background border border-border rounded-sm shadow-sm">
             {/* Customer header */}
             <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
-              <div className="w-10 h-10 border border-border rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
+              <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
                 JD
               </div>
               <div>
@@ -282,19 +282,19 @@ const ValueProps = () => {
             </div>
             
             {/* AI action */}
-            <div className="p-3 bg-accent/5 border border-accent/30 rounded-sm">
-              <div className="flex items-center gap-2 text-[10px] font-mono text-accent uppercase mb-1">
+            <div className="p-3 bg-accent rounded-sm">
+              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
                 <Send className="w-3 h-3" />
                 AI Follow-up Sent
               </div>
-              <div className="text-[10px] text-muted-foreground">"Hey John! Your Model 3 is due..."</div>
+              <div className="text-[10px] text-accent-foreground/80">"Hey John! Your Model 3 is due..."</div>
             </div>
           </div>
           
           {/* Result */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-sm">
-            <CheckCircle className="w-3.5 h-3.5 text-accent" />
-            <span className="text-xs font-mono text-accent">Rebooked Thursday</span>
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent rounded-sm shadow-sm">
+            <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
+            <span className="text-xs font-mono text-accent-foreground">Rebooked Thursday</span>
           </div>
         </div>
         
@@ -326,40 +326,40 @@ const ValueProps = () => {
         </div>
         
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[280px] p-4 bg-white/5 border border-white/10 rounded-sm">
-            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
-              <div className="w-10 h-10 border border-white/20 rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent">
+          <div className="w-full max-w-[280px] p-4 bg-white border border-white/20 rounded-sm shadow-sm">
+            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
+              <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
                 JD
               </div>
               <div>
-                <div className="text-xs font-medium text-white">John D.</div>
-                <div className="text-[10px] font-mono text-white/50">Tesla Model 3</div>
+                <div className="text-xs font-medium text-neutral-900">John D.</div>
+                <div className="text-[10px] font-mono text-neutral-500">Tesla Model 3</div>
               </div>
             </div>
             
             <div className="space-y-2 mb-4">
               <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-white/40 uppercase">Last service</span>
-                <span className="text-white">45 days ago</span>
+                <span className="font-mono text-neutral-400 uppercase">Last service</span>
+                <span className="text-neutral-900">45 days ago</span>
               </div>
               <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-white/40 uppercase">LTV</span>
-                <span className="text-white">$1,440</span>
+                <span className="font-mono text-neutral-400 uppercase">LTV</span>
+                <span className="text-neutral-900">$1,440</span>
               </div>
             </div>
             
-            <div className="p-3 bg-accent/10 border border-accent/30 rounded-sm">
-              <div className="flex items-center gap-2 text-[10px] font-mono text-accent uppercase mb-1">
+            <div className="p-3 bg-accent rounded-sm">
+              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
                 <Send className="w-3 h-3" />
                 AI Follow-up
               </div>
-              <div className="text-[10px] text-white/60">"Hey John! Your Model 3 is due..."</div>
+              <div className="text-[10px] text-accent-foreground/80">"Hey John! Your Model 3 is due..."</div>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-sm">
-            <CheckCircle className="w-3.5 h-3.5 text-accent" />
-            <span className="text-xs font-mono text-accent">Rebooked Thursday</span>
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent rounded-sm shadow-sm">
+            <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
+            <span className="text-xs font-mono text-accent-foreground">Rebooked Thursday</span>
           </div>
         </div>
         
@@ -402,7 +402,7 @@ const ValueProps = () => {
               { icon: MessageSquare, label: "Texts" },
               { icon: Calendar, label: "Jobs" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-muted/30 border border-border rounded-sm">
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-background border border-border rounded-sm shadow-sm">
                 <item.icon className="w-4 h-4 text-muted-foreground" />
                 <span className="text-[9px] font-mono text-muted-foreground uppercase">{item.label}</span>
               </div>
@@ -417,14 +417,14 @@ const ValueProps = () => {
           </div>
           
           {/* Central processor */}
-          <div className="w-full max-w-[240px] p-4 bg-accent/5 border border-accent/30 rounded-sm">
-            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent/20">
-              <div className="w-8 h-8 border border-accent/30 bg-accent/10 rounded-sm flex items-center justify-center">
-                <Database className="w-4 h-4 text-accent" />
+          <div className="w-full max-w-[240px] p-4 bg-accent rounded-sm shadow-sm">
+            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent-foreground/20">
+              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                <Database className="w-4 h-4 text-accent-foreground" />
               </div>
               <div>
-                <div className="text-[10px] font-mono text-accent uppercase">CRM</div>
-                <div className="text-xs text-foreground">Auto-synced</div>
+                <div className="text-[10px] font-mono text-accent-foreground uppercase">CRM</div>
+                <div className="text-xs text-accent-foreground">Auto-synced</div>
               </div>
             </div>
             
@@ -437,10 +437,10 @@ const ValueProps = () => {
               ].map((log, i) => (
                 <div key={i} className="flex items-center justify-between text-[10px]">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-accent" />
-                    <span className="text-foreground/80">{log.action}</span>
+                    <CheckCircle className="w-3 h-3 text-accent-foreground" />
+                    <span className="text-accent-foreground/90">{log.action}</span>
                   </div>
-                  <span className="font-mono text-muted-foreground">{log.time}</span>
+                  <span className="font-mono text-accent-foreground/60">{log.time}</span>
                 </div>
               ))}
             </div>
@@ -481,9 +481,9 @@ const ValueProps = () => {
               { icon: MessageSquare, label: "Texts" },
               { icon: Calendar, label: "Jobs" }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white/5 border border-white/10 rounded-sm">
-                <item.icon className="w-4 h-4 text-white/60" />
-                <span className="text-[9px] font-mono text-white/40 uppercase">{item.label}</span>
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white border border-white/20 rounded-sm shadow-sm">
+                <item.icon className="w-4 h-4 text-neutral-500" />
+                <span className="text-[9px] font-mono text-neutral-400 uppercase">{item.label}</span>
               </div>
             ))}
           </div>
@@ -494,14 +494,14 @@ const ValueProps = () => {
             ))}
           </div>
           
-          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-sm">
-            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent/20">
-              <div className="w-8 h-8 border border-accent/30 bg-accent/20 rounded-sm flex items-center justify-center">
-                <Database className="w-4 h-4 text-accent" />
+          <div className="w-full max-w-[260px] p-4 bg-accent rounded-sm shadow-sm">
+            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent-foreground/20">
+              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                <Database className="w-4 h-4 text-accent-foreground" />
               </div>
               <div>
-                <div className="text-[10px] font-mono text-accent uppercase">CRM</div>
-                <div className="text-xs text-white">Auto-synced</div>
+                <div className="text-[10px] font-mono text-accent-foreground uppercase">CRM</div>
+                <div className="text-xs text-accent-foreground">Auto-synced</div>
               </div>
             </div>
             
@@ -513,10 +513,10 @@ const ValueProps = () => {
               ].map((log, i) => (
                 <div key={i} className="flex items-center justify-between text-[10px]">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-accent" />
-                    <span className="text-white/80">{log.action}</span>
+                    <CheckCircle className="w-3 h-3 text-accent-foreground" />
+                    <span className="text-accent-foreground/90">{log.action}</span>
                   </div>
-                  <span className="font-mono text-white/40">{log.time}</span>
+                  <span className="font-mono text-accent-foreground/60">{log.time}</span>
                 </div>
               ))}
             </div>
