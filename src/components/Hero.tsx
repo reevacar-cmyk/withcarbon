@@ -10,26 +10,24 @@ const Hero = () => {
 
   // Mobile Hero Visual - Central hub concept showing everything connected
   const MobileHeroVisual = () => (
-    <div className="relative w-full aspect-square max-w-[320px] mx-auto">
+    <div className="relative w-full aspect-square max-w-[280px] mx-auto">
       {/* Central hub */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center z-10">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl bg-foreground border border-border flex items-center justify-center z-10">
         <div className="text-center">
-          <span className="text-3xl font-bold text-accent">C</span>
-          <div className="text-[8px] text-accent/80 uppercase tracking-wider mt-0.5">Carbon</div>
+          <span className="text-2xl font-bold text-background">C</span>
         </div>
-        <div className="absolute inset-0 rounded-2xl border-2 border-accent/20 animate-ping" style={{ animationDuration: '2s' }} />
       </div>
       
       {/* Orbiting elements */}
       {[
-        { icon: MessageSquare, label: "SMS", angle: -45, delay: "0s" },
-        { icon: Calendar, label: "Jobs", angle: 45, delay: "0.5s" },
-        { icon: Users, label: "Customers", angle: 135, delay: "1s" },
-        { icon: TrendingUp, label: "Metrics", angle: 225, delay: "1.5s" }
+        { icon: MessageSquare, label: "SMS", angle: -45 },
+        { icon: Calendar, label: "Jobs", angle: 45 },
+        { icon: Users, label: "Customers", angle: 135 },
+        { icon: TrendingUp, label: "Metrics", angle: 225 }
       ].map((item, i) => {
         const Icon = item.icon;
         const radians = (item.angle * Math.PI) / 180;
-        const radius = 100;
+        const radius = 90;
         const x = Math.cos(radians) * radius;
         const y = Math.sin(radians) * radius;
         
@@ -39,34 +37,27 @@ const Hero = () => {
             className="absolute top-1/2 left-1/2 fade-in"
             style={{ 
               transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-              animationDelay: item.delay
+              animationDelay: `${i * 0.15}s`
             }}
           >
             <div className="flex flex-col items-center gap-1">
-              <div className="w-14 h-14 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-                <Icon className="w-6 h-6 text-white/80" />
+              <div className="w-12 h-12 rounded-xl bg-muted border border-border flex items-center justify-center">
+                <Icon className="w-5 h-5 text-foreground" />
               </div>
-              <span className="text-[10px] text-white/60 font-medium">{item.label}</span>
+              <span className="text-[10px] text-muted-foreground font-medium">{item.label}</span>
             </div>
           </div>
         );
       })}
       
       {/* Connection lines */}
-      <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
-        <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.1" />
-            <stop offset="50%" stopColor="hsl(var(--accent))" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 280" style={{ zIndex: 0 }}>
         {[-45, 45, 135, 225].map((angle, i) => {
           const radians = (angle * Math.PI) / 180;
-          const innerRadius = 48;
-          const outerRadius = 80;
-          const cx = 160;
-          const cy = 160;
+          const innerRadius = 40;
+          const outerRadius = 70;
+          const cx = 140;
+          const cy = 140;
           const x1 = cx + Math.cos(radians) * innerRadius;
           const y1 = cy + Math.sin(radians) * innerRadius;
           const x2 = cx + Math.cos(radians) * outerRadius;
@@ -76,46 +67,37 @@ const Hero = () => {
             <line 
               key={i}
               x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="url(#lineGradient)"
-              strokeWidth="2"
+              stroke="hsl(var(--border))"
+              strokeWidth="1.5"
               strokeDasharray="4 4"
             />
           );
         })}
       </svg>
-      
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
     </div>
   );
   
   return (
-    <section className="min-h-screen pb-16 md:pb-8 px-[3px] md:px-8 lg:px-12 pt-24 md:pt-32 relative overflow-hidden bg-[hsl(0_0%_4%)] md:bg-background">
+    <section className="min-h-screen pb-16 md:pb-8 px-[3px] md:px-8 lg:px-12 pt-24 md:pt-32 relative overflow-hidden bg-background">
       {/* Background */}
-      <div className="absolute inset-0 pointer-events-none md:bg-background" />
-      
-      {/* Mobile dark mode grid pattern */}
-      <div className="absolute inset-0 md:hidden opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(hsl(0 0% 100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%) 1px, transparent 1px)',
-        backgroundSize: '40px 40px'
-      }} />
+      <div className="absolute inset-0 pointer-events-none bg-background" />
       
       <div className="container mx-auto max-w-none md:max-w-[1600px] relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="space-y-4 md:space-y-8">
-            {/* Mobile: Grand, bold headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] fade-in">
-              <span className="md:hidden text-white">
+          <div className="space-y-4 md:space-y-8 text-center md:text-left">
+            {/* Mobile: Grand, bold headline - much bigger */}
+            <h1 className="fade-in">
+              <span className="md:hidden text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
                 Your new AI<br />
                 <span className="text-accent">business partner.</span>
               </span>
-              <span className="hidden md:inline text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
+              <span className="hidden md:inline text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
             </h1>
-            <p className="text-base md:text-xl max-w-lg fade-in fade-in-delay-1">
-              <span className="md:hidden text-white/70">From calendar to AI automations — everything designed to improve real metrics, all centralized for full business context.</span>
+            <p className="text-base md:text-xl max-w-lg fade-in fade-in-delay-1 md:mx-0 mx-auto">
+              <span className="md:hidden text-muted-foreground">From calendar to AI automations — everything designed to improve real metrics, all centralized for full business context.</span>
               <span className="hidden md:inline text-muted-foreground">Carbon is an AI-native CRM that manages calls, booking, and follow-ups with full context.</span>
             </p>
-            <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-2">
+            <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-2 justify-center md:justify-start">
               <Button onClick={scrollToPartnerForm} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
