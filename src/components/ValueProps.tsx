@@ -123,7 +123,7 @@ const ValueProps = () => {
         </div>
         
         {/* Flow diagram */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-2">
+        <div className="flex-1 flex flex-col items-center justify-center gap-1">
           {/* Input node */}
           <div className="w-full max-w-[240px] p-4 bg-background border border-border rounded-sm shadow-sm">
             <div className="flex items-center gap-3">
@@ -394,7 +394,7 @@ const ValueProps = () => {
         </div>
         
         {/* Flow diagram */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-2">
+        <div className="flex-1 flex flex-col items-center justify-center gap-1">
           {/* Input sources */}
           <div className="flex items-center justify-center gap-4 w-full">
             {[
