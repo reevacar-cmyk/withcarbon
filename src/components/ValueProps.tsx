@@ -28,10 +28,10 @@ const ValueProps = () => {
     }
   ];
 
-  // Simplified Booking Visual - Essentials-style light mode design
+  // Simplified Booking Visual - with strategic orange highlights
   const BookingVisual = () => (
     <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Essentials-style clean visual - bone white/black scale */}
+      {/* Mobile: Clean visual with orange highlights on key moments */}
       <div className="md:hidden h-full flex flex-col p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
@@ -59,27 +59,27 @@ const ValueProps = () => {
             </div>
           </div>
           
-          {/* Arrow connector */}
+          {/* Arrow connector - orange highlight */}
           <div className="flex flex-col items-center gap-1">
-            <div className="w-0.5 h-4 bg-foreground/30" />
-            <div className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-foreground" />
+            <div className="w-0.5 h-4 bg-accent/40" />
+            <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
+              <Zap className="w-4 h-4 text-accent" />
             </div>
-            <div className="text-[10px] text-foreground font-medium">AI responds in 2s</div>
-            <div className="w-0.5 h-4 bg-foreground/30" />
+            <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
+            <div className="w-0.5 h-4 bg-accent/40" />
           </div>
           
-          {/* Result card */}
-          <div className="w-full max-w-[260px] p-3 bg-foreground/5 rounded-xl border border-foreground/20">
+          {/* Result card - orange highlight on success */}
+          <div className="w-full max-w-[260px] p-3 bg-accent/10 rounded-xl border border-accent/30">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-foreground/20 flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-foreground" />
+              <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                <Calendar className="w-5 h-5 text-accent" />
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-foreground">Booked!</div>
+                <div className="text-sm font-medium text-accent">Booked!</div>
                 <div className="text-xs text-muted-foreground">Tomorrow 10am · $220</div>
               </div>
-              <CheckCircle className="w-5 h-5 text-foreground" />
+              <CheckCircle className="w-5 h-5 text-accent" />
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ const ValueProps = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">$850</div>
+                <div className="text-lg font-semibold text-accent">$850</div>
                 <div className="text-[9px] text-muted-foreground font-mono">Today</div>
               </div>
               <div className="w-px h-8 bg-border" />
@@ -98,9 +98,9 @@ const ValueProps = () => {
                 <div className="text-[9px] text-muted-foreground font-mono">Response</div>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-foreground/10 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[10px] text-foreground font-medium">Active</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Active</span>
             </div>
           </div>
         </div>
@@ -163,10 +163,10 @@ const ValueProps = () => {
     </div>
   );
 
-  // Simplified Retention Visual - Essentials-style light mode design
+  // Simplified Retention Visual - with strategic orange highlights
   const RetentionVisual = () => (
     <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Essentials-style clean visual - bone white/black scale */}
+      {/* Mobile: Clean visual with orange highlights on key moments */}
       <div className="md:hidden h-full flex flex-col p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
@@ -195,18 +195,18 @@ const ValueProps = () => {
             {/* Memory points */}
             <div className="space-y-2 mb-3 p-2.5 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-2 text-xs">
-                <Repeat className="w-3.5 h-3.5 text-foreground" />
+                <Repeat className="w-3.5 h-3.5 text-muted-foreground" />
                 <span className="text-foreground/80">Last detail: 45 days ago</span>
               </div>
               <div className="flex items-center gap-2 text-xs">
-                <TrendingUp className="w-3.5 h-3.5 text-foreground" />
+                <TrendingUp className="w-3.5 h-3.5 text-muted-foreground" />
                 <span className="text-foreground/80">$1,440 lifetime value</span>
               </div>
             </div>
             
-            {/* AI action */}
-            <div className="p-2.5 bg-foreground/5 border border-foreground/20 rounded-lg">
-              <div className="flex items-center gap-2 text-xs text-foreground font-medium mb-1">
+            {/* AI action - orange highlight */}
+            <div className="p-2.5 bg-accent/10 border border-accent/30 rounded-lg">
+              <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
                 <Send className="w-3 h-3" />
                 AI sent follow-up
               </div>
@@ -214,10 +214,10 @@ const ValueProps = () => {
             </div>
           </div>
           
-          {/* Result badge */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-foreground/10 border border-foreground/20 rounded-full">
-            <CheckCircle className="w-4 h-4 text-foreground" />
-            <span className="text-sm font-medium text-foreground">Booked for Thursday</span>
+          {/* Result badge - orange highlight */}
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full">
+            <CheckCircle className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">Booked for Thursday</span>
           </div>
         </div>
         
@@ -226,7 +226,7 @@ const ValueProps = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">$650</div>
+                <div className="text-lg font-semibold text-accent">$650</div>
                 <div className="text-[9px] text-muted-foreground font-mono">Recovered</div>
               </div>
               <div className="w-px h-8 bg-border" />
@@ -235,9 +235,9 @@ const ValueProps = () => {
                 <div className="text-[9px] text-muted-foreground font-mono">Rebook rate</div>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-foreground/10 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[10px] text-foreground font-medium">Active</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Active</span>
             </div>
           </div>
         </div>
@@ -305,18 +305,18 @@ const ValueProps = () => {
     </div>
   );
 
-  // Simplified Automation Visual - Essentials-style light mode design
+  // Simplified Automation Visual - with strategic orange highlights
   const AutomationVisual = () => (
     <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
-      {/* Mobile: Essentials-style clean visual - bone white/black scale */}
+      {/* Mobile: Clean visual with orange highlights on key moments */}
       <div className="md:hidden h-full flex flex-col p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <div className="text-sm font-medium text-foreground">Auto-Sync</div>
-            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-foreground/10 border border-foreground/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[8px] font-mono text-foreground font-medium">LIVE</span>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[8px] font-mono text-accent font-medium">LIVE</span>
             </div>
           </div>
         </div>
@@ -337,25 +337,25 @@ const ValueProps = () => {
             ))}
           </div>
           
-          {/* Arrows flowing down */}
+          {/* Arrows flowing down - orange */}
           <div className="flex items-center justify-center gap-6">
             {[0, 1, 2].map((i) => (
               <div key={i} className="flex flex-col items-center">
-                <div className="w-0.5 h-4 bg-foreground/30" />
-                <div className="w-2 h-2 border-b-2 border-r-2 border-foreground/50 rotate-45 -mt-1" />
+                <div className="w-0.5 h-4 bg-accent/40" />
+                <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
               </div>
             ))}
           </div>
           
-          {/* CRM destination */}
-          <div className="w-full max-w-[280px] p-4 bg-foreground/5 border border-foreground/20 rounded-xl">
+          {/* CRM destination - orange highlight */}
+          <div className="w-full max-w-[280px] p-4 bg-accent/10 border border-accent/30 rounded-xl">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-foreground/10 flex items-center justify-center">
-                <Database className="w-5 h-5 text-foreground" />
+              <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+                <Database className="w-5 h-5 text-accent" />
               </div>
               <div>
                 <div className="text-sm font-medium text-foreground">Your CRM</div>
-                <div className="text-xs text-foreground/70">100% up to date</div>
+                <div className="text-xs text-accent font-medium">100% up to date</div>
               </div>
             </div>
             
@@ -368,7 +368,7 @@ const ValueProps = () => {
               ].map((log, i) => (
                 <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-border/50 last:border-0">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-foreground" />
+                    <CheckCircle className="w-3 h-3 text-accent" />
                     <span className="text-foreground/80">{log.action}</span>
                   </div>
                   <span className="text-muted-foreground text-[10px]">{log.time}</span>
@@ -388,13 +388,13 @@ const ValueProps = () => {
               </div>
               <div className="w-px h-8 bg-border" />
               <div className="text-center">
-                <div className="text-lg font-semibold text-foreground">0</div>
+                <div className="text-lg font-semibold text-accent">0</div>
                 <div className="text-[9px] text-muted-foreground font-mono">Manual entry</div>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 bg-foreground/10 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
-              <span className="text-[10px] text-foreground font-medium">Synced</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Synced</span>
             </div>
           </div>
         </div>

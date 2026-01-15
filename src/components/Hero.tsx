@@ -8,95 +8,90 @@ const Hero = () => {
     });
   };
 
-  // Mobile Hero Visual - Animated orbiting icons around central C hub
+  // Mobile Hero Visual - Reimagined as a clean "AI in action" preview
   const MobileHeroVisual = () => {
-    const orbitItems = [
-      { icon: Calendar, label: "Calendar", radius: 120, startAngle: 0 },
-      { icon: Users, label: "Customers", radius: 100, startAngle: 72 },
-      { icon: MessageSquare, label: "AI SMS", radius: 130, startAngle: 144 },
-      { icon: UserCheck, label: "Employees", radius: 110, startAngle: 216 },
-      { icon: TrendingUp, label: "Insights", radius: 90, startAngle: 288 }
-    ];
-
     return (
-      <div className="relative w-full aspect-square max-w-[340px] mx-auto">
-        {/* Orbit rings at different levels matching icon radii */}
-        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 130}px` }} />
-        <div className="absolute rounded-full border border-border/25" style={{ inset: `${170 - 120}px` }} />
-        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 110}px` }} />
-        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 100}px` }} />
-        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 90}px` }} />
-        
-        {/* Central hub */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg z-20">
-          <span className="text-2xl font-semibold text-background">C</span>
-        </div>
-        
-        {/* Each icon orbits independently at its own fixed radius */}
-        {orbitItems.map((item, i) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={i}
-              className="absolute top-1/2 left-1/2 w-0 h-0"
-              style={{
-                animation: `orbit-${item.radius} 40s linear infinite`,
-                transform: `rotate(${item.startAngle}deg)`
-              }}
-            >
-              {/* Dotted line from center to icon */}
-              <div 
-                className="absolute left-0 top-0 origin-left border-t border-dashed border-border/50"
-                style={{ width: `${item.radius}px` }}
-              />
-              
-              {/* Icon container - counter-rotates to stay upright */}
-              <div
-                className="absolute flex flex-col items-center gap-1"
-                style={{
-                  left: `${item.radius}px`,
-                  top: 0,
-                  transform: 'translate(-50%, -50%)',
-                  animation: `counter-orbit 40s linear infinite`,
-                  animationDelay: `-${(item.startAngle / 360) * 40}s`
-                }}
-              >
-                <div className="w-11 h-11 rounded-full bg-card border border-border shadow-sm flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-foreground" />
+      <div className="relative w-full max-w-[320px] mx-auto">
+        {/* Main card - simulated AI activity */}
+        <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg">
+          {/* Header */}
+          <div className="px-4 py-3 border-b border-border/50 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
+                <span className="text-sm font-bold text-background">C</span>
+              </div>
+              <span className="text-sm font-medium text-foreground">Carbon AI</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Live</span>
+            </div>
+          </div>
+          
+          {/* Activity feed */}
+          <div className="p-4 space-y-3">
+            {/* Latest win - highlighted */}
+            <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
+                    <span className="text-xs font-bold text-background">✓</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">New booking</span>
                 </div>
-                <span className="text-[9px] text-muted-foreground font-medium whitespace-nowrap">{item.label}</span>
+                <span className="text-xs font-bold text-accent">+$180</span>
+              </div>
+              <p className="text-xs text-muted-foreground pl-8">AI answered call → booked full detail</p>
+            </div>
+            
+            {/* Secondary activities */}
+            {[
+              { action: "Follow-up sent", detail: "John D. · Tesla Model 3", time: "2m" },
+              { action: "Lead qualified", detail: "New inquiry via SMS", time: "5m" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
+                    <span className="text-[10px] text-muted-foreground">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-foreground">{item.action}</div>
+                    <div className="text-[10px] text-muted-foreground">{item.detail}</div>
+                  </div>
+                </div>
+                <span className="text-[10px] text-muted-foreground">{item.time}</span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Bottom stats */}
+          <div className="px-4 py-3 bg-muted/30 border-t border-border/30 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-lg font-bold text-accent">$420</div>
+                <div className="text-[9px] text-muted-foreground">Today</div>
+              </div>
+              <div className="w-px h-6 bg-border" />
+              <div className="text-center">
+                <div className="text-lg font-bold text-foreground">8</div>
+                <div className="text-[9px] text-muted-foreground">Jobs</div>
+              </div>
+              <div className="w-px h-6 bg-border" />
+              <div className="text-center">
+                <div className="text-lg font-bold text-foreground">100%</div>
+                <div className="text-[9px] text-muted-foreground">Answered</div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        </div>
         
-        {/* Keyframe styles */}
-        <style>{`
-          @keyframes orbit-130 {
-            from { transform: rotate(144deg); }
-            to { transform: rotate(504deg); }
-          }
-          @keyframes orbit-120 {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          @keyframes orbit-110 {
-            from { transform: rotate(216deg); }
-            to { transform: rotate(576deg); }
-          }
-          @keyframes orbit-100 {
-            from { transform: rotate(72deg); }
-            to { transform: rotate(432deg); }
-          }
-          @keyframes orbit-90 {
-            from { transform: rotate(288deg); }
-            to { transform: rotate(648deg); }
-          }
-          @keyframes counter-orbit {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(-360deg); }
-          }
-        `}</style>
+        {/* Floating notification */}
+        <div className="absolute -top-3 -right-2 bg-background border border-accent/30 rounded-xl px-3 py-2 shadow-lg animate-[float_3s_ease-in-out_infinite]">
+          <div className="flex items-center gap-2">
+            <MessageSquare className="w-4 h-4 text-accent" />
+            <span className="text-xs font-medium text-foreground">New lead</span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -133,7 +128,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
-              <Button onClick={scrollToPartnerForm} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium px-8 w-full sm:w-auto">
+              <Button onClick={scrollToPartnerForm} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
             </div>
