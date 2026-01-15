@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, Users, TrendingUp, ArrowRight } from "lucide-react";
+import { Calendar, MessageSquare, Users, TrendingUp, ArrowRight, UserCheck } from "lucide-react";
 
 const Hero = () => {
   const scrollToPartnerForm = () => {
@@ -12,9 +12,10 @@ const Hero = () => {
   const MobileHeroVisual = () => {
     const orbitItems = [
       { icon: Calendar, label: "Calendar", radius: 120, startAngle: 0 },
-      { icon: Users, label: "Customers", radius: 100, startAngle: 90 },
-      { icon: MessageSquare, label: "AI SMS", radius: 130, startAngle: 180 },
-      { icon: TrendingUp, label: "Insights", radius: 90, startAngle: 270 }
+      { icon: Users, label: "Customers", radius: 100, startAngle: 72 },
+      { icon: MessageSquare, label: "AI SMS", radius: 130, startAngle: 144 },
+      { icon: UserCheck, label: "Employees", radius: 110, startAngle: 216 },
+      { icon: TrendingUp, label: "Insights", radius: 90, startAngle: 288 }
     ];
 
     return (
@@ -22,6 +23,7 @@ const Hero = () => {
         {/* Orbit rings at different levels matching icon radii */}
         <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 130}px` }} />
         <div className="absolute rounded-full border border-border/25" style={{ inset: `${170 - 120}px` }} />
+        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 110}px` }} />
         <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 100}px` }} />
         <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 90}px` }} />
         
@@ -71,20 +73,24 @@ const Hero = () => {
         {/* Keyframe styles */}
         <style>{`
           @keyframes orbit-130 {
-            from { transform: rotate(180deg); }
-            to { transform: rotate(540deg); }
+            from { transform: rotate(144deg); }
+            to { transform: rotate(504deg); }
           }
           @keyframes orbit-120 {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
           }
+          @keyframes orbit-110 {
+            from { transform: rotate(216deg); }
+            to { transform: rotate(576deg); }
+          }
           @keyframes orbit-100 {
-            from { transform: rotate(90deg); }
-            to { transform: rotate(450deg); }
+            from { transform: rotate(72deg); }
+            to { transform: rotate(432deg); }
           }
           @keyframes orbit-90 {
-            from { transform: rotate(270deg); }
-            to { transform: rotate(630deg); }
+            from { transform: rotate(288deg); }
+            to { transform: rotate(648deg); }
           }
           @keyframes counter-orbit {
             from { transform: translate(-50%, -50%) rotate(0deg); }
