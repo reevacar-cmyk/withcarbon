@@ -9,46 +9,75 @@ const Hero = () => {
   };
 
   // Mobile Hero Visual - Animated orbiting icons around central C hub
-  const MobileHeroVisual = () => (
-    <div className="relative w-full aspect-square max-w-[300px] mx-auto">
-      {/* Orbit rings */}
-      <div className="absolute inset-4 rounded-full border border-border/50" />
-      <div className="absolute inset-12 rounded-full border border-border/30" />
-      
-      {/* Central hub */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg z-10">
-        <span className="text-2xl font-semibold text-background">C</span>
+  const MobileHeroVisual = () => {
+    const orbitItems = [
+      { icon: Calendar, label: "Calendar", angle: 0, radius: 130 },
+      { icon: Users, label: "Customers", angle: 90, radius: 110 },
+      { icon: MessageSquare, label: "AI SMS", angle: 180, radius: 140 },
+      { icon: TrendingUp, label: "Insights", angle: 270, radius: 100 }
+    ];
+
+    return (
+      <div className="relative w-full aspect-square max-w-[340px] mx-auto">
+        {/* Orbit rings at different levels */}
+        <div className="absolute inset-[30px] rounded-full border border-border/30" />
+        <div className="absolute inset-[50px] rounded-full border border-border/20" />
+        <div className="absolute inset-[70px] rounded-full border border-border/20" />
+        
+        {/* Central hub */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg z-20">
+          <span className="text-2xl font-semibold text-background">C</span>
+        </div>
+        
+        {/* Rotating container for orbiting elements */}
+        <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
+          {/* SVG for dotted connection lines - rotates with icons */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 340 340">
+            {orbitItems.map((item, i) => {
+              const angleRad = (item.angle * Math.PI) / 180;
+              const x = 170 + Math.cos(angleRad) * item.radius;
+              const y = 170 + Math.sin(angleRad) * item.radius;
+              return (
+                <line
+                  key={i}
+                  x1="170"
+                  y1="170"
+                  x2={x}
+                  y2={y}
+                  stroke="hsl(var(--border))"
+                  strokeWidth="1"
+                  strokeDasharray="3 3"
+                />
+              );
+            })}
+          </svg>
+          
+          {/* Orbiting icons at different radii */}
+          {orbitItems.map((item, i) => {
+            const Icon = item.icon;
+            const angleRad = (item.angle * Math.PI) / 180;
+            const x = Math.cos(angleRad) * item.radius;
+            const y = Math.sin(angleRad) * item.radius;
+            
+            return (
+              <div
+                key={i}
+                className="absolute top-1/2 left-1/2 flex flex-col items-center gap-1 animate-[spin_40s_linear_infinite_reverse]"
+                style={{
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                }}
+              >
+                <div className="w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-foreground" />
+                </div>
+                <span className="text-[9px] text-muted-foreground font-medium whitespace-nowrap">{item.label}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      
-      {/* Orbiting icons - animated */}
-      <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
-        {/* Calendar - top */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
-          <Calendar className="w-5 h-5 text-foreground" />
-        </div>
-        {/* Users - right */}
-        <div className="absolute top-1/2 right-4 -translate-y-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
-          <Users className="w-5 h-5 text-foreground" />
-        </div>
-        {/* MessageSquare - bottom */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
-          <MessageSquare className="w-5 h-5 text-foreground" />
-        </div>
-        {/* TrendingUp - left */}
-        <div className="absolute top-1/2 left-4 -translate-y-1/2 w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
-          <TrendingUp className="w-5 h-5 text-foreground" />
-        </div>
-      </div>
-      
-      {/* Connection lines - static dashed */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 300">
-        <line x1="150" y1="80" x2="150" y2="120" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="220" y1="150" x2="180" y2="150" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="150" y1="220" x2="150" y2="180" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="80" y1="150" x2="120" y2="150" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
-      </svg>
-    </div>
-  );
+    );
+  };
   
   return (
     <section className="min-h-screen pb-4 md:pb-8 px-6 md:px-8 lg:px-12 pt-24 md:pt-32 relative overflow-hidden bg-background">
