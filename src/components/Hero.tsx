@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, Users, ArrowRight, Briefcase } from "lucide-react";
+import { Calendar, MessageSquare, Users, ArrowRight, Briefcase, UserCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
@@ -12,27 +12,28 @@ const Hero = () => {
   // Mobile Hero Visual - Animated AI activity feed with fixed height
   const MobileHeroVisual = () => {
     const allActivities = [
-      { action: "AI booked new customer", detail: "Full detail + ceramic coat", highlight: true, amount: "+$280" },
-      { action: "Follow-up sent", detail: "Customer from 52 days ago", highlight: false },
-      { action: "Josh took call", detail: "Booked interior clean for tomorrow", highlight: true, amount: "+$120" },
-      { action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", highlight: true, amount: "+$180" },
-      { action: "CRM updated", detail: "Job details synced automatically", highlight: false },
-      { action: "AI answered call", detail: "Scheduled window tint for Friday", highlight: true, amount: "+$350" },
-      { action: "Reminder sent", detail: "Appointment confirmation for Mike R.", highlight: false },
-      { action: "Lead recovered", detail: "Rescheduled no-show from last week", highlight: true, amount: "+$95" },
-      { action: "Quote accepted", detail: "Customer replied yes via SMS", highlight: true, amount: "+$220" },
-      { action: "Calendar synced", detail: "3 new appointments added", highlight: false },
+      { action: "AI booked new customer", detail: "Full detail + ceramic coat", amount: "+$280" },
+      { action: "Follow-up sent", detail: "Customer from 52 days ago", amount: "" },
+      { action: "Josh took call", detail: "Booked interior clean for tomorrow", amount: "+$120" },
+      { action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", amount: "+$180" },
+      { action: "CRM updated", detail: "Job details synced automatically", amount: "" },
+      { action: "AI answered call", detail: "Scheduled window tint for Friday", amount: "+$350" },
+      { action: "Reminder sent", detail: "Appointment confirmation for Mike R.", amount: "" },
+      { action: "Lead recovered", detail: "Rescheduled no-show from last week", amount: "+$95" },
+      { action: "Quote accepted", detail: "Customer replied yes via SMS", amount: "+$220" },
+      { action: "Calendar synced", detail: "3 new appointments added", amount: "" },
     ];
     
     const [visibleActivities, setVisibleActivities] = useState<Array<typeof allActivities[0] & { id: number }>>(() => 
-      allActivities.slice(0, 4).map((a, i) => ({ ...a, id: i }))
+      allActivities.slice(0, 5).map((a, i) => ({ ...a, id: i }))
     );
-    const [currentIndex, setCurrentIndex] = useState(4);
+    const [currentIndex, setCurrentIndex] = useState(5);
     
     const contextItems = [
       { icon: Users, label: "Customers" },
       { icon: Calendar, label: "Calendar" },
       { icon: Briefcase, label: "Jobs" },
+      { icon: UserCheck, label: "Employees" },
     ];
     
     // Rotate activities - new one appears at top, pushes others down
@@ -43,11 +44,11 @@ const Hero = () => {
           
           // Reset to beginning if we've cycled through all 10
           if (nextIndex === 0) {
-            setVisibleActivities(allActivities.slice(0, 4).map((a, i) => ({ ...a, id: Date.now() + i })));
+            setVisibleActivities(allActivities.slice(0, 5).map((a, i) => ({ ...a, id: Date.now() + i })));
           } else {
             setVisibleActivities(current => {
               const newActivity = { ...allActivities[nextIndex], id: Date.now() };
-              return [newActivity, ...current.slice(0, 3)];
+              return [newActivity, ...current.slice(0, 4)];
             });
           }
           
@@ -76,80 +77,88 @@ const Hero = () => {
           </div>
           
           {/* Fixed height activity feed with smooth animations */}
-          <div className="p-4 h-[200px] overflow-hidden relative">
+          <div className="p-4 h-[240px] overflow-hidden relative">
             <div className="space-y-2">
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className={`transform transition-all duration-700 ease-out ${
-                    index === 0 ? 'animate-[heroCardSlideIn_0.6s_ease-out]' : ''
+                  className={`transform transition-all duration-500 ease-out ${
+                    index === 0 ? 'animate-[heroCardSlideIn_0.5s_ease-out]' : ''
                   }`}
                 >
-                  {index === 0 ? (
-                    // Highlighted new card
-                    <div className={`p-3 rounded-xl ${
-                      activity.highlight 
-                        ? 'bg-accent/10 border border-accent/20' 
-                        : 'bg-muted/50 border border-border'
-                    }`}>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                            activity.highlight ? 'bg-accent' : 'bg-foreground/10'
-                          }`}>
-                            <span className={`text-xs font-bold ${activity.highlight ? 'text-background' : 'text-foreground'}`}>✓</span>
-                          </div>
-                          <span className="text-sm font-medium text-foreground">{activity.action}</span>
-                        </div>
-                        {activity.amount && (
-                          <span className="text-xs font-bold text-accent">{activity.amount}</span>
-                        )}
+                  {/* All cards same size - top card is always orange highlighted */}
+                  <div className={`p-2.5 rounded-xl flex items-center justify-between ${
+                    index === 0 
+                      ? 'bg-accent/10 border border-accent/20' 
+                      : 'bg-muted/30 border border-border/20'
+                  }`}>
+                    <div className="flex items-center gap-2">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                        index === 0 ? 'bg-accent' : 'bg-muted'
+                      }`}>
+                        <span className={`text-xs font-bold ${index === 0 ? 'text-background' : 'text-muted-foreground'}`}>✓</span>
                       </div>
-                      <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
-                    </div>
-                  ) : (
-                    // Regular card style for older cards
-                    <div className="flex items-center justify-between py-2 px-3 bg-muted/30 rounded-lg border border-border/20">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
-                          <span className="text-[10px] text-muted-foreground">✓</span>
-                        </div>
-                        <div>
-                          <div className="text-xs font-medium text-foreground">{activity.action}</div>
-                          <div className="text-[10px] text-muted-foreground">{activity.detail}</div>
-                        </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-medium text-foreground truncate">{activity.action}</div>
+                        <div className="text-[10px] text-muted-foreground truncate">{activity.detail}</div>
                       </div>
-                      {activity.amount && (
-                        <span className="text-[10px] font-medium text-muted-foreground">{activity.amount}</span>
-                      )}
                     </div>
-                  )}
+                    {activity.amount && (
+                      <span className={`text-[10px] font-bold shrink-0 ml-2 ${index === 0 ? 'text-accent' : 'text-muted-foreground'}`}>{activity.amount}</span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
         
-        {/* Faint lines connecting to icons below */}
-        <div className="relative h-10 w-full">
-          <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-            {/* Left line */}
-            <line x1="25%" y1="0" x2="25%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
-            {/* Center line */}
-            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
-            {/* Right line */}
-            <line x1="75%" y1="0" x2="75%" y2="100%" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="2 2" />
+        {/* Curved lines connecting icons to bottom center of visual */}
+        <div className="relative h-12 w-full">
+          <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
+            {/* Line from icon 1 (12.5%) curving to center bottom of card */}
+            <path 
+              d="M 40 48 Q 40 24, 160 0" 
+              fill="none" 
+              stroke="hsl(var(--border))" 
+              strokeWidth="1" 
+              strokeDasharray="3 3"
+            />
+            {/* Line from icon 2 (37.5%) curving to center */}
+            <path 
+              d="M 120 48 Q 120 20, 160 0" 
+              fill="none" 
+              stroke="hsl(var(--border))" 
+              strokeWidth="1" 
+              strokeDasharray="3 3"
+            />
+            {/* Line from icon 3 (62.5%) curving to center */}
+            <path 
+              d="M 200 48 Q 200 20, 160 0" 
+              fill="none" 
+              stroke="hsl(var(--border))" 
+              strokeWidth="1" 
+              strokeDasharray="3 3"
+            />
+            {/* Line from icon 4 (87.5%) curving to center */}
+            <path 
+              d="M 280 48 Q 280 24, 160 0" 
+              fill="none" 
+              stroke="hsl(var(--border))" 
+              strokeWidth="1" 
+              strokeDasharray="3 3"
+            />
           </svg>
         </div>
         
-        {/* Connected source icons in circles */}
-        <div className="flex items-center justify-center gap-8">
+        {/* Connected source icons in circles - 4 icons */}
+        <div className="flex items-center justify-between px-2">
           {contextItems.map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-1.5">
+            <div key={i} className="flex flex-col items-center gap-1">
               <div className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center">
                 <item.icon className="w-4 h-4 text-muted-foreground" />
               </div>
-              <span className="text-[10px] text-muted-foreground">{item.label}</span>
+              <span className="text-[9px] text-muted-foreground">{item.label}</span>
             </div>
           ))}
         </div>
@@ -189,7 +198,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-base md:text-xl max-w-md fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
-              <span className="md:hidden text-muted-foreground">One centralized system for calendar, customers, and AI automations — designed to improve real metrics and build lasting relationships.</span>
+              <span className="md:hidden text-muted-foreground">Manage the busy work and give each customer white glove service.</span>
               <span className="hidden md:inline text-muted-foreground">Carbon is an AI-native CRM that manages calls, booking, and follow-ups with full context.</span>
             </p>
             
