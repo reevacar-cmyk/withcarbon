@@ -108,9 +108,9 @@ const DisjointedTools = () => {
   };
 
   return (
-    <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(40_20%_94%)]">
+    <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-6xl">
-        {/* Mobile Layout */}
+        {/* Mobile Layout - dark mode */}
         <div className="md:hidden">
           {/* Monospace label */}
           <div className="mb-3 fade-in">
@@ -121,7 +121,7 @@ const DisjointedTools = () => {
 
           {/* Industrial headline */}
           <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-6" style={{ animationDelay: '0.1s' }}>
-            <span className="text-foreground">Tools that</span>
+            <span className="text-white">Tools that</span>
             <br />
             <span className="text-red-500">don't work.</span>
           </h2>
@@ -136,7 +136,7 @@ const DisjointedTools = () => {
                 <div 
                   key={index}
                   className={`relative border rounded-2xl overflow-hidden transition-all duration-300 ${
-                    isOpen ? 'border-red-500/40 bg-red-500/[0.02]' : 'border-border/60'
+                    isOpen ? 'border-red-500/40 bg-red-500/[0.02]' : 'border-white/20'
                   }`}
                 >
                   {/* Progress bar on the left */}
@@ -156,18 +156,18 @@ const DisjointedTools = () => {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                        isOpen ? 'bg-red-500/15' : 'bg-muted/50'
+                        isOpen ? 'bg-red-500/15' : 'bg-white/10'
                       }`}>
-                        <Icon className={`w-5 h-5 transition-colors ${isOpen ? 'text-red-500' : 'text-muted-foreground'}`} />
+                        <Icon className={`w-5 h-5 transition-colors ${isOpen ? 'text-red-500' : 'text-white/60'}`} />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
-                        <span className={`text-xs font-medium transition-colors ${isOpen ? 'text-red-500' : 'text-muted-foreground'}`}>
+                        <h3 className="text-sm font-semibold text-white">{tool.name}</h3>
+                        <span className={`text-xs font-medium transition-colors ${isOpen ? 'text-red-500' : 'text-white/60'}`}>
                           {tool.price}
                         </span>
                       </div>
                     </div>
-                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-5 h-5 text-white/60 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {/* Expandable content */}
@@ -177,7 +177,7 @@ const DisjointedTools = () => {
                       <p className="text-sm font-bold text-red-500 mb-3">{tool.tagline}</p>
                       
                       {/* Description */}
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                      <p className="text-xs text-white/60 leading-relaxed mb-3">
                         {tool.description}
                       </p>
 
@@ -209,7 +209,7 @@ const DisjointedTools = () => {
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                <div className="font-mono text-[9px] tracking-[0.15em] text-white/60 uppercase">
                   For tools that
                 </div>
                 <div className="font-mono text-[9px] tracking-[0.15em] text-red-500 uppercase">

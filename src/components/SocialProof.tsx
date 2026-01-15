@@ -15,17 +15,17 @@ const SocialProof = () => {
   ];
 
   return (
-    <section className="py-16 md:py-16 px-[3px] md:px-12 lg:px-24 bg-black md:bg-background">
+    <section className="py-16 md:py-16 px-[3px] md:px-12 lg:px-24 bg-[hsl(40_20%_94%)] md:bg-background">
       <div className="container mx-auto max-w-5xl">
         
-        {/* Mobile Layout */}
+        {/* Mobile Layout - light mode with darker bone white */}
         <div className="md:hidden">
           {/* Mobile Header */}
           <div className="text-center mb-8">
             <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-mono mb-3 block">
               Who We Are
             </span>
-            <h2 className="text-2xl font-semibold text-white leading-tight mb-2">
+            <h2 className="text-2xl font-semibold text-foreground leading-tight mb-2">
               Built by engineers
               <br />
               <span className="text-muted-foreground">who've detailed 300+ cars</span>
@@ -37,7 +37,7 @@ const SocialProof = () => {
             {universities.map((uni, index) => (
               <div
                 key={index}
-                className={`px-3 py-1.5 rounded-full border ${uni.mobileColor} font-mono text-[10px] tracking-wide`}
+                className="px-3 py-1.5 rounded-full border bg-background border-border text-foreground font-mono text-[10px] tracking-wide"
               >
                 {uni.name}
               </div>
@@ -51,10 +51,10 @@ const SocialProof = () => {
               return (
                 <div 
                   key={index} 
-                  className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 text-center"
+                  className="bg-background border border-border rounded-lg p-4 text-center"
                 >
                   <Icon className="w-4 h-4 text-muted-foreground mx-auto mb-2" />
-                  <div className="text-2xl font-semibold text-white mb-0.5 font-mono">
+                  <div className="text-2xl font-semibold text-foreground mb-0.5 font-mono">
                     {stat.value}
                   </div>
                   <div className="text-[9px] text-muted-foreground uppercase tracking-wider">
@@ -67,14 +67,14 @@ const SocialProof = () => {
 
           {/* Mobile Location */}
           <div className="text-center px-2">
-            <div className="inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-full px-4 py-2">
+            <div className="inline-flex items-center gap-2 bg-background border border-border rounded-full px-4 py-2">
               <MapPin className="w-3 h-3 text-muted-foreground" />
               <span className="text-xs text-muted-foreground">Working with detailers in</span>
             </div>
             <div className="flex items-center justify-center gap-3 mt-3">
-              <span className="text-sm text-white font-medium">Massachusetts</span>
+              <span className="text-sm text-foreground font-medium">Massachusetts</span>
               <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-              <span className="text-sm text-white font-medium">New York</span>
+              <span className="text-sm text-foreground font-medium">New York</span>
             </div>
           </div>
         </div>
