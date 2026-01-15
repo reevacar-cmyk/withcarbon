@@ -241,16 +241,22 @@
   }
 }
 
-@keyframes heroCardPushDown {
+@keyframes heroCardSlideIn {
   0% {
     transform: translateY(-100%);
     opacity: 0;
   }
-  30% {
-    opacity: 1;
-  }
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes heroCardShiftDown {
+  0% {
+    transform: translateY(-48px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
