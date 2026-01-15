@@ -9,21 +9,26 @@ const Hero = () => {
     });
   };
 
-  // Mobile Hero Visual - Animated AI activity feed
+  // Mobile Hero Visual - Animated AI activity feed with fixed height
   const MobileHeroVisual = () => {
     const allActivities = [
-      { id: 1, action: "AI booked new customer", detail: "Full detail + ceramic coat", highlight: true, amount: "+$280" },
-      { id: 2, action: "Follow-up sent", detail: "Customer from 52 days ago", highlight: false },
-      { id: 3, action: "Josh took call", detail: "Booked interior clean for tomorrow", highlight: true, amount: "+$120" },
-      { id: 4, action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", highlight: true, amount: "+$180" },
-      { id: 5, action: "CRM updated", detail: "Job details synced automatically", highlight: false },
-      { id: 6, action: "AI answered call", detail: "Scheduled window tint for Friday", highlight: true, amount: "+$350" },
-      { id: 7, action: "Reminder sent", detail: "Appointment confirmation for Mike R.", highlight: false },
-      { id: 8, action: "Lead recovered", detail: "Rescheduled no-show from last week", highlight: true, amount: "+$95" },
+      { action: "AI booked new customer", detail: "Full detail + ceramic coat", highlight: true, amount: "+$280" },
+      { action: "Follow-up sent", detail: "Customer from 52 days ago", highlight: false },
+      { action: "Josh took call", detail: "Booked interior clean for tomorrow", highlight: true, amount: "+$120" },
+      { action: "New lead qualified", detail: "Google Ads → AI SMS → Booked", highlight: true, amount: "+$180" },
+      { action: "CRM updated", detail: "Job details synced automatically", highlight: false },
+      { action: "AI answered call", detail: "Scheduled window tint for Friday", highlight: true, amount: "+$350" },
+      { action: "Reminder sent", detail: "Appointment confirmation for Mike R.", highlight: false },
+      { action: "Lead recovered", detail: "Rescheduled no-show from last week", highlight: true, amount: "+$95" },
+      { action: "Quote accepted", detail: "Customer replied yes via SMS", highlight: true, amount: "+$220" },
+      { action: "Calendar synced", detail: "3 new appointments added", highlight: false },
     ];
     
-    const [activities, setActivities] = useState(allActivities.slice(0, 3));
-    const [activityIndex, setActivityIndex] = useState(3);
+    const [visibleActivities, setVisibleActivities] = useState(() => 
+      allActivities.slice(0, 3).map((a, i) => ({ ...a, id: i }))
+    );
+    const [currentIndex, setCurrentIndex] = useState(3);
+    const [animationKey, setAnimationKey] = useState(0);
     
     const contextItems = [
       { icon: Users, label: "Customers" },
@@ -33,18 +38,27 @@ const Hero = () => {
     
     const [contextIndex, setContextIndex] = useState(0);
     
-    // Rotate activities - new one pops at top
+    // Rotate activities - new one appears at top, pushes others down
     useEffect(() => {
       const interval = setInterval(() => {
-        setActivityIndex(prev => {
-          const nextIndex = (prev + 1) % allActivities.length;
-          setActivities(current => {
-            const newActivity = { ...allActivities[nextIndex], id: Date.now() };
-            return [newActivity, ...current.slice(0, 2)];
-          });
+        setCurrentIndex(prev => {
+          const nextIndex = prev >= allActivities.length - 1 ? 0 : prev + 1;
+          
+          // Reset to beginning if we've cycled through all 10
+          if (nextIndex === 0) {
+            setVisibleActivities(allActivities.slice(0, 3).map((a, i) => ({ ...a, id: Date.now() + i })));
+            setAnimationKey(k => k + 1);
+          } else {
+            setVisibleActivities(current => {
+              const newActivity = { ...allActivities[nextIndex], id: Date.now() };
+              return [newActivity, current[0], current[1]];
+            });
+            setAnimationKey(k => k + 1);
+          }
+          
           return nextIndex;
         });
-      }, 3000);
+      }, 2500);
       return () => clearInterval(interval);
     }, []);
     
@@ -76,45 +90,68 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Animated Activity feed */}
-          <div className="p-4 space-y-3 min-h-[180px]">
-            {activities.map((activity, index) => (
-              <div 
-                key={activity.id}
-                className={`transition-all duration-500 ease-out ${
-                  index === 0 ? 'animate-[slideDown_0.4s_ease-out]' : ''
-                }`}
-              >
-                {activity.highlight ? (
-                  <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
-                          <span className="text-xs font-bold text-background">✓</span>
+          {/* Fixed height activity feed with smooth animations */}
+          <div className="p-4 h-[200px] overflow-hidden relative">
+            <div 
+              key={animationKey}
+              className="space-y-3"
+            >
+              {visibleActivities.map((activity, index) => (
+                <div 
+                  key={activity.id}
+                  className={`transform transition-all duration-500 ease-out ${
+                    index === 0 ? 'animate-[heroCardSlideIn_0.5s_ease-out]' : ''
+                  }`}
+                  style={{
+                    opacity: index === 2 ? 0.5 : 1,
+                  }}
+                >
+                  {index === 0 && activity.highlight ? (
+                    <div className="p-3 bg-accent/10 border border-accent/20 rounded-xl">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
+                            <span className="text-xs font-bold text-background">✓</span>
+                          </div>
+                          <span className="text-sm font-medium text-foreground">{activity.action}</span>
                         </div>
-                        <span className="text-sm font-medium text-foreground">{activity.action}</span>
+                        {activity.amount && (
+                          <span className="text-xs font-bold text-accent">{activity.amount}</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
+                    </div>
+                  ) : index === 0 ? (
+                    <div className="p-3 bg-muted/50 border border-border rounded-xl">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center">
+                            <span className="text-xs text-foreground">✓</span>
+                          </div>
+                          <span className="text-sm font-medium text-foreground">{activity.action}</span>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between py-2 px-1 border-b border-border/30">
+                      <div className="flex items-center gap-2">
+                        <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
+                          <span className="text-[10px] text-muted-foreground">✓</span>
+                        </div>
+                        <div>
+                          <div className="text-xs font-medium text-foreground">{activity.action}</div>
+                          <div className="text-[10px] text-muted-foreground">{activity.detail}</div>
+                        </div>
                       </div>
                       {activity.amount && (
-                        <span className="text-xs font-bold text-accent">{activity.amount}</span>
+                        <span className="text-[10px] font-medium text-muted-foreground">{activity.amount}</span>
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground pl-8">{activity.detail}</p>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between py-2 border-b border-border/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
-                        <span className="text-[10px] text-muted-foreground">✓</span>
-                      </div>
-                      <div>
-                        <div className="text-xs font-medium text-foreground">{activity.action}</div>
-                        <div className="text-[10px] text-muted-foreground">{activity.detail}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Bottom - cycling context icons */}
