@@ -115,38 +115,45 @@ const Hero = () => {
         {/* Curved lines connecting icons to bottom center of visual - start/end vertical, curve in middle */}
         <div className="relative h-12 w-full">
           <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
-            {/* Line from icon 1 - starts vertical down, curves to center, ends vertical up */}
-            <path 
-              d="M 40 48 C 40 24, 160 24, 160 0" 
-              fill="none" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="1" 
-              strokeDasharray="3 3"
-            />
-            {/* Line from icon 2 - starts vertical down, curves to center, ends vertical up */}
-            <path 
-              d="M 120 48 C 120 24, 160 24, 160 0" 
-              fill="none" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="1" 
-              strokeDasharray="3 3"
-            />
-            {/* Line from icon 3 - starts vertical down, curves to center, ends vertical up */}
-            <path 
-              d="M 200 48 C 200 24, 160 24, 160 0" 
-              fill="none" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="1" 
-              strokeDasharray="3 3"
-            />
-            {/* Line from icon 4 - starts vertical down, curves to center, ends vertical up */}
-            <path 
-              d="M 280 48 C 280 24, 160 24, 160 0" 
-              fill="none" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="1" 
-              strokeDasharray="3 3"
-            />
+            {/* Define paths for reuse */}
+            <defs>
+              <path id="line1" d="M 40 48 C 40 24, 160 24, 160 0" />
+              <path id="line2" d="M 120 48 C 120 24, 160 24, 160 0" />
+              <path id="line3" d="M 200 48 C 200 24, 160 24, 160 0" />
+              <path id="line4" d="M 280 48 C 280 24, 160 24, 160 0" />
+            </defs>
+            
+            {/* Static dashed lines */}
+            <use href="#line1" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+            <use href="#line2" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+            <use href="#line3" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+            <use href="#line4" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+            
+            {/* Animated orange pulses traveling along paths */}
+            <circle r="2.5" fill="hsl(var(--accent))">
+              <animateMotion dur="2s" repeatCount="indefinite" begin="0s">
+                <mpath href="#line1" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0s" />
+            </circle>
+            <circle r="2.5" fill="hsl(var(--accent))">
+              <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.5s">
+                <mpath href="#line2" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.5s" />
+            </circle>
+            <circle r="2.5" fill="hsl(var(--accent))">
+              <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.3s">
+                <mpath href="#line3" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.3s" />
+            </circle>
+            <circle r="2.5" fill="hsl(var(--accent))">
+              <animateMotion dur="2s" repeatCount="indefinite" begin="0.8s">
+                <mpath href="#line4" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0.8s" />
+            </circle>
           </svg>
         </div>
         
