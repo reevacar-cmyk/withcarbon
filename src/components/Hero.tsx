@@ -112,36 +112,36 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Curved lines connecting icons to bottom center of visual - convex curves */}
+        {/* Curved lines connecting icons to bottom center of visual - start/end vertical, curve in middle */}
         <div className="relative h-12 w-full">
           <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
-            {/* Line from icon 1 - convex curve (bulging outward) */}
+            {/* Line from icon 1 - starts vertical down, curves to center, ends vertical up */}
             <path 
-              d="M 40 48 Q 100 0, 160 0" 
+              d="M 40 48 C 40 24, 160 24, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 2 - convex curve */}
+            {/* Line from icon 2 - starts vertical down, curves to center, ends vertical up */}
             <path 
-              d="M 120 48 Q 140 10, 160 0" 
+              d="M 120 48 C 120 24, 160 24, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 3 - convex curve */}
+            {/* Line from icon 3 - starts vertical down, curves to center, ends vertical up */}
             <path 
-              d="M 200 48 Q 180 10, 160 0" 
+              d="M 200 48 C 200 24, 160 24, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
               strokeDasharray="3 3"
             />
-            {/* Line from icon 4 - convex curve (bulging outward) */}
+            {/* Line from icon 4 - starts vertical down, curves to center, ends vertical up */}
             <path 
-              d="M 280 48 Q 220 0, 160 0" 
+              d="M 280 48 C 280 24, 160 24, 160 0" 
               fill="none" 
               stroke="hsl(var(--border))" 
               strokeWidth="1" 
