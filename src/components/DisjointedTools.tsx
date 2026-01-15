@@ -108,22 +108,22 @@ const DisjointedTools = () => {
   };
 
   return (
-    <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-[hsl(0_0%_5%)] md:bg-[hsl(40_20%_94%)]">
+    <section ref={sectionRef} className="pt-6 pb-24 md:py-24 px-[3px] md:px-8 lg:px-16 bg-background md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-6xl">
-        {/* Mobile Layout - dark mode */}
+        {/* Mobile Layout - light mode */}
         <div className="md:hidden">
           {/* Monospace label */}
           <div className="mb-3 fade-in">
-            <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
               STATUS QUO
             </span>
           </div>
 
           {/* Industrial headline */}
           <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-6" style={{ animationDelay: '0.1s' }}>
-            <span className="text-white">Tools that</span>
+            <span className="text-foreground">Tools that</span>
             <br />
-            <span className="text-red-500">don't work.</span>
+            <span className="text-foreground">don't work.</span>
           </h2>
 
           {/* Accordion cards */}
@@ -136,14 +136,14 @@ const DisjointedTools = () => {
                 <div 
                   key={index}
                   className={`relative border rounded-2xl overflow-hidden transition-all duration-300 ${
-                    isOpen ? 'border-red-500/40 bg-red-500/[0.02]' : 'border-white/20'
+                    isOpen ? 'border-foreground/30 bg-muted/50' : 'border-border'
                   }`}
                 >
                   {/* Progress bar on the left */}
                   {isOpen && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-500/20">
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-foreground/20">
                       <div 
-                        className="w-full bg-red-500 transition-all duration-50 ease-linear"
+                        className="w-full bg-foreground transition-all duration-50 ease-linear"
                         style={{ height: `${progress}%` }}
                       />
                     </div>
@@ -156,35 +156,35 @@ const DisjointedTools = () => {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                        isOpen ? 'bg-red-500/15' : 'bg-white/10'
+                        isOpen ? 'bg-foreground/10' : 'bg-muted'
                       }`}>
-                        <Icon className={`w-5 h-5 transition-colors ${isOpen ? 'text-red-500' : 'text-white/60'}`} />
+                        <Icon className={`w-5 h-5 transition-colors ${isOpen ? 'text-foreground' : 'text-muted-foreground'}`} />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-sm font-semibold text-white">{tool.name}</h3>
-                        <span className={`text-xs font-medium transition-colors ${isOpen ? 'text-red-500' : 'text-white/60'}`}>
+                        <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
+                        <span className={`text-xs font-medium transition-colors ${isOpen ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {tool.price}
                         </span>
                       </div>
                     </div>
-                    <ChevronDown className={`w-5 h-5 text-white/60 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {/* Expandable content */}
                   <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
                     <div className="px-4 pl-5 pb-4">
-                      {/* Tagline - bold, red, left-aligned */}
-                      <p className="text-sm font-bold text-red-500 mb-3">{tool.tagline}</p>
+                      {/* Tagline - bold, left-aligned */}
+                      <p className="text-sm font-bold text-foreground mb-3">{tool.tagline}</p>
                       
                       {/* Description */}
-                      <p className="text-xs text-white/60 leading-relaxed mb-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
                         {tool.description}
                       </p>
 
                       {/* Pain points */}
                       <div className="space-y-1.5">
                         {tool.painPoints.map((point, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-red-600 font-medium">
+                          <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
                             <X className="w-3.5 h-3.5 flex-shrink-0" />
                             {point}
                           </div>
@@ -198,21 +198,21 @@ const DisjointedTools = () => {
           </div>
 
           {/* Total burn rate */}
-          <div className="mt-6 border border-red-500/40 bg-red-500/5 p-4 rounded-2xl fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="mt-6 border border-border bg-muted/50 p-4 rounded-2xl fade-in" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center justify-between">
               <div>
-                <div className="font-mono text-[9px] tracking-[0.2em] text-red-500/60 uppercase mb-1">
+                <div className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground uppercase mb-1">
                   Monthly burn
                 </div>
-                <div className="text-2xl font-bold text-red-500 tracking-tight">
+                <div className="text-2xl font-bold text-foreground tracking-tight">
                   $200–2K
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-mono text-[9px] tracking-[0.15em] text-white/60 uppercase">
+                <div className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
                   For tools that
                 </div>
-                <div className="font-mono text-[9px] tracking-[0.15em] text-red-500 uppercase">
+                <div className="font-mono text-[9px] tracking-[0.15em] text-foreground uppercase">
                   don't learn
                 </div>
               </div>
