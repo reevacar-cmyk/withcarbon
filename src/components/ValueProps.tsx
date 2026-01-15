@@ -19,9 +19,9 @@ const ValueProps = () => {
       visual: "retention"
     },
     {
-      metric: "4hrs",
-      title: "Saved per day",
-      mobileTitle: "Saved daily",
+      metric: "18hrs",
+      title: "Saved per week",
+      mobileTitle: "Saved weekly",
       description: "Every call, text, lead, and job auto-logs into your calendar and CRM — whether AI or a human answered.",
       mobileDescription: "Every call, text, and job auto-logged. No data entry.",
       visual: "automation"
