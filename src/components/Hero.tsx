@@ -11,70 +11,86 @@ const Hero = () => {
   // Mobile Hero Visual - Animated orbiting icons around central C hub
   const MobileHeroVisual = () => {
     const orbitItems = [
-      { icon: Calendar, label: "Calendar", angle: 0, radius: 130 },
-      { icon: Users, label: "Customers", angle: 90, radius: 110 },
-      { icon: MessageSquare, label: "AI SMS", angle: 180, radius: 140 },
-      { icon: TrendingUp, label: "Insights", angle: 270, radius: 100 }
+      { icon: Calendar, label: "Calendar", radius: 120, startAngle: 0 },
+      { icon: Users, label: "Customers", radius: 100, startAngle: 90 },
+      { icon: MessageSquare, label: "AI SMS", radius: 130, startAngle: 180 },
+      { icon: TrendingUp, label: "Insights", radius: 90, startAngle: 270 }
     ];
 
     return (
       <div className="relative w-full aspect-square max-w-[340px] mx-auto">
-        {/* Orbit rings at different levels */}
-        <div className="absolute inset-[30px] rounded-full border border-border/30" />
-        <div className="absolute inset-[50px] rounded-full border border-border/20" />
-        <div className="absolute inset-[70px] rounded-full border border-border/20" />
+        {/* Orbit rings at different levels matching icon radii */}
+        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 130}px` }} />
+        <div className="absolute rounded-full border border-border/25" style={{ inset: `${170 - 120}px` }} />
+        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 100}px` }} />
+        <div className="absolute rounded-full border border-border/20" style={{ inset: `${170 - 90}px` }} />
         
         {/* Central hub */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg z-20">
           <span className="text-2xl font-semibold text-background">C</span>
         </div>
         
-        {/* Rotating container for orbiting elements */}
-        <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
-          {/* SVG for dotted connection lines - rotates with icons */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 340 340">
-            {orbitItems.map((item, i) => {
-              const angleRad = (item.angle * Math.PI) / 180;
-              const x = 170 + Math.cos(angleRad) * item.radius;
-              const y = 170 + Math.sin(angleRad) * item.radius;
-              return (
-                <line
-                  key={i}
-                  x1="170"
-                  y1="170"
-                  x2={x}
-                  y2={y}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="1"
-                  strokeDasharray="3 3"
-                />
-              );
-            })}
-          </svg>
-          
-          {/* Orbiting icons at different radii */}
-          {orbitItems.map((item, i) => {
-            const Icon = item.icon;
-            const angleRad = (item.angle * Math.PI) / 180;
-            const x = Math.cos(angleRad) * item.radius;
-            const y = Math.sin(angleRad) * item.radius;
-            
-            return (
+        {/* Each icon orbits independently at its own fixed radius */}
+        {orbitItems.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={i}
+              className="absolute top-1/2 left-1/2 w-0 h-0"
+              style={{
+                animation: `orbit-${item.radius} 40s linear infinite`,
+                transform: `rotate(${item.startAngle}deg)`
+              }}
+            >
+              {/* Dotted line from center to icon */}
+              <div 
+                className="absolute left-0 top-0 origin-left border-t border-dashed border-border/50"
+                style={{ width: `${item.radius}px` }}
+              />
+              
+              {/* Icon container - counter-rotates to stay upright */}
               <div
-                key={i}
-                className="absolute top-1/2 left-1/2 flex flex-col items-center gap-1 animate-[spin_40s_linear_infinite_reverse]"
+                className="absolute flex flex-col items-center gap-1"
                 style={{
-                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                  left: `${item.radius}px`,
+                  top: 0,
+                  transform: 'translate(-50%, -50%)',
+                  animation: `counter-orbit 40s linear infinite`,
+                  animationDelay: `-${(item.startAngle / 360) * 40}s`
                 }}
               >
-                <div className="w-11 h-11 rounded-lg bg-card border border-border shadow-sm flex items-center justify-center">
+                <div className="w-11 h-11 rounded-full bg-card border border-border shadow-sm flex items-center justify-center">
                   <Icon className="w-5 h-5 text-foreground" />
                 </div>
                 <span className="text-[9px] text-muted-foreground font-medium whitespace-nowrap">{item.label}</span>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
+        
+        {/* Keyframe styles */}
+        <style>{`
+          @keyframes orbit-130 {
+            from { transform: rotate(180deg); }
+            to { transform: rotate(540deg); }
+          }
+          @keyframes orbit-120 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @keyframes orbit-100 {
+            from { transform: rotate(90deg); }
+            to { transform: rotate(450deg); }
+          }
+          @keyframes orbit-90 {
+            from { transform: rotate(270deg); }
+            to { transform: rotate(630deg); }
+          }
+          @keyframes counter-orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+          }
+        `}</style>
       </div>
     );
   };
