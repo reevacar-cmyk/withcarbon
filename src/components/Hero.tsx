@@ -86,10 +86,10 @@ const Hero = () => {
                     index === 0 ? 'animate-[heroCardSlideSmooth_0.7s_cubic-bezier(0.4,0,0.2,1)]' : ''
                   }`}
                 >
-                  {/* All cards same size - top card is always orange highlighted */}
+                  {/* All cards same size - top card uses darker bone white */}
                   <div className={`py-2.5 px-3 rounded-xl flex items-start gap-2 ${
                     index === 0 
-                      ? 'bg-accent/10 border border-accent/20' 
+                      ? 'bg-[hsl(40_20%_92%)] border border-[hsl(40_15%_85%)]' 
                       : 'bg-muted/30 border border-border/20'
                   }`}>
                     <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
