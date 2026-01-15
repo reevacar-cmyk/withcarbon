@@ -163,8 +163,8 @@ const Hero = () => {
         </div>
         
         {/* Caption */}
-        <p className="text-center text-xs text-muted-foreground mt-4 leading-snug max-w-[280px] mx-auto">
-          All in one system that gives AI full context — automations that work together seamlessly.
+        <p className="text-center text-xs text-muted-foreground mt-4 leading-snug max-w-[300px] mx-auto">
+          Everything in one system so Carbon can work on your business with full context and save you money.
         </p>
       </div>
     );
