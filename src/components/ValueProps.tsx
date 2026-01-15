@@ -7,7 +7,7 @@ const ValueProps = () => {
       title: "More bookings",
       mobileTitle: "More jobs booked",
       description: "AI answers calls and texts instantly, qualifies inbound leads, and books jobs 24/7.",
-      mobileDescription: "AI SMS handles your inbound leads, increasing booking and making the most of your ad spend.",
+      mobileDescription: "Connect all your lead sources and Carbon will respond within the first 30s to qualify and book.",
       visual: "booking"
     },
     {
@@ -15,7 +15,7 @@ const ValueProps = () => {
       title: "More repeat customers",
       mobileTitle: "More repeat customers",
       description: "AI remembers who they are, their car, past jobs, and conversations — and sends personalized follow-ups at the right time.",
-      mobileDescription: "Personalized follow-ups based on their car, history, and timing.",
+      mobileDescription: "Knows all of your past customers and will send personalized follow-ups at the right time.",
       visual: "retention"
     },
     {
