@@ -8,129 +8,92 @@ const Hero = () => {
     });
   };
 
-  // Mobile Hero Visual - Central hub with properly spaced orbiting icons
+// Mobile Hero Visual - Centralized system diagram
   const MobileHeroVisual = () => (
-    <div className="relative w-full aspect-square max-w-[320px] mx-auto">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'radial-gradient(circle at center, hsl(var(--foreground)) 1px, transparent 1px)',
-        backgroundSize: '24px 24px'
-      }} />
-      
-      {/* Outer ring */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-border/40" />
-      
-      {/* Inner ring */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] rounded-full border border-border/30" />
-      
+    <div className="relative w-full max-w-[340px] mx-auto py-6">
       {/* Central hub */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl bg-foreground flex items-center justify-center z-10 shadow-xl">
-        <span className="text-3xl font-bold text-background tracking-tight">C</span>
-      </div>
-      
-      {/* Orbiting elements - positioned on the outer ring */}
-      {[
-        { icon: MessageSquare, label: "SMS", angle: -60 },
-        { icon: Calendar, label: "Jobs", angle: 30 },
-        { icon: Users, label: "CRM", angle: 120 },
-        { icon: TrendingUp, label: "Metrics", angle: 210 }
-      ].map((item, i) => {
-        const Icon = item.icon;
-        const radians = (item.angle * Math.PI) / 180;
-        const radius = 120;
-        const x = Math.cos(radians) * radius;
-        const y = Math.sin(radians) * radius;
+      <div className="relative flex flex-col items-center">
+        {/* Main Carbon hub */}
+        <div className="w-16 h-16 rounded-xl bg-foreground flex items-center justify-center shadow-lg mb-6">
+          <span className="text-2xl font-semibold text-background">C</span>
+        </div>
         
-        return (
-          <div 
-            key={i}
-            className="absolute top-1/2 left-1/2 fade-in"
-            style={{ 
-              transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-              animationDelay: `${i * 0.15}s`
-            }}
-          >
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-14 h-14 rounded-2xl bg-card border border-border shadow-sm flex items-center justify-center">
-                <Icon className="w-6 h-6 text-foreground" />
-              </div>
-              <span className="text-xs text-muted-foreground font-medium">{item.label}</span>
-            </div>
-          </div>
-        );
-      })}
-      
-      {/* Connection lines from center to icons */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 5 }}>
-        <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-        {[-60, 30, 120, 210].map((angle, i) => {
-          const radians = (angle * Math.PI) / 180;
-          const innerRadius = 45;
-          const outerRadius = 95;
-          const cx = 160;
-          const cy = 160;
-          const x1 = cx + Math.cos(radians) * innerRadius;
-          const y1 = cy + Math.sin(radians) * innerRadius;
-          const x2 = cx + Math.cos(radians) * outerRadius;
-          const y2 = cy + Math.sin(radians) * outerRadius;
+        {/* Connection lines container */}
+        <div className="relative w-full">
+          {/* Horizontal line */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[280px] h-px bg-border" />
           
-          return (
-            <line 
-              key={i}
-              x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="url(#lineGradient)"
-              strokeWidth="2"
-              strokeDasharray="6 4"
-              className="animate-pulse"
-              style={{ animationDelay: `${i * 0.2}s` }}
-            />
-          );
-        })}
-      </svg>
-      
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Vertical connectors */}
+          <div className="absolute top-0 left-[calc(50%-140px)] w-px h-4 bg-border" />
+          <div className="absolute top-0 left-[calc(50%-70px)] w-px h-4 bg-border" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-4 bg-border" />
+          <div className="absolute top-0 left-[calc(50%+70px)] w-px h-4 bg-border" />
+          <div className="absolute top-0 left-[calc(50%+140px)] w-px h-4 bg-border" />
+        </div>
+        
+        {/* Feature cards row */}
+        <div className="flex items-start justify-center gap-3 mt-4 w-full px-2">
+          {[
+            { icon: Calendar, label: "Calendar", desc: "Jobs & scheduling" },
+            { icon: Users, label: "Customers", desc: "Full context" },
+            { icon: MessageSquare, label: "AI SMS", desc: "Auto follow-ups" },
+            { icon: TrendingUp, label: "Insights", desc: "Real metrics" }
+          ].map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <div key={i} className="flex flex-col items-center text-center flex-1 min-w-0">
+                <div className="w-11 h-11 rounded-lg bg-muted border border-border flex items-center justify-center mb-2">
+                  <Icon className="w-5 h-5 text-foreground" />
+                </div>
+                <span className="text-[11px] font-medium text-foreground leading-tight">{item.label}</span>
+                <span className="text-[9px] text-muted-foreground leading-tight mt-0.5">{item.desc}</span>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Bottom summary line */}
+        <div className="mt-6 pt-4 border-t border-border w-full text-center">
+          <p className="text-xs text-muted-foreground">
+            One system. Full visibility. Real relationships.
+          </p>
+        </div>
+      </div>
     </div>
   );
   
   return (
-    <section className="min-h-screen pb-8 md:pb-8 px-6 md:px-8 lg:px-12 pt-10 md:pt-32 relative overflow-hidden bg-background">
+    <section className="min-h-screen pb-8 md:pb-8 px-6 md:px-8 lg:px-12 pt-20 md:pt-32 relative overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none bg-background" />
       
       <div className="container mx-auto max-w-none md:max-w-[1600px] relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="space-y-5 md:space-y-8 text-center md:text-left">
+          <div className="space-y-4 md:space-y-8 text-center md:text-left">
             {/* Mobile: Tertiary callout badge */}
             <div className="md:hidden flex items-center justify-center gap-2 fade-in">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
-                <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-semibold">NEW</span>
-                <span className="text-muted-foreground">AI-powered CRM</span>
+                <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
+                <span className="text-muted-foreground">AI-powered operations</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </span>
             </div>
             
-            {/* Mobile: Grand, bold headline with tight line spacing */}
+            {/* Mobile: Large title with Inter-like lighter weight */}
             <h1 className="fade-in fade-in-delay-1">
-              <span className="md:hidden block text-[2.75rem] font-bold tracking-tight leading-[0.95] text-foreground">
-                Your new AI
-                <br />
-                <span className="text-accent">business partner.</span>
+              <span className="md:hidden block text-[2.75rem] font-medium tracking-tight leading-[0.95] text-foreground">
+                Your new AI<br />
+                business partner.
               </span>
               <span className="hidden md:inline text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
             </h1>
             
-            <p className="text-base md:text-xl max-w-md fade-in fade-in-delay-2 md:mx-0 mx-auto leading-relaxed">
-              <span className="md:hidden text-muted-foreground">From calendar to AI automations — everything designed to improve real metrics, all centralized for full business context.</span>
+            <p className="text-base md:text-xl max-w-md fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
+              <span className="md:hidden text-muted-foreground">One centralized system for calendar, customers, and AI automations — designed to improve real metrics and build lasting relationships.</span>
               <span className="hidden md:inline text-muted-foreground">Carbon is an AI-native CRM that manages calls, booking, and follow-ups with full context.</span>
             </p>
             
-            <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start">
+            <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
               <Button onClick={scrollToPartnerForm} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
@@ -138,7 +101,7 @@ const Hero = () => {
           </div>
           
           {/* Mobile: Central hub visual */}
-          <div className="md:hidden fade-in fade-in-delay-3 py-4">
+          <div className="md:hidden fade-in fade-in-delay-3">
             <MobileHeroVisual />
           </div>
           
