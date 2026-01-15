@@ -28,240 +28,451 @@ const ValueProps = () => {
     }
   ];
 
-  // Simplified Booking Visual - more visual, less dense
+  // Simplified Booking Visual - Essentials-style light mode design
   const BookingVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-muted-foreground md:text-white/60 uppercase tracking-wider">Inbound Leads</span>
-        </div>
-        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
-          24/7 Active
-        </span>
-      </div>
-      
-      {/* Visual illustration - SMS conversation flow */}
-      <div className="flex-1 flex flex-col items-center justify-center space-y-4 relative z-10">
-        {/* Incoming lead indicator */}
-        <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-muted md:bg-white/10 border border-border md:border-white/20 rounded-xl relative overflow-hidden">
-          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-            <MessageSquare className="w-5 h-5 text-accent" />
-          </div>
-          <div className="flex-1">
-            <div className="text-sm font-medium text-foreground md:text-white">New SMS Lead</div>
-            <div className="text-xs text-muted-foreground md:text-white/60">"How much for a full detail?"</div>
+    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
+      {/* Mobile: Essentials-style clean visual */}
+      <div className="md:hidden h-full flex flex-col p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="text-sm font-medium text-foreground">Inbound Leads</div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[8px] font-mono text-accent font-medium">24/7</span>
+            </div>
           </div>
         </div>
         
-        {/* Arrow down */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="w-0.5 h-6 bg-accent/40" />
-          <Zap className="w-5 h-5 text-accent animate-pulse" />
-          <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
-          <div className="w-0.5 h-6 bg-accent/40" />
+        {/* Flow visualization */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-3">
+          {/* Incoming message */}
+          <div className="w-full max-w-[260px] p-3 bg-background rounded-xl border border-border shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                <MessageSquare className="w-5 h-5 text-muted-foreground" />
+              </div>
+              <div className="flex-1">
+                <div className="text-sm font-medium text-foreground">New SMS Lead</div>
+                <div className="text-xs text-muted-foreground">"How much for a detail?"</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Arrow connector */}
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-0.5 h-4 bg-accent/30" />
+            <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+              <Zap className="w-4 h-4 text-accent" />
+            </div>
+            <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
+            <div className="w-0.5 h-4 bg-accent/30" />
+          </div>
+          
+          {/* Result card */}
+          <div className="w-full max-w-[260px] p-3 bg-accent/5 rounded-xl border border-accent/20">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                <Calendar className="w-5 h-5 text-accent" />
+              </div>
+              <div className="flex-1">
+                <div className="text-sm font-medium text-accent">Booked!</div>
+                <div className="text-xs text-muted-foreground">Tomorrow 10am · $220</div>
+              </div>
+              <CheckCircle className="w-5 h-5 text-accent" />
+            </div>
+          </div>
         </div>
         
-        {/* Result */}
-        <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-accent/10 border border-accent/30 rounded-xl">
-          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-            <Calendar className="w-5 h-5 text-accent" />
+        {/* Bottom stats overlay */}
+        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-lg font-semibold text-accent">$850</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Today</div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div className="text-center">
+                <div className="text-lg font-semibold text-foreground">100%</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Response</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Active</span>
+            </div>
           </div>
-          <div className="flex-1">
-            <div className="text-sm font-medium text-accent">Booked!</div>
-            <div className="text-xs text-muted-foreground md:text-white/60">Tomorrow 10am · $220</div>
-          </div>
-          <CheckCircle className="w-5 h-5 text-accent" />
         </div>
       </div>
       
-      {/* Summary stats */}
-      <div className="mt-4 pt-3 border-t border-border md:border-white/20 flex items-center justify-between fade-in relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <div className="text-lg font-bold text-accent">$850</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Today</div>
+      {/* Desktop: Original dark mode visual */}
+      <div className="hidden md:flex flex-col h-full p-5">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs text-white/60 uppercase tracking-wider">Inbound Leads</span>
           </div>
-          <div className="w-px h-8 bg-border md:bg-white/20" />
-          <div className="text-center">
-            <div className="text-lg font-bold text-foreground md:text-white">100%</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Response</div>
+          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">24/7 Active</span>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+          <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-white/10 border border-white/20 rounded-xl">
+            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-accent" />
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-medium text-white">New SMS Lead</div>
+              <div className="text-xs text-white/60">"How much for a full detail?"</div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-0.5 h-6 bg-accent/40" />
+            <Zap className="w-5 h-5 text-accent animate-pulse" />
+            <div className="text-[10px] text-accent font-medium">AI responds in 2s</div>
+            <div className="w-0.5 h-6 bg-accent/40" />
+          </div>
+          <div className="flex items-center gap-3 w-full max-w-[240px] p-3 bg-accent/10 border border-accent/30 rounded-xl">
+            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+              <Calendar className="w-5 h-5 text-accent" />
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-medium text-accent">Booked!</div>
+              <div className="text-xs text-white/60">Tomorrow 10am · $220</div>
+            </div>
+            <CheckCircle className="w-5 h-5 text-accent" />
           </div>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] text-accent font-medium">AI Active</span>
+        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-lg font-bold text-accent">$850</div>
+              <div className="text-[9px] text-white/60">Today</div>
+            </div>
+            <div className="w-px h-8 bg-white/20" />
+            <div className="text-center">
+              <div className="text-lg font-bold text-white">100%</div>
+              <div className="text-[9px] text-white/60">Response</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">AI Active</span>
+          </div>
         </div>
       </div>
     </div>
   );
 
-  // Simplified Retention Visual - more visual, less dense
+  // Simplified Retention Visual - Essentials-style light mode design
   const RetentionVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-muted-foreground md:text-white/60 uppercase tracking-wider">AI Follow-ups</span>
-        </div>
-        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
-          Personalized
-        </span>
-      </div>
-      
-      {/* Visual illustration - Customer memory */}
-      <div className="flex-1 flex flex-col items-center justify-center space-y-4 relative z-10">
-        {/* Customer profile card */}
-        <div className="w-full max-w-[260px] p-4 bg-muted md:bg-white/10 border border-border md:border-white/20 rounded-xl relative overflow-hidden">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-lg font-bold text-accent">
-              JD
+    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
+      {/* Mobile: Essentials-style clean visual */}
+      <div className="md:hidden h-full flex flex-col p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="text-sm font-medium text-foreground">AI Follow-ups</div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[8px] font-mono text-accent font-medium">AUTO</span>
             </div>
-            <div>
-              <div className="text-sm font-medium text-foreground md:text-white">John D.</div>
-              <div className="text-xs text-muted-foreground md:text-white/60">2021 Tesla Model 3</div>
-            </div>
-          </div>
-          
-          {/* Memory points */}
-          <div className="space-y-2 mb-3">
-            <div className="flex items-center gap-2 text-xs">
-              <Repeat className="w-3.5 h-3.5 text-accent" />
-              <span className="text-foreground/80 md:text-white/80">Last detail: 45 days ago</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs">
-              <TrendingUp className="w-3.5 h-3.5 text-accent" />
-              <span className="text-foreground/80 md:text-white/80">$1,440 lifetime value</span>
-            </div>
-          </div>
-          
-          {/* AI action */}
-          <div className="p-2 bg-accent/10 border border-accent/30 rounded-lg">
-            <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
-              <Send className="w-3 h-3" />
-              AI sent follow-up
-            </div>
-            <div className="text-[11px] text-muted-foreground md:text-white/70 italic">"Hey John! Your Model 3 is probably due..."</div>
           </div>
         </div>
         
-        {/* Result badge */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full">
-          <CheckCircle className="w-4 h-4 text-accent" />
-          <span className="text-sm font-medium text-accent">Booked for Thursday</span>
+        {/* Customer profile card */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <div className="w-full max-w-[280px] p-4 bg-background rounded-xl border border-border shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-lg font-bold text-accent">
+                JD
+              </div>
+              <div>
+                <div className="text-sm font-medium text-foreground">John D.</div>
+                <div className="text-xs text-muted-foreground">2021 Tesla Model 3</div>
+              </div>
+            </div>
+            
+            {/* Memory points */}
+            <div className="space-y-2 mb-3 p-2.5 bg-muted/50 rounded-lg">
+              <div className="flex items-center gap-2 text-xs">
+                <Repeat className="w-3.5 h-3.5 text-accent" />
+                <span className="text-foreground/80">Last detail: 45 days ago</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <TrendingUp className="w-3.5 h-3.5 text-accent" />
+                <span className="text-foreground/80">$1,440 lifetime value</span>
+              </div>
+            </div>
+            
+            {/* AI action */}
+            <div className="p-2.5 bg-accent/5 border border-accent/20 rounded-lg">
+              <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
+                <Send className="w-3 h-3" />
+                AI sent follow-up
+              </div>
+              <div className="text-[11px] text-muted-foreground italic">"Hey John! Your Model 3 is probably due..."</div>
+            </div>
+          </div>
+          
+          {/* Result badge */}
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full">
+            <CheckCircle className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">Booked for Thursday</span>
+          </div>
+        </div>
+        
+        {/* Bottom stats overlay */}
+        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-lg font-semibold text-accent">$650</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Recovered</div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div className="text-center">
+                <div className="text-lg font-semibold text-foreground">67%</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Rebook rate</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Active</span>
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Summary stats */}
-      <div className="mt-4 pt-3 border-t border-border md:border-white/20 flex items-center justify-between fade-in relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <div className="text-lg font-bold text-accent">$650</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Recovered</div>
+      {/* Desktop: Original dark mode visual */}
+      <div className="hidden md:flex flex-col h-full p-5">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs text-white/60 uppercase tracking-wider">AI Follow-ups</span>
           </div>
-          <div className="w-px h-8 bg-border md:bg-white/20" />
-          <div className="text-center">
-            <div className="text-lg font-bold text-foreground md:text-white">67%</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Rebook rate</div>
+          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">Personalized</span>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+          <div className="w-full max-w-[260px] p-4 bg-white/10 border border-white/20 rounded-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-lg font-bold text-accent">JD</div>
+              <div>
+                <div className="text-sm font-medium text-white">John D.</div>
+                <div className="text-xs text-white/60">2021 Tesla Model 3</div>
+              </div>
+            </div>
+            <div className="space-y-2 mb-3">
+              <div className="flex items-center gap-2 text-xs">
+                <Repeat className="w-3.5 h-3.5 text-accent" />
+                <span className="text-white/80">Last detail: 45 days ago</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <TrendingUp className="w-3.5 h-3.5 text-accent" />
+                <span className="text-white/80">$1,440 lifetime value</span>
+              </div>
+            </div>
+            <div className="p-2 bg-accent/10 border border-accent/30 rounded-lg">
+              <div className="flex items-center gap-2 text-xs text-accent font-medium mb-1">
+                <Send className="w-3 h-3" />
+                AI sent follow-up
+              </div>
+              <div className="text-[11px] text-white/70 italic">"Hey John! Your Model 3 is probably due..."</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full">
+            <CheckCircle className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">Booked for Thursday</span>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] text-accent font-medium">AI Active</span>
+        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-lg font-bold text-accent">$650</div>
+              <div className="text-[9px] text-white/60">Recovered</div>
+            </div>
+            <div className="w-px h-8 bg-white/20" />
+            <div className="text-center">
+              <div className="text-lg font-bold text-white">67%</div>
+              <div className="text-[9px] text-white/60">Rebook rate</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">AI Active</span>
+          </div>
         </div>
       </div>
     </div>
   );
 
-  // Simplified Automation Visual - more visual, less dense
+  // Simplified Automation Visual - Essentials-style light mode design
   const AutomationVisual = () => (
-    <div className="relative w-full h-full flex flex-col p-4 md:p-5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4 md:mb-6 fade-in relative z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-muted-foreground md:text-white/60 uppercase tracking-wider">Auto-Sync</span>
-        </div>
-        <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">
-          Zero Manual Entry
-        </span>
-      </div>
-      
-      {/* Visual illustration - Auto-logging flow */}
-      <div className="flex-1 flex flex-col items-center justify-center space-y-3 relative z-10">
-        {/* Data sources */}
-        <div className="flex items-center justify-center gap-3 w-full">
-          {[
-            { icon: Phone, label: "Calls" },
-            { icon: MessageSquare, label: "Texts" },
-            { icon: Calendar, label: "Jobs" }
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-muted md:bg-white/10 border border-border md:border-white/20 rounded-xl">
-              <item.icon className="w-5 h-5 text-muted-foreground md:text-white/70" />
-              <span className="text-[10px] text-muted-foreground md:text-white/60">{item.label}</span>
-            </div>
-          ))}
-        </div>
-        
-        {/* Arrows flowing down */}
-        <div className="flex items-center justify-center gap-6">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div className="w-0.5 h-4 bg-accent/40" />
-              <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
-            </div>
-          ))}
-        </div>
-        
-        {/* CRM destination */}
-        <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-xl relative overflow-hidden">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-              <Database className="w-5 h-5 text-accent" />
-            </div>
-            <div>
-              <div className="text-sm font-medium text-foreground md:text-white">Your CRM</div>
-              <div className="text-xs text-accent">100% up to date</div>
+    <div className="relative w-full h-full bg-card md:bg-transparent rounded-2xl md:rounded-none overflow-hidden">
+      {/* Mobile: Essentials-style clean visual */}
+      <div className="md:hidden h-full flex flex-col p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="text-sm font-medium text-foreground">Auto-Sync</div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[8px] font-mono text-accent font-medium">LIVE</span>
             </div>
           </div>
-          
-          {/* Recent auto-logs */}
-          <div className="space-y-1.5">
+        </div>
+        
+        {/* Data flow visualization */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-3">
+          {/* Data sources */}
+          <div className="flex items-center justify-center gap-3 w-full">
             {[
-              { action: "Call logged", time: "Just now" },
-              { action: "Job created", time: "2m ago" },
-              { action: "SMS synced", time: "5m ago" }
-            ].map((log, i) => (
-              <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-border/50 md:border-white/10 last:border-0">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3 h-3 text-accent" />
-                  <span className="text-foreground/80 md:text-white/80">{log.action}</span>
-                </div>
-                <span className="text-muted-foreground md:text-white/50 text-[10px]">{log.time}</span>
+              { icon: Phone, label: "Calls" },
+              { icon: MessageSquare, label: "Texts" },
+              { icon: Calendar, label: "Jobs" }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-background border border-border rounded-xl shadow-sm">
+                <item.icon className="w-5 h-5 text-muted-foreground" />
+                <span className="text-[10px] text-muted-foreground">{item.label}</span>
               </div>
             ))}
           </div>
+          
+          {/* Arrows flowing down */}
+          <div className="flex items-center justify-center gap-6">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex flex-col items-center">
+                <div className="w-0.5 h-4 bg-accent/30" />
+                <div className="w-2 h-2 border-b-2 border-r-2 border-accent/50 rotate-45 -mt-1" />
+              </div>
+            ))}
+          </div>
+          
+          {/* CRM destination */}
+          <div className="w-full max-w-[280px] p-4 bg-accent/5 border border-accent/20 rounded-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                <Database className="w-5 h-5 text-accent" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-foreground">Your CRM</div>
+                <div className="text-xs text-accent">100% up to date</div>
+              </div>
+            </div>
+            
+            {/* Recent auto-logs */}
+            <div className="space-y-1.5">
+              {[
+                { action: "Call logged", time: "Just now" },
+                { action: "Job created", time: "2m ago" },
+                { action: "SMS synced", time: "5m ago" }
+              ].map((log, i) => (
+                <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-border/50 last:border-0">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-3 h-3 text-accent" />
+                    <span className="text-foreground/80">{log.action}</span>
+                  </div>
+                  <span className="text-muted-foreground text-[10px]">{log.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom stats overlay */}
+        <div className="mt-4 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-lg font-semibold text-foreground">142</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Profiles</div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div className="text-center">
+                <div className="text-lg font-semibold text-accent">0</div>
+                <div className="text-[9px] text-muted-foreground font-mono">Manual entry</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] text-accent font-medium">Synced</span>
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Summary stats */}
-      <div className="mt-4 pt-3 border-t border-border md:border-white/20 flex items-center justify-between fade-in relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <div className="text-lg font-bold text-foreground md:text-white">142</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Profiles</div>
+      {/* Desktop: Original dark mode visual */}
+      <div className="hidden md:flex flex-col h-full p-5">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs text-white/60 uppercase tracking-wider">Auto-Sync</span>
           </div>
-          <div className="w-px h-8 bg-border md:bg-white/20" />
-          <div className="text-center">
-            <div className="text-lg font-bold text-accent">0</div>
-            <div className="text-[9px] text-muted-foreground md:text-white/60">Manual entry</div>
+          <span className="text-[10px] px-2 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent">Zero Manual Entry</span>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center space-y-3">
+          <div className="flex items-center justify-center gap-3 w-full">
+            {[
+              { icon: Phone, label: "Calls" },
+              { icon: MessageSquare, label: "Texts" },
+              { icon: Calendar, label: "Jobs" }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white/10 border border-white/20 rounded-xl">
+                <item.icon className="w-5 h-5 text-white/70" />
+                <span className="text-[10px] text-white/60">{item.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-6">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex flex-col items-center">
+                <div className="w-0.5 h-4 bg-accent/40" />
+                <div className="w-2 h-2 border-b-2 border-r-2 border-accent/60 rotate-45 -mt-1" />
+              </div>
+            ))}
+          </div>
+          <div className="w-full max-w-[260px] p-4 bg-accent/10 border border-accent/30 rounded-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+                <Database className="w-5 h-5 text-accent" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-white">Your CRM</div>
+                <div className="text-xs text-accent">100% up to date</div>
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              {[
+                { action: "Call logged", time: "Just now" },
+                { action: "Job created", time: "2m ago" },
+                { action: "SMS synced", time: "5m ago" }
+              ].map((log, i) => (
+                <div key={i} className="flex items-center justify-between text-xs py-1.5 border-b border-white/10 last:border-0">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-3 h-3 text-accent" />
+                    <span className="text-white/80">{log.action}</span>
+                  </div>
+                  <span className="text-white/50 text-[10px]">{log.time}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] text-accent font-medium">Synced</span>
+        <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-lg font-bold text-white">142</div>
+              <div className="text-[9px] text-white/60">Profiles</div>
+            </div>
+            <div className="w-px h-8 bg-white/20" />
+            <div className="text-center">
+              <div className="text-lg font-bold text-accent">0</div>
+              <div className="text-[9px] text-white/60">Manual entry</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-[10px] text-accent font-medium">Synced</span>
+          </div>
         </div>
       </div>
     </div>
@@ -310,7 +521,7 @@ const ValueProps = () => {
             >
               {/* Content */}
               <div className="space-y-1 md:space-y-3 md:flex-1">
-                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-foreground md:text-white tracking-tight">
+                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-accent md:text-white tracking-tight">
                   {value.metric}
                 </div>
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground md:text-white">
