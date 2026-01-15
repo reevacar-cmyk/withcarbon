@@ -76,14 +76,16 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Fixed height activity feed with smooth push-down animations */}
+          {/* Fixed height activity feed - new card slides in, others transition down */}
           <div className="p-4 h-[240px] overflow-hidden relative">
             <div className="flex flex-col gap-2">
               {visibleActivities.map((activity, index) => (
                 <div 
                   key={activity.id}
-                  className="animate-[heroCardPushDown_0.5s_ease-out]"
-                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={index === 0 
+                    ? 'animate-[heroCardSlideIn_0.5s_ease-out]' 
+                    : 'animate-[heroCardShiftDown_0.5s_ease-out]'
+                  }
                 >
                   {/* All cards same size - top card uses darker bone white */}
                   <div className={`py-2.5 px-3 rounded-xl flex items-start gap-2 ${
