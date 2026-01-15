@@ -1,10 +1,10 @@
 import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Count-up animation component
-const CountUpMetric = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
+// Count-up animation component - resets when out of view
+const CountUpMetric = ({ value }: { value: string }) => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   
   // Extract number from value string (e.g., "37%" -> 37, "18hrs" -> 18)
@@ -14,8 +14,13 @@ const CountUpMetric = ({ value, suffix = "" }: { value: string; suffix?: string 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !hasStarted) {
-          setHasStarted(true);
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        } else {
+          // Reset when out of view
+          setIsInView(false);
+          setCount(0);
         }
       },
       { threshold: 0.3 }
@@ -26,12 +31,12 @@ const CountUpMetric = ({ value, suffix = "" }: { value: string; suffix?: string 
     }
 
     return () => observer.disconnect();
-  }, [hasStarted]);
+  }, []);
 
   useEffect(() => {
-    if (!hasStarted) return;
+    if (!isInView) return;
 
-    const duration = 600;
+    const duration = 1000; // Slower animation
     const startTime = Date.now();
     
     const animate = () => {
@@ -50,7 +55,7 @@ const CountUpMetric = ({ value, suffix = "" }: { value: string; suffix?: string 
     };
     
     requestAnimationFrame(animate);
-  }, [hasStarted, numericValue]);
+  }, [isInView, numericValue]);
 
   return (
     <div ref={ref}>
