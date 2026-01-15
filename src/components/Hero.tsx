@@ -112,9 +112,9 @@ const Hero = () => {
             {/* Mobile: Tertiary callout badge */}
             <div className="md:hidden flex items-center justify-center gap-2 fade-in">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
-                <span className="px-2 py-0.5 rounded bg-accent text-background text-xs font-medium">NEW</span>
-                <span className="text-muted-foreground">AI-powered operations</span>
-                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
+                <span className="text-foreground">AI-powered operations</span>
+                <ArrowRight className="w-3.5 h-3.5 text-foreground" />
               </span>
             </div>
             
@@ -133,7 +133,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
-              <Button onClick={scrollToPartnerForm} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
+              <Button onClick={scrollToPartnerForm} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
             </div>
