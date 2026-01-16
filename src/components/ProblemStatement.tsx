@@ -8,10 +8,10 @@ const ProblemStatement = () => {
         <div className="md:hidden">
           {/* Section label */}
           <div className="mb-3 fade-in flex items-center gap-2">
-            <div className="w-5 h-5 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center">
-              <AlertTriangle className="w-3 h-3 text-red-500" />
+            <div className="w-5 h-5 rounded-sm bg-muted border border-border flex items-center justify-center">
+              <AlertTriangle className="w-3 h-3 text-muted-foreground" />
             </div>
-            <span className="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase font-medium">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase font-medium">
               THE PROBLEM
             </span>
           </div>
@@ -19,7 +19,7 @@ const ProblemStatement = () => {
           {/* Bold headline */}
           <h2 className="text-[32px] font-bold leading-[0.95] tracking-tight fade-in mb-2" style={{ animationDelay: '0.1s' }}>
             You're leaving money<br />
-            <span className="text-red-500">on the table.</span>
+            on the table.
           </h2>
           
           <p className="text-sm text-muted-foreground mb-6 fade-in" style={{ animationDelay: '0.15s' }}>
