@@ -1,4 +1,4 @@
-import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus } from "lucide-react";
+import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock } from "lucide-react";
 
 const ProblemStatement = () => {
   return (
@@ -26,10 +26,10 @@ const ProblemStatement = () => {
             Every day, revenue slips through the cracks.
           </p>
 
-          {/* Two bold problem cards */}
+          {/* Three problem cards */}
           <div className="space-y-3">
             {/* Card 1: Missed Leads */}
-            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-red-500/[0.03]" style={{ animationDelay: '0.2s' }}>
+            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.2s' }}>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <PhoneMissed className="w-4 h-4 text-red-500" />
@@ -55,7 +55,7 @@ const ProblemStatement = () => {
             </div>
 
             {/* Card 2: Untapped Customers */}
-            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-red-500/[0.03]" style={{ animationDelay: '0.3s' }}>
+            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.3s' }}>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Users className="w-4 h-4 text-red-500" />
@@ -79,10 +79,36 @@ const ProblemStatement = () => {
                 </div>
               </div>
             </div>
+
+            {/* Card 3: Time Wasted on Admin */}
+            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.4s' }}>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Clock className="w-4 h-4 text-red-500" />
+                  <span className="font-mono text-[10px] tracking-[0.1em] text-red-500 uppercase font-medium">
+                    Time Lost to Admin
+                  </span>
+                </div>
+                
+                <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
+                  10hrs
+                </div>
+                <div className="text-xs text-muted-foreground mb-4">
+                  wasted per week
+                </div>
+                
+                {/* Simple breakdown */}
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] font-mono text-muted-foreground">
+                  <span>Logging into CRM</span>
+                  <span>Tracking customers</span>
+                  <span className="text-red-500">→ Not growing</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Bottom line */}
-          <div className="mt-4 text-center fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="mt-4 text-center fade-in" style={{ animationDelay: '0.5s' }}>
             <span className="text-xs text-muted-foreground">
               And it happens while you're busy doing the actual work.
             </span>
