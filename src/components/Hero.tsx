@@ -195,7 +195,7 @@ const Hero = () => {
             <div className="md:hidden flex items-center justify-center gap-2 fade-in">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
                 <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
-                <span className="text-foreground">AI-powered operations</span>
+                <span className="text-foreground">Designed for detailers</span>
               </span>
             </div>
             
