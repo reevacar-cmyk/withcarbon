@@ -6,12 +6,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const formSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters")
 });
 
 const DesignPartnerForm = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -19,7 +17,7 @@ const DesignPartnerForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const validation = formSchema.safeParse({ name, email });
+    const validation = formSchema.safeParse({ email });
     if (!validation.success) {
       toast({
         title: "Invalid input",
@@ -33,7 +31,7 @@ const DesignPartnerForm = () => {
 
     const { error } = await supabase
       .from("design_partners")
-      .insert([{ name: validation.data.name, email: validation.data.email }]);
+      .insert([{ name: "", email: validation.data.email }]);
 
     setIsSubmitting(false);
 
@@ -57,7 +55,6 @@ const DesignPartnerForm = () => {
       title: "You're in!",
       description: "We'll reach out soon with next steps.",
     });
-    setName("");
     setEmail("");
   };
 
@@ -120,15 +117,6 @@ const DesignPartnerForm = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4 fade-in fade-in-delay-2 max-w-md mx-auto">
           <Input
-            type="text"
-            placeholder="Your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-[hsl(40_20%_85%)] md:focus:border-accent"
-            required
-            maxLength={100}
-          />
-          <Input
             type="email"
             placeholder="Your email"
             value={email}
@@ -142,7 +130,7 @@ const DesignPartnerForm = () => {
             disabled={isSubmitting}
             className="w-full bg-[hsl(40_20%_85%)] hover:bg-[hsl(40_20%_80%)] text-[hsl(40_15%_15%)] md:bg-accent md:hover:bg-accent/90 md:text-accent-foreground font-semibold h-12 text-base"
           >
-            {isSubmitting ? "Submitting..." : "Apply to become a design partner"}
+            {isSubmitting ? "Submitting..." : "Book a demo"}
           </Button>
           <p className="text-[11px] text-white/40 text-center">
             We'll reach out within 48 hours to schedule your first call.

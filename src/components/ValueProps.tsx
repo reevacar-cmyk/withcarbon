@@ -291,10 +291,10 @@ const ValueProps = () => {
             </div>
           </div>
           
-          {/* Result */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent rounded-sm shadow-sm">
-            <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
-            <span className="text-xs font-mono text-accent-foreground">Rebooked Thursday</span>
+          {/* Result - inline text instead of card */}
+          <div className="flex items-center justify-center gap-2 mt-2">
+            <CheckCircle className="w-3.5 h-3.5 text-accent" />
+            <span className="text-xs font-mono font-bold text-accent">Rebooked Thursday</span>
           </div>
         </div>
         
