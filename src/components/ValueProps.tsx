@@ -170,7 +170,8 @@ const ValueProps = () => {
   // Animated Retention Visual with cycling customer cards
   const RetentionVisual = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
+    const [nextIndex, setNextIndex] = useState(1);
+    const [isExiting, setIsExiting] = useState(false);
     const [showFollowup, setShowFollowup] = useState(false);
     
     const customers = [
@@ -188,15 +189,16 @@ const ValueProps = () => {
         // Show followup sliding up
         setShowFollowup(true);
         
-        // After followup is visible, start exit animation
+        // After followup is visible, start exit animation (new card pushes from right)
         setTimeout(() => {
-          setIsAnimating(true);
+          setNextIndex((currentIndex + 1) % customers.length);
+          setIsExiting(true);
           
-          // After exit animation, switch to next card
+          // After exit animation completes, switch cards
           setTimeout(() => {
             setCurrentIndex((prev) => (prev + 1) % customers.length);
             setShowFollowup(false);
-            setIsAnimating(false);
+            setIsExiting(false);
           }, 600);
         }, 1800);
       };
@@ -213,9 +215,10 @@ const ValueProps = () => {
         clearTimeout(initialDelay);
         clearInterval(interval);
       };
-    }, [customers.length]);
+    }, [currentIndex, customers.length]);
     
     const customer = customers[currentIndex];
+    const nextCustomer = customers[nextIndex];
     
     return (
       <div className="relative w-full h-full overflow-hidden">
@@ -230,49 +233,82 @@ const ValueProps = () => {
             </div>
           </div>
           
-          {/* Animated card container */}
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
-            <div 
-              className={`w-full max-w-[260px] p-4 bg-background border border-border rounded-sm transition-all duration-500 ease-out ${
-                isAnimating ? 'opacity-0 -translate-x-20 scale-90' : 'opacity-100 translate-x-0 scale-100'
-              }`}
-            >
-              {/* Customer header */}
-              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
-                <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
-                  {customer.initials}
-                </div>
-                <div>
-                  <div className="text-xs font-medium text-foreground">{customer.name}</div>
-                  <div className="text-[10px] font-mono text-muted-foreground">{customer.car}</div>
-                </div>
-              </div>
-              
-              {/* Data points */}
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="font-mono text-muted-foreground uppercase">Last service</span>
-                  <span className="text-foreground">{customer.lastService}</span>
-                </div>
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="font-mono text-muted-foreground uppercase">LTV</span>
-                  <span className="text-foreground">{customer.ltv}</span>
-                </div>
-              </div>
-              
-              {/* AI action - slides up */}
+          {/* Animated card container - uses relative positioning for stacking */}
+          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative">
+            <div className="relative w-full max-w-[260px] h-[200px]">
+              {/* Current card - exits left */}
               <div 
-                className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
-                  showFollowup 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
+                className={`absolute inset-0 p-4 bg-background border border-border rounded-sm transition-all duration-500 ease-out ${
+                  isExiting ? 'opacity-0 -translate-x-full scale-95' : 'opacity-100 translate-x-0 scale-100'
                 }`}
               >
-                <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
-                  <Send className="w-3 h-3" />
-                  AI Follow-up Sent
+                {/* Customer header */}
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
+                  <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
+                    {customer.initials}
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-foreground">{customer.name}</div>
+                    <div className="text-[10px] font-mono text-muted-foreground">{customer.car}</div>
+                  </div>
                 </div>
-                <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+                
+                {/* Data points */}
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-muted-foreground uppercase">Last service</span>
+                    <span className="text-foreground">{customer.lastService}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-muted-foreground uppercase">LTV</span>
+                    <span className="text-foreground">{customer.ltv}</span>
+                  </div>
+                </div>
+                
+                {/* AI action - slides up */}
+                <div 
+                  className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
+                    showFollowup 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
+                    <Send className="w-3 h-3" />
+                    AI Follow-up Sent
+                  </div>
+                  <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+                </div>
+              </div>
+              
+              {/* Next card - enters from right */}
+              <div 
+                className={`absolute inset-0 p-4 bg-background border border-border rounded-sm transition-all duration-500 ease-out ${
+                  isExiting ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-full scale-95'
+                }`}
+              >
+                {/* Customer header */}
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
+                  <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
+                    {nextCustomer.initials}
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-foreground">{nextCustomer.name}</div>
+                    <div className="text-[10px] font-mono text-muted-foreground">{nextCustomer.car}</div>
+                  </div>
+                </div>
+                
+                {/* Data points */}
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-muted-foreground uppercase">Last service</span>
+                    <span className="text-foreground">{nextCustomer.lastService}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-muted-foreground uppercase">LTV</span>
+                    <span className="text-foreground">{nextCustomer.ltv}</span>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -312,45 +348,76 @@ const ValueProps = () => {
             </div>
           </div>
           
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
-            <div 
-              className={`w-full max-w-[280px] p-4 bg-white border border-white/20 rounded-sm transition-all duration-500 ease-out ${
-                isAnimating ? 'opacity-0 -translate-x-20 scale-90' : 'opacity-100 translate-x-0 scale-100'
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
-                <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
-                  {customer.initials}
-                </div>
-                <div>
-                  <div className="text-xs font-medium text-neutral-900">{customer.name}</div>
-                  <div className="text-[10px] font-mono text-neutral-500">{customer.car}</div>
-                </div>
-              </div>
-              
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="font-mono text-neutral-400 uppercase">Last service</span>
-                  <span className="text-neutral-900">{customer.lastService}</span>
-                </div>
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="font-mono text-neutral-400 uppercase">LTV</span>
-                  <span className="text-neutral-900">{customer.ltv}</span>
-                </div>
-              </div>
-              
+          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative">
+            <div className="relative w-full max-w-[280px] h-[220px]">
+              {/* Current card - exits left */}
               <div 
-                className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
-                  showFollowup 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
+                className={`absolute inset-0 p-4 bg-white border border-white/20 rounded-sm transition-all duration-500 ease-out ${
+                  isExiting ? 'opacity-0 -translate-x-full scale-95' : 'opacity-100 translate-x-0 scale-100'
                 }`}
               >
-                <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
-                  <Send className="w-3 h-3" />
-                  AI Follow-up
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
+                  <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
+                    {customer.initials}
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-neutral-900">{customer.name}</div>
+                    <div className="text-[10px] font-mono text-neutral-500">{customer.car}</div>
+                  </div>
                 </div>
-                <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-neutral-400 uppercase">Last service</span>
+                    <span className="text-neutral-900">{customer.lastService}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-neutral-400 uppercase">LTV</span>
+                    <span className="text-neutral-900">{customer.ltv}</span>
+                  </div>
+                </div>
+                
+                <div 
+                  className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
+                    showFollowup 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
+                    <Send className="w-3 h-3" />
+                    AI Follow-up
+                  </div>
+                  <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+                </div>
+              </div>
+              
+              {/* Next card - enters from right */}
+              <div 
+                className={`absolute inset-0 p-4 bg-white border border-white/20 rounded-sm transition-all duration-500 ease-out ${
+                  isExiting ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-full scale-95'
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
+                  <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
+                    {nextCustomer.initials}
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-neutral-900">{nextCustomer.name}</div>
+                    <div className="text-[10px] font-mono text-neutral-500">{nextCustomer.car}</div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-neutral-400 uppercase">Last service</span>
+                    <span className="text-neutral-900">{nextCustomer.lastService}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-neutral-400 uppercase">LTV</span>
+                    <span className="text-neutral-900">{nextCustomer.ltv}</span>
+                  </div>
+                </div>
               </div>
             </div>
             
