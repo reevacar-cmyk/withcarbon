@@ -1,13 +1,15 @@
 import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
-// Dust particle component for Thanos snap effect
-const DustParticle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
+// Dust particle component for Thanos snap effect with varying sizes
+const DustParticle = ({ delay, x, y, size }: { delay: number; x: number; y: number; size: number }) => (
   <div
-    className="absolute w-1 h-1 rounded-full bg-[hsl(0_100%_50%)] opacity-0"
+    className="absolute rounded-full bg-[hsl(0_100%_50%)] opacity-0"
     style={{
       left: `${x}%`,
       top: `${y}%`,
+      width: `${size}px`,
+      height: `${size}px`,
       animation: `dustFloat 1.5s ease-out ${delay}s forwards`,
     }}
   />
@@ -19,18 +21,45 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isDisintegrating, setIsDisintegrating] = useState(false);
-  const [hasDisintegrated, setHasDisintegrated] = useState(false);
+  const [isReappearing, setIsReappearing] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const disintegrateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reappearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const cycleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Generate random dust particles
-  const dustParticles = Array.from({ length: 30 }, (_, i) => ({
+  // Generate random dust particles with varying sizes - memoized to prevent regeneration
+  const dustParticles = useMemo(() => Array.from({ length: 80 }, (_, i) => ({
     id: i,
-    delay: Math.random() * 0.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-  }));
+    delay: Math.random() * 0.8,
+    x: Math.random() * 120 - 10,
+    y: Math.random() * 120 - 10,
+    size: Math.random() * 4 + 1, // 1px to 5px
+  })), []);
+  
+  const startDisintegrationCycle = () => {
+    // Start disintegration
+    setIsDisintegrating(true);
+    setIsReappearing(false);
+    
+    // After 2s, hide completely and start reappear timer
+    reappearTimeoutRef.current = setTimeout(() => {
+      // After 3s hidden, reappear
+      setTimeout(() => {
+        setIsDisintegrating(false);
+        setIsReappearing(true);
+        
+        // After reappear animation completes, reset and schedule next cycle
+        setTimeout(() => {
+          setIsReappearing(false);
+          // Schedule next disintegration in 6 seconds
+          cycleTimeoutRef.current = setTimeout(() => {
+            startDisintegrationCycle();
+          }, 6000);
+        }, 1000);
+      }, 3000);
+    }, 2000);
+  };
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,30 +70,26 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
             clearTimeout(resetTimeoutRef.current);
             resetTimeoutRef.current = null;
           }
-          if (disintegrateTimeoutRef.current) {
-            clearTimeout(disintegrateTimeoutRef.current);
-          }
           setIsInView(true);
           
-          // Start disintegration after 6 seconds
-          if (!hasDisintegrated) {
+          // Start first disintegration cycle after 6 seconds
+          if (!isDisintegrating && !isReappearing) {
             disintegrateTimeoutRef.current = setTimeout(() => {
-              setIsDisintegrating(true);
-              setTimeout(() => {
-                setHasDisintegrated(true);
-              }, 2000);
+              startDisintegrationCycle();
             }, 6000);
           }
         } else {
           setIsInView(false);
-          if (disintegrateTimeoutRef.current) {
-            clearTimeout(disintegrateTimeoutRef.current);
-          }
+          // Clear all timers
+          if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
+          if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
+          if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
+          
           resetTimeoutRef.current = setTimeout(() => {
             setCount(0);
             setHasAnimated(false);
             setIsDisintegrating(false);
-            setHasDisintegrated(false);
+            setIsReappearing(false);
           }, 10000);
         }
       },
@@ -77,14 +102,12 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
 
     return () => {
       observer.disconnect();
-      if (resetTimeoutRef.current) {
-        clearTimeout(resetTimeoutRef.current);
-      }
-      if (disintegrateTimeoutRef.current) {
-        clearTimeout(disintegrateTimeoutRef.current);
-      }
+      if (resetTimeoutRef.current) clearTimeout(resetTimeoutRef.current);
+      if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
+      if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
+      if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
     };
-  }, [hasDisintegrated]);
+  }, []);
 
   useEffect(() => {
     if (!isInView || hasAnimated) return;
@@ -116,14 +139,14 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
       <span 
         className={`transition-all duration-1000 ${
           isDisintegrating ? 'opacity-0 blur-sm translate-x-4 -translate-y-2' : ''
-        } ${hasDisintegrated ? 'hidden' : ''}`}
+        } ${isReappearing ? 'animate-[fadeIn_0.8s_ease-out_forwards]' : ''}`}
       >
         {prefix}{count}{suffix}
       </span>
-      {isDisintegrating && !hasDisintegrated && (
+      {isDisintegrating && (
         <span className="absolute inset-0 overflow-visible pointer-events-none">
           {dustParticles.map((particle) => (
-            <DustParticle key={particle.id} delay={particle.delay} x={particle.x} y={particle.y} />
+            <DustParticle key={particle.id} delay={particle.delay} x={particle.x} y={particle.y} size={particle.size} />
           ))}
         </span>
       )}
