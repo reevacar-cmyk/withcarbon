@@ -221,7 +221,7 @@ const ProblemStatement = () => {
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={34} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
-              <div className="text-xs text-foreground/70 mb-4">
+              <div className="text-xs text-foreground/70 mb-1.5">
                 lost per year
               </div>
               
@@ -245,7 +245,7 @@ const ProblemStatement = () => {
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={175} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
-              <div className="text-xs text-foreground/70 mb-4">
+              <div className="text-xs text-foreground/70 mb-1.5">
                 sitting untapped
               </div>
               
@@ -269,7 +269,7 @@ const ProblemStatement = () => {
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={14} suffix="hrs+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
-              <div className="text-xs text-foreground/70 mb-4">
+              <div className="text-xs text-foreground/70 mb-1.5">
                 wasted per week
               </div>
               
