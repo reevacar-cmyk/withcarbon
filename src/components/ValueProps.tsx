@@ -187,9 +187,9 @@ const ValueProps = () => {
     useEffect(() => {
       // Timeline per card:
       // 0ms: Card enters from right (entering phase)
-      // 600ms: Followup slides up (slower animation - 800ms duration)
-      // 2000ms: Rebooked appears (after followup fully visible)
-      // 4200ms: Move to next card (2.2s after rebooked)
+      // 500ms: Followup slides up
+      // 1500ms: Rebooked appears (1s after followup)
+      // 3500ms: Move to next card (2s after rebooked)
       
       let followupTimeout: NodeJS.Timeout;
       let rebookedTimeout: NodeJS.Timeout;
@@ -201,19 +201,19 @@ const ValueProps = () => {
       // After card settles, show followup
       followupTimeout = setTimeout(() => {
         setShowFollowup(true);
-      }, 600);
+      }, 500);
       
-      // Show rebooked after followup animation completes (800ms) + small pause
+      // Show rebooked 1 second after followup
       rebookedTimeout = setTimeout(() => {
         setShowRebooked(true);
-      }, 2000);
+      }, 1500);
       
-      // After 2.2 seconds with rebooked, transition to next card
+      // After 2 seconds with rebooked, transition to next card
       nextCardTimeout = setTimeout(() => {
         setShowFollowup(false);
         setShowRebooked(false);
         setCurrentIndex((prev) => (prev + 1) % customers.length);
-      }, 4200);
+      }, 3500);
       
       return () => {
         clearTimeout(followupTimeout);
