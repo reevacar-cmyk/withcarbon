@@ -189,10 +189,12 @@ const ValueProps = () => {
       // 0ms: Card enters from right (entering phase)
       // 500ms: Followup slides up
       // 1500ms: Rebooked appears (1s after followup)
-      // 3500ms: Move to next card (2s after rebooked)
+      // 3200ms: Rebooked disappears
+      // 3700ms: Move to next card (500ms after rebooked disappears)
       
       let followupTimeout: NodeJS.Timeout;
       let rebookedTimeout: NodeJS.Timeout;
+      let hideRebookedTimeout: NodeJS.Timeout;
       let nextCardTimeout: NodeJS.Timeout;
       let clearPrevTimeout: NodeJS.Timeout;
       
@@ -206,22 +208,27 @@ const ValueProps = () => {
         setShowRebooked(true);
       }, 1500);
       
-      // After 2 seconds with rebooked, transition to next card
+      // Hide rebooked before card transition
+      hideRebookedTimeout = setTimeout(() => {
+        setShowRebooked(false);
+      }, 3200);
+      
+      // Transition to next card after rebooked disappears
       nextCardTimeout = setTimeout(() => {
         setShowFollowup(false);
-        setShowRebooked(false);
         setPrevIndex(currentIndex);
         setCurrentIndex((prev) => (prev + 1) % customers.length);
-      }, 3500);
+      }, 3700);
       
       // Clear previous card after exit animation completes
       clearPrevTimeout = setTimeout(() => {
         setPrevIndex(null);
-      }, 4000);
+      }, 4200);
       
       return () => {
         clearTimeout(followupTimeout);
         clearTimeout(rebookedTimeout);
+        clearTimeout(hideRebookedTimeout);
         clearTimeout(nextCardTimeout);
         clearTimeout(clearPrevTimeout);
       };
