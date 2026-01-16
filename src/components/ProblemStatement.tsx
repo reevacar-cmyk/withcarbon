@@ -189,8 +189,8 @@ const ProblemStatement = () => {
         <div className="md:hidden">
           {/* Section label */}
           <div className="mb-3 fade-in flex items-center gap-2">
-            <div className="w-5 h-5 rounded-sm bg-[hsl(0_100%_50%)]/10 border border-[hsl(0_100%_50%)]/30 flex items-center justify-center">
-              <AlertTriangle className="w-3 h-3 text-[hsl(0_100%_50%)]" />
+            <div className="w-5 h-5 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+              <AlertTriangle className="w-3 h-3 text-red-500" />
             </div>
             <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase font-medium">
               THE PROBLEM
