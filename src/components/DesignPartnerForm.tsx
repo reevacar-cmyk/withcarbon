@@ -46,21 +46,21 @@ const DesignPartnerForm = () => {
         </div>
 
         {/* What you get - with shiny icons */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10 md:mb-12 fade-in fade-in-delay-1">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-10 mb-12 md:mb-14 fade-in fade-in-delay-1">
           {benefits.map((item, i) => (
             <div 
               key={i} 
-              className="p-5 md:p-6 bg-white/5 border border-white/10 rounded-xl text-center flex flex-col items-center"
+              className="text-center flex flex-col items-center"
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 mb-4 relative">
+              <div className="w-32 h-32 md:w-40 md:h-40 mb-5 relative">
                 <img 
                   src={item.icon} 
                   alt={item.title}
-                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,200,100,0.3)]"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <h3 className="text-sm font-semibold text-white mb-1.5">{item.title}</h3>
-              <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{item.title}</h3>
+              <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">{item.description}</p>
             </div>
           ))}
         </div>
