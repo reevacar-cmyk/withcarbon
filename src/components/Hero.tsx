@@ -13,181 +13,153 @@ const Hero = () => {
     
     return (
       <div className="relative min-h-screen bg-black overflow-hidden">
-        {/* Dashboard visuals in background */}
-        <div className="absolute inset-0 z-0">
-          {/* Grid pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.03]" 
-            style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
-              backgroundSize: '50px 50px'
-            }} 
-          />
-          
-          {/* Revenue Chart Card - Top Left - repositioned */}
-          <div 
-            className="absolute top-28 left-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-70 hero-visual-card"
-            style={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
-            }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[9px] text-white/40 uppercase tracking-wider">Revenue</span>
-              <TrendingUp className="w-3 h-3 text-accent" />
-            </div>
-            <div className="text-base font-bold text-white mb-2">$24,580</div>
-            <div className="h-12 flex items-end gap-0.5">
-              {[40, 55, 45, 60, 75, 65, 80, 90, 85, 95, 88, 100].map((h, i) => (
-                <div 
-                  key={i} 
-                  className="flex-1 bg-gradient-to-t from-accent/30 to-accent/70 rounded-t"
-                  style={{ height: `${h}%` }}
-                />
-              ))}
-            </div>
-          </div>
-          
-          {/* Calendar Card - Top Right - repositioned */}
-          <div 
-            className="absolute top-28 right-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-60 hero-visual-card"
-            style={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
-            }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[9px] text-white/40 uppercase tracking-wider">Calendar</span>
-              <Calendar className="w-3 h-3 text-accent" />
-            </div>
-            <div className="grid grid-cols-7 gap-0.5 text-[7px] text-white/25 mb-1">
-              {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-                <div key={i} className="text-center">{d}</div>
-              ))}
-            </div>
-            <div className="grid grid-cols-7 gap-0.5">
-              {Array.from({ length: 21 }, (_, i) => (
-                <div 
-                  key={i} 
-                  className={`aspect-square rounded-sm text-[7px] flex items-center justify-center ${
-                    i === 11 ? 'bg-accent text-white' : 
-                    [5, 9, 14, 18].includes(i) ? 'bg-accent/30 text-white/60' : 
-                    'text-white/25'
-                  }`}
-                >
-                  {i + 1}
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* SMS Conversation Card - Middle Left */}
-          <div 
-            className="absolute top-[220px] left-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-55 hero-visual-card"
-            style={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
-            }}
-          >
-            <div className="flex items-center gap-1.5 mb-2">
-              <MessageSquare className="w-2.5 h-2.5 text-accent" />
-              <span className="text-[9px] text-white/40 uppercase tracking-wider">AI SMS</span>
-            </div>
-            <div className="space-y-1.5">
-              <div className="flex justify-end">
-                <div className="bg-accent/20 rounded-md rounded-br-sm px-2 py-1 max-w-[90%]">
-                  <p className="text-[8px] text-white/70">What day works best?</p>
+        {/* Dashboard visuals in background - arranged like a dashboard grid */}
+        <div className="absolute inset-0 z-0 px-4 pt-24">
+          {/* Dashboard grid container */}
+          <div className="grid grid-cols-12 gap-3 max-w-[400px] mx-auto">
+            {/* Large Revenue Chart - spans 7 cols, 2 rows height */}
+            <div 
+              className="col-span-7 row-span-2 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              style={{ minHeight: '140px' }}
+            >
+              {/* Shiny border overlay - positioned at top-right where light touches */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.4) 48%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 52%, transparent 60%)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor',
+                  padding: '1px',
+                }}
+              />
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[9px] text-white/50 px-1.5 py-0.5 bg-white/10 rounded">Balance</span>
+                  <span className="text-[9px] text-white/30">Card Spend</span>
                 </div>
               </div>
-              <div className="flex justify-start">
-                <div className="bg-white/10 rounded-md rounded-bl-sm px-2 py-1 max-w-[90%]">
-                  <p className="text-[8px] text-white/50">Saturday morning?</p>
-                </div>
+              <div className="text-xl font-bold text-white mb-1">$1,652,342.90</div>
+              <div className="text-[9px] text-white/40 mb-3">Current balance</div>
+              <div className="h-16 flex items-end">
+                {/* Chart line visualization */}
+                <svg className="w-full h-full" viewBox="0 0 200 60" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.5" />
+                      <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path 
+                    d="M0,45 Q20,40 40,42 T80,35 T120,25 T160,30 T200,20" 
+                    fill="none" 
+                    stroke="hsl(var(--accent))" 
+                    strokeWidth="2"
+                  />
+                  <path 
+                    d="M0,45 Q20,40 40,42 T80,35 T120,25 T160,30 T200,20 L200,60 L0,60 Z" 
+                    fill="url(#chartGradient)"
+                  />
+                </svg>
               </div>
-              <div className="flex justify-end">
-                <div className="bg-accent/20 rounded-md rounded-br-sm px-2 py-1 max-w-[90%]">
-                  <p className="text-[8px] text-white/70">You're booked! ✓</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Activity Stats Card - Middle Right */}
-          <div 
-            className="absolute top-[220px] right-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-50 hero-visual-card"
-            style={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
-            }}
-          >
-            <div className="space-y-2.5">
-              <div>
-                <div className="text-[8px] text-white/35 uppercase">Calls Answered</div>
-                <div className="text-lg font-bold text-white">47</div>
-              </div>
-              <div>
-                <div className="text-[8px] text-white/35 uppercase">Bookings Today</div>
-                <div className="text-lg font-bold text-accent">12</div>
+              <div className="flex justify-between mt-2 text-[7px] text-white/30">
+                {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((d) => (
+                  <span key={d}>{d}</span>
+                ))}
               </div>
             </div>
-          </div>
-          
-          {/* Transaction List Card - Lower Full Width */}
-          <div 
-            className="absolute top-[340px] left-5 right-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-40 hero-visual-card"
-            style={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
-            }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[9px] text-white/40 uppercase tracking-wider">Recent Jobs</span>
-              <DollarSign className="w-3 h-3 text-accent" />
-            </div>
-            <div className="space-y-1">
-              {[
-                { name: "Mike R.", service: "Full Detail", amount: "+$280" },
-                { name: "Sarah K.", service: "Interior Clean", amount: "+$120" },
-              ].map((job, i) => (
-                <div key={i} className="flex items-center justify-between py-1 border-b border-white/5 last:border-0">
-                  <div>
-                    <div className="text-[9px] text-white/60">{job.name}</div>
-                    <div className="text-[8px] text-white/30">{job.service}</div>
+            
+            {/* Transactions Card - spans 5 cols, 2 rows */}
+            <div 
+              className="col-span-5 row-span-2 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              style={{ minHeight: '140px' }}
+            >
+              {/* Shiny border - top edge where light hits */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 3%, transparent 100%)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor',
+                  padding: '1px',
+                }}
+              />
+              <div className="text-[9px] text-white/40 mb-2">Transactions</div>
+              <div className="space-y-2">
+                {[
+                  { icon: 'a', name: 'Amazon Associates', amount: '-$7,890.00', color: 'text-white/60' },
+                  { icon: 'E', name: 'Etsy Partner Network', amount: '$34,993.71', color: 'text-emerald-400' },
+                  { icon: 'M', name: 'Meta Platforms Inc.', amount: '-$12,287.89', color: 'text-white/60' },
+                  { icon: 'A', name: 'Adobe Inc.', amount: '-$2,056.87', color: 'text-white/60' },
+                ].map((tx, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center text-[8px] text-white/50">{tx.icon}</div>
+                      <span className="text-[8px] text-white/60 truncate max-w-[60px]">{tx.name}</span>
+                    </div>
+                    <span className={`text-[8px] ${tx.color}`}>{tx.amount}</span>
                   </div>
-                  <span className="text-[10px] font-medium text-emerald-400">{job.amount}</span>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            
+            {/* Stats Table Card - full width */}
+            <div 
+              className="col-span-12 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+            >
+              {/* Left edge shiny border */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.3) 0%, transparent 2%, transparent 100%)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor',
+                  padding: '1px',
+                }}
+              />
+              <div className="flex text-[8px] text-white/40 mb-2 border-b border-white/10 pb-1">
+                <span className="flex-1">Card Name</span>
+                <span className="w-16 text-center">Group</span>
+                <span className="w-16 text-center">Spend Limits</span>
+                <span className="w-12 text-right">Status</span>
+              </div>
+              <div className="space-y-1.5">
+                {[
+                  { name: 'Primary Account', group: 'Marketing', limit: '$800,000', status: 'Active', statusColor: 'bg-emerald-500' },
+                  { name: 'Virtual Account', group: 'Marketing', limit: '$300,000', status: 'Active', statusColor: 'bg-emerald-500' },
+                  { name: 'Team Expenses', group: 'Operations', limit: 'No Limit', status: 'Paused', statusColor: 'bg-orange-500' },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-center text-[8px]">
+                    <span className="flex-1 text-white/60">{row.name}</span>
+                    <span className="w-16 text-center text-white/40">{row.group}</span>
+                    <span className="w-16 text-center text-white/50">{row.limit}</span>
+                    <div className="w-12 flex justify-end">
+                      <span className={`${row.statusColor} text-white text-[6px] px-1.5 py-0.5 rounded-full`}>{row.status}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          
-          {/* Strong Sweeping Light Beam */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, transparent 35%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.15) 48%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 52%, rgba(255,255,255,0.02) 60%, transparent 65%, transparent 100%)',
-              animation: 'lightBeamSweep 6s ease-in-out infinite',
-              transformOrigin: 'center center',
-            }}
-          />
-          
-          {/* Secondary beam for intensity */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, transparent 42%, rgba(255,255,255,0.1) 49%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.1) 51%, transparent 58%, transparent 100%)',
-              animation: 'lightBeamSweep 6s ease-in-out infinite',
-              transformOrigin: 'center center',
-            }}
-          />
-          
-          {/* Radial light source glow - stronger */}
-          <div 
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at center top, rgba(255,120,80,0.08) 0%, transparent 70%)',
-            }}
-          />
         </div>
+        
+        {/* Static diagonal light beam */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-[5]"
+          style={{
+            background: 'linear-gradient(135deg, transparent 0%, transparent 30%, rgba(255,255,255,0.02) 38%, rgba(255,255,255,0.08) 42%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.08) 48%, rgba(255,255,255,0.02) 52%, transparent 60%, transparent 100%)',
+          }}
+        />
+        
+        {/* Secondary intense light core */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-[5]"
+          style={{
+            background: 'linear-gradient(135deg, transparent 0%, transparent 42%, rgba(255,255,255,0.25) 44.5%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.25) 45.5%, transparent 48%, transparent 100%)',
+          }}
+        />
         
         {/* Gradient fade for text readability - stronger at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-black via-black/95 to-transparent z-10 pointer-events-none" />
