@@ -170,9 +170,9 @@ const ValueProps = () => {
   // Animated Retention Visual with cycling customer cards
   const RetentionVisual = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [prevIndex, setPrevIndex] = useState<number | null>(null);
     const [showFollowup, setShowFollowup] = useState(false);
     const [showRebooked, setShowRebooked] = useState(false);
-    const [animationPhase, setAnimationPhase] = useState<'idle' | 'entering'>('idle');
     
     const customers = [
       { initials: "JD", name: "John D.", car: "Tesla Model 3", lastService: "45 days ago", ltv: "$1,440", followup: "Hey John! Your Model 3 is due for a detail..." },
@@ -194,9 +194,7 @@ const ValueProps = () => {
       let followupTimeout: NodeJS.Timeout;
       let rebookedTimeout: NodeJS.Timeout;
       let nextCardTimeout: NodeJS.Timeout;
-      
-      // Start with entering animation
-      setAnimationPhase('entering');
+      let clearPrevTimeout: NodeJS.Timeout;
       
       // After card settles, show followup
       followupTimeout = setTimeout(() => {
@@ -212,17 +210,25 @@ const ValueProps = () => {
       nextCardTimeout = setTimeout(() => {
         setShowFollowup(false);
         setShowRebooked(false);
+        setPrevIndex(currentIndex);
         setCurrentIndex((prev) => (prev + 1) % customers.length);
       }, 3500);
+      
+      // Clear previous card after exit animation completes
+      clearPrevTimeout = setTimeout(() => {
+        setPrevIndex(null);
+      }, 4000);
       
       return () => {
         clearTimeout(followupTimeout);
         clearTimeout(rebookedTimeout);
         clearTimeout(nextCardTimeout);
+        clearTimeout(clearPrevTimeout);
       };
     }, [currentIndex, customers.length]);
     
     const customer = customers[currentIndex];
+    const prevCustomer = prevIndex !== null ? customers[prevIndex] : null;
     
     return (
       <div className="relative w-full h-full overflow-hidden">
@@ -240,7 +246,47 @@ const ValueProps = () => {
           {/* Animated card container */}
           <div className="flex-1 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
             <div className="relative w-full max-w-[260px] h-[230px]">
-              {/* Single card that animates in from right on key change */}
+              {/* Previous card exiting to left */}
+              {prevCustomer && (
+                <div 
+                  key={`prev-${prevIndex}`}
+                  className="absolute inset-0 p-4 bg-background border border-border rounded-sm animate-[slideOutToLeft_0.5s_ease-out_forwards]"
+                >
+                  {/* Customer header */}
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border">
+                    <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
+                      {prevCustomer.initials}
+                    </div>
+                    <div>
+                      <div className="text-xs font-medium text-foreground">{prevCustomer.name}</div>
+                      <div className="text-[10px] font-mono text-muted-foreground">{prevCustomer.car}</div>
+                    </div>
+                  </div>
+                  
+                  {/* Data points */}
+                  <div className="space-y-2 mb-3">
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="font-mono text-muted-foreground uppercase">Last service</span>
+                      <span className="text-foreground">{prevCustomer.lastService}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="font-mono text-muted-foreground uppercase">LTV</span>
+                      <span className="text-foreground">{prevCustomer.ltv}</span>
+                    </div>
+                  </div>
+                  
+                  {/* AI action - visible on exiting card */}
+                  <div className="p-3 bg-accent rounded-sm opacity-100">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
+                      <Send className="w-3 h-3" />
+                      AI Follow-up Sent
+                    </div>
+                    <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{prevCustomer.followup}"</div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Current card entering from right */}
               <div 
                 key={currentIndex}
                 className="absolute inset-0 p-4 bg-background border border-border rounded-sm animate-[slideInFromRight_0.5s_ease-out]"
