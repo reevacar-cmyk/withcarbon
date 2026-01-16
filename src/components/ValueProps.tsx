@@ -158,18 +158,18 @@ const ValueProps = () => {
           {/* Flow diagram */}
           <div className="flex-1 flex flex-col items-center justify-center gap-0">
             {/* Lead card */}
-            <div className={`w-full max-w-[240px] p-4 bg-background border border-border rounded-sm shadow-sm transition-all duration-500 ${
+            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-background border border-border rounded-sm shadow-sm transition-all duration-500 ${
               showLead ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-muted border border-border rounded-sm flex items-center justify-center">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 bg-muted border border-border rounded-sm flex items-center justify-center flex-shrink-0">
                   {lead.source === 'google' ? <GoogleLogo /> : <MetaLogo />}
                 </div>
-                <div className="flex-1">
-                  <div className="text-[10px] font-mono text-muted-foreground uppercase">
+                <div className="flex-1 min-w-0">
+                  <div className="text-[9px] font-mono text-muted-foreground uppercase">
                     {lead.source === 'google' ? 'Google Ads' : 'Meta Ads'}
                   </div>
-                  <div className="text-xs text-foreground">"{lead.message}"</div>
+                  <div className="text-[11px] text-foreground leading-tight">"{lead.message}"</div>
                 </div>
               </div>
             </div>
@@ -206,18 +206,18 @@ const ValueProps = () => {
             </div>
             
             {/* Booked card */}
-            <div className={`w-full max-w-[240px] p-4 bg-accent border border-accent rounded-sm shadow-sm transition-all duration-500 ${
+            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-accent border border-accent rounded-sm shadow-sm transition-all duration-500 ${
               showBooked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-accent-foreground" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 bg-accent-foreground/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-3.5 h-3.5 text-accent-foreground" />
                 </div>
-                <div className="flex-1">
-                  <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Booked</div>
-                  <div className="text-xs text-accent-foreground">{booking}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[9px] font-mono text-accent-foreground/80 uppercase">Booked</div>
+                  <div className="text-[11px] text-accent-foreground leading-tight">{booking}</div>
                 </div>
-                <CheckCircle className="w-4 h-4 text-accent-foreground" />
+                <CheckCircle className="w-3.5 h-3.5 text-accent-foreground flex-shrink-0" />
               </div>
             </div>
           </div>
