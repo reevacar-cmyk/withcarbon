@@ -40,8 +40,7 @@ const DesignPartnerForm = () => {
             <span className="text-white md:text-accent">with us.</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto leading-relaxed">
-            We're looking for 100 detail businesses to join our design partner program — 
-            work directly with our team to build the AI platform you actually need.
+            Join 100 detail businesses shaping the AI platform you actually need.
           </p>
         </div>
 
@@ -52,7 +51,7 @@ const DesignPartnerForm = () => {
               key={i} 
               className="text-center flex flex-col items-center"
             >
-              <div className="w-72 h-72 md:w-[360px] md:h-[360px] mb-6 relative">
+              <div className="w-56 h-56 md:w-[270px] md:h-[270px] mb-6 relative">
                 <img 
                   src={item.icon} 
                   alt={item.title}
