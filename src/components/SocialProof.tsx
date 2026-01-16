@@ -81,7 +81,7 @@ const SocialProof = () => {
 
         {/* Desktop Layout - Bold dark card */}
         <div className="hidden md:block">
-          <div className="relative overflow-hidden rounded-2xl bg-[hsl(0_0%_8%)] p-10 lg:p-14">
+          <div className="relative overflow-hidden rounded-2xl bg-[hsl(0_0%_14%)] p-10 lg:p-14">
             {/* Subtle grid pattern */}
             <div className="absolute inset-0 opacity-[0.03]" style={{
               backgroundImage: 'linear-gradient(hsl(0 0% 100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%) 1px, transparent 1px)',

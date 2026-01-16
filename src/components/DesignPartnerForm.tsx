@@ -59,7 +59,7 @@ const DesignPartnerForm = () => {
   };
 
   return (
-    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-[hsl(0_0%_5%)]">
+    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-[hsl(0_0%_10%)]">
       <div className="container mx-auto max-w-2xl">
         {/* Grand header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-14 fade-in">
@@ -106,7 +106,7 @@ const DesignPartnerForm = () => {
         <div className="flex items-center justify-center gap-3 mb-8 fade-in fade-in-delay-1">
           <div className="flex -space-x-2">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-8 h-8 rounded-full bg-[hsl(40_20%_85%)]/20 md:bg-accent/20 border-2 border-[hsl(0_0%_5%)] flex items-center justify-center">
+              <div key={i} className="w-8 h-8 rounded-full bg-[hsl(40_20%_85%)]/20 md:bg-accent/20 border-2 border-[hsl(0_0%_10%)] flex items-center justify-center">
                 <span className="text-[10px] text-[hsl(40_20%_85%)] md:text-accent font-bold">✓</span>
               </div>
             ))}

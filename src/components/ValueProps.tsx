@@ -553,7 +553,7 @@ const ValueProps = () => {
   };
 
   return (
-    <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-background md:bg-[hsl(0_0%_5%)] md:text-[hsl(0_0%_100%)]">
+    <section className="pt-16 pb-12 md:py-20 px-[3px] md:px-8 lg:px-16 bg-background md:bg-[hsl(0_0%_10%)] md:text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile-only intro - builds from hero vision */}
         <div className="md:hidden pt-0 mb-6 text-center space-y-2">
@@ -596,7 +596,7 @@ const ValueProps = () => {
               </div>
               
               {/* Visual */}
-              <div className="relative h-[340px] md:h-80 lg:h-[420px] md:flex-1 bg-muted md:bg-[hsl(0_0%_8%)] md:border md:border-white/10 rounded-xl md:rounded-2xl overflow-hidden">
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] md:flex-1 bg-muted md:bg-[hsl(0_0%_14%)] md:border md:border-white/10 rounded-xl md:rounded-2xl overflow-hidden">
                 {renderVisual(value.visual)}
               </div>
             </div>
