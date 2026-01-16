@@ -101,20 +101,20 @@ const ProblemStatement = () => {
           </p>
 
           {/* Three problem items */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Item 1: Missed Leads */}
             <div className="fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center gap-2 mb-2">
-                <PhoneMissed className="w-4 h-4 text-red-500" />
+                <PhoneMissed className="w-4 h-4 text-foreground" />
                 <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Missed Leads
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
                 <CountUpMetric value={34} prefix="$" suffix="K+" />
               </div>
-              <div className="text-xs text-foreground/70 mb-3">
+              <div className="text-xs text-foreground/70 mb-4">
                 lost per year
               </div>
               
@@ -129,16 +129,16 @@ const ProblemStatement = () => {
             {/* Item 2: Untapped Customers */}
             <div className="fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-center gap-2 mb-2">
-                <Users className="w-4 h-4 text-red-500" />
+                <Users className="w-4 h-4 text-foreground" />
                 <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Past Customers Not Returning
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
                 <CountUpMetric value={175} prefix="$" suffix="K+" />
               </div>
-              <div className="text-xs text-foreground/70 mb-3">
+              <div className="text-xs text-foreground/70 mb-4">
                 sitting untapped
               </div>
               
@@ -153,16 +153,16 @@ const ProblemStatement = () => {
             {/* Item 3: Time Wasted on Admin */}
             <div className="fade-in" style={{ animationDelay: '0.4s' }}>
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-red-500" />
+                <Clock className="w-4 h-4 text-foreground" />
                 <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Time Lost to Admin
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
                 <CountUpMetric value={14} suffix="hrs+" />
               </div>
-              <div className="text-xs text-foreground/70 mb-3">
+              <div className="text-xs text-foreground/70 mb-4">
                 wasted per week
               </div>
               
