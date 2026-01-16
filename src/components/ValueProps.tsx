@@ -177,28 +177,28 @@ const ValueProps = () => {
             {/* Connector with pulse */}
             <div className="flex flex-col items-center relative">
               {/* Top line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible z-0">
+              <div className="w-px h-6 bg-border relative overflow-visible">
                 {pulsePhase === 'toCenter' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
               </div>
               
               {/* Center icon */}
-              <div className={`relative z-10 w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
-                pulsePhase === 'toCenter' || pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'bg-accent' : 'bg-muted border border-border'
+              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
+                pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'bg-accent' : 'bg-muted border border-border'
               }`}>
                 {pulsePhase === 'loading' ? (
                   <div className="w-3 h-3 border-2 border-accent-foreground border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toCenter' || pulsePhase === 'toBottom' || showBooked ? 'text-accent-foreground fill-accent-foreground' : 'text-muted-foreground'}`} />
+                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toBottom' || showBooked ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 )}
               </div>
-              <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'toCenter' || pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
+              <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
                 2s response
               </div>
               
               {/* Bottom line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible z-0">
+              <div className="w-px h-6 bg-border relative overflow-visible">
                 {pulsePhase === 'toBottom' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
