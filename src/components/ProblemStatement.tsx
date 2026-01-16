@@ -29,7 +29,7 @@ const ProblemStatement = () => {
           {/* Three problem cards */}
           <div className="space-y-3">
             {/* Card 1: Missed Leads */}
-            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.2s' }}>
+            <div className="rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.2s' }}>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <PhoneMissed className="w-4 h-4 text-red-500" />
@@ -55,7 +55,7 @@ const ProblemStatement = () => {
             </div>
 
             {/* Card 2: Untapped Customers */}
-            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.3s' }}>
+            <div className="rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.3s' }}>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Users className="w-4 h-4 text-red-500" />
@@ -81,7 +81,7 @@ const ProblemStatement = () => {
             </div>
 
             {/* Card 3: Time Wasted on Admin */}
-            <div className="border border-red-500/20 rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.4s' }}>
+            <div className="rounded-sm overflow-hidden fade-in bg-[hsl(40_15%_92%)]" style={{ animationDelay: '0.4s' }}>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Clock className="w-4 h-4 text-red-500" />
