@@ -42,13 +42,13 @@ const ValueProps = () => {
     const [showBooked, setShowBooked] = useState(false);
     
     const leads = [
-      { source: "google", message: "How much for a full detail?" },
-      { source: "meta", message: "Do you do ceramic coating?" },
-      { source: "google", message: "Can I get my truck detailed today?" },
-      { source: "meta", message: "What's your price for interior only?" },
-      { source: "google", message: "Are you available this weekend?" },
-      { source: "meta", message: "How long does a full detail take?" },
-      { source: "google", message: "Do you offer mobile detailing?" },
+      { source: "google", message: "Price for a detail?" },
+      { source: "meta", message: "Do ceramic coating?" },
+      { source: "google", message: "Available today?" },
+      { source: "meta", message: "Interior only price?" },
+      { source: "google", message: "Open this weekend?" },
+      { source: "meta", message: "Mobile detailing?" },
+      { source: "google", message: "Full detail cost?" },
     ];
     
     const bookings = [
