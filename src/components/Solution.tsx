@@ -83,10 +83,10 @@ const Solution = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_20%_85%)]" />
           <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.UNIFIED</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent rounded-sm text-foreground font-medium">CONNECTED</span>
+        <span className="text-[10px] px-2 py-0.5 bg-[hsl(40_20%_85%)] rounded-sm text-[hsl(40_15%_15%)] font-medium">CONNECTED</span>
       </div>
       
       {/* Data sources flowing into Carbon */}
@@ -103,8 +103,8 @@ const Solution = () => {
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-white/80">{source.label}</span>
                 <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  <span className="text-[8px] text-accent">{source.status}</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_20%_85%)]" />
+                  <span className="text-[8px] text-[hsl(40_20%_85%)]">{source.status}</span>
                 </div>
               </div>
             </div>
@@ -121,18 +121,18 @@ const Solution = () => {
         </div>
         
         {/* Carbon hub */}
-        <div className="p-4 bg-accent rounded-sm">
+        <div className="p-4 bg-[hsl(40_20%_85%)] rounded-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-foreground">C</span>
+              <span className="text-lg font-bold text-[hsl(40_15%_15%)]">C</span>
               <div>
-                <div className="text-[10px] text-foreground font-medium">Carbon</div>
-                <div className="text-[8px] text-foreground/70">Full context on every customer</div>
+                <div className="text-[10px] text-[hsl(40_15%_15%)] font-medium">Carbon</div>
+                <div className="text-[8px] text-[hsl(40_15%_25%)]">Full context on every customer</div>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-sm font-bold text-foreground">100%</div>
-              <div className="text-[8px] text-foreground/70">synced</div>
+              <div className="text-sm font-bold text-[hsl(40_15%_15%)]">100%</div>
+              <div className="text-[8px] text-[hsl(40_15%_25%)]">synced</div>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ const Solution = () => {
           ].map((stat, i) => (
             <div key={i} className="p-2 text-center bg-white/[0.02]">
               <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
-              <div className={`text-xs font-medium ${stat.isAccent ? 'text-accent' : 'text-white/80'}`}>{stat.value}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-[hsl(40_20%_85%)]' : 'text-white/80'}`}>{stat.value}</div>
             </div>
           ))}
         </div>
@@ -162,7 +162,7 @@ const Solution = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_20%_85%)]" />
           <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.MONITOR</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-white/10 border border-white/20 rounded-sm text-white/70">TRANSPARENT</span>
@@ -208,9 +208,9 @@ const Solution = () => {
             key={i} 
             className={`p-2 rounded-sm border ${
               item.status === 'URGENT' 
-                ? 'bg-accent/10 border-accent/30' 
+                ? 'bg-[hsl(40_20%_85%)]/10 border-[hsl(40_20%_85%)]/30' 
                 : item.status === 'BOOKED'
-                ? 'bg-accent/10 border-accent/30'
+                ? 'bg-[hsl(40_20%_85%)]/10 border-[hsl(40_20%_85%)]/30'
                 : 'bg-white/[0.02] border-white/10'
             }`}
           >
@@ -222,7 +222,7 @@ const Solution = () => {
               </div>
               <span className={`text-[8px] px-1.5 py-0.5 rounded-sm shrink-0 ${
                 item.status === 'URGENT' || item.status === 'BOOKED'
-                  ? 'bg-accent text-foreground' 
+                  ? 'bg-[hsl(40_20%_85%)] text-[hsl(40_15%_15%)]' 
                   : 'bg-white/10 text-white/60'
               }`}>
                 {item.status}
@@ -243,7 +243,7 @@ const Solution = () => {
           ].map((stat, i) => (
             <div key={i} className="p-2 text-center bg-white/[0.02]">
               <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
-              <div className={`text-xs font-medium ${stat.isAccent ? 'text-accent' : 'text-white/80'}`}>{stat.value}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-[hsl(40_20%_85%)]' : 'text-white/80'}`}>{stat.value}</div>
             </div>
           ))}
         </div>
