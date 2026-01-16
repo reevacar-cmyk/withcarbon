@@ -40,7 +40,7 @@ const DesignPartnerForm = () => {
             <span className="text-white md:text-accent">with us.</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto leading-relaxed">
-            We're partnering with up to 40 detailing businesses to shape our AI platform.
+            We're partnering with up to 40 detailing businesses.
           </p>
         </div>
 
