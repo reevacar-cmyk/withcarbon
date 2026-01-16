@@ -1,4 +1,4 @@
-import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock } from "lucide-react";
+import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock, Info } from "lucide-react";
 import { useState, useEffect, useRef, useMemo } from "react";
 
 // Dust particle component for Thanos snap effect with varying sizes
@@ -123,10 +123,50 @@ const CountUpMetric = ({
 const ProblemStatement = () => {
   const [isDisintegrating, setIsDisintegrating] = useState(false);
   const [isReappearing, setIsReappearing] = useState(false);
+  const [activeTooltip, setActiveTooltip] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const disintegrateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const reappearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const cycleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const calculations = [
+    "10+ leads/day × 37% missed × $250 avg job",
+    "1,000+ customers × 70% don't return × $250 avg job",
+    "Logging into CRM + Tracking customers → Not growing"
+  ];
+
+  const showTooltip = (index: number) => {
+    if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current);
+    setActiveTooltip(index);
+    tooltipTimeoutRef.current = setTimeout(() => {
+      setActiveTooltip(null);
+    }, 5000);
+  };
+
+  const hideTooltip = () => {
+    if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current);
+    setActiveTooltip(null);
+  };
+
+  // Close tooltip on any tap outside
+  useEffect(() => {
+    const handleClick = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.info-tooltip-trigger') && !target.closest('.info-tooltip')) {
+        hideTooltip();
+      }
+    };
+    
+    document.addEventListener('click', handleClick);
+    document.addEventListener('touchstart', handleClick);
+    
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+      if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current);
+    };
+  }, []);
 
   const startDisintegrationCycle = () => {
     setIsDisintegrating(true);
@@ -211,73 +251,106 @@ const ProblemStatement = () => {
           <div className="space-y-8">
             {/* Item 1: Missed Leads */}
             <div className="fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <PhoneMissed className="w-4 h-4 text-foreground" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
-                  Missed Leads
-                </span>
-              </div>
-              
-              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={34} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
-              </div>
-              <div className="text-xs text-foreground/70 mb-1.5">
-                lost per year
-              </div>
-              
-              {/* Simple breakdown */}
-              <div className="flex items-center gap-4 text-[10px] font-mono text-foreground/60">
-                <span>10+ leads/day</span>
-                <span className="text-foreground">× 37% missed</span>
-                <span>× $250</span>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <PhoneMissed className="w-4 h-4 text-foreground" />
+                    <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
+                      Missed Leads
+                    </span>
+                  </div>
+                  
+                  <div className="text-5xl font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-1">
+                    <CountUpMetric value={34} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
+                  </div>
+                  <div className="text-xs text-foreground/70">
+                    lost per year
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <button 
+                    className="info-tooltip-trigger p-2 rounded-full hover:bg-muted/50 transition-colors"
+                    onClick={(e) => { e.stopPropagation(); showTooltip(0); }}
+                  >
+                    <Info className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  {activeTooltip === 0 && (
+                    <div className="info-tooltip absolute right-0 top-full mt-2 w-48 p-3 bg-foreground text-background text-[11px] font-mono rounded-sm shadow-lg z-50">
+                      {calculations[0]}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Item 2: Untapped Customers */}
             <div className="fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <Users className="w-4 h-4 text-foreground" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
-                  Past Customers Not Returning
-                </span>
-              </div>
-              
-              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={175} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
-              </div>
-              <div className="text-xs text-foreground/70 mb-1.5">
-                sitting untapped
-              </div>
-              
-              {/* Simple breakdown */}
-              <div className="flex items-center gap-4 text-[10px] font-mono text-foreground/60">
-                <span>1,000+ customers</span>
-                <span className="text-foreground">× 70% don't return</span>
-                <span>× $250</span>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Users className="w-4 h-4 text-foreground" />
+                    <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
+                      Past Customers Not Returning
+                    </span>
+                  </div>
+                  
+                  <div className="text-5xl font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-1">
+                    <CountUpMetric value={175} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
+                  </div>
+                  <div className="text-xs text-foreground/70">
+                    sitting untapped
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <button 
+                    className="info-tooltip-trigger p-2 rounded-full hover:bg-muted/50 transition-colors"
+                    onClick={(e) => { e.stopPropagation(); showTooltip(1); }}
+                  >
+                    <Info className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  {activeTooltip === 1 && (
+                    <div className="info-tooltip absolute right-0 top-full mt-2 w-52 p-3 bg-foreground text-background text-[11px] font-mono rounded-sm shadow-lg z-50">
+                      {calculations[1]}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Item 3: Time Wasted on Admin */}
             <div className="fade-in" style={{ animationDelay: '0.4s' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-foreground" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
-                  Time Lost to Admin
-                </span>
-              </div>
-              
-              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={14} suffix="hrs+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
-              </div>
-              <div className="text-xs text-foreground/70 mb-1.5">
-                wasted per week
-              </div>
-              
-              {/* Simple breakdown */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] font-mono text-foreground/60">
-                <span>Logging into CRM</span>
-                <span>Tracking customers</span>
-                <span className="text-foreground">→ Not growing</span>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Clock className="w-4 h-4 text-foreground" />
+                    <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
+                      Time Lost to Admin
+                    </span>
+                  </div>
+                  
+                  <div className="text-5xl font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-1">
+                    <CountUpMetric value={14} suffix="hrs+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
+                  </div>
+                  <div className="text-xs text-foreground/70">
+                    wasted per week
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <button 
+                    className="info-tooltip-trigger p-2 rounded-full hover:bg-muted/50 transition-colors"
+                    onClick={(e) => { e.stopPropagation(); showTooltip(2); }}
+                  >
+                    <Info className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  {activeTooltip === 2 && (
+                    <div className="info-tooltip absolute right-0 top-full mt-2 w-52 p-3 bg-foreground text-background text-[11px] font-mono rounded-sm shadow-lg z-50">
+                      {calculations[2]}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
