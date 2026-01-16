@@ -17,50 +17,62 @@ const Hero = () => {
         <div className="absolute inset-0 z-0">
           {/* Grid pattern */}
           <div 
-            className="absolute inset-0 opacity-[0.04]" 
+            className="absolute inset-0 opacity-[0.03]" 
             style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+              backgroundSize: '50px 50px'
             }} 
           />
           
-          {/* Revenue Chart Card - Top Left */}
-          <div className="absolute top-24 left-4 w-[200px] bg-[hsl(0,0%,8%)] border border-white/10 rounded-xl p-3 opacity-60">
+          {/* Revenue Chart Card - Top Left - repositioned */}
+          <div 
+            className="absolute top-28 left-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-70 hero-visual-card"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider">Monthly Revenue</span>
+              <span className="text-[9px] text-white/40 uppercase tracking-wider">Revenue</span>
               <TrendingUp className="w-3 h-3 text-accent" />
             </div>
-            <div className="text-lg font-bold text-white mb-2">$24,580</div>
-            <div className="h-16 flex items-end gap-1">
+            <div className="text-base font-bold text-white mb-2">$24,580</div>
+            <div className="h-12 flex items-end gap-0.5">
               {[40, 55, 45, 60, 75, 65, 80, 90, 85, 95, 88, 100].map((h, i) => (
                 <div 
                   key={i} 
-                  className="flex-1 bg-gradient-to-t from-accent/40 to-accent rounded-t"
+                  className="flex-1 bg-gradient-to-t from-accent/30 to-accent/70 rounded-t"
                   style={{ height: `${h}%` }}
                 />
               ))}
             </div>
           </div>
           
-          {/* Calendar Card - Top Right */}
-          <div className="absolute top-32 right-4 w-[180px] bg-[hsl(0,0%,8%)] border border-white/10 rounded-xl p-3 opacity-50">
+          {/* Calendar Card - Top Right - repositioned */}
+          <div 
+            className="absolute top-28 right-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-60 hero-visual-card"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider">Today</span>
+              <span className="text-[9px] text-white/40 uppercase tracking-wider">Calendar</span>
               <Calendar className="w-3 h-3 text-accent" />
             </div>
-            <div className="grid grid-cols-7 gap-0.5 text-[8px] text-white/30 mb-1">
+            <div className="grid grid-cols-7 gap-0.5 text-[7px] text-white/25 mb-1">
               {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
                 <div key={i} className="text-center">{d}</div>
               ))}
             </div>
             <div className="grid grid-cols-7 gap-0.5">
-              {Array.from({ length: 28 }, (_, i) => (
+              {Array.from({ length: 21 }, (_, i) => (
                 <div 
                   key={i} 
-                  className={`aspect-square rounded text-[8px] flex items-center justify-center ${
-                    i === 15 ? 'bg-accent text-white' : 
-                    [8, 12, 18, 22].includes(i) ? 'bg-accent/30 text-white/70' : 
-                    'text-white/30'
+                  className={`aspect-square rounded-sm text-[7px] flex items-center justify-center ${
+                    i === 11 ? 'bg-accent text-white' : 
+                    [5, 9, 14, 18].includes(i) ? 'bg-accent/30 text-white/60' : 
+                    'text-white/25'
                   }`}
                 >
                   {i + 1}
@@ -69,83 +81,110 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* SMS Conversation Card - Middle */}
-          <div className="absolute top-[260px] left-6 w-[220px] bg-[hsl(0,0%,8%)] border border-white/10 rounded-xl p-3 opacity-40">
-            <div className="flex items-center gap-2 mb-3">
-              <MessageSquare className="w-3 h-3 text-accent" />
-              <span className="text-[10px] text-white/50 uppercase tracking-wider">AI SMS</span>
+          {/* SMS Conversation Card - Middle Left */}
+          <div 
+            className="absolute top-[220px] left-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-55 hero-visual-card"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
+            <div className="flex items-center gap-1.5 mb-2">
+              <MessageSquare className="w-2.5 h-2.5 text-accent" />
+              <span className="text-[9px] text-white/40 uppercase tracking-wider">AI SMS</span>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex justify-end">
-                <div className="bg-accent/20 rounded-lg rounded-br-sm px-2.5 py-1.5 max-w-[80%]">
-                  <p className="text-[10px] text-white/80">Thanks for reaching out! I can help book you in. What day works best?</p>
+                <div className="bg-accent/20 rounded-md rounded-br-sm px-2 py-1 max-w-[90%]">
+                  <p className="text-[8px] text-white/70">What day works best?</p>
                 </div>
               </div>
               <div className="flex justify-start">
-                <div className="bg-white/10 rounded-lg rounded-bl-sm px-2.5 py-1.5 max-w-[80%]">
-                  <p className="text-[10px] text-white/60">Saturday morning?</p>
+                <div className="bg-white/10 rounded-md rounded-bl-sm px-2 py-1 max-w-[90%]">
+                  <p className="text-[8px] text-white/50">Saturday morning?</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <div className="bg-accent/20 rounded-lg rounded-br-sm px-2.5 py-1.5 max-w-[80%]">
-                  <p className="text-[10px] text-white/80">Perfect! You're booked for Saturday 9am ✓</p>
+                <div className="bg-accent/20 rounded-md rounded-br-sm px-2 py-1 max-w-[90%]">
+                  <p className="text-[8px] text-white/70">You're booked! ✓</p>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Activity Stats Card - Right side */}
-          <div className="absolute top-[300px] right-4 w-[140px] bg-[hsl(0,0%,8%)] border border-white/10 rounded-xl p-3 opacity-35">
-            <div className="space-y-3">
+          {/* Activity Stats Card - Middle Right */}
+          <div 
+            className="absolute top-[220px] right-5 w-[160px] bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-50 hero-visual-card"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
+            <div className="space-y-2.5">
               <div>
-                <div className="text-[9px] text-white/40 uppercase">Calls Answered</div>
-                <div className="text-xl font-bold text-white">47</div>
+                <div className="text-[8px] text-white/35 uppercase">Calls Answered</div>
+                <div className="text-lg font-bold text-white">47</div>
               </div>
               <div>
-                <div className="text-[9px] text-white/40 uppercase">Bookings Today</div>
-                <div className="text-xl font-bold text-accent">12</div>
+                <div className="text-[8px] text-white/35 uppercase">Bookings Today</div>
+                <div className="text-lg font-bold text-accent">12</div>
               </div>
             </div>
           </div>
           
-          {/* Transaction List Card - Lower */}
-          <div className="absolute top-[420px] left-4 right-4 bg-[hsl(0,0%,8%)] border border-white/10 rounded-xl p-3 opacity-30">
+          {/* Transaction List Card - Lower Full Width */}
+          <div 
+            className="absolute top-[340px] left-5 right-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 opacity-40 hero-visual-card"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider">Recent Jobs</span>
+              <span className="text-[9px] text-white/40 uppercase tracking-wider">Recent Jobs</span>
               <DollarSign className="w-3 h-3 text-accent" />
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               {[
                 { name: "Mike R.", service: "Full Detail", amount: "+$280" },
                 { name: "Sarah K.", service: "Interior Clean", amount: "+$120" },
-                { name: "John D.", service: "Ceramic Coat", amount: "+$450" },
               ].map((job, i) => (
-                <div key={i} className="flex items-center justify-between py-1.5 border-b border-white/5 last:border-0">
+                <div key={i} className="flex items-center justify-between py-1 border-b border-white/5 last:border-0">
                   <div>
-                    <div className="text-[10px] text-white/70">{job.name}</div>
-                    <div className="text-[9px] text-white/40">{job.service}</div>
+                    <div className="text-[9px] text-white/60">{job.name}</div>
+                    <div className="text-[8px] text-white/30">{job.service}</div>
                   </div>
-                  <span className="text-[11px] font-medium text-emerald-400">{job.amount}</span>
+                  <span className="text-[10px] font-medium text-emerald-400">{job.amount}</span>
                 </div>
               ))}
             </div>
           </div>
           
-          {/* Sweeping Light Beam */}
+          {/* Strong Sweeping Light Beam */}
           <div 
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-10"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 55%, transparent 60%, transparent 100%)',
-              animation: 'lightBeamSweep 8s ease-in-out infinite',
+              background: 'linear-gradient(90deg, transparent 0%, transparent 35%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.15) 48%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 52%, rgba(255,255,255,0.02) 60%, transparent 65%, transparent 100%)',
+              animation: 'lightBeamSweep 6s ease-in-out infinite',
               transformOrigin: 'center center',
             }}
           />
           
-          {/* Radial light source glow - subtle top accent */}
+          {/* Secondary beam for intensity */}
           <div 
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-10"
             style={{
-              background: 'radial-gradient(ellipse at center top, rgba(255,100,50,0.05) 0%, transparent 60%)',
+              background: 'linear-gradient(90deg, transparent 0%, transparent 42%, rgba(255,255,255,0.1) 49%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.1) 51%, transparent 58%, transparent 100%)',
+              animation: 'lightBeamSweep 6s ease-in-out infinite',
+              transformOrigin: 'center center',
+            }}
+          />
+          
+          {/* Radial light source glow - stronger */}
+          <div 
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at center top, rgba(255,120,80,0.08) 0%, transparent 70%)',
             }}
           />
         </div>
