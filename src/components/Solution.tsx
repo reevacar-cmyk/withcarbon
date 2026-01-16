@@ -313,7 +313,7 @@ const Solution = () => {
             </div>
             
             {/* Visual - light mode styling */}
-            <div className="h-[320px] bg-[hsl(0_0%_8%)] border border-border/50 rounded-2xl overflow-hidden">
+            <div className="h-[320px] bg-[hsl(40_15%_8%)] border border-border/50 rounded-sm overflow-hidden">
               {getVisualForIndex(activeIndex)}
             </div>
           </div>
@@ -376,7 +376,7 @@ const Solution = () => {
           </div>
           
           {/* Right side - Visual */}
-          <div className="h-[420px] lg:h-[460px] bg-[hsl(0_0%_8%)] border border-white/10 rounded-2xl overflow-hidden sticky top-8">
+          <div className="h-[420px] lg:h-[460px] bg-[hsl(40_15%_8%)] border border-white/10 rounded-sm overflow-hidden sticky top-8">
             {renderVisual()}
           </div>
           </div>

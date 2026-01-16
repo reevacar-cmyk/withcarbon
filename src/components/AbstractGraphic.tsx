@@ -135,7 +135,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
 
   // Solution variant - Learning/optimization visualization - minimal industrial scientific style
   return (
-    <div className={cn("relative w-full h-full bg-[hsl(0_0%_8%)] rounded-sm overflow-hidden font-mono", className)}>
+    <div className={cn("relative w-full h-full bg-[hsl(40_15%_8%)] rounded-sm overflow-hidden font-mono", className)}>
       <div className="absolute inset-4 flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
