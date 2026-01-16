@@ -553,9 +553,9 @@ const ValueProps = () => {
     
     // Increment counters based on dot timing
     useEffect(() => {
-      // Dot 1: 0.9s duration, starts at 0s -> completes at 0.9s, repeats every 0.9s
-      // Dot 2: 0.75s duration, starts at 0.3s -> completes at 1.05s, repeats every 0.75s
-      // Dot 3: 0.9s duration, starts at 0.6s -> completes at 1.5s, repeats every 0.9s
+      // Dot 1: 0.9s duration, starts at 0s
+      // Dot 2: 0.75s duration, starts at 0.3s
+      // Dot 3: 0.9s duration, starts at 0.6s
       
       const incrementCounter = (index: number) => {
         setCounters(prev => {
@@ -567,35 +567,32 @@ const ValueProps = () => {
         setTimeout(() => setCheckPulse(null), 200);
       };
       
-      let interval1: NodeJS.Timeout;
-      let interval2: NodeJS.Timeout;
-      let interval3: NodeJS.Timeout;
+      // Set up intervals matching each dot's cycle
+      const interval1 = setInterval(() => incrementCounter(0), 900);
+      const interval2 = setInterval(() => incrementCounter(1), 750);
+      const interval3 = setInterval(() => incrementCounter(2), 900);
       
-      // Dot 1: starts at 0s, duration 0.9s - first complete at 900ms
-      const timeout1 = setTimeout(() => {
-        incrementCounter(0);
-        interval1 = setInterval(() => incrementCounter(0), 900);
-      }, 900);
-      
-      // Dot 2: starts at 0.3s, duration 0.75s - first complete at 1050ms
+      // Stagger the starts to match animation delays
       const timeout2 = setTimeout(() => {
         incrementCounter(1);
-        interval2 = setInterval(() => incrementCounter(1), 750);
       }, 300 + 750);
       
-      // Dot 3: starts at 0.6s, duration 0.9s - first complete at 1500ms
       const timeout3 = setTimeout(() => {
         incrementCounter(2);
-        interval3 = setInterval(() => incrementCounter(2), 900);
       }, 600 + 900);
       
+      // Initial increment for first dot
+      const timeout1 = setTimeout(() => {
+        incrementCounter(0);
+      }, 900);
+      
       return () => {
+        clearInterval(interval1);
+        clearInterval(interval2);
+        clearInterval(interval3);
         clearTimeout(timeout1);
         clearTimeout(timeout2);
         clearTimeout(timeout3);
-        if (interval1) clearInterval(interval1);
-        if (interval2) clearInterval(interval2);
-        if (interval3) clearInterval(interval3);
       };
     }, []);
     
