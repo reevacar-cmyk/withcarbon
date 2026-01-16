@@ -594,22 +594,22 @@ const ValueProps = () => {
                 
                 {/* Animated dots traveling down the paths */}
                 <circle r="3" fill="hsl(var(--accent))">
-                  <animateMotion dur="1.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                  <animateMotion dur="0.9s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
                     <mpath href="#autoLine1" />
                   </animateMotion>
-                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.8s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="0.9s" repeatCount="indefinite" />
                 </circle>
                 <circle r="3" fill="hsl(var(--accent))">
-                  <animateMotion dur="1.5s" repeatCount="indefinite" begin="0.6s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                  <animateMotion dur="0.75s" repeatCount="indefinite" begin="0.3s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
                     <mpath href="#autoLine2" />
                   </animateMotion>
-                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.5s" repeatCount="indefinite" begin="0.6s" />
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="0.75s" repeatCount="indefinite" begin="0.3s" />
                 </circle>
                 <circle r="3" fill="hsl(var(--accent))">
-                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                  <animateMotion dur="0.9s" repeatCount="indefinite" begin="0.6s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
                     <mpath href="#autoLine3" />
                   </animateMotion>
-                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.8s" repeatCount="indefinite" begin="1.2s" />
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="0.9s" repeatCount="indefinite" begin="0.6s" />
                 </circle>
               </svg>
             </div>
@@ -633,15 +633,15 @@ const ValueProps = () => {
                     key={i}
                     className="flex items-center justify-between text-[10px] transition-all duration-300"
                     style={{
-                      animation: `logPulse 1.8s ease-out infinite`,
-                      animationDelay: `${i * 0.6}s`
+                      animation: `logPulse 0.9s ease-out infinite`,
+                      animationDelay: `${i * 0.3}s`
                     }}
                   >
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-3 h-3 text-accent-foreground" />
-                      <span className="text-accent-foreground/90">{log.action}</span>
+                      <span className="text-accent-foreground font-medium">{log.action}</span>
                     </div>
-                    <span className="font-mono text-accent-foreground/60">{log.time}</span>
+                    <span className="font-mono text-accent-foreground/70">{log.time}</span>
                   </div>
                 ))}
               </div>
