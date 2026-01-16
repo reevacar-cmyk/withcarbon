@@ -187,9 +187,9 @@ const ValueProps = () => {
     useEffect(() => {
       // Timeline per card:
       // 0ms: Card enters from right (entering phase)
-      // 500ms: Followup slides up
-      // 1500ms: Rebooked appears (1s after followup)
-      // 3500ms: Move to next card (2s after rebooked)
+      // 600ms: Followup slides up (slower animation - 800ms duration)
+      // 2000ms: Rebooked appears (after followup fully visible)
+      // 4200ms: Move to next card (2.2s after rebooked)
       
       let followupTimeout: NodeJS.Timeout;
       let rebookedTimeout: NodeJS.Timeout;
@@ -201,19 +201,19 @@ const ValueProps = () => {
       // After card settles, show followup
       followupTimeout = setTimeout(() => {
         setShowFollowup(true);
-      }, 500);
+      }, 600);
       
-      // Show rebooked 1 second after followup
+      // Show rebooked after followup animation completes (800ms) + small pause
       rebookedTimeout = setTimeout(() => {
         setShowRebooked(true);
-      }, 1500);
+      }, 2000);
       
-      // After 2 seconds with rebooked, transition to next card
+      // After 2.2 seconds with rebooked, transition to next card
       nextCardTimeout = setTimeout(() => {
         setShowFollowup(false);
         setShowRebooked(false);
         setCurrentIndex((prev) => (prev + 1) % customers.length);
-      }, 3500);
+      }, 4200);
       
       return () => {
         clearTimeout(followupTimeout);
@@ -270,10 +270,10 @@ const ValueProps = () => {
                 
                 {/* AI action - slides up */}
                 <div 
-                  className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
+                  className={`p-3 bg-accent rounded-sm transition-all duration-800 ease-out ${
                     showFollowup 
                       ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-4'
+                      : 'opacity-0 translate-y-6'
                   }`}
                 >
                   <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
