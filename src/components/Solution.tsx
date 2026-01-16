@@ -121,7 +121,7 @@ const Solution = () => {
         </div>
         
         {/* Carbon hub */}
-        <div className="p-4 bg-white rounded-sm">
+        <div className="p-4 bg-[hsl(40_20%_94%)] rounded-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold text-neutral-900">C</span>
