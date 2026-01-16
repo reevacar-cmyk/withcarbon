@@ -196,7 +196,6 @@ const Hero = () => {
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
                 <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
                 <span className="text-foreground">AI-powered operations</span>
-                <ArrowRight className="w-3.5 h-3.5 text-foreground" />
               </span>
             </div>
             
