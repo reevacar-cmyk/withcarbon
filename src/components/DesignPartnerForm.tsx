@@ -1,66 +1,35 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
-
-const formSchema = z.object({
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters")
-});
+import iconDirectAccess from "@/assets/icon-direct-access.png";
+import iconShapeProduct from "@/assets/icon-shape-product.png";
+import iconLifetimeBenefits from "@/assets/icon-lifetime-benefits.png";
 
 const DesignPartnerForm = () => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const validation = formSchema.safeParse({ email });
-    if (!validation.success) {
-      toast({
-        title: "Invalid input",
-        description: validation.error.errors[0].message,
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    const { error } = await supabase
-      .from("design_partners")
-      .insert([{ name: "", email: validation.data.email }]);
-
-    setIsSubmitting(false);
-
-    if (error) {
-      if (error.code === "23505") {
-        toast({
-          title: "Already registered",
-          description: "This email is already on our list. We'll be in touch soon!",
-        });
-      } else {
-        toast({
-          title: "Something went wrong",
-          description: "Please try again later.",
-          variant: "destructive"
-        });
-      }
-      return;
-    }
-
-    toast({
-      title: "You're in!",
-      description: "We'll reach out soon with next steps.",
-    });
-    setEmail("");
+  const handleBookDemo = () => {
+    // Open calendly or contact form
+    window.open('https://calendly.com', '_blank');
   };
+
+  const benefits = [
+    {
+      icon: iconDirectAccess,
+      title: "Direct Access",
+      description: "Weekly or bi-weekly calls with our engineering team"
+    },
+    {
+      icon: iconShapeProduct,
+      title: "Shape the Product",
+      description: "Your feedback directly influences what we build next"
+    },
+    {
+      icon: iconLifetimeBenefits,
+      title: "Lifetime Benefits",
+      description: "Locked-in discounts and priority access forever"
+    }
+  ];
 
   return (
     <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-[hsl(0_0%_10%)]">
-      <div className="container mx-auto max-w-2xl">
+      <div className="container mx-auto max-w-3xl">
         {/* Grand header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-14 fade-in">
           <span className="text-xs uppercase tracking-[0.2em] text-white md:text-accent font-mono">
@@ -76,26 +45,20 @@ const DesignPartnerForm = () => {
           </p>
         </div>
 
-        {/* What you get */}
-        <div className="grid md:grid-cols-3 gap-4 mb-10 md:mb-12 fade-in fade-in-delay-1">
-          {[
-            {
-              title: "Direct Access",
-              description: "Weekly or bi-weekly calls with our engineering team"
-            },
-            {
-              title: "Shape the Product",
-              description: "Your feedback directly influences what we build next"
-            },
-            {
-              title: "Lifetime Benefits",
-              description: "Locked-in discounts and priority access forever"
-            }
-          ].map((item, i) => (
+        {/* What you get - with shiny icons */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10 md:mb-12 fade-in fade-in-delay-1">
+          {benefits.map((item, i) => (
             <div 
               key={i} 
-              className="p-4 md:p-5 bg-white/5 border border-white/10 rounded-xl text-center"
+              className="p-5 md:p-6 bg-white/5 border border-white/10 rounded-xl text-center flex flex-col items-center"
             >
+              <div className="w-20 h-20 md:w-24 md:h-24 mb-4 relative">
+                <img 
+                  src={item.icon} 
+                  alt={item.title}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,200,100,0.3)]"
+                />
+              </div>
               <h3 className="text-sm font-semibold text-white mb-1.5">{item.title}</h3>
               <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
             </div>
@@ -114,28 +77,18 @@ const DesignPartnerForm = () => {
           <span className="text-sm text-white/60">40+ partners already joined</span>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 fade-in fade-in-delay-2 max-w-md mx-auto">
-          <Input
-            type="email"
-            placeholder="Your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-white md:focus:border-accent"
-            required
-            maxLength={255}
-          />
+        {/* CTA Button only */}
+        <div className="fade-in fade-in-delay-2 max-w-md mx-auto text-center">
           <Button 
-            type="submit" 
-            disabled={isSubmitting}
+            onClick={handleBookDemo}
             className="w-full bg-white hover:bg-white/90 text-neutral-900 md:bg-accent md:hover:bg-accent/90 md:text-accent-foreground font-semibold h-12 text-base"
           >
-            {isSubmitting ? "Submitting..." : "Book a demo"}
+            Book a demo
           </Button>
-          <p className="text-[11px] text-white/40 text-center">
+          <p className="text-[11px] text-white/40 mt-4">
             We'll reach out within 48 hours to schedule your first call.
           </p>
-        </form>
+        </div>
       </div>
     </section>
   );
