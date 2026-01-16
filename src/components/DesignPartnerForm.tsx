@@ -28,7 +28,7 @@ const DesignPartnerForm = () => {
   ];
 
   return (
-    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-[hsl(0_0%_10%)]">
+    <section id="partner-form" className="py-16 md:pt-16 md:pb-32 px-[3px] md:px-12 lg:px-24 bg-black">
       <div className="container mx-auto max-w-3xl">
         {/* Grand header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-14 fade-in">
