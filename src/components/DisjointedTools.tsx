@@ -114,8 +114,8 @@ const DisjointedTools = () => {
         <div className="md:hidden">
           {/* Section label with status indicator */}
           <div className="mb-4 fade-in flex items-center gap-2">
-            <div className="w-5 h-5 rounded-sm bg-muted border border-border flex items-center justify-center">
-              <Cog className="w-3 h-3 text-muted-foreground" />
+            <div className="w-5 h-5 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+              <Cog className="w-3 h-3 text-red-500" />
             </div>
             <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
               STATUS QUO
