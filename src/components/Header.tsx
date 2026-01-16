@@ -6,7 +6,7 @@ const Header = () => {
   };
   
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl md:backdrop-blur-sm border-b border-border md:bg-background/80 md:border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl md:backdrop-blur-sm border-b border-border/30 md:bg-background/80 md:border-border/30">
       {/* Mobile: Dark header for dark hero */}
       <div className="md:hidden absolute inset-0 bg-black/90 backdrop-blur-xl" />
       

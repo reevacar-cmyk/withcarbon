@@ -158,13 +158,13 @@ const Hero = () => {
           {/* Main headline with Playfair italic */}
           <div className="space-y-5 mb-8">
             <h1 className="text-[2.75rem] leading-[1.05] tracking-tight">
-              <span className="font-playfair italic text-white">A higher standard</span>
+              <span className="font-playfair italic text-white">Your new AI</span>
               <br />
-              <span className="font-medium text-white/90">in auto detailing</span>
+              <span className="font-medium text-white/90">business partner</span>
             </h1>
             
             <p className="text-base text-white/60 leading-relaxed max-w-[320px]">
-              AI that answers calls, books jobs, and follows up with every customer. All on one platform.
+              All-in-one system that manages all the busy work and gives each customer a white glove service.
             </p>
           </div>
           
