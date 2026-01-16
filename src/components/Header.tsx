@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 const Header = () => {
   const handleBookDemo = () => {
-    window.open('https://calendly.com/az356', '_blank');
+    window.open('https://calendly.com/az356/30min?back=1&month=2026-01', '_blank');
   };
   return <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl md:backdrop-blur-sm border-b border-border">
       <div className="container mx-auto md:px-12 lg:px-24 px-[20px]">

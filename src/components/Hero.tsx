@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const Hero = () => {
   const handleBookDemo = () => {
-    window.open('https://calendly.com/az356', '_blank');
+    window.open('https://calendly.com/az356/30min?back=1&month=2026-01', '_blank');
   };
 
   // Mobile Hero Visual - Animated AI activity feed with fixed height
