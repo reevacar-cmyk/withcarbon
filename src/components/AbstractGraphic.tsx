@@ -140,10 +140,10 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
           <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_20%_85%)]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
             <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.OPTIMIZE</span>
           </div>
-          <span className="text-[10px] px-2 py-0.5 bg-[hsl(40_20%_85%)] rounded-sm text-[hsl(40_15%_15%)] font-medium">LEARNING</span>
+          <span className="text-[10px] px-2 py-0.5 bg-green-500/20 border border-green-500/40 rounded-sm text-green-400 font-medium">LEARNING</span>
         </div>
 
         {/* A/B Test comparison */}
@@ -159,17 +159,17 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
               <div className="w-[42%] h-full bg-white/30" />
             </div>
           </div>
-          <div className="p-3 bg-[hsl(40_20%_85%)]/10 border border-[hsl(40_20%_85%)]/30 rounded-sm">
-            <div className="text-[9px] text-[hsl(40_20%_85%)] mb-2 uppercase tracking-wider flex items-center gap-1">
-              VARIANT.B <span className="text-[hsl(40_20%_85%)]">✓</span>
+          <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-sm">
+            <div className="text-[9px] text-green-400 mb-2 uppercase tracking-wider flex items-center gap-1">
+              VARIANT.B <span className="text-green-400">✓</span>
             </div>
             <div className="space-y-1 mb-2">
-              <div className="h-1.5 w-full bg-[hsl(40_20%_85%)]/20 rounded-sm" />
-              <div className="h-1.5 w-2/3 bg-[hsl(40_20%_85%)]/20 rounded-sm" />
+              <div className="h-1.5 w-full bg-green-500/20 rounded-sm" />
+              <div className="h-1.5 w-2/3 bg-green-500/20 rounded-sm" />
             </div>
-            <div className="text-xl font-bold text-[hsl(40_20%_85%)] mb-1">58%</div>
+            <div className="text-xl font-bold text-green-400 mb-1">58%</div>
             <div className="h-1 bg-white/10 rounded-sm overflow-hidden">
-              <div className="w-[58%] h-full bg-[hsl(40_20%_85%)]" />
+              <div className="w-[58%] h-full bg-green-500" />
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
                 <span className="text-white/70">{item.insight}</span>
                 <span className={`px-1.5 py-0.5 rounded-sm ${
                   item.status === 'APPLIED' 
-                    ? 'bg-[hsl(40_20%_85%)] text-[hsl(40_15%_15%)]' 
+                    ? 'bg-green-500/20 border border-green-500/40 text-green-400' 
                     : 'bg-white/10 text-white/50'
                 }`}>
                   {item.status}
@@ -206,14 +206,14 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
             {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 65].map((h, i) => (
               <div 
                 key={i}
-                className={`flex-1 rounded-sm transition-all ${i >= 10 ? 'bg-[hsl(40_20%_85%)]' : 'bg-white/20'}`}
+                className={`flex-1 rounded-sm transition-all ${i >= 10 ? 'bg-green-500' : 'bg-white/20'}`}
                 style={{ height: `${h}%` }}
               />
             ))}
           </div>
           <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/10">
             <span className="text-[8px] text-white/40">W1</span>
-            <span className="text-[8px] text-[hsl(40_20%_85%)]">+160%</span>
+            <span className="text-[8px] text-green-400">+160%</span>
             <span className="text-[8px] text-white/40">NOW</span>
           </div>
         </div>
