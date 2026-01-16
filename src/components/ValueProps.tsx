@@ -270,10 +270,10 @@ const ValueProps = () => {
                 
                 {/* AI action - slides up */}
                 <div 
-                  className={`p-3 bg-accent rounded-sm transition-all duration-800 ease-out ${
+                  className={`p-3 bg-accent rounded-sm transition-all duration-1000 ease-out ${
                     showFollowup 
                       ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-6'
+                      : 'opacity-0 translate-y-8'
                   }`}
                 >
                   <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
