@@ -206,24 +206,6 @@ const DisjointedTools = () => {
             </div>
           </div>
 
-          {/* Summary footer */}
-          <div className="mt-4 border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="bg-muted/50 px-3 py-2 border-b border-border">
-              <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
-                MONTHLY COST ANALYSIS
-              </span>
-            </div>
-            <div className="px-3 py-3 bg-background flex items-center justify-between">
-              <div>
-                <span className="font-mono text-[9px] text-muted-foreground uppercase block">Total burn</span>
-                <span className="font-mono text-lg font-bold text-foreground">$200–2K</span>
-              </div>
-              <div className="text-right">
-                <span className="font-mono text-[9px] text-red-500 uppercase block">Status</span>
-                <span className="font-mono text-[10px] text-foreground">No improvement</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Desktop Layout */}
