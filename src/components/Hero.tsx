@@ -67,7 +67,7 @@ const Hero = () => {
     return (
       <div className="relative w-full max-w-[320px] mx-auto">
         {/* Main card - simulated AI activity */}
-        <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg relative z-10">
+        <div className="bg-card border border-border rounded-2xl overflow-hidden relative z-10">
           {/* Header */}
           <div className="px-4 py-3 border-b border-border/50 flex items-center justify-between">
             <div className="flex items-center gap-2">
