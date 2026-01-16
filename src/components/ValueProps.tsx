@@ -173,6 +173,7 @@ const ValueProps = () => {
     const [nextIndex, setNextIndex] = useState(1);
     const [isExiting, setIsExiting] = useState(false);
     const [showFollowup, setShowFollowup] = useState(false);
+    const [showRebooked, setShowRebooked] = useState(false);
     
     const customers = [
       { initials: "JD", name: "John D.", car: "Tesla Model 3", lastService: "45 days ago", ltv: "$1,440", followup: "Hey John! Your Model 3 is due for a detail..." },
@@ -185,11 +186,24 @@ const ValueProps = () => {
     ];
     
     useEffect(() => {
+      // Timeline: 
+      // 0ms: Card appears
+      // 500ms: Followup slides up (0.5s delay)
+      // 1500ms: Rebooked appears (1s after followup)
+      // 3500ms: Start exit animation (2s after rebooked)
+      // 4100ms: Switch cards (0.6s transition)
+      // Total cycle: ~4.5s
+      
       const cycleAnimation = () => {
         // Show followup sliding up
         setShowFollowup(true);
         
-        // After followup is visible, start exit animation (new card pushes from right)
+        // Show rebooked 1 second after followup
+        setTimeout(() => {
+          setShowRebooked(true);
+        }, 1000);
+        
+        // After 2 seconds with rebooked visible, start exit animation
         setTimeout(() => {
           setNextIndex((currentIndex + 1) % customers.length);
           setIsExiting(true);
@@ -198,18 +212,19 @@ const ValueProps = () => {
           setTimeout(() => {
             setCurrentIndex((prev) => (prev + 1) % customers.length);
             setShowFollowup(false);
+            setShowRebooked(false);
             setIsExiting(false);
           }, 600);
-        }, 1800);
+        }, 3000); // 1s followup + 2s with rebooked
       };
       
       // Initial delay before first animation
       const initialDelay = setTimeout(() => {
         cycleAnimation();
-      }, 1500);
+      }, 500);
       
-      // Set up recurring cycle
-      const interval = setInterval(cycleAnimation, 4000);
+      // Set up recurring cycle - 4.5s total
+      const interval = setInterval(cycleAnimation, 4500);
       
       return () => {
         clearTimeout(initialDelay);
@@ -314,7 +329,7 @@ const ValueProps = () => {
             
             {/* Result - inline text */}
             <div className={`flex items-center justify-center gap-2 mt-2 transition-all duration-300 ${
-              showFollowup ? 'opacity-100' : 'opacity-0'
+              showRebooked ? 'opacity-100' : 'opacity-0'
             }`}>
               <CheckCircle className="w-3.5 h-3.5 text-accent" />
               <span className="text-xs font-mono font-bold text-accent">Rebooked</span>
@@ -422,7 +437,7 @@ const ValueProps = () => {
             </div>
             
             <div className={`flex items-center gap-2 px-4 py-2 bg-accent rounded-sm transition-all duration-300 ${
-              showFollowup ? 'opacity-100' : 'opacity-0'
+              showRebooked ? 'opacity-100' : 'opacity-0'
             }`}>
               <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
               <span className="text-xs font-mono text-accent-foreground">Rebooked</span>
