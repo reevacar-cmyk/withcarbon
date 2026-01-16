@@ -15,18 +15,25 @@ const DustParticle = ({ delay, x, y, size }: { delay: number; x: number; y: numb
   />
 );
 
-// Count-up animation component with Thanos snap disintegration
-const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
+// Count-up animation component with synced Thanos snap disintegration
+const CountUpMetric = ({ 
+  value, 
+  prefix = "", 
+  suffix = "",
+  isDisintegrating = false,
+  isReappearing = false 
+}: { 
+  value: number; 
+  prefix?: string; 
+  suffix?: string;
+  isDisintegrating?: boolean;
+  isReappearing?: boolean;
+}) => {
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [isDisintegrating, setIsDisintegrating] = useState(false);
-  const [isReappearing, setIsReappearing] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const disintegrateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const reappearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const cycleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Generate random dust particles with varying sizes - memoized to prevent regeneration
   const dustParticles = useMemo(() => Array.from({ length: 80 }, (_, i) => ({
@@ -36,30 +43,6 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
     y: Math.random() * 120 - 10,
     size: Math.random() * 4 + 1, // 1px to 5px
   })), []);
-  
-  const startDisintegrationCycle = () => {
-    // Start disintegration
-    setIsDisintegrating(true);
-    setIsReappearing(false);
-    
-    // After 2s, hide completely and start reappear timer
-    reappearTimeoutRef.current = setTimeout(() => {
-      // After 3s hidden, reappear
-      setTimeout(() => {
-        setIsDisintegrating(false);
-        setIsReappearing(true);
-        
-        // After reappear animation completes, reset and schedule next cycle
-        setTimeout(() => {
-          setIsReappearing(false);
-          // Schedule next disintegration in 6 seconds
-          cycleTimeoutRef.current = setTimeout(() => {
-            startDisintegrationCycle();
-          }, 6000);
-        }, 1000);
-      }, 3000);
-    }, 2000);
-  };
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,25 +54,11 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
             resetTimeoutRef.current = null;
           }
           setIsInView(true);
-          
-          // Start first disintegration cycle after 6 seconds
-          if (!isDisintegrating && !isReappearing) {
-            disintegrateTimeoutRef.current = setTimeout(() => {
-              startDisintegrationCycle();
-            }, 6000);
-          }
         } else {
           setIsInView(false);
-          // Clear all timers
-          if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
-          if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
-          if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
-          
           resetTimeoutRef.current = setTimeout(() => {
             setCount(0);
             setHasAnimated(false);
-            setIsDisintegrating(false);
-            setIsReappearing(false);
           }, 10000);
         }
       },
@@ -103,9 +72,6 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
     return () => {
       observer.disconnect();
       if (resetTimeoutRef.current) clearTimeout(resetTimeoutRef.current);
-      if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
-      if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
-      if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
     };
   }, []);
 
@@ -155,8 +121,69 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
 };
 
 const ProblemStatement = () => {
+  const [isDisintegrating, setIsDisintegrating] = useState(false);
+  const [isReappearing, setIsReappearing] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const disintegrateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reappearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const cycleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startDisintegrationCycle = () => {
+    setIsDisintegrating(true);
+    setIsReappearing(false);
+    
+    // After 2s of disintegrating, wait 3s then reappear
+    reappearTimeoutRef.current = setTimeout(() => {
+      setIsDisintegrating(false);
+      setIsReappearing(true);
+      
+      // After reappear animation, schedule next cycle
+      setTimeout(() => {
+        setIsReappearing(false);
+        cycleTimeoutRef.current = setTimeout(() => {
+          startDisintegrationCycle();
+        }, 6000);
+      }, 1000);
+    }, 5000); // 2s disintegrate + 3s hidden
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          // Start first cycle after 6 seconds
+          if (!isDisintegrating && !isReappearing) {
+            disintegrateTimeoutRef.current = setTimeout(() => {
+              startDisintegrationCycle();
+            }, 6000);
+          }
+        } else {
+          // Clear all timers when out of view
+          if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
+          if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
+          if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
+          setIsDisintegrating(false);
+          setIsReappearing(false);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (disintegrateTimeoutRef.current) clearTimeout(disintegrateTimeoutRef.current);
+      if (reappearTimeoutRef.current) clearTimeout(reappearTimeoutRef.current);
+      if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
+    };
+  }, []);
+
   return (
-    <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-background md:bg-[hsl(40_20%_94%)]">
+    <section ref={sectionRef} className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-background md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
         {/* Mobile: Bold problem visualization */}
         <div className="md:hidden">
@@ -192,7 +219,7 @@ const ProblemStatement = () => {
               </div>
               
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={34} prefix="$" suffix="K+" />
+                <CountUpMetric value={34} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
                 lost per year
@@ -216,7 +243,7 @@ const ProblemStatement = () => {
               </div>
               
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={175} prefix="$" suffix="K+" />
+                <CountUpMetric value={175} prefix="$" suffix="K+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
                 sitting untapped
@@ -240,7 +267,7 @@ const ProblemStatement = () => {
               </div>
               
               <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
-                <CountUpMetric value={14} suffix="hrs+" />
+                <CountUpMetric value={14} suffix="hrs+" isDisintegrating={isDisintegrating} isReappearing={isReappearing} />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
                 wasted per week
