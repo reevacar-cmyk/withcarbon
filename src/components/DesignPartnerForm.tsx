@@ -58,7 +58,7 @@ const DesignPartnerForm = () => {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{item.title}</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{item.title}</h3>
               <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">{item.description}</p>
             </div>
           ))}
