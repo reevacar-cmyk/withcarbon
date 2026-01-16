@@ -292,3 +292,39 @@
 .text-vibrant-red {
   color: hsl(0, 100%, 50%);
 }
+
+/* Hero light beam sweep animation */
+@keyframes lightBeamSweep {
+  0% {
+    transform: translateX(-100%) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(300%) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+/* Hero grid lines glow when light passes */
+@keyframes gridGlow {
+  0%, 100% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.12;
+  }
+}
+
+/* Playfair Display font family */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
