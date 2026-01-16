@@ -209,8 +209,8 @@ const Hero = () => {
             </h1>
             
             <p className="text-base md:text-xl max-w-md fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
-              <span className="md:hidden text-muted-foreground">Manage the busy work and give each customer a white glove service.</span>
-              <span className="hidden md:inline text-muted-foreground">Carbon is an AI-native CRM that manages calls, booking, and follow-ups with full context.</span>
+              <span className="md:hidden text-muted-foreground">An all-in-one system that manages the busy work and gives each customer a white glove service.</span>
+              <span className="hidden md:inline text-muted-foreground">An all-in-one system that manages the busy work and gives each customer a white glove service.</span>
             </p>
             
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
