@@ -39,7 +39,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  $34K
+                  $34K+
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   lost per year
@@ -65,7 +65,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  $175K
+                  $175K+
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   sitting untapped
@@ -91,7 +91,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  14hrs
+                  14hrs+
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   wasted per week
