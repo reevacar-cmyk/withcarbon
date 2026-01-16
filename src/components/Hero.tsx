@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageSquare, Users, ArrowRight, Briefcase, UserCheck, TrendingUp, Clock, DollarSign } from "lucide-react";
+import { Calendar, MessageSquare, Users, ArrowRight, Briefcase, UserCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
@@ -7,317 +7,7 @@ const Hero = () => {
     window.open('https://calendly.com/az356/30min?back=1&month=2026-01', '_blank');
   };
 
-  // Dark Mobile Hero with dashboard visuals and light beam
-  const DarkMobileHero = () => {
-    const [email, setEmail] = useState("");
-    
-    return (
-      <div className="relative min-h-screen bg-black overflow-hidden">
-        {/* Dashboard visuals in background - arranged like a dashboard grid */}
-        <div className="absolute inset-0 z-0 px-2 pt-24">
-          {/* Dashboard grid container - extended width */}
-          <div className="grid grid-cols-12 gap-2.5 max-w-[420px] mx-auto">
-            
-            {/* Calendar with Booked Jobs - spans 7 cols */}
-            <div 
-              className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-              style={{ minHeight: '130px' }}
-            >
-              {/* Subtle internal light glow from top-left */}
-              <div 
-                className="absolute -top-8 -left-8 w-32 h-32 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%)',
-                }}
-              />
-              {/* Border shine - TOP LEFT corner */}
-              <div 
-                className="absolute left-0 top-0 w-[1px] h-14 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
-                }}
-              />
-              <div 
-                className="absolute left-0 top-0 h-[1px] w-10 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 80%, transparent 100%)',
-                }}
-              />
-              {/* Border shine - BOTTOM RIGHT corner */}
-              <div 
-                className="absolute right-0 bottom-0 w-[1px] h-10 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(0deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 60%, transparent 100%)',
-                }}
-              />
-              <div 
-                className="absolute right-0 bottom-0 h-[1px] w-8 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(270deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.15) 70%, transparent 100%)',
-                }}
-              />
-              {/* Strong fade overlay for right side - deep into darkness */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
-                style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.9) 100%)',
-                }}
-              />
-              <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/70 uppercase tracking-wider">Booked Jobs</span>
-                <Calendar className="w-3 h-3 text-accent/60" />
-              </div>
-              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/40 mb-1 relative z-10">
-                {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-                  <div key={i} className="text-center" style={{ opacity: 1 - (i * 0.08) }}>{d}</div>
-                ))}
-              </div>
-              <div className="grid grid-cols-7 gap-0.5 relative z-10">
-                {Array.from({ length: 21 }, (_, i) => {
-                  const isBooked = [3, 5, 8, 10, 12, 15, 17, 19].includes(i);
-                  const isToday = i === 10;
-                  const col = i % 7;
-                  const dimFactor = 1 - (col * 0.1);
-                  return (
-                    <div 
-                      key={i} 
-                      className={`aspect-square rounded-sm text-[6px] flex items-center justify-center ${
-                        isToday ? 'bg-accent text-white ring-1 ring-accent' : 
-                        isBooked ? 'bg-accent/30 text-white/70' : 
-                        'text-white/25'
-                      }`}
-                      style={{ opacity: dimFactor }}
-                    >
-                      {i + 1}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-2 text-[8px] text-white/50 relative z-10">8 jobs this week</div>
-            </div>
-            
-            {/* AI SMS Follow-ups - spans 5 cols */}
-            <div 
-              className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-              style={{ minHeight: '130px' }}
-            >
-              {/* Subtle internal light glow from bottom-left */}
-              <div 
-                className="absolute -bottom-6 -left-6 w-24 h-24 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)',
-                }}
-              />
-              {/* Border shine - BOTTOM LEFT corner only */}
-              <div 
-                className="absolute left-0 bottom-0 w-[1px] h-14 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(0deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
-                }}
-              />
-              <div 
-                className="absolute left-0 bottom-0 h-[1px] w-10 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
-                }}
-              />
-              {/* Strong fade overlay for TOP RIGHT - fading into darkness */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
-                style={{
-                  background: 'linear-gradient(225deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.3) 60%, transparent 100%)',
-                }}
-              />
-              <div className="flex items-center gap-1.5 mb-2 relative z-10">
-                <MessageSquare className="w-2.5 h-2.5 text-accent" />
-                <span className="text-[9px] text-white/70 uppercase tracking-wider">Follow-ups</span>
-              </div>
-              <div className="space-y-1.5 relative z-10">
-                {[
-                  { name: 'Mike R.', msg: 'Time for your next detail?', status: 'Sent' },
-                  { name: 'Sarah K.', msg: 'How was your ceramic coat?', status: 'Replied' },
-                  { name: 'John D.', msg: 'Ready for spring clean?', status: 'Booked' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.15) }}>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[8px] text-white/70 truncate">{item.name}</div>
-                      <div className="text-[7px] text-white/35 truncate">{item.msg}</div>
-                    </div>
-                    <span className={`text-[6px] px-1 py-0.5 rounded ${
-                      item.status === 'Booked' ? 'bg-emerald-500/20 text-emerald-400/80' :
-                      item.status === 'Replied' ? 'bg-blue-500/20 text-blue-400/80' :
-                      'bg-white/10 text-white/40'
-                    }`}>{item.status}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Inbound Leads - spans 6 cols */}
-            <div 
-              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-            >
-              {/* Subtle internal light glow from top-right */}
-              <div 
-                className="absolute -top-6 -right-6 w-28 h-28 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)',
-                }}
-              />
-              {/* Border shine - TOP RIGHT corner only */}
-              <div 
-                className="absolute right-0 top-0 w-[1px] h-14 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
-                }}
-              />
-              <div 
-                className="absolute right-0 top-0 h-[1px] w-10 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(270deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
-                }}
-              />
-              {/* Strong fade overlay for BOTTOM LEFT - fading into darkness */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
-                style={{
-                  background: 'linear-gradient(45deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.3) 55%, transparent 100%)',
-                }}
-              />
-              <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/70 uppercase tracking-wider">Inbound Leads</span>
-                <div className="flex gap-1 opacity-50">
-                  <div className="w-3 h-3 rounded bg-[#4267B2]/30 flex items-center justify-center text-[6px] text-[#4267B2]">f</div>
-                  <div className="w-3 h-3 rounded bg-[#EA4335]/30 flex items-center justify-center text-[6px] text-[#EA4335]">G</div>
-                </div>
-              </div>
-              <div className="space-y-1.5 relative z-10">
-                {[
-                  { source: 'Google', name: 'New lead: Alex M.', time: '2m ago', color: 'text-[#EA4335]' },
-                  { source: 'Facebook', name: 'Quote request: Lisa P.', time: '8m ago', color: 'text-[#4267B2]' },
-                  { source: 'Google', name: 'Booking: Tom W.', time: '15m ago', color: 'text-[#EA4335]' },
-                ].map((lead, i) => (
-                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.2) }}>
-                    <div className="flex items-center gap-1.5">
-                      <span className={`text-[7px] ${lead.color}`}>{lead.source}</span>
-                      <span className="text-[8px] text-white/70 truncate max-w-[70px]">{lead.name}</span>
-                    </div>
-                    <span className="text-[7px] text-white/25">{lead.time}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-2 pt-1.5 border-t border-white/5 flex justify-between relative z-10">
-                <span className="text-[8px] text-white/50">AI responded to all</span>
-                <span className="text-[8px] text-emerald-400/70">✓</span>
-              </div>
-            </div>
-            
-            {/* Employee Management - spans 6 cols */}
-            <div 
-              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-            >
-              {/* Subtle internal light glow from top-left */}
-              <div 
-                className="absolute -top-4 -left-4 w-20 h-20 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)',
-                }}
-              />
-              {/* Border shine - TOP LEFT corner only */}
-              <div 
-                className="absolute left-0 top-0 w-[1px] h-12 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 70%, transparent 100%)',
-                }}
-              />
-              <div 
-                className="absolute left-0 top-0 h-[1px] w-8 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.15) 80%, transparent 100%)',
-                }}
-              />
-              {/* Strong fade overlay for right side */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
-                style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.95) 100%)',
-                }}
-              />
-              <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/70 uppercase tracking-wider">Team</span>
-                <Users className="w-3 h-3 text-accent/50" />
-              </div>
-              <div className="space-y-1.5 relative z-10">
-                {[
-                  { name: 'Josh T.', role: 'Lead Detailer', status: 'On Job', statusColor: 'bg-emerald-500' },
-                  { name: 'Mike S.', role: 'Detailer', status: 'Available', statusColor: 'bg-blue-500' },
-                  { name: 'Chris L.', role: 'Detailer', status: 'Break', statusColor: 'bg-orange-500' },
-                ].map((emp, i) => (
-                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.2) }}>
-                    <div>
-                      <div className="text-[8px] text-white/70">{emp.name}</div>
-                      <div className="text-[7px] text-white/30">{emp.role}</div>
-                    </div>
-                    <div className="flex items-center gap-1 opacity-70">
-                      <div className={`w-1.5 h-1.5 rounded-full ${emp.statusColor}`} />
-                      <span className="text-[7px] text-white/35">{emp.status}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        
-        {/* Gradient fade for text readability - stronger at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-black via-black/95 to-transparent z-10 pointer-events-none" />
-        
-        {/* Content - positioned at bottom with increased spacing */}
-        <div className="relative z-20 min-h-screen flex flex-col justify-end px-5 pb-16 pt-32">
-          {/* Main headline with Playfair italic */}
-          <div className="space-y-5 mb-8">
-            <h1 className="text-[2.75rem] leading-[1.05] tracking-tight">
-              <span className="font-playfair italic text-white">Your new AI</span>
-              <br />
-              <span className="font-medium text-white/90">business partner</span>
-            </h1>
-            
-            <p className="text-base text-white/60 leading-relaxed max-w-[320px]">
-              All-in-one system that manages all the busy work and gives each customer a white glove service.
-            </p>
-          </div>
-          
-          {/* Email + CTA in same pill */}
-          <div className="mb-10">
-            <div className="flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-1.5 max-w-[360px]">
-              <input
-                type="email"
-                placeholder="What's your email?"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-transparent text-white placeholder:text-white/40 text-sm px-4 py-2 outline-none min-w-0"
-              />
-              <Button 
-                onClick={handleBookDemo}
-                className="bg-white text-black hover:bg-white/90 font-medium text-sm px-5 py-2 h-auto rounded-full shrink-0"
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
-          
-          {/* Social proof stat */}
-          <div className="space-y-1.5 border-t border-white/10 pt-6">
-            <div className="text-2xl font-bold text-white">$2.4M+</div>
-            <p className="text-sm text-white/50">in revenue managed by Carbon AI for 40+ detailing businesses</p>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  
-  // Original Mobile Hero Visual - kept for reference/desktop
+  // Mobile Hero Visual - Animated AI activity feed with fixed height
   const MobileHeroVisual = () => {
     const allActivities = [
       { action: "AI answered inbound call and booked a full detail for Mike R.", amount: "+$280" },
@@ -345,22 +35,27 @@ const Hero = () => {
       { icon: UserCheck, label: "Employees" },
     ];
     
+    // Rotate activities - new one appears at top, pushes others down
     useEffect(() => {
       const interval = setInterval(() => {
         setCurrentIndex(prev => {
           const nextIndex = prev >= allActivities.length - 1 ? 0 : prev + 1;
           
+          // Reset to beginning if we've cycled through all 10
           if (nextIndex === 0) {
             setVisibleActivities(allActivities.slice(0, 5).map((a, i) => ({ ...a, id: Date.now() + i, isNew: false })));
           } else {
             setVisibleActivities(current => {
               const newActivity = { ...allActivities[nextIndex], id: Date.now(), isNew: true };
+              // Mark existing cards as not new
               const existingCards = current.slice(0, 4).map(c => ({ ...c, isNew: false }));
               return [newActivity, ...existingCards];
             });
           }
           
+          // Trigger animation key change to re-run shift animation
           setAnimationKey(k => k + 1);
+          
           return nextIndex;
         });
       }, 2500);
@@ -369,7 +64,9 @@ const Hero = () => {
     
     return (
       <div className="relative w-full max-w-[320px] mx-auto">
+        {/* Main card - simulated AI activity */}
         <div className="bg-card border border-border rounded-2xl overflow-hidden relative z-10">
+          {/* Header */}
           <div className="px-4 py-3 border-b border-border/50 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
@@ -383,6 +80,7 @@ const Hero = () => {
             </div>
           </div>
           
+          {/* Fixed height activity feed - new card slides in, others shift down */}
           <div className="p-4 h-[240px] overflow-hidden relative">
             <div className="flex flex-col gap-2" key={animationKey}>
               {visibleActivities.map((activity, index) => (
@@ -393,6 +91,7 @@ const Hero = () => {
                     : 'animate-[heroCardShiftDown_0.5s_ease-out]'
                   }
                 >
+                  {/* All cards same size - top card uses darker bone white */}
                   <div className={`py-2.5 px-3 rounded-sm flex items-start gap-2 ${
                     index === 0 
                       ? 'bg-background border border-border' 
@@ -416,20 +115,25 @@ const Hero = () => {
           </div>
         </div>
         
+        {/* Curved lines connecting icons to bottom center of visual - start/end vertical, curve in middle */}
         <div className="relative h-12 w-full">
           <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 320 48" preserveAspectRatio="xMidYMid meet">
+            {/* Define paths for reuse */}
             <defs>
+              {/* Paths now go from center to icons */}
               <path id="line1" d="M 160 0 C 160 24, 40 24, 40 48" />
               <path id="line2" d="M 160 0 C 160 24, 120 24, 120 48" />
               <path id="line3" d="M 160 0 C 160 24, 200 24, 200 48" />
               <path id="line4" d="M 160 0 C 160 24, 280 24, 280 48" />
             </defs>
             
+            {/* Static dashed lines */}
             <use href="#line1" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             <use href="#line2" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             <use href="#line3" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             <use href="#line4" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
             
+            {/* Single dots that travel one way, disappear, pause, then go back */}
             <circle r="2.5" fill="hsl(var(--accent))">
               <animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1;1;0;0" keyTimes="0;0.35;0.5;0.85;1" calcMode="spline" keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
                 <mpath href="#line1" />
@@ -457,6 +161,7 @@ const Hero = () => {
           </svg>
         </div>
         
+        {/* Connected source icons in circles - 4 icons */}
         <div className="flex items-center justify-between px-2">
           {contextItems.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
@@ -468,6 +173,7 @@ const Hero = () => {
           ))}
         </div>
         
+        {/* Caption */}
         <p className="text-center text-xs text-muted-foreground mt-4 leading-snug max-w-[300px] mx-auto">
           Everything in one system so Carbon can work on your business with full context.
         </p>
@@ -476,53 +182,69 @@ const Hero = () => {
   };
   
   return (
-    <>
-      {/* Mobile: Dark dramatic hero */}
-      <section className="md:hidden">
-        <DarkMobileHero />
-      </section>
+    <section className="min-h-screen pb-4 md:pb-8 px-4 md:px-6 lg:px-8 pt-24 md:pt-32 relative overflow-hidden bg-background">
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none bg-background" />
       
-      {/* Desktop: Original hero layout */}
-      <section className="hidden md:block min-h-screen pb-8 px-6 lg:px-8 pt-32 relative overflow-hidden bg-background">
-        <div className="absolute inset-0 pointer-events-none bg-background" />
-        
-        <div className="container mx-auto max-w-[1800px] relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 text-left">
-              <h1 className="fade-in fade-in-delay-1">
-                <span className="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
-              </h1>
-              
-              <p className="text-xl max-w-2xl fade-in fade-in-delay-2 leading-snug">
-                <span className="text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 pt-2">
-                <Button onClick={handleBookDemo} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium px-8">
-                  Book a demo
-                </Button>
-              </div>
+      <div className="container mx-auto max-w-none md:max-w-[1800px] relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="space-y-4 md:space-y-8 text-center md:text-left">
+            {/* Mobile: Tertiary callout badge */}
+            <div className="md:hidden flex items-center justify-center gap-2 fade-in">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm">
+                <span className="px-2 py-0.5 rounded bg-foreground text-background text-xs font-medium">NEW</span>
+                <span className="text-foreground">Designed for detailers</span>
+              </span>
             </div>
             
-            <div className="fade-in fade-in-delay-3">
-              <DesktopHeroGraphic />
+            {/* Mobile: Large title with lighter weight */}
+            <h1 className="fade-in fade-in-delay-1">
+              <span className="md:hidden block text-[2.75rem] font-medium tracking-tight leading-[0.95] text-foreground">
+                Your new AI<br />
+                business partner.
+              </span>
+              <span className="hidden md:inline text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
+            </h1>
+            
+            <p className="text-base md:text-xl w-full md:max-w-2xl fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
+              <span className="md:hidden text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
+              <span className="hidden md:inline text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
+              <Button onClick={handleBookDemo} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
+                Book a demo
+              </Button>
             </div>
           </div>
+          
+          {/* Mobile: Central hub visual */}
+          <div className="md:hidden fade-in fade-in-delay-3">
+            <MobileHeroVisual />
+          </div>
+          
+          {/* Desktop: Keep existing AbstractGraphic would go here - using inline for now */}
+          <div className="hidden md:block fade-in fade-in-delay-3">
+            <DesktopHeroGraphic />
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
 // Desktop Hero Graphic - extracted from AbstractGraphic
 const DesktopHeroGraphic = () => (
   <div className="relative w-full aspect-[4/5] bg-card/90 rounded-2xl overflow-hidden border border-border/50 backdrop-blur-sm">
+    {/* Grid pattern background */}
     <div className="absolute inset-0 opacity-[0.03]" style={{
       backgroundImage: 'linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)',
       backgroundSize: '20px 20px'
     }} />
     
+    {/* Main content area */}
     <div className="absolute inset-4 bottom-28 space-y-3 overflow-hidden">
+      {/* Top bar - simulating app header */}
       <div className="flex items-center justify-between pb-2 border-b border-border/30">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
@@ -534,6 +256,7 @@ const DesktopHeroGraphic = () => (
         </div>
       </div>
       
+      {/* AI Impact Stats */}
       <div className="grid grid-cols-3 gap-2">
         {[
           { label: "Time Saved", value: "4.2h", sublabel: "today" },
@@ -553,6 +276,7 @@ const DesktopHeroGraphic = () => (
         ))}
       </div>
       
+      {/* AI Activity feed - Wins */}
       <div className="space-y-1.5 pt-1 flex-1">
         <div className="flex items-center justify-between mb-2">
           <div className="text-[10px] text-muted-foreground uppercase tracking-wider">AI Wins</div>
@@ -602,6 +326,7 @@ const DesktopHeroGraphic = () => (
       </div>
     </div>
     
+    {/* Bottom stats bar - positioned separately */}
     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-card/95 border border-border/50">
       <div className="flex items-center gap-4">
         <div className="text-center">
@@ -610,22 +335,24 @@ const DesktopHeroGraphic = () => (
         </div>
         <div className="w-px h-10 bg-border/50" />
         <div className="text-center">
-          <div className="text-xl font-bold text-accent">2.3s</div>
-          <div className="text-[9px] text-muted-foreground">Avg Response</div>
+          <div className="text-xl font-bold text-foreground">2.3s</div>
+          <div className="text-[9px] text-muted-foreground">Avg. Answer</div>
+        </div>
+        <div className="w-px h-10 bg-border/50" />
+        <div className="text-center">
+          <div className="text-xl font-bold text-foreground">24/7</div>
+          <div className="text-[9px] text-muted-foreground">Coverage</div>
         </div>
       </div>
-      <div className="flex items-center gap-2 px-3 py-1.5 bg-accent/10 rounded-full">
+      <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-accent/15 rounded-full border border-accent/30">
         <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
         <span className="text-[10px] text-accent font-medium">AI Active</span>
       </div>
     </div>
     
-    <div 
-      className="absolute inset-0 pointer-events-none opacity-20"
-      style={{
-        background: 'radial-gradient(circle at 70% 30%, hsl(var(--accent) / 0.15), transparent 50%)',
-      }}
-    />
+    {/* Ambient glow */}
+    <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
   </div>
 );
 
