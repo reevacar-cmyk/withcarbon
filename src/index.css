@@ -275,6 +275,18 @@
   }
 }
 
+/* Log pulse animation for automation visual */
+@keyframes logPulse {
+  0%, 80%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
 /* Vibrant red utility class */
 .text-vibrant-red {
   color: hsl(0, 100%, 50%);
