@@ -89,41 +89,60 @@ const Solution = () => {
         <span className="text-[10px] px-2 py-0.5 bg-accent rounded-sm text-foreground font-medium">CONNECTED</span>
       </div>
       
-      {/* Central hub diagram */}
-      <div className="flex-1 flex items-center justify-center relative">
-        {/* Center hub */}
-        <div className="relative z-10">
-          <div className="w-16 h-16 rounded-sm bg-accent border border-accent flex items-center justify-center">
-            <span className="text-xl font-bold text-foreground">C</span>
+      {/* Data sources flowing into Carbon */}
+      <div className="flex-1 flex flex-col justify-center gap-2">
+        {/* Input sources */}
+        <div className="grid grid-cols-2 gap-2">
+          {[
+            { label: "Calls", status: "Live" },
+            { label: "Texts", status: "Live" },
+            { label: "Website", status: "Live" },
+            { label: "Past Jobs", status: "Synced" }
+          ].map((source, i) => (
+            <div key={i} className="p-3 bg-white/5 border border-white/10 rounded-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-white/80">{source.label}</span>
+                <div className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span className="text-[8px] text-accent">{source.status}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Arrow connector */}
+        <div className="flex items-center justify-center py-2">
+          <div className="flex flex-col items-center">
+            <div className="w-px h-4 bg-white/20" />
+            <div className="text-[8px] text-white/40">↓</div>
+            <div className="w-px h-4 bg-white/20" />
           </div>
         </div>
         
-        {/* Connection lines */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-48 h-48 border border-white/10 rounded-sm rotate-45" />
-        </div>
-        
-        {/* Connected nodes */}
-        {[
-          { label: "CALLS", position: "top-4 left-1/2 -translate-x-1/2" },
-          { label: "TEXTS", position: "right-4 top-1/2 -translate-y-1/2" },
-          { label: "JOBS", position: "bottom-4 left-1/2 -translate-x-1/2" },
-          { label: "CRM", position: "left-4 top-1/2 -translate-y-1/2" }
-        ].map((node, i) => (
-          <div key={i} className={`absolute ${node.position}`}>
-            <div className="px-2 py-1.5 bg-white/5 border border-white/20 rounded-sm">
-              <span className="text-[9px] text-white/70 tracking-wider">{node.label}</span>
+        {/* Carbon hub */}
+        <div className="p-4 bg-accent rounded-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-foreground">C</span>
+              <div>
+                <div className="text-[10px] text-foreground font-medium">Carbon</div>
+                <div className="text-[8px] text-foreground/70">Full context on every customer</div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-sm font-bold text-foreground">100%</div>
+              <div className="text-[8px] text-foreground/70">synced</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
       
       {/* Data grid */}
       <div className="border border-white/10 rounded-sm overflow-hidden mt-4">
-        <div className="grid grid-cols-4 divide-x divide-white/10">
+        <div className="grid grid-cols-3 divide-x divide-white/10">
           {[
             { label: "Sources", value: "4" },
-            { label: "Synced", value: "100%" },
             { label: "Latency", value: "<1s" },
             { label: "Status", value: "LIVE", isAccent: true }
           ].map((stat, i) => (
