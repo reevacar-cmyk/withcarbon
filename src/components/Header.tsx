@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 const Header = () => {
-  const scrollToPartnerForm = () => {
-    document.getElementById("partner-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
+  const handleBookDemo = () => {
+    window.open('https://calendly.com/az356', '_blank');
   };
   return <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl md:backdrop-blur-sm border-b border-border">
       <div className="container mx-auto md:px-12 lg:px-24 px-[20px]">
@@ -11,7 +9,7 @@ const Header = () => {
           <a href="/" className="text-xl font-semibold tracking-tight text-foreground">
             Carbon
           </a>
-          <Button onClick={scrollToPartnerForm} size="sm" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
+          <Button onClick={handleBookDemo} size="sm" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
             Book a demo
           </Button>
         </div>
