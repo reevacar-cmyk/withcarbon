@@ -354,13 +354,6 @@ const ProblemStatement = () => {
               </div>
             </div>
           </div>
-
-          {/* Bottom line */}
-          <div className="mt-4 text-center fade-in" style={{ animationDelay: '0.5s' }}>
-            <span className="text-xs text-muted-foreground">
-              And it happens while you're busy doing the actual work.
-            </span>
-          </div>
         </div>
 
         {/* Desktop header */}
