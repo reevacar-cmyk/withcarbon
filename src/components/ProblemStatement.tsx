@@ -1,4 +1,78 @@
 import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+// Count-up animation component - resets after 10s out of view
+const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          if (resetTimeoutRef.current) {
+            clearTimeout(resetTimeoutRef.current);
+            resetTimeoutRef.current = null;
+          }
+          setIsInView(true);
+        } else {
+          setIsInView(false);
+          resetTimeoutRef.current = setTimeout(() => {
+            setCount(0);
+            setHasAnimated(false);
+          }, 10000);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated) return;
+
+    setHasAnimated(true);
+    const duration = 1200;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out quint - slows down more dramatically at the end
+      const eased = 1 - Math.pow(1 - progress, 5);
+      const current = Math.round(eased * value);
+      
+      setCount(current);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [isInView, hasAnimated, value]);
+
+  return (
+    <span ref={ref}>
+      {prefix}{count}{suffix}
+    </span>
+  );
+};
 
 const ProblemStatement = () => {
   return (
@@ -39,7 +113,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  $34K+
+                  <CountUpMetric value={34} prefix="$" suffix="K+" />
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   lost per year
@@ -65,7 +139,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  $175K+
+                  <CountUpMetric value={175} prefix="$" suffix="K+" />
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   sitting untapped
@@ -91,7 +165,7 @@ const ProblemStatement = () => {
                 </div>
                 
                 <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
-                  14hrs+
+                  <CountUpMetric value={14} suffix="hrs+" />
                 </div>
                 <div className="text-xs text-muted-foreground mb-4">
                   wasted per week
