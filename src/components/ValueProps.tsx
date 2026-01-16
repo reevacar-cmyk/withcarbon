@@ -184,13 +184,13 @@ const ValueProps = () => {
               </div>
               
               {/* Center icon */}
-              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
-                pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'bg-accent' : 'bg-muted border border-border'
+              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-300 ${
+                pulsePhase === 'loading' ? 'bg-accent' : 'bg-muted border border-border'
               }`}>
                 {pulsePhase === 'loading' ? (
                   <div className="w-3 h-3 border-2 border-accent-foreground border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toBottom' || showBooked ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
+                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`} />
                 )}
               </div>
               <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
