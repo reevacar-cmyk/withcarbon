@@ -238,15 +238,15 @@ const ValueProps = () => {
           </div>
           
           {/* Animated card container */}
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
-            <div className="relative w-full max-w-[260px] h-[200px]">
+          <div className="flex-1 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
+            <div className="relative w-full max-w-[260px] h-[230px]">
               {/* Single card that animates in from right on key change */}
               <div 
                 key={currentIndex}
                 className="absolute inset-0 p-4 bg-background border border-border rounded-sm animate-[slideInFromRight_0.5s_ease-out]"
               >
                 {/* Customer header */}
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
+                <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border">
                   <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
                     {customer.initials}
                   </div>
@@ -257,7 +257,7 @@ const ValueProps = () => {
                 </div>
                 
                 {/* Data points */}
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-3">
                   <div className="flex items-center justify-between text-[10px]">
                     <span className="font-mono text-muted-foreground uppercase">Last service</span>
                     <span className="text-foreground">{customer.lastService}</span>
@@ -286,27 +286,11 @@ const ValueProps = () => {
             </div>
             
             {/* Result - inline text */}
-            <div className={`flex items-center justify-center gap-2 mt-2 transition-all duration-300 ${
+            <div className={`flex items-center justify-center gap-2 transition-all duration-300 ${
               showRebooked ? 'opacity-100' : 'opacity-0'
             }`}>
               <CheckCircle className="w-3.5 h-3.5 text-accent" />
               <span className="text-xs font-mono font-bold text-accent">Rebooked</span>
-            </div>
-          </div>
-          
-          {/* Stats bar */}
-          <div className="mt-6 pt-4 border-t border-border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div>
-                  <div className="text-lg font-mono font-semibold text-accent">$650</div>
-                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Recovered</div>
-                </div>
-                <div>
-                  <div className="text-lg font-mono font-semibold text-foreground">67%</div>
-                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Rebook</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -321,14 +305,14 @@ const ValueProps = () => {
             </div>
           </div>
           
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
-            <div className="relative w-full max-w-[280px] h-[220px]">
+          <div className="flex-1 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
+            <div className="relative w-full max-w-[280px] h-[250px]">
               {/* Single card that animates in from right on key change */}
               <div 
                 key={currentIndex}
                 className="absolute inset-0 p-4 bg-white border border-white/20 rounded-sm animate-[slideInFromRight_0.5s_ease-out]"
               >
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
+                <div className="flex items-center gap-3 mb-3 pb-3 border-b border-neutral-200">
                   <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
                     {customer.initials}
                   </div>
@@ -338,7 +322,7 @@ const ValueProps = () => {
                   </div>
                 </div>
                 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-3">
                   <div className="flex items-center justify-between text-[10px]">
                     <span className="font-mono text-neutral-400 uppercase">Last service</span>
                     <span className="text-neutral-900">{customer.lastService}</span>
@@ -370,19 +354,6 @@ const ValueProps = () => {
             }`}>
               <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
               <span className="text-xs font-mono text-accent-foreground">Rebooked</span>
-            </div>
-          </div>
-          
-          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <div>
-                <div className="text-lg font-mono font-bold text-accent">$650</div>
-                <div className="text-[9px] font-mono text-white/40 uppercase">Recovered</div>
-              </div>
-              <div>
-                <div className="text-lg font-mono font-bold text-white">67%</div>
-                <div className="text-[9px] font-mono text-white/40 uppercase">Rebook</div>
-              </div>
             </div>
           </div>
         </div>
