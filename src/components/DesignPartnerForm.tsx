@@ -63,12 +63,12 @@ const DesignPartnerForm = () => {
       <div className="container mx-auto max-w-2xl">
         {/* Grand header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-14 fade-in">
-          <span className="text-xs uppercase tracking-[0.2em] text-[hsl(40_20%_85%)] md:text-accent font-mono">
+          <span className="text-xs uppercase tracking-[0.2em] text-white md:text-accent font-mono">
             Limited Availability
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05]">
             Shape the future<br />
-            <span className="text-[hsl(40_20%_85%)] md:text-accent">with us.</span>
+            <span className="text-white md:text-accent">with us.</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto leading-relaxed">
             We're looking for 100 detail businesses to join our design partner program — 
@@ -106,8 +106,8 @@ const DesignPartnerForm = () => {
         <div className="flex items-center justify-center gap-3 mb-8 fade-in fade-in-delay-1">
           <div className="flex -space-x-2">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-8 h-8 rounded-full bg-[hsl(40_20%_85%)]/20 md:bg-accent/20 border-2 border-[hsl(0_0%_10%)] flex items-center justify-center">
-                <span className="text-[10px] text-[hsl(40_20%_85%)] md:text-accent font-bold">✓</span>
+              <div key={i} className="w-8 h-8 rounded-full bg-white/20 md:bg-accent/20 border-2 border-[hsl(0_0%_10%)] flex items-center justify-center">
+                <span className="text-[10px] text-white md:text-accent font-bold">✓</span>
               </div>
             ))}
           </div>
@@ -121,14 +121,14 @@ const DesignPartnerForm = () => {
             placeholder="Your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-[hsl(40_20%_85%)] md:focus:border-accent"
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 focus:border-white md:focus:border-accent"
             required
             maxLength={255}
           />
           <Button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full bg-[hsl(40_20%_85%)] hover:bg-[hsl(40_20%_80%)] text-[hsl(40_15%_15%)] md:bg-accent md:hover:bg-accent/90 md:text-accent-foreground font-semibold h-12 text-base"
+            className="w-full bg-white hover:bg-white/90 text-neutral-900 md:bg-accent md:hover:bg-accent/90 md:text-accent-foreground font-semibold h-12 text-base"
           >
             {isSubmitting ? "Submitting..." : "Book a demo"}
           </Button>
