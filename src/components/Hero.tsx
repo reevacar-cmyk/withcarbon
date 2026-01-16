@@ -14,31 +14,38 @@ const Hero = () => {
     return (
       <div className="relative min-h-screen bg-black overflow-hidden">
         {/* Dashboard visuals in background - arranged like a dashboard grid */}
-        <div className="absolute inset-0 z-0 px-4 pt-24">
-          {/* Dashboard grid container */}
-          <div className="grid grid-cols-12 gap-2.5 max-w-[380px] mx-auto">
+        <div className="absolute inset-0 z-0 px-2 pt-24">
+          {/* Dashboard grid container - extended width */}
+          <div className="grid grid-cols-12 gap-2.5 max-w-[420px] mx-auto">
             
             {/* Calendar with Booked Jobs - spans 7 cols */}
             <div 
               className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Internal light glow from top-right */}
+              {/* Internal light glow from top-left */}
               <div 
-                className="absolute -top-10 -right-10 w-32 h-32 pointer-events-none"
+                className="absolute -top-10 -left-10 w-36 h-36 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,200,150,0.12) 0%, rgba(255,180,120,0.06) 40%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,200,150,0.15) 0%, rgba(255,180,120,0.08) 40%, transparent 70%)',
                 }}
               />
-              {/* Shiny border - top and right edges where light originates */}
+              {/* Shiny border - top and left edges where light originates */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, transparent 0%, transparent 50%, rgba(255,220,180,0.3) 70%, rgba(255,240,220,0.7) 85%, rgba(255,255,255,0.9) 92%, rgba(255,240,220,0.5) 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 50%, rgba(255,220,180,0.3) 70%, rgba(255,240,220,0.7) 85%, rgba(255,255,255,0.9) 92%, rgba(255,240,220,0.5) 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
+                }}
+              />
+              {/* Fade overlay for right side (away from light) */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -76,22 +83,29 @@ const Hero = () => {
               className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Internal light glow from top */}
+              {/* Internal light glow from top-left */}
               <div 
-                className="absolute -top-8 left-1/2 -translate-x-1/2 w-28 h-24 pointer-events-none"
+                className="absolute -top-8 -left-4 w-24 h-24 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse, rgba(255,200,150,0.1) 0%, rgba(255,180,120,0.04) 50%, transparent 70%)',
+                  background: 'radial-gradient(ellipse, rgba(255,200,150,0.08) 0%, rgba(255,180,120,0.03) 50%, transparent 70%)',
                 }}
               />
-              {/* Shiny border - top edge */}
+              {/* Shiny border - top-left edge */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, rgba(255,240,220,0.8) 0%, rgba(255,220,180,0.4) 3%, transparent 8%, transparent 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 70%, rgba(255,240,220,0.5) 88%, rgba(255,255,255,0.7) 95%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
+                }}
+              />
+              {/* Fade overlay for right side */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.5) 100%)',
                 }}
               />
               <div className="flex items-center gap-1.5 mb-2 relative z-10">
@@ -123,22 +137,29 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Internal light glow from top-left */}
+              {/* Internal light glow from left */}
               <div 
-                className="absolute -top-6 -left-6 w-24 h-24 pointer-events-none"
+                className="absolute top-0 -left-8 w-28 h-28 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,200,150,0.08) 0%, transparent 60%)',
+                  background: 'radial-gradient(circle, rgba(255,200,150,0.12) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - top-left edge */}
+              {/* Shiny border - left edge */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,240,220,0.6) 5%, rgba(255,220,180,0.3) 12%, transparent 25%, transparent 100%)',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,240,220,0.5) 3%, rgba(255,220,180,0.2) 8%, transparent 18%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
+                }}
+              />
+              {/* Fade overlay for right side */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.45) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -173,22 +194,29 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Internal light glow from top */}
+              {/* Internal light glow from top-left */}
               <div 
-                className="absolute -top-6 right-4 w-20 h-20 pointer-events-none"
+                className="absolute -top-4 -left-4 w-20 h-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle, rgba(255,200,150,0.06) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - top-right */}
+              {/* Shiny border - top-left */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(160deg, transparent 0%, transparent 60%, rgba(255,220,180,0.2) 80%, rgba(255,240,220,0.5) 90%, rgba(255,255,255,0.7) 95%, transparent 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 75%, rgba(255,220,180,0.3) 88%, rgba(255,240,220,0.5) 93%, rgba(255,255,255,0.6) 97%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
+                }}
+              />
+              {/* Fade overlay for right side */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.5) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
