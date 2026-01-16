@@ -28,7 +28,7 @@ const DisjointedTools = () => {
       name: "AI Voice Tools",
       price: "$650/mo",
       icon: PhoneOff,
-      tagline: "A Vapi wrapper. That's it.",
+      tagline: "A robotic script reader",
       description: "Picks up the phone, reads a script, forgets everything. Never learns. Never improves. $650/mo for a fancy answering machine.",
       painPoints: [
         "Zero memory between calls",
@@ -37,14 +37,14 @@ const DisjointedTools = () => {
       ]
     },
     {
-      name: "AI Builders",
+      name: "AI Agencies",
       price: "$1,200/mo",
       icon: Cog,
-      tagline: "Pay an agency. Pay again. Repeat.",
-      description: "$700 setup fee. $1,200/mo for static automations that break. Need a change? Call the agency. More money.",
+      tagline: "Pay thousands for white-labeled tools",
+      description: "$700 setup fee. $1,200/mo for white-labeled automation tools that break. Need a change? Call the agency. More money.",
       painPoints: [
         "$700+ agency setup fees",
-        "Static automations that break",
+        "White-labeled tools that break",
         "Enterprise prices for basic workflows"
       ]
     }
