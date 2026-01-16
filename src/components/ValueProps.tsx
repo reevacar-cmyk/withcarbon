@@ -116,9 +116,9 @@ const ValueProps = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Lead → Booking</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">LIVE</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">LIVE</span>
           </div>
         </div>
         
@@ -183,9 +183,9 @@ const ValueProps = () => {
       <div className="hidden md:flex flex-col h-full p-6">
         <div className="flex items-center justify-between mb-8">
           <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Lead → Booking</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">24/7</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">24/7</span>
           </div>
         </div>
         
@@ -249,9 +249,9 @@ const ValueProps = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Customer → Rebook</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">AUTO</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">AUTO</span>
           </div>
         </div>
         
@@ -319,9 +319,9 @@ const ValueProps = () => {
       <div className="hidden md:flex flex-col h-full p-6">
         <div className="flex items-center justify-between mb-8">
           <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Customer → Rebook</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">AUTO</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">AUTO</span>
           </div>
         </div>
         
@@ -387,9 +387,9 @@ const ValueProps = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Data → CRM</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">SYNC</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">SYNC</span>
           </div>
         </div>
         
@@ -468,9 +468,9 @@ const ValueProps = () => {
       <div className="hidden md:flex flex-col h-full p-6">
         <div className="flex items-center justify-between mb-8">
           <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Data → CRM</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-500">LIVE</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-400/10 border border-green-400/20 rounded-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[9px] font-mono text-green-400">LIVE</span>
           </div>
         </div>
         
