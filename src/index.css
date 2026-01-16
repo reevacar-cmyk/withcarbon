@@ -262,3 +262,20 @@
     opacity: 1;
   }
 }
+
+/* Thanos snap dust disintegration animation */
+@keyframes dustFloat {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(40px + 30px * var(--random-x, 0.5)), calc(-60px - 40px * var(--random-y, 0.5))) scale(0);
+  }
+}
+
+/* Vibrant red utility class */
+.text-vibrant-red {
+  color: hsl(0, 100%, 50%);
+}
