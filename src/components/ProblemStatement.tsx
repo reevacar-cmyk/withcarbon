@@ -1,17 +1,17 @@
-import { PhoneMissed, UserX, DollarSign, UserMinus, AlertTriangle } from "lucide-react";
+import { PhoneMissed, UserX, DollarSign, UserMinus, AlertTriangle, Users } from "lucide-react";
 
 const ProblemStatement = () => {
-  const problems = [
-    { stat: "67%", label: "CALLS MISSED", icon: PhoneMissed },
-    { stat: "23%", label: "NO-SHOWS", icon: UserX },
-    { stat: "$2.4K", label: "LOST/MO", icon: DollarSign },
-    { stat: "2:3", label: "DON'T RETURN", icon: UserMinus }
-  ];
+  // Calculations:
+  // Missed leads: 20 leads/day × 37% missed × $250 × 365 days = $67,525/year
+  // Untapped customers: 3,000 past customers × 70% don't return × $250 = $525,000
+
+  const missedLeadsRevenue = Math.round(20 * 0.37 * 250 * 365);
+  const untappedRevenue = Math.round(3000 * 0.70 * 250);
 
   return (
     <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-background md:bg-[hsl(40_20%_94%)]">
       <div className="container mx-auto max-w-5xl">
-        {/* Mobile: Minimal industrial scientific design */}
+        {/* Mobile: Revenue quantification design */}
         <div className="md:hidden">
           {/* Section label with warning indicator */}
           <div className="mb-4 fade-in flex items-center gap-2">
@@ -28,53 +28,98 @@ const ProblemStatement = () => {
             Revenue bleeding out.
           </h2>
 
-          {/* Industrial data grid - scientific aesthetic */}
-          <div className="border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.2s' }}>
-            {/* Header row */}
+          {/* Revenue Loss Card 1: Missed Leads */}
+          <div className="border border-border rounded-sm overflow-hidden fade-in mb-3" style={{ animationDelay: '0.2s' }}>
+            {/* Header */}
             <div className="bg-muted/50 border-b border-border px-3 py-2 flex items-center justify-between">
-              <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
-                DIAGNOSTIC DATA
-              </span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="font-mono text-[8px] text-red-500 uppercase">CRITICAL</span>
+              <div className="flex items-center gap-2">
+                <PhoneMissed className="w-3.5 h-3.5 text-red-500" />
+                <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                  MISSED LEADS
+                </span>
               </div>
+              <span className="font-mono text-[8px] text-red-500 uppercase font-medium">LOST REVENUE</span>
             </div>
             
-            {/* Data rows */}
-            <div className="divide-y divide-border">
-              {problems.map((problem, index) => {
-                const Icon = problem.icon;
-                return (
-                  <div 
-                    key={index}
-                    className="flex items-center justify-between px-3 py-3 bg-background"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-sm bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                        <Icon className="w-4 h-4 text-red-500" />
-                      </div>
-                      <span className="font-mono text-[10px] tracking-[0.1em] text-muted-foreground uppercase">
-                        {problem.label}
-                      </span>
-                    </div>
-                    <div className="font-mono text-lg font-bold text-foreground tracking-tight">
-                      {problem.stat}
-                    </div>
-                  </div>
-                );
-              })}
+            {/* Big number */}
+            <div className="px-3 py-4 bg-background">
+              <div className="text-3xl font-bold text-red-500 font-mono tracking-tight mb-3">
+                ${missedLeadsRevenue.toLocaleString()}<span className="text-lg text-red-400">/yr</span>
+              </div>
+              
+              {/* Breakdown */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Daily leads</span>
+                  <span className="text-foreground">20</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Missed rate</span>
+                  <span className="text-red-500 font-medium">37%</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Avg service value</span>
+                  <span className="text-foreground">$250</span>
+                </div>
+                <div className="h-px bg-border my-2" />
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Missed/day</span>
+                  <span className="text-foreground">≈ 7 jobs × $250 = <span className="text-red-500">$1,850</span></span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Bottom context line */}
-          <div className="mt-4 px-3 py-2 border border-border rounded-sm bg-muted/30 fade-in" style={{ animationDelay: '0.3s' }}>
+          {/* Revenue Loss Card 2: Untapped Past Customers */}
+          <div className="border border-border rounded-sm overflow-hidden fade-in" style={{ animationDelay: '0.3s' }}>
+            {/* Header */}
+            <div className="bg-muted/50 border-b border-border px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Users className="w-3.5 h-3.5 text-red-500" />
+                <span className="font-mono text-[9px] tracking-[0.15em] text-muted-foreground uppercase">
+                  UNTAPPED CUSTOMERS
+                </span>
+              </div>
+              <span className="font-mono text-[8px] text-red-500 uppercase font-medium">POTENTIAL</span>
+            </div>
+            
+            {/* Big number */}
+            <div className="px-3 py-4 bg-background">
+              <div className="text-3xl font-bold text-red-500 font-mono tracking-tight mb-3">
+                ${untappedRevenue.toLocaleString()}<span className="text-lg text-red-400"> sitting</span>
+              </div>
+              
+              {/* Breakdown */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Past customers</span>
+                  <span className="text-foreground">3,000</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Return rate</span>
+                  <span className="text-foreground">30%</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Not returning</span>
+                  <span className="text-red-500 font-medium">70% (2,100)</span>
+                </div>
+                <div className="h-px bg-border my-2" />
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-muted-foreground">Each worth</span>
+                  <span className="text-foreground">$250 avg = <span className="text-red-500">$525K</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom summary */}
+          <div className="mt-4 px-3 py-3 border border-red-500/30 rounded-sm bg-red-500/5 fade-in" style={{ animationDelay: '0.4s' }}>
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[9px] tracking-[0.1em] text-muted-foreground uppercase">
-                While you're working
+              <span className="font-mono text-[10px] tracking-[0.1em] text-muted-foreground uppercase">
+                Total opportunity cost
               </span>
-              <span className="font-mono text-[9px] tracking-[0.1em] text-red-500 uppercase font-medium">
-                Revenue lost
+              <span className="font-mono text-sm font-bold text-red-500">
+                ${(missedLeadsRevenue + untappedRevenue).toLocaleString()}/yr
               </span>
             </div>
           </div>
