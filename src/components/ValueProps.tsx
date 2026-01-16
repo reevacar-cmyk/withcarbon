@@ -1,83 +1,9 @@
 import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-// Count-up animation component - resets after 10s out of view
-const CountUpMetric = ({ value }: { value: string }) => {
-  const [count, setCount] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
-  // Extract number from value string (e.g., "37%" -> 37, "18hrs" -> 18)
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
-  const textSuffix = value.replace(/[0-9]/g, '');
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          // Clear any pending reset
-          if (resetTimeoutRef.current) {
-            clearTimeout(resetTimeoutRef.current);
-            resetTimeoutRef.current = null;
-          }
-          setIsInView(true);
-        } else {
-          setIsInView(false);
-          // Delay reset by 10 seconds
-          resetTimeoutRef.current = setTimeout(() => {
-            setCount(0);
-            setHasAnimated(false);
-          }, 10000);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-      if (resetTimeoutRef.current) {
-        clearTimeout(resetTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isInView || hasAnimated) return;
-
-    setHasAnimated(true);
-    const duration = 1200;
-    const startTime = Date.now();
-    
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Ease out quint - slows down more dramatically at the end
-      const eased = 1 - Math.pow(1 - progress, 5);
-      const current = Math.round(eased * numericValue);
-      
-      setCount(current);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }, [isInView, hasAnimated, numericValue]);
-
-  return (
-    <div ref={ref}>
-      {count}{textSuffix}
-    </div>
-  );
+// Static metric display (no animation)
+const StaticMetric = ({ value }: { value: string }) => {
+  return <div>{value}</div>;
 };
 
 const ValueProps = () => {
@@ -241,143 +167,217 @@ const ValueProps = () => {
     </div>
   );
 
-  // Minimal Industrial Retention Visual
-  const RetentionVisual = () => (
-    <div className="relative w-full h-full overflow-hidden">
-      {/* Mobile */}
-      <div className="md:hidden h-full flex flex-col p-5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Customer → Rebook</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-600 font-medium">AUTO</span>
-          </div>
-        </div>
+  // Animated Retention Visual with cycling customer cards
+  const RetentionVisual = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [showFollowup, setShowFollowup] = useState(false);
+    
+    const customers = [
+      { initials: "JD", name: "John D.", car: "Tesla Model 3", lastService: "45 days ago", ltv: "$1,440", followup: "Hey John! Your Model 3 is due for a detail..." },
+      { initials: "SM", name: "Sarah M.", car: "BMW X5", lastService: "38 days ago", ltv: "$2,180", followup: "Hi Sarah! Time to keep that X5 looking fresh..." },
+      { initials: "MR", name: "Mike R.", car: "Ford F-150", lastService: "52 days ago", ltv: "$890", followup: "Hey Mike! Your F-150 could use some love..." },
+      { initials: "LK", name: "Lisa K.", car: "Mercedes GLC", lastService: "41 days ago", ltv: "$3,200", followup: "Hi Lisa! Ready to schedule your next detail?" },
+      { initials: "DP", name: "David P.", car: "Audi Q7", lastService: "60 days ago", ltv: "$1,650", followup: "Hey David! It's been a while since your Q7..." },
+      { initials: "AW", name: "Amy W.", car: "Porsche Cayenne", lastService: "33 days ago", ltv: "$4,100", followup: "Hi Amy! Your Cayenne deserves the best care..." },
+      { initials: "TC", name: "Tom C.", car: "Chevy Tahoe", lastService: "48 days ago", ltv: "$1,120", followup: "Hey Tom! Time to get your Tahoe detailed..." },
+    ];
+    
+    useEffect(() => {
+      const cycleAnimation = () => {
+        // Show followup sliding up
+        setShowFollowup(true);
         
-        {/* Profile card */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[260px] p-4 bg-background border border-border rounded-sm shadow-sm">
-            {/* Customer header */}
-            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
-              <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
-                JD
-              </div>
-              <div>
-                <div className="text-xs font-medium text-foreground">John D.</div>
-                <div className="text-[10px] font-mono text-muted-foreground">Tesla Model 3</div>
-              </div>
-            </div>
-            
-            {/* Data points */}
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-muted-foreground uppercase">Last service</span>
-                <span className="text-foreground">45 days ago</span>
-              </div>
-              <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-muted-foreground uppercase">LTV</span>
-                <span className="text-foreground">$1,440</span>
-              </div>
-            </div>
-            
-            {/* AI action */}
-            <div className="p-3 bg-accent rounded-sm">
-              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
-                <Send className="w-3 h-3" />
-                AI Follow-up Sent
-              </div>
-              <div className="text-[10px] text-accent-foreground/80">"Hey John! Your Model 3 is due..."</div>
-            </div>
-          </div>
+        // After followup is visible, start exit animation
+        setTimeout(() => {
+          setIsAnimating(true);
           
-          {/* Result - inline text instead of card */}
-          <div className="flex items-center justify-center gap-2 mt-2">
-            <CheckCircle className="w-3.5 h-3.5 text-accent" />
-            <span className="text-xs font-mono font-bold text-accent">Rebooked Thursday</span>
-          </div>
-        </div>
-        
-        {/* Stats bar */}
-        <div className="mt-6 pt-4 border-t border-border">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div>
-                <div className="text-lg font-mono font-semibold text-accent">$650</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Recovered</div>
-              </div>
-              <div>
-                <div className="text-lg font-mono font-semibold text-foreground">67%</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Rebook</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          // After exit animation, switch to next card
+          setTimeout(() => {
+            setCurrentIndex((prev) => (prev + 1) % customers.length);
+            setShowFollowup(false);
+            setIsAnimating(false);
+          }, 600);
+        }, 1800);
+      };
       
-      {/* Desktop */}
-      <div className="hidden md:flex flex-col h-full p-6">
-        <div className="flex items-center justify-between mb-8">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Customer → Rebook</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-400 font-medium">AUTO</span>
-          </div>
-        </div>
-        
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[280px] p-4 bg-white border border-white/20 rounded-sm shadow-sm">
-            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
-              <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
-                JD
-              </div>
-              <div>
-                <div className="text-xs font-medium text-neutral-900">John D.</div>
-                <div className="text-[10px] font-mono text-neutral-500">Tesla Model 3</div>
-              </div>
-            </div>
-            
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-neutral-400 uppercase">Last service</span>
-                <span className="text-neutral-900">45 days ago</span>
-              </div>
-              <div className="flex items-center justify-between text-[10px]">
-                <span className="font-mono text-neutral-400 uppercase">LTV</span>
-                <span className="text-neutral-900">$1,440</span>
-              </div>
-            </div>
-            
-            <div className="p-3 bg-accent rounded-sm">
-              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
-                <Send className="w-3 h-3" />
-                AI Follow-up
-              </div>
-              <div className="text-[10px] text-accent-foreground/80">"Hey John! Your Model 3 is due..."</div>
+      // Initial delay before first animation
+      const initialDelay = setTimeout(() => {
+        cycleAnimation();
+      }, 1500);
+      
+      // Set up recurring cycle
+      const interval = setInterval(cycleAnimation, 4000);
+      
+      return () => {
+        clearTimeout(initialDelay);
+        clearInterval(interval);
+      };
+    }, [customers.length]);
+    
+    const customer = customers[currentIndex];
+    
+    return (
+      <div className="relative w-full h-full overflow-hidden">
+        {/* Mobile */}
+        <div className="md:hidden h-full flex flex-col p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Customer → Rebook</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-600 font-medium">AUTO</span>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 px-4 py-2 bg-accent rounded-sm shadow-sm">
-            <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
-            <span className="text-xs font-mono text-accent-foreground">Rebooked Thursday</span>
+          {/* Animated card container */}
+          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+            <div 
+              className={`w-full max-w-[260px] p-4 bg-background border border-border rounded-sm transition-all duration-500 ease-out ${
+                isAnimating ? 'opacity-0 -translate-x-20 scale-90' : 'opacity-100 translate-x-0 scale-100'
+              }`}
+            >
+              {/* Customer header */}
+              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
+                <div className="w-10 h-10 bg-muted rounded-sm flex items-center justify-center text-sm font-mono font-bold text-foreground">
+                  {customer.initials}
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-foreground">{customer.name}</div>
+                  <div className="text-[10px] font-mono text-muted-foreground">{customer.car}</div>
+                </div>
+              </div>
+              
+              {/* Data points */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center justify-between text-[10px]">
+                  <span className="font-mono text-muted-foreground uppercase">Last service</span>
+                  <span className="text-foreground">{customer.lastService}</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px]">
+                  <span className="font-mono text-muted-foreground uppercase">LTV</span>
+                  <span className="text-foreground">{customer.ltv}</span>
+                </div>
+              </div>
+              
+              {/* AI action - slides up */}
+              <div 
+                className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
+                  showFollowup 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+              >
+                <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
+                  <Send className="w-3 h-3" />
+                  AI Follow-up Sent
+                </div>
+                <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+              </div>
+            </div>
+            
+            {/* Result - inline text */}
+            <div className={`flex items-center justify-center gap-2 mt-2 transition-all duration-300 ${
+              showFollowup ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <CheckCircle className="w-3.5 h-3.5 text-accent" />
+              <span className="text-xs font-mono font-bold text-accent">Rebooked</span>
+            </div>
+          </div>
+          
+          {/* Stats bar */}
+          <div className="mt-6 pt-4 border-t border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div>
+                  <div className="text-lg font-mono font-semibold text-accent">$650</div>
+                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Recovered</div>
+                </div>
+                <div>
+                  <div className="text-lg font-mono font-semibold text-foreground">67%</div>
+                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Rebook</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         
-        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div>
-              <div className="text-lg font-mono font-bold text-accent">$650</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Recovered</div>
+        {/* Desktop */}
+        <div className="hidden md:flex flex-col h-full p-6">
+          <div className="flex items-center justify-between mb-8">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Customer → Rebook</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-400 font-medium">AUTO</span>
             </div>
-            <div>
-              <div className="text-lg font-mono font-bold text-white">67%</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Rebook</div>
+          </div>
+          
+          <div className="flex-1 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+            <div 
+              className={`w-full max-w-[280px] p-4 bg-white border border-white/20 rounded-sm transition-all duration-500 ease-out ${
+                isAnimating ? 'opacity-0 -translate-x-20 scale-90' : 'opacity-100 translate-x-0 scale-100'
+              }`}
+            >
+              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-200">
+                <div className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center text-sm font-mono font-bold text-accent-foreground">
+                  {customer.initials}
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-neutral-900">{customer.name}</div>
+                  <div className="text-[10px] font-mono text-neutral-500">{customer.car}</div>
+                </div>
+              </div>
+              
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center justify-between text-[10px]">
+                  <span className="font-mono text-neutral-400 uppercase">Last service</span>
+                  <span className="text-neutral-900">{customer.lastService}</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px]">
+                  <span className="font-mono text-neutral-400 uppercase">LTV</span>
+                  <span className="text-neutral-900">{customer.ltv}</span>
+                </div>
+              </div>
+              
+              <div 
+                className={`p-3 bg-accent rounded-sm transition-all duration-500 ease-out ${
+                  showFollowup 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+              >
+                <div className="flex items-center gap-2 text-[10px] font-mono text-accent-foreground uppercase mb-1">
+                  <Send className="w-3 h-3" />
+                  AI Follow-up
+                </div>
+                <div className="text-[10px] text-accent-foreground/80 line-clamp-2">"{customer.followup}"</div>
+              </div>
+            </div>
+            
+            <div className={`flex items-center gap-2 px-4 py-2 bg-accent rounded-sm transition-all duration-300 ${
+              showFollowup ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
+              <span className="text-xs font-mono text-accent-foreground">Rebooked</span>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div>
+                <div className="text-lg font-mono font-bold text-accent">$650</div>
+                <div className="text-[9px] font-mono text-white/40 uppercase">Recovered</div>
+              </div>
+              <div>
+                <div className="text-lg font-mono font-bold text-white">67%</div>
+                <div className="text-[9px] font-mono text-white/40 uppercase">Rebook</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Minimal Industrial Automation Visual
   const AutomationVisual = () => (
@@ -583,7 +583,7 @@ const ValueProps = () => {
               {/* Content */}
               <div className="space-y-1 md:space-y-3 md:flex-1">
                 <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-accent md:text-white tracking-tight">
-                  <CountUpMetric value={value.metric} />
+                  <StaticMetric value={value.metric} />
                 </div>
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-accent md:text-white">
                   <span className="md:hidden">{value.mobileTitle}</span>
