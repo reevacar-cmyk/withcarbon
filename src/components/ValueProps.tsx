@@ -596,7 +596,7 @@ const ValueProps = () => {
               </div>
               
               {/* Visual */}
-              <div className="relative h-[340px] md:h-80 lg:h-[420px] md:flex-1 bg-muted md:bg-[hsl(0_0%_8%)] border border-border md:border-white/10 rounded-xl md:rounded-2xl overflow-hidden">
+              <div className="relative h-[340px] md:h-80 lg:h-[420px] md:flex-1 bg-muted md:bg-[hsl(0_0%_8%)] md:border md:border-white/10 rounded-xl md:rounded-2xl overflow-hidden">
                 {renderVisual(value.visual)}
               </div>
             </div>
