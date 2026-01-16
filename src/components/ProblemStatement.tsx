@@ -1,13 +1,36 @@
 import { PhoneMissed, Users, AlertTriangle, DollarSign, UserX, UserMinus, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Count-up animation component - resets after 10s out of view
+// Dust particle component for Thanos snap effect
+const DustParticle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
+  <div
+    className="absolute w-1 h-1 rounded-full bg-[hsl(0_100%_50%)] opacity-0"
+    style={{
+      left: `${x}%`,
+      top: `${y}%`,
+      animation: `dustFloat 1.5s ease-out ${delay}s forwards`,
+    }}
+  />
+);
+
+// Count-up animation component with Thanos snap disintegration
 const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [isDisintegrating, setIsDisintegrating] = useState(false);
+  const [hasDisintegrated, setHasDisintegrated] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
   const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const disintegrateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Generate random dust particles
+  const dustParticles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    delay: Math.random() * 0.5,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+  }));
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,12 +41,30 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
             clearTimeout(resetTimeoutRef.current);
             resetTimeoutRef.current = null;
           }
+          if (disintegrateTimeoutRef.current) {
+            clearTimeout(disintegrateTimeoutRef.current);
+          }
           setIsInView(true);
+          
+          // Start disintegration after 6 seconds
+          if (!hasDisintegrated) {
+            disintegrateTimeoutRef.current = setTimeout(() => {
+              setIsDisintegrating(true);
+              setTimeout(() => {
+                setHasDisintegrated(true);
+              }, 2000);
+            }, 6000);
+          }
         } else {
           setIsInView(false);
+          if (disintegrateTimeoutRef.current) {
+            clearTimeout(disintegrateTimeoutRef.current);
+          }
           resetTimeoutRef.current = setTimeout(() => {
             setCount(0);
             setHasAnimated(false);
+            setIsDisintegrating(false);
+            setHasDisintegrated(false);
           }, 10000);
         }
       },
@@ -39,8 +80,11 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
       if (resetTimeoutRef.current) {
         clearTimeout(resetTimeoutRef.current);
       }
+      if (disintegrateTimeoutRef.current) {
+        clearTimeout(disintegrateTimeoutRef.current);
+      }
     };
-  }, []);
+  }, [hasDisintegrated]);
 
   useEffect(() => {
     if (!isInView || hasAnimated) return;
@@ -68,8 +112,21 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
   }, [isInView, hasAnimated, value]);
 
   return (
-    <span ref={ref}>
-      {prefix}{count}{suffix}
+    <span ref={ref} className="relative inline-block">
+      <span 
+        className={`transition-all duration-1000 ${
+          isDisintegrating ? 'opacity-0 blur-sm translate-x-4 -translate-y-2' : ''
+        } ${hasDisintegrated ? 'hidden' : ''}`}
+      >
+        {prefix}{count}{suffix}
+      </span>
+      {isDisintegrating && !hasDisintegrated && (
+        <span className="absolute inset-0 overflow-visible pointer-events-none">
+          {dustParticles.map((particle) => (
+            <DustParticle key={particle.id} delay={particle.delay} x={particle.x} y={particle.y} />
+          ))}
+        </span>
+      )}
     </span>
   );
 };
@@ -82,8 +139,8 @@ const ProblemStatement = () => {
         <div className="md:hidden">
           {/* Section label */}
           <div className="mb-3 fade-in flex items-center gap-2">
-            <div className="w-5 h-5 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center">
-              <AlertTriangle className="w-3 h-3 text-red-500" />
+            <div className="w-5 h-5 rounded-sm bg-[hsl(0_100%_50%)]/10 border border-[hsl(0_100%_50%)]/30 flex items-center justify-center">
+              <AlertTriangle className="w-3 h-3 text-[hsl(0_100%_50%)]" />
             </div>
             <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase font-medium">
               THE PROBLEM
@@ -111,7 +168,7 @@ const ProblemStatement = () => {
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
+              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={34} prefix="$" suffix="K+" />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
@@ -135,7 +192,7 @@ const ProblemStatement = () => {
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
+              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={175} prefix="$" suffix="K+" />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
@@ -159,7 +216,7 @@ const ProblemStatement = () => {
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-2">
+              <div className="text-[40px] font-bold text-[hsl(0_100%_50%)] leading-none tracking-tight mb-2">
                 <CountUpMetric value={14} suffix="hrs+" />
               </div>
               <div className="text-xs text-foreground/70 mb-4">
