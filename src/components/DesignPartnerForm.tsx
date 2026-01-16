@@ -52,7 +52,7 @@ const DesignPartnerForm = () => {
               key={i} 
               className="text-center flex flex-col items-center"
             >
-              <div className="w-32 h-32 md:w-40 md:h-40 mb-5 relative">
+              <div className="w-48 h-48 md:w-60 md:h-60 mb-5 relative">
                 <img 
                   src={item.icon} 
                   alt={item.title}
