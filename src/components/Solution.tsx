@@ -86,7 +86,7 @@ const Solution = () => {
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.UNIFIED</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-white rounded-sm text-neutral-900 font-medium">CONNECTED</span>
+        <span className="text-[10px] px-2 py-0.5 bg-green-500/20 border border-green-500/40 rounded-sm text-green-400 font-medium">CONNECTED</span>
       </div>
       
       {/* Data sources flowing into Carbon */}
@@ -103,8 +103,8 @@ const Solution = () => {
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-white/80">{source.label}</span>
                 <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                  <span className="text-[8px] text-white">{source.status}</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-[8px] text-green-400">{source.status}</span>
                 </div>
               </div>
             </div>
@@ -148,7 +148,7 @@ const Solution = () => {
           ].map((stat, i) => (
             <div key={i} className="p-2 text-center bg-white/[0.02]">
               <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
-              <div className={`text-xs font-medium ${stat.isAccent ? 'text-white' : 'text-white/80'}`}>{stat.value}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-green-400' : 'text-white/80'}`}>{stat.value}</div>
             </div>
           ))}
         </div>
@@ -222,7 +222,7 @@ const Solution = () => {
               </div>
               <span className={`text-[8px] px-1.5 py-0.5 rounded-sm shrink-0 ${
                 item.status === 'URGENT' || item.status === 'BOOKED'
-                  ? 'bg-white text-neutral-900' 
+                  ? 'bg-green-500/20 border border-green-500/40 text-green-400' 
                   : 'bg-white/10 text-white/60'
               }`}>
                 {item.status}
@@ -243,7 +243,7 @@ const Solution = () => {
           ].map((stat, i) => (
             <div key={i} className="p-2 text-center bg-white/[0.02]">
               <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
-              <div className={`text-xs font-medium ${stat.isAccent ? 'text-white' : 'text-white/80'}`}>{stat.value}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-green-400' : 'text-white/80'}`}>{stat.value}</div>
             </div>
           ))}
         </div>
