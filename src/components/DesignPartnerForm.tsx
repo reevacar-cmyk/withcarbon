@@ -5,8 +5,7 @@ import iconLifetimeBenefits from "@/assets/icon-lifetime-benefits.png";
 
 const DesignPartnerForm = () => {
   const handleBookDemo = () => {
-    // Open calendly or contact form
-    window.open('https://calendly.com', '_blank');
+    window.open('https://calendly.com/az356/30min?back=1&month=2026-01', '_blank');
   };
 
   const benefits = [

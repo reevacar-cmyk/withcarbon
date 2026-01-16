@@ -1,4 +1,4 @@
-import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, CheckCircle, Database, TrendingUp, Repeat, Zap } from "lucide-react";
+import { Phone, Users, Clock, Calendar, MessageSquare, ArrowRight, Send, Bell, RotateCcw, PhoneIncoming, Database, TrendingUp, Repeat, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 
 // Static metric display (no animation)
@@ -49,6 +49,11 @@ const ValueProps = () => {
       { source: "google", message: "Open this weekend?" },
       { source: "meta", message: "Mobile detailing?" },
       { source: "google", message: "Full detail cost?" },
+      { source: "meta", message: "PPF pricing?" },
+      { source: "google", message: "Can you remove scratches?" },
+      { source: "meta", message: "How long does it take?" },
+      { source: "google", message: "Do you come to me?" },
+      { source: "meta", message: "Tint windows too?" },
     ];
     
     const bookings = [
@@ -59,6 +64,11 @@ const ValueProps = () => {
       "Sunday 11am · $320",
       "Tomorrow 2pm · $280",
       "Friday 4pm · $240",
+      "Monday 11am · $1,200",
+      "Thursday 9am · $150",
+      "Tomorrow 4pm · $380",
+      "Saturday 2pm · $220",
+      "Wednesday 10am · $350",
     ];
     
     useEffect(() => {
@@ -158,8 +168,8 @@ const ValueProps = () => {
           {/* Flow diagram */}
           <div className="flex-1 flex flex-col items-center justify-center gap-0">
             {/* Lead card */}
-            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-background border border-border rounded-sm shadow-sm transition-all duration-500 ${
-              showLead ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-background border border-border rounded-sm shadow-sm transition-all duration-700 ease-out ${
+              showLead ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-6 scale-95'
             }`}>
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 bg-muted border border-border rounded-sm flex items-center justify-center flex-shrink-0">
@@ -177,28 +187,28 @@ const ValueProps = () => {
             {/* Connector with pulse */}
             <div className="flex flex-col items-center relative">
               {/* Top line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible">
+              <div className="w-px h-6 bg-border relative overflow-visible z-0">
                 {pulsePhase === 'toCenter' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
               </div>
               
               {/* Center icon */}
-              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-300 ${
-                pulsePhase === 'loading' ? 'bg-accent' : 'bg-muted border border-border'
+              <div className={`relative z-10 w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
+                pulsePhase === 'toCenter' || pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'bg-accent' : 'bg-muted border border-border'
               }`}>
                 {pulsePhase === 'loading' ? (
                   <div className="w-3 h-3 border-2 border-accent-foreground border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`} />
+                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toCenter' || pulsePhase === 'toBottom' || showBooked ? 'text-accent-foreground fill-accent-foreground' : 'text-muted-foreground'}`} />
                 )}
               </div>
-              <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
+              <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'toCenter' || pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
                 2s response
               </div>
               
               {/* Bottom line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible">
+              <div className="w-px h-6 bg-border relative overflow-visible z-0">
                 {pulsePhase === 'toBottom' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
@@ -217,7 +227,7 @@ const ValueProps = () => {
                   <div className="text-[9px] font-mono text-accent-foreground/80 uppercase">Booked</div>
                   <div className="text-[11px] text-accent-foreground leading-tight">{booking}</div>
                 </div>
-                <CheckCircle className="w-3.5 h-3.5 text-accent-foreground flex-shrink-0" />
+                
               </div>
             </div>
           </div>
@@ -265,7 +275,7 @@ const ValueProps = () => {
                   <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Confirmed</div>
                   <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
                 </div>
-                <CheckCircle className="w-4 h-4 text-accent-foreground" />
+                
               </div>
             </div>
           </div>
@@ -462,7 +472,6 @@ const ValueProps = () => {
             <div className={`flex items-center justify-center gap-2 transition-all duration-300 ${
               showRebooked ? 'opacity-100' : 'opacity-0'
             }`}>
-              <CheckCircle className="w-3.5 h-3.5 text-accent" />
               <span className="text-xs font-mono font-bold text-accent">Rebooked</span>
             </div>
           </div>
@@ -525,7 +534,6 @@ const ValueProps = () => {
             <div className={`flex items-center gap-2 px-4 py-2 bg-accent rounded-sm transition-all duration-300 ${
               showRebooked ? 'opacity-100' : 'opacity-0'
             }`}>
-              <CheckCircle className="w-3.5 h-3.5 text-accent-foreground" />
               <span className="text-xs font-mono text-accent-foreground">Rebooked</span>
             </div>
           </div>
@@ -553,9 +561,9 @@ const ValueProps = () => {
     
     // Increment counters based on dot timing
     useEffect(() => {
-      // Dot 1: 0.9s duration, starts at 0s -> completes at 0.9s, repeats every 0.9s
-      // Dot 2: 0.75s duration, starts at 0.3s -> completes at 1.05s, repeats every 0.75s
-      // Dot 3: 0.9s duration, starts at 0.6s -> completes at 1.5s, repeats every 0.9s
+      // Dot 1: 0.9s duration, starts at 0s
+      // Dot 2: 0.75s duration, starts at 0.3s
+      // Dot 3: 0.9s duration, starts at 0.6s
       
       const incrementCounter = (index: number) => {
         setCounters(prev => {
@@ -567,35 +575,32 @@ const ValueProps = () => {
         setTimeout(() => setCheckPulse(null), 200);
       };
       
-      let interval1: NodeJS.Timeout;
-      let interval2: NodeJS.Timeout;
-      let interval3: NodeJS.Timeout;
+      // Set up intervals matching each dot's cycle
+      const interval1 = setInterval(() => incrementCounter(0), 900);
+      const interval2 = setInterval(() => incrementCounter(1), 750);
+      const interval3 = setInterval(() => incrementCounter(2), 900);
       
-      // Dot 1: starts at 0s, duration 0.9s - first complete at 900ms
-      const timeout1 = setTimeout(() => {
-        incrementCounter(0);
-        interval1 = setInterval(() => incrementCounter(0), 900);
-      }, 900);
-      
-      // Dot 2: starts at 0.3s, duration 0.75s - first complete at 1050ms
+      // Stagger the starts to match animation delays
       const timeout2 = setTimeout(() => {
         incrementCounter(1);
-        interval2 = setInterval(() => incrementCounter(1), 750);
       }, 300 + 750);
       
-      // Dot 3: starts at 0.6s, duration 0.9s - first complete at 1500ms
       const timeout3 = setTimeout(() => {
         incrementCounter(2);
-        interval3 = setInterval(() => incrementCounter(2), 900);
       }, 600 + 900);
       
+      // Initial increment for first dot
+      const timeout1 = setTimeout(() => {
+        incrementCounter(0);
+      }, 900);
+      
       return () => {
+        clearInterval(interval1);
+        clearInterval(interval2);
+        clearInterval(interval3);
         clearTimeout(timeout1);
         clearTimeout(timeout2);
         clearTimeout(timeout3);
-        if (interval1) clearInterval(interval1);
-        if (interval2) clearInterval(interval2);
-        if (interval3) clearInterval(interval3);
       };
     }, []);
     
@@ -683,13 +688,6 @@ const ValueProps = () => {
                     className="flex items-center justify-between text-[10px]"
                   >
                     <div className="flex items-center gap-2">
-                      <CheckCircle 
-                        className={`w-3 h-3 transition-all duration-200 ${
-                          checkPulse === i 
-                            ? 'text-accent-foreground scale-125' 
-                            : 'text-accent-foreground/70'
-                        }`} 
-                      />
                       <span className="text-accent-foreground">{log.action}</span>
                     </div>
                     <span className="font-mono text-accent-foreground/80">{counters[i]}</span>
@@ -741,13 +739,6 @@ const ValueProps = () => {
                 {logEntries.map((log, i) => (
                   <div key={i} className="flex items-center justify-between text-[10px]">
                     <div className="flex items-center gap-2">
-                      <CheckCircle 
-                        className={`w-3 h-3 transition-all duration-200 ${
-                          checkPulse === i 
-                            ? 'text-accent-foreground scale-125' 
-                            : 'text-accent-foreground/70'
-                        }`} 
-                      />
                       <span className="text-accent-foreground">{log.action}</span>
                     </div>
                     <span className="font-mono text-accent-foreground/80">{counters[i]}</span>
