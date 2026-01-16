@@ -100,12 +100,23 @@ export default {
             opacity: "0",
           },
         },
+        "pulseDown": {
+          from: {
+            transform: "translateX(-50%) translateY(0)",
+            opacity: "1",
+          },
+          to: {
+            transform: "translateX(-50%) translateY(24px)",
+            opacity: "0.5",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slideInFromRight": "slideInFromRight 0.5s ease-out",
         "slideOutToLeft": "slideOutToLeft 0.5s ease-out forwards",
+        "pulseDown": "pulseDown 0.5s ease-out forwards",
       },
     },
   },
