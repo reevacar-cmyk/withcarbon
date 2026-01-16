@@ -534,70 +534,28 @@ const ValueProps = () => {
     );
   };
 
-  // Animated Automation Visual with flowing dots
+  // Animated Automation Visual with curved lines and flowing dots
   const AutomationVisual = () => {
-    const [activeDots, setActiveDots] = useState<number[]>([]);
-    const [logEntries, setLogEntries] = useState<{action: string, time: string}[]>([]);
+    const [highlightedLog, setHighlightedLog] = useState<number | null>(null);
     
     const sources = [
-      { icon: Phone, label: "Calls", action: "Call logged" },
-      { icon: MessageSquare, label: "Texts", action: "SMS synced" },
-      { icon: Calendar, label: "Jobs", action: "Job created" }
+      { icon: Phone, label: "Calls" },
+      { icon: MessageSquare, label: "Texts" },
+      { icon: Calendar, label: "Jobs" }
     ];
     
-    useEffect(() => {
-      // Stagger dot animations continuously
-      const intervals: NodeJS.Timeout[] = [];
-      
-      // Each source fires a dot at different intervals
-      sources.forEach((source, index) => {
-        const startDelay = index * 800; // Stagger start times
-        const interval = 2400; // Each source fires every 2.4s
-        
-        const timeout = setTimeout(() => {
-          // Fire first dot
-          setActiveDots(prev => [...prev, index]);
-          
-          // Add log entry after dot reaches bottom
-          setTimeout(() => {
-            setLogEntries(prev => {
-              const newEntries = [{ action: source.action, time: "Now" }, ...prev].slice(0, 3);
-              return newEntries;
-            });
-            setActiveDots(prev => prev.filter(d => d !== index));
-          }, 600);
-          
-          // Set up recurring interval
-          const recurring = setInterval(() => {
-            setActiveDots(prev => [...prev, index]);
-            
-            setTimeout(() => {
-              setLogEntries(prev => {
-                const newEntries = [{ action: source.action, time: "Now" }, ...prev].slice(0, 3);
-                return newEntries;
-              });
-              setActiveDots(prev => prev.filter(d => d !== index));
-            }, 600);
-          }, interval);
-          
-          intervals.push(recurring);
-        }, startDelay);
-        
-        intervals.push(timeout as unknown as NodeJS.Timeout);
-      });
-      
-      return () => {
-        intervals.forEach(i => clearTimeout(i));
-        intervals.forEach(i => clearInterval(i));
-      };
-    }, []);
+    const logEntries = [
+      { action: "Call logged", time: "Now" },
+      { action: "SMS synced", time: "2m" },
+      { action: "Job created", time: "5m" }
+    ];
     
     return (
       <div className="relative w-full h-full overflow-hidden">
         {/* Mobile */}
         <div className="md:hidden h-full flex flex-col p-5">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Data → CRM</span>
             <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
@@ -607,41 +565,57 @@ const ValueProps = () => {
           
           {/* Flow diagram */}
           <div className="flex-1 flex flex-col items-center justify-center gap-0">
-            {/* Input sources */}
-            <div className="flex items-center justify-center gap-6 w-full">
+            {/* Input sources - icons in circles */}
+            <div className="flex items-center justify-between w-full max-w-[220px] px-2">
               {sources.map((item, i) => (
-                <div key={i} className="flex flex-col items-center gap-1.5">
-                  <div className={`p-2.5 bg-background border rounded-full shadow-sm transition-all duration-300 ${
-                    activeDots.includes(i) ? 'border-accent bg-accent/10' : 'border-border'
-                  }`}>
-                    <item.icon className={`w-4 h-4 transition-colors ${
-                      activeDots.includes(i) ? 'text-accent' : 'text-muted-foreground'
-                    }`} />
+                <div key={i} className="flex flex-col items-center gap-1">
+                  <div className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center">
+                    <item.icon className="w-4 h-4 text-muted-foreground" />
                   </div>
                   <span className="text-[9px] font-mono text-muted-foreground uppercase">{item.label}</span>
                 </div>
               ))}
             </div>
             
-            {/* Connectors with flowing dots */}
-            <div className="relative w-full flex items-center justify-center gap-6 h-10">
-              {sources.map((_, i) => (
-                <div key={i} className="relative flex flex-col items-center">
-                  {/* Line */}
-                  <div className="w-px h-10 bg-border" />
-                  {/* Animated dot */}
-                  {activeDots.includes(i) && (
-                    <div 
-                      className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.6s_ease-in_forwards]"
-                      style={{ boxShadow: '0 0 8px hsl(var(--accent))' }}
-                    />
-                  )}
-                </div>
-              ))}
+            {/* Curved lines with animated dots - SVG */}
+            <div className="relative w-full max-w-[220px] h-10">
+              <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 220 40" preserveAspectRatio="xMidYMid meet">
+                {/* Define curved paths - from icons down to center */}
+                <defs>
+                  <path id="autoLine1" d="M 27 0 C 27 20, 110 20, 110 40" />
+                  <path id="autoLine2" d="M 110 0 L 110 40" />
+                  <path id="autoLine3" d="M 193 0 C 193 20, 110 20, 110 40" />
+                </defs>
+                
+                {/* Static dashed lines */}
+                <use href="#autoLine1" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+                <use href="#autoLine2" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+                <use href="#autoLine3" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="3 3" />
+                
+                {/* Animated dots traveling down the paths */}
+                <circle r="3" fill="hsl(var(--accent))">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                    <mpath href="#autoLine1" />
+                  </animateMotion>
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.8s" repeatCount="indefinite" />
+                </circle>
+                <circle r="3" fill="hsl(var(--accent))">
+                  <animateMotion dur="1.5s" repeatCount="indefinite" begin="0.6s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                    <mpath href="#autoLine2" />
+                  </animateMotion>
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.5s" repeatCount="indefinite" begin="0.6s" />
+                </circle>
+                <circle r="3" fill="hsl(var(--accent))">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.6 1">
+                    <mpath href="#autoLine3" />
+                  </animateMotion>
+                  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="1.8s" repeatCount="indefinite" begin="1.2s" />
+                </circle>
+              </svg>
             </div>
             
             {/* Central CRM card */}
-            <div className="w-full max-w-[240px] px-3 py-3 bg-accent rounded-sm shadow-sm">
+            <div className="w-full max-w-[220px] px-3 py-3 bg-accent rounded-sm shadow-sm">
               <div className="flex items-center gap-3 mb-2 pb-2 border-b border-accent-foreground/20">
                 <div className="w-7 h-7 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
                   <Database className="w-3.5 h-3.5 text-accent-foreground" />
@@ -652,16 +626,16 @@ const ValueProps = () => {
                 </div>
               </div>
               
-              {/* Animated log entries */}
-              <div className="space-y-1.5 min-h-[60px]">
-                {(logEntries.length > 0 ? logEntries : [
-                  { action: "Waiting...", time: "" }
-                ]).map((log, i) => (
+              {/* Static log entries that light up */}
+              <div className="space-y-1.5">
+                {logEntries.map((log, i) => (
                   <div 
-                    key={`${log.action}-${i}`} 
-                    className={`flex items-center justify-between text-[10px] transition-all duration-300 ${
-                      i === 0 && logEntries.length > 0 ? 'opacity-100' : 'opacity-70'
-                    }`}
+                    key={i}
+                    className="flex items-center justify-between text-[10px] transition-all duration-300"
+                    style={{
+                      animation: `logPulse 1.8s ease-out infinite`,
+                      animationDelay: `${i * 0.6}s`
+                    }}
                   >
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-3 h-3 text-accent-foreground" />
@@ -713,11 +687,7 @@ const ValueProps = () => {
               </div>
               
               <div className="space-y-2">
-                {[
-                  { action: "Call logged", time: "Now" },
-                  { action: "Job created", time: "2m" },
-                  { action: "SMS synced", time: "5m" }
-                ].map((log, i) => (
+                {logEntries.map((log, i) => (
                   <div key={i} className="flex items-center justify-between text-[10px]">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-3 h-3 text-accent-foreground" />
