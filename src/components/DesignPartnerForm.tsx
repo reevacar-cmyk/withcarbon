@@ -51,7 +51,7 @@ const DesignPartnerForm = () => {
               key={i} 
               className="text-center flex flex-col items-center"
             >
-              <div className="mb-6 relative">
+              <div className="mb-6 relative flex flex-col items-center">
                 <div className="w-56 h-56 md:w-[270px] md:h-[270px] relative">
                   <img 
                     src={item.icon} 
@@ -60,14 +60,17 @@ const DesignPartnerForm = () => {
                   />
                 </div>
                 {/* Reflection */}
-                <div className="w-56 h-20 md:w-[270px] md:h-24 overflow-hidden">
+                <div className="w-56 h-16 md:w-[270px] md:h-20 relative overflow-hidden -mt-2">
                   <img 
                     src={item.icon} 
                     alt=""
-                    className="w-full h-56 md:h-[270px] object-contain transform scale-y-[-1] opacity-30"
+                    className="w-full h-56 md:h-[270px] object-contain absolute bottom-0"
                     style={{
-                      maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 60%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 60%)'
+                      transform: 'scaleY(-1)',
+                      opacity: 0.15,
+                      filter: 'blur(1px)',
+                      maskImage: 'linear-gradient(to top, transparent 0%, black 100%)',
+                      WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 100%)'
                     }}
                   />
                 </div>
