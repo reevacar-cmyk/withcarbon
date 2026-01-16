@@ -23,25 +23,44 @@ const Hero = () => {
               className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Subtle internal light glow from left */}
+              {/* Subtle internal light glow from top-left */}
               <div 
                 className="absolute -top-8 -left-8 w-32 h-32 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%)',
                 }}
               />
-              {/* Selective border shine - only left edge, thin bright line */}
+              {/* Border shine - TOP LEFT corner */}
               <div 
-                className="absolute left-0 top-2 bottom-2 w-[1px] pointer-events-none rounded-full"
+                className="absolute left-0 top-0 w-[1px] h-14 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 70%, transparent 100%)',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
+                }}
+              />
+              <div 
+                className="absolute left-0 top-0 h-[1px] w-10 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                }}
+              />
+              {/* Border shine - BOTTOM RIGHT corner */}
+              <div 
+                className="absolute right-0 bottom-0 w-[1px] h-10 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(0deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 60%, transparent 100%)',
+                }}
+              />
+              <div 
+                className="absolute right-0 bottom-0 h-[1px] w-8 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(270deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.15) 70%, transparent 100%)',
                 }}
               />
               {/* Strong fade overlay for right side - deep into darkness */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.9) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -82,31 +101,31 @@ const Hero = () => {
               className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Subtle internal light glow from left */}
+              {/* Subtle internal light glow from bottom-left */}
               <div 
-                className="absolute -top-6 -left-6 w-24 h-24 pointer-events-none"
+                className="absolute -bottom-6 -left-6 w-24 h-24 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)',
                 }}
               />
-              {/* Selective border shine - only top-left corner */}
+              {/* Border shine - BOTTOM LEFT corner only */}
               <div 
-                className="absolute left-0 top-0 w-[1px] h-12 pointer-events-none"
+                className="absolute left-0 bottom-0 w-[1px] h-14 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 60%, transparent 100%)',
+                  background: 'linear-gradient(0deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
                 }}
               />
               <div 
-                className="absolute left-0 top-0 h-[1px] w-8 pointer-events-none"
+                className="absolute left-0 bottom-0 h-[1px] w-10 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 60%, transparent 100%)',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
                 }}
               />
-              {/* Strong fade overlay for right side */}
+              {/* Strong fade overlay for TOP RIGHT - fading into darkness */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%)',
+                  background: 'linear-gradient(225deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.3) 60%, transparent 100%)',
                 }}
               />
               <div className="flex items-center gap-1.5 mb-2 relative z-10">
@@ -138,25 +157,31 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Subtle internal light glow from left */}
+              {/* Subtle internal light glow from top-right */}
               <div 
-                className="absolute -top-4 -left-8 w-28 h-28 pointer-events-none"
+                className="absolute -top-6 -right-6 w-28 h-28 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)',
                 }}
               />
-              {/* Selective border shine - left edge, key highlight */}
+              {/* Border shine - TOP RIGHT corner only */}
               <div 
-                className="absolute left-0 top-3 bottom-3 w-[1px] pointer-events-none"
+                className="absolute right-0 top-0 w-[1px] h-14 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0.5) 100%)',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 70%, transparent 100%)',
                 }}
               />
-              {/* Strong fade overlay for right side */}
+              <div 
+                className="absolute right-0 top-0 h-[1px] w-10 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(270deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
+                }}
+              />
+              {/* Strong fade overlay for BOTTOM LEFT - fading into darkness */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 30%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.9) 100%)',
+                  background: 'linear-gradient(45deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.3) 55%, transparent 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -191,25 +216,31 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Subtle internal light glow from left */}
+              {/* Subtle internal light glow from top-left */}
               <div 
                 className="absolute -top-4 -left-4 w-20 h-20 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)',
                 }}
               />
-              {/* Selective border shine - top edge only, subtle */}
+              {/* Border shine - TOP LEFT corner only */}
               <div 
-                className="absolute left-2 top-0 w-10 h-[1px] pointer-events-none"
+                className="absolute left-0 top-0 w-[1px] h-12 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 70%, transparent 100%)',
+                }}
+              />
+              <div 
+                className="absolute left-0 top-0 h-[1px] w-8 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.15) 80%, transparent 100%)',
                 }}
               />
               {/* Strong fade overlay for right side */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.9) 100%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.95) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
