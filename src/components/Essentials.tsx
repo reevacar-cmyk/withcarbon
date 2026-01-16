@@ -121,20 +121,19 @@ const Essentials = () => {
         </div>
       </div>
 
-      {/* Overlay widget - bottom right */}
-      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+      {/* Overlay widget - bottom right - standardized size */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg w-[140px] h-[56px] flex items-center">
+        <div className="flex items-center gap-2 w-full">
+          <div className="flex items-center gap-2 flex-1">
+            <div className="w-2 h-2 rounded-full bg-accent" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
             <div>
-              <div className="text-[11px] text-foreground font-medium">Full Detail</div>
-              <div className="text-[9px] text-muted-foreground font-mono">Today · 9 AM</div>
+              <div className="text-[10px] text-foreground font-medium">Full Detail</div>
+              <div className="text-[8px] text-muted-foreground font-mono">Today · 9 AM</div>
             </div>
           </div>
-          <div className="w-px h-8 bg-border" />
-          <div className="text-center">
+          <div className="text-center pl-2 border-l border-border">
             <div className="text-sm font-semibold text-accent">12</div>
-            <div className="text-[8px] text-muted-foreground font-mono">jobs</div>
+            <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
           </div>
         </div>
       </div>
@@ -243,22 +242,22 @@ const Essentials = () => {
         </div>
       </div>
 
-      {/* Bottom stats overlay */}
-      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg">
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <div className="text-lg font-semibold text-accent">$12.4k</div>
-            <div className="text-[8px] text-muted-foreground font-mono">collected</div>
+      {/* Bottom stats overlay - standardized size */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg w-[140px] h-[56px] flex items-center">
+        <div className="flex items-center gap-2 w-full">
+          <div className="text-center flex-1">
+            <div className="text-sm font-semibold text-accent">$12.4k</div>
+            <div className="text-[7px] text-muted-foreground font-mono">collected</div>
           </div>
           <div className="w-px h-8 bg-border" />
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent" />
-              <span className="text-[9px] text-muted-foreground">24 paid</span>
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+              <span className="text-[8px] text-muted-foreground">24 paid</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-amber-400" />
-              <span className="text-[9px] text-muted-foreground">3 pending</span>
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span className="text-[8px] text-muted-foreground">3 pending</span>
             </div>
           </div>
         </div>
@@ -393,33 +392,33 @@ const Essentials = () => {
         </div>
       </div>
 
-      {/* Bottom stats widget */}
-      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl px-3 py-2.5 shadow-lg">
-        <div className="flex items-center gap-3">
+      {/* Bottom stats widget - standardized size */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg w-[140px] h-[56px] flex items-center">
+        <div className="flex items-center gap-2 w-full">
           {/* Overlapping profile circles */}
-          <div className="flex -space-x-1.5">
-            {['MR', 'SK', 'JL', 'ED'].map((initials, i) => (
+          <div className="flex -space-x-1">
+            {['MR', 'SK', 'JL'].map((initials, i) => (
               <div
                 key={i}
                 className="w-5 h-5 rounded-full bg-accent border-[1.5px] border-background flex items-center justify-center"
-                style={{ zIndex: 4 - i }}
+                style={{ zIndex: 3 - i }}
               >
                 <span className="text-[6px] font-semibold text-background">{initials}</span>
               </div>
             ))}
           </div>
 
-          <div className="w-px h-6 bg-border" />
+          <div className="w-px h-8 bg-border" />
 
           {/* Stats */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="text-center">
-              <div className="text-sm font-semibold text-foreground">19h</div>
-              <div className="text-[7px] text-muted-foreground font-mono">today</div>
+              <div className="text-xs font-semibold text-foreground">19h</div>
+              <div className="text-[6px] text-muted-foreground font-mono">today</div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-semibold text-accent">8</div>
-              <div className="text-[7px] text-muted-foreground font-mono">jobs</div>
+              <div className="text-xs font-semibold text-accent">8</div>
+              <div className="text-[6px] text-muted-foreground font-mono">jobs</div>
             </div>
           </div>
         </div>
@@ -515,18 +514,20 @@ const Essentials = () => {
         </div>
       </div>
 
-      {/* Conversion metrics */}
-      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-2.5 bg-background border border-border rounded-lg px-3 py-1.5">
-        <div className="flex items-center gap-1.5">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="text-xs font-semibold text-accent">+38%</span>
-        </div>
-        <div className="w-px h-4 bg-border" />
-        <div className="flex items-center gap-1">
-          <Star className="w-3 h-3 text-amber-400" style={{ fill: 'rgb(251 191 36)' }} />
-          <span className="text-[10px] text-foreground font-medium">4.9</span>
+      {/* Conversion metrics - standardized size */}
+      <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm border border-border rounded-xl p-3 shadow-lg w-[140px] h-[56px] flex items-center">
+        <div className="flex items-center gap-3 w-full justify-center">
+          <div className="flex items-center gap-1">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-xs font-semibold text-accent">+38%</span>
+          </div>
+          <div className="w-px h-6 bg-border" />
+          <div className="flex items-center gap-1">
+            <Star className="w-3 h-3 text-amber-400" style={{ fill: 'rgb(251 191 36)' }} />
+            <span className="text-[10px] text-foreground font-medium">4.9</span>
+          </div>
         </div>
       </div>
     </div>
