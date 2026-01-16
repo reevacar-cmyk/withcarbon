@@ -83,7 +83,7 @@ const Solution = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.UNIFIED</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-[hsl(40_20%_85%)] rounded-sm text-[hsl(40_15%_15%)] font-medium">CONNECTED</span>
@@ -162,7 +162,7 @@ const Solution = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.MONITOR</span>
         </div>
         <span className="text-[10px] px-2 py-0.5 bg-white/10 border border-white/20 rounded-sm text-white/70">TRANSPARENT</span>
