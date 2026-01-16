@@ -74,57 +74,6 @@ const CountUpMetric = ({ value, prefix = "", suffix = "" }: { value: number; pre
   );
 };
 
-// Ripped paper card component with torn top-right corner
-const RippedCard = ({ children, delay }: { children: React.ReactNode; delay: string }) => (
-  <div 
-    className="relative fade-in"
-    style={{ animationDelay: delay }}
-  >
-    {/* Shadow layer */}
-    <div 
-      className="absolute inset-0 bg-black/[0.06] translate-x-1 translate-y-1"
-      style={{
-        clipPath: `polygon(
-          0% 0%, 
-          calc(100% - 28px) 0%,
-          calc(100% - 26px) 3px,
-          calc(100% - 22px) 1px,
-          calc(100% - 18px) 4px,
-          calc(100% - 14px) 2px,
-          calc(100% - 10px) 5px,
-          calc(100% - 6px) 3px,
-          calc(100% - 3px) 6px,
-          100% 8px,
-          100% 100%, 
-          0% 100%
-        )`
-      }}
-    />
-    {/* Main card */}
-    <div 
-      className="relative bg-[hsl(40_15%_92%)] p-4"
-      style={{
-        clipPath: `polygon(
-          0% 0%, 
-          calc(100% - 28px) 0%,
-          calc(100% - 26px) 3px,
-          calc(100% - 22px) 1px,
-          calc(100% - 18px) 4px,
-          calc(100% - 14px) 2px,
-          calc(100% - 10px) 5px,
-          calc(100% - 6px) 3px,
-          calc(100% - 3px) 6px,
-          100% 8px,
-          100% 100%, 
-          0% 100%
-        )`
-      }}
-    >
-      {children}
-    </div>
-  </div>
-);
-
 const ProblemStatement = () => {
   return (
     <section className="pt-16 md:pt-20 pb-6 md:pb-16 px-[3px] md:px-12 lg:px-24 relative bg-background md:bg-[hsl(40_20%_94%)]">
@@ -151,79 +100,79 @@ const ProblemStatement = () => {
             Every day, revenue slips through the cracks.
           </p>
 
-          {/* Three problem cards */}
-          <div className="space-y-3">
-            {/* Card 1: Missed Leads */}
-            <RippedCard delay="0.2s">
-              <div className="flex items-center gap-2 mb-3">
+          {/* Three problem items */}
+          <div className="space-y-6">
+            {/* Item 1: Missed Leads */}
+            <div className="fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="flex items-center gap-2 mb-2">
                 <PhoneMissed className="w-4 h-4 text-red-500" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-red-500 uppercase font-medium">
+                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Missed Leads
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
                 <CountUpMetric value={34} prefix="$" suffix="K+" />
               </div>
-              <div className="text-xs text-muted-foreground mb-4">
+              <div className="text-xs text-foreground/70 mb-3">
                 lost per year
               </div>
               
               {/* Simple breakdown */}
-              <div className="flex items-center gap-4 text-[10px] font-mono text-muted-foreground">
+              <div className="flex items-center gap-4 text-[10px] font-mono text-foreground/60">
                 <span>10+ leads/day</span>
-                <span className="text-red-500">× 37% missed</span>
+                <span className="text-foreground">× 37% missed</span>
                 <span>× $250</span>
               </div>
-            </RippedCard>
+            </div>
 
-            {/* Card 2: Untapped Customers */}
-            <RippedCard delay="0.3s">
-              <div className="flex items-center gap-2 mb-3">
+            {/* Item 2: Untapped Customers */}
+            <div className="fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="flex items-center gap-2 mb-2">
                 <Users className="w-4 h-4 text-red-500" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-red-500 uppercase font-medium">
+                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Past Customers Not Returning
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
                 <CountUpMetric value={175} prefix="$" suffix="K+" />
               </div>
-              <div className="text-xs text-muted-foreground mb-4">
+              <div className="text-xs text-foreground/70 mb-3">
                 sitting untapped
               </div>
               
               {/* Simple breakdown */}
-              <div className="flex items-center gap-4 text-[10px] font-mono text-muted-foreground">
+              <div className="flex items-center gap-4 text-[10px] font-mono text-foreground/60">
                 <span>1,000+ customers</span>
-                <span className="text-red-500">× 70% don't return</span>
+                <span className="text-foreground">× 70% don't return</span>
                 <span>× $250</span>
               </div>
-            </RippedCard>
+            </div>
 
-            {/* Card 3: Time Wasted on Admin */}
-            <RippedCard delay="0.4s">
-              <div className="flex items-center gap-2 mb-3">
+            {/* Item 3: Time Wasted on Admin */}
+            <div className="fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="flex items-center gap-2 mb-2">
                 <Clock className="w-4 h-4 text-red-500" />
-                <span className="font-mono text-[10px] tracking-[0.1em] text-red-500 uppercase font-medium">
+                <span className="font-mono text-[10px] tracking-[0.1em] text-foreground uppercase font-medium">
                   Time Lost to Admin
                 </span>
               </div>
               
-              <div className="text-[40px] font-bold text-red-500 leading-none tracking-tight mb-1">
+              <div className="text-[40px] font-bold text-foreground leading-none tracking-tight mb-1">
                 <CountUpMetric value={14} suffix="hrs+" />
               </div>
-              <div className="text-xs text-muted-foreground mb-4">
+              <div className="text-xs text-foreground/70 mb-3">
                 wasted per week
               </div>
               
               {/* Simple breakdown */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] font-mono text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] font-mono text-foreground/60">
                 <span>Logging into CRM</span>
                 <span>Tracking customers</span>
-                <span className="text-red-500">→ Not growing</span>
+                <span className="text-foreground">→ Not growing</span>
               </div>
-            </RippedCard>
+            </div>
           </div>
 
           {/* Bottom line */}
