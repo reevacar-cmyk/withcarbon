@@ -534,165 +534,205 @@ const ValueProps = () => {
     );
   };
 
-  // Minimal Industrial Automation Visual
-  const AutomationVisual = () => (
-    <div className="relative w-full h-full overflow-hidden">
-      {/* Mobile */}
-      <div className="md:hidden h-full flex flex-col p-5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Data → CRM</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-600 font-medium">SYNC</span>
-          </div>
-        </div>
-        
-        {/* Flow diagram */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-1">
-          {/* Input sources */}
-          <div className="flex items-center justify-center gap-4 w-full">
-            {[
-              { icon: Phone, label: "Calls" },
-              { icon: MessageSquare, label: "Texts" },
-              { icon: Calendar, label: "Jobs" }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-background border border-border rounded-sm shadow-sm">
-                <item.icon className="w-4 h-4 text-muted-foreground" />
-                <span className="text-[9px] font-mono text-muted-foreground uppercase">{item.label}</span>
-              </div>
-            ))}
-          </div>
-          
-          {/* Connectors */}
-          <div className="flex items-center justify-center gap-8">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="w-px h-6 bg-border" />
-            ))}
-          </div>
-          
-          {/* Central processor */}
-          <div className="w-full max-w-[240px] p-4 bg-accent rounded-sm shadow-sm">
-            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent-foreground/20">
-              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
-                <Database className="w-4 h-4 text-accent-foreground" />
-              </div>
-              <div>
-                <div className="text-[10px] font-mono text-accent-foreground uppercase">CRM</div>
-                <div className="text-xs text-accent-foreground">Auto-synced</div>
-              </div>
-            </div>
-            
-            {/* Log entries */}
-            <div className="space-y-2">
-              {[
-                { action: "Call logged", time: "Now" },
-                { action: "Job created", time: "2m" },
-                { action: "SMS synced", time: "5m" }
-              ].map((log, i) => (
-                <div key={i} className="flex items-center justify-between text-[10px]">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-accent-foreground" />
-                    <span className="text-accent-foreground/90">{log.action}</span>
-                  </div>
-                  <span className="font-mono text-accent-foreground/60">{log.time}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        {/* Stats bar */}
-        <div className="mt-6 pt-4 border-t border-border">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div>
-                <div className="text-lg font-mono font-semibold text-foreground">142</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Profiles</div>
-              </div>
-              <div>
-                <div className="text-lg font-mono font-semibold text-accent">0</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Manual</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  // Animated Automation Visual with flowing dots
+  const AutomationVisual = () => {
+    const [activeDots, setActiveDots] = useState<number[]>([]);
+    const [logEntries, setLogEntries] = useState<{action: string, time: string}[]>([]);
+    
+    const sources = [
+      { icon: Phone, label: "Calls", action: "Call logged" },
+      { icon: MessageSquare, label: "Texts", action: "SMS synced" },
+      { icon: Calendar, label: "Jobs", action: "Job created" }
+    ];
+    
+    useEffect(() => {
+      // Stagger dot animations continuously
+      const intervals: NodeJS.Timeout[] = [];
       
-      {/* Desktop */}
-      <div className="hidden md:flex flex-col h-full p-6">
-        <div className="flex items-center justify-between mb-8">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Data → CRM</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-400 font-medium">LIVE</span>
-          </div>
-        </div>
+      // Each source fires a dot at different intervals
+      sources.forEach((source, index) => {
+        const startDelay = index * 800; // Stagger start times
+        const interval = 2400; // Each source fires every 2.4s
         
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="flex items-center justify-center gap-4 w-full">
-            {[
-              { icon: Phone, label: "Calls" },
-              { icon: MessageSquare, label: "Texts" },
-              { icon: Calendar, label: "Jobs" }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white border border-white/20 rounded-sm shadow-sm">
-                <item.icon className="w-4 h-4 text-neutral-500" />
-                <span className="text-[9px] font-mono text-neutral-400 uppercase">{item.label}</span>
-              </div>
-            ))}
-          </div>
+        const timeout = setTimeout(() => {
+          // Fire first dot
+          setActiveDots(prev => [...prev, index]);
           
-          <div className="flex items-center justify-center gap-8">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="w-px h-6 bg-white/20" />
-            ))}
-          </div>
+          // Add log entry after dot reaches bottom
+          setTimeout(() => {
+            setLogEntries(prev => {
+              const newEntries = [{ action: source.action, time: "Now" }, ...prev].slice(0, 3);
+              return newEntries;
+            });
+            setActiveDots(prev => prev.filter(d => d !== index));
+          }, 600);
           
-          <div className="w-full max-w-[260px] p-4 bg-accent rounded-sm shadow-sm">
-            <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent-foreground/20">
-              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
-                <Database className="w-4 h-4 text-accent-foreground" />
-              </div>
-              <div>
-                <div className="text-[10px] font-mono text-accent-foreground uppercase">CRM</div>
-                <div className="text-xs text-accent-foreground">Auto-synced</div>
-              </div>
-            </div>
+          // Set up recurring interval
+          const recurring = setInterval(() => {
+            setActiveDots(prev => [...prev, index]);
             
-            <div className="space-y-2">
-              {[
-                { action: "Call logged", time: "Now" },
-                { action: "Job created", time: "2m" },
-                { action: "SMS synced", time: "5m" }
-              ].map((log, i) => (
-                <div key={i} className="flex items-center justify-between text-[10px]">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-accent-foreground" />
-                    <span className="text-accent-foreground/90">{log.action}</span>
+            setTimeout(() => {
+              setLogEntries(prev => {
+                const newEntries = [{ action: source.action, time: "Now" }, ...prev].slice(0, 3);
+                return newEntries;
+              });
+              setActiveDots(prev => prev.filter(d => d !== index));
+            }, 600);
+          }, interval);
+          
+          intervals.push(recurring);
+        }, startDelay);
+        
+        intervals.push(timeout as unknown as NodeJS.Timeout);
+      });
+      
+      return () => {
+        intervals.forEach(i => clearTimeout(i));
+        intervals.forEach(i => clearInterval(i));
+      };
+    }, []);
+    
+    return (
+      <div className="relative w-full h-full overflow-hidden">
+        {/* Mobile */}
+        <div className="md:hidden h-full flex flex-col p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Data → CRM</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-600 font-medium">SYNC</span>
+            </div>
+          </div>
+          
+          {/* Flow diagram */}
+          <div className="flex-1 flex flex-col items-center justify-center gap-0">
+            {/* Input sources */}
+            <div className="flex items-center justify-center gap-6 w-full">
+              {sources.map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5">
+                  <div className={`p-2.5 bg-background border rounded-full shadow-sm transition-all duration-300 ${
+                    activeDots.includes(i) ? 'border-accent bg-accent/10' : 'border-border'
+                  }`}>
+                    <item.icon className={`w-4 h-4 transition-colors ${
+                      activeDots.includes(i) ? 'text-accent' : 'text-muted-foreground'
+                    }`} />
                   </div>
-                  <span className="font-mono text-accent-foreground/60">{log.time}</span>
+                  <span className="text-[9px] font-mono text-muted-foreground uppercase">{item.label}</span>
                 </div>
               ))}
             </div>
+            
+            {/* Connectors with flowing dots */}
+            <div className="relative w-full flex items-center justify-center gap-6 h-10">
+              {sources.map((_, i) => (
+                <div key={i} className="relative flex flex-col items-center">
+                  {/* Line */}
+                  <div className="w-px h-10 bg-border" />
+                  {/* Animated dot */}
+                  {activeDots.includes(i) && (
+                    <div 
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.6s_ease-in_forwards]"
+                      style={{ boxShadow: '0 0 8px hsl(var(--accent))' }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Central CRM card */}
+            <div className="w-full max-w-[240px] px-3 py-3 bg-accent rounded-sm shadow-sm">
+              <div className="flex items-center gap-3 mb-2 pb-2 border-b border-accent-foreground/20">
+                <div className="w-7 h-7 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                  <Database className="w-3.5 h-3.5 text-accent-foreground" />
+                </div>
+                <div>
+                  <div className="text-[9px] font-mono text-accent-foreground uppercase">CRM</div>
+                  <div className="text-[11px] text-accent-foreground">Auto-synced</div>
+                </div>
+              </div>
+              
+              {/* Animated log entries */}
+              <div className="space-y-1.5 min-h-[60px]">
+                {(logEntries.length > 0 ? logEntries : [
+                  { action: "Waiting...", time: "" }
+                ]).map((log, i) => (
+                  <div 
+                    key={`${log.action}-${i}`} 
+                    className={`flex items-center justify-between text-[10px] transition-all duration-300 ${
+                      i === 0 && logEntries.length > 0 ? 'opacity-100' : 'opacity-70'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 text-accent-foreground" />
+                      <span className="text-accent-foreground/90">{log.action}</span>
+                    </div>
+                    <span className="font-mono text-accent-foreground/60">{log.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         
-        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div>
-              <div className="text-lg font-mono font-bold text-white">142</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Profiles</div>
+        {/* Desktop */}
+        <div className="hidden md:flex flex-col h-full p-6">
+          <div className="flex items-center justify-between mb-8">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Data → CRM</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-400 font-medium">LIVE</span>
             </div>
-            <div>
-              <div className="text-lg font-mono font-bold text-accent">0</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Manual</div>
+          </div>
+          
+          <div className="flex-1 flex flex-col items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 w-full">
+              {sources.map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5 p-3 bg-white border border-white/20 rounded-sm shadow-sm">
+                  <item.icon className="w-4 h-4 text-neutral-500" />
+                  <span className="text-[9px] font-mono text-neutral-400 uppercase">{item.label}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="flex items-center justify-center gap-8">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="w-px h-6 bg-white/20" />
+              ))}
+            </div>
+            
+            <div className="w-full max-w-[260px] p-4 bg-accent rounded-sm shadow-sm">
+              <div className="flex items-center gap-3 mb-3 pb-3 border-b border-accent-foreground/20">
+                <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                  <Database className="w-4 h-4 text-accent-foreground" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono text-accent-foreground uppercase">CRM</div>
+                  <div className="text-xs text-accent-foreground">Auto-synced</div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                {[
+                  { action: "Call logged", time: "Now" },
+                  { action: "Job created", time: "2m" },
+                  { action: "SMS synced", time: "5m" }
+                ].map((log, i) => (
+                  <div key={i} className="flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 text-accent-foreground" />
+                      <span className="text-accent-foreground/90">{log.action}</span>
+                    </div>
+                    <span className="font-mono text-accent-foreground/60">{log.time}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderVisual = (visual: string) => {
     switch (visual) {

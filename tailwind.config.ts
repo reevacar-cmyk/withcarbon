@@ -101,13 +101,13 @@ export default {
           },
         },
         "pulseDown": {
-          from: {
+          "0%": {
             transform: "translateX(-50%) translateY(0)",
             opacity: "1",
           },
-          to: {
-            transform: "translateX(-50%) translateY(24px)",
-            opacity: "0.5",
+          "100%": {
+            transform: "translateX(-50%) translateY(40px)",
+            opacity: "0.3",
           },
         },
       },
@@ -116,7 +116,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "slideInFromRight": "slideInFromRight 0.5s ease-out",
         "slideOutToLeft": "slideOutToLeft 0.5s ease-out forwards",
-        "pulseDown": "pulseDown 0.5s ease-out forwards",
+        "pulseDown": "pulseDown 0.6s ease-in forwards",
       },
     },
   },
