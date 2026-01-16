@@ -51,29 +51,12 @@ const DesignPartnerForm = () => {
               key={i} 
               className="text-center flex flex-col items-center"
             >
-              <div className="mb-6 relative flex flex-col items-center">
-                <div className="w-56 h-56 md:w-[270px] md:h-[270px] relative">
-                  <img 
-                    src={item.icon} 
-                    alt={item.title}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                {/* Reflection */}
-                <div className="w-56 h-16 md:w-[270px] md:h-20 relative overflow-hidden -mt-2">
-                  <img 
-                    src={item.icon} 
-                    alt=""
-                    className="w-full h-56 md:h-[270px] object-contain absolute bottom-0"
-                    style={{
-                      transform: 'scaleY(-1)',
-                      opacity: 0.15,
-                      filter: 'blur(1px)',
-                      maskImage: 'linear-gradient(to top, transparent 0%, black 100%)',
-                      WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 100%)'
-                    }}
-                  />
-                </div>
+              <div className="w-56 h-56 md:w-[270px] md:h-[270px] mb-6 relative">
+                <img 
+                  src={item.icon} 
+                  alt={item.title}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{item.title}</h3>
               <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">{item.description}</p>
