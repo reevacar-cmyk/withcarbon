@@ -188,7 +188,7 @@ const Hero = () => {
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none bg-background" />
       
-      <div className="container mx-auto max-w-none md:max-w-[1600px] relative z-10">
+      <div className="container mx-auto max-w-none md:max-w-[1800px] relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="space-y-4 md:space-y-8 text-center md:text-left">
             {/* Mobile: Tertiary callout badge */}
@@ -208,7 +208,7 @@ const Hero = () => {
               <span className="hidden md:inline text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
             </h1>
             
-            <p className="text-base md:text-xl max-w-2xl fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
+            <p className="text-base md:text-xl max-w-[340px] fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
               <span className="md:hidden text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
               <span className="hidden md:inline text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
             </p>
