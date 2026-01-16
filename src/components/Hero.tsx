@@ -16,17 +16,18 @@ const Hero = () => {
         {/* Dashboard visuals in background - arranged like a dashboard grid */}
         <div className="absolute inset-0 z-0 px-4 pt-24">
           {/* Dashboard grid container */}
-          <div className="grid grid-cols-12 gap-3 max-w-[400px] mx-auto">
-            {/* Large Revenue Chart - spans 7 cols, 2 rows height */}
+          <div className="grid grid-cols-12 gap-2.5 max-w-[380px] mx-auto">
+            
+            {/* Calendar with Booked Jobs - spans 7 cols */}
             <div 
-              className="col-span-7 row-span-2 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-              style={{ minHeight: '140px' }}
+              className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              style={{ minHeight: '130px' }}
             >
-              {/* Shiny border overlay - positioned at top-right where light touches */}
+              {/* Shiny border - top-right corner where diagonal light hits */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.4) 48%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 52%, transparent 60%)',
+                  background: 'linear-gradient(135deg, transparent 0%, transparent 60%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0.5) 85%, rgba(255,255,255,0.8) 90%, rgba(255,255,255,0.5) 95%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
@@ -34,130 +35,174 @@ const Hero = () => {
                 }}
               />
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[9px] text-white/50 px-1.5 py-0.5 bg-white/10 rounded">Balance</span>
-                  <span className="text-[9px] text-white/30">Card Spend</span>
-                </div>
+                <span className="text-[9px] text-white/50 uppercase tracking-wider">Booked Jobs</span>
+                <Calendar className="w-3 h-3 text-accent" />
               </div>
-              <div className="text-xl font-bold text-white mb-1">$1,652,342.90</div>
-              <div className="text-[9px] text-white/40 mb-3">Current balance</div>
-              <div className="h-16 flex items-end">
-                {/* Chart line visualization */}
-                <svg className="w-full h-full" viewBox="0 0 200 60" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.5" />
-                      <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path 
-                    d="M0,45 Q20,40 40,42 T80,35 T120,25 T160,30 T200,20" 
-                    fill="none" 
-                    stroke="hsl(var(--accent))" 
-                    strokeWidth="2"
-                  />
-                  <path 
-                    d="M0,45 Q20,40 40,42 T80,35 T120,25 T160,30 T200,20 L200,60 L0,60 Z" 
-                    fill="url(#chartGradient)"
-                  />
-                </svg>
-              </div>
-              <div className="flex justify-between mt-2 text-[7px] text-white/30">
-                {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((d) => (
-                  <span key={d}>{d}</span>
+              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/30 mb-1">
+                {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
+                  <div key={i} className="text-center">{d}</div>
                 ))}
               </div>
-            </div>
-            
-            {/* Transactions Card - spans 5 cols, 2 rows */}
-            <div 
-              className="col-span-5 row-span-2 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
-              style={{ minHeight: '140px' }}
-            >
-              {/* Shiny border - top edge where light hits */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 3%, transparent 100%)',
-                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                  maskComposite: 'xor',
-                  WebkitMaskComposite: 'xor',
-                  padding: '1px',
-                }}
-              />
-              <div className="text-[9px] text-white/40 mb-2">Transactions</div>
-              <div className="space-y-2">
-                {[
-                  { icon: 'a', name: 'Amazon Associates', amount: '-$7,890.00', color: 'text-white/60' },
-                  { icon: 'E', name: 'Etsy Partner Network', amount: '$34,993.71', color: 'text-emerald-400' },
-                  { icon: 'M', name: 'Meta Platforms Inc.', amount: '-$12,287.89', color: 'text-white/60' },
-                  { icon: 'A', name: 'Adobe Inc.', amount: '-$2,056.87', color: 'text-white/60' },
-                ].map((tx, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center text-[8px] text-white/50">{tx.icon}</div>
-                      <span className="text-[8px] text-white/60 truncate max-w-[60px]">{tx.name}</span>
+              <div className="grid grid-cols-7 gap-0.5">
+                {Array.from({ length: 21 }, (_, i) => {
+                  const isBooked = [3, 5, 8, 10, 12, 15, 17, 19].includes(i);
+                  const isToday = i === 10;
+                  return (
+                    <div 
+                      key={i} 
+                      className={`aspect-square rounded-sm text-[6px] flex items-center justify-center ${
+                        isToday ? 'bg-accent text-white ring-1 ring-accent' : 
+                        isBooked ? 'bg-accent/30 text-white/70' : 
+                        'text-white/25'
+                      }`}
+                    >
+                      {i + 1}
                     </div>
-                    <span className={`text-[8px] ${tx.color}`}>{tx.amount}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
+              <div className="mt-2 text-[8px] text-white/40">8 jobs this week</div>
             </div>
             
-            {/* Stats Table Card - full width */}
+            {/* AI SMS Follow-ups - spans 5 cols */}
             <div 
-              className="col-span-12 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              style={{ minHeight: '130px' }}
             >
-              {/* Left edge shiny border */}
+              {/* Shiny border - top edge where light grazes */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.3) 0%, transparent 2%, transparent 100%)',
+                  background: 'linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 5%, transparent 15%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
                 }}
               />
-              <div className="flex text-[8px] text-white/40 mb-2 border-b border-white/10 pb-1">
-                <span className="flex-1">Card Name</span>
-                <span className="w-16 text-center">Group</span>
-                <span className="w-16 text-center">Spend Limits</span>
-                <span className="w-12 text-right">Status</span>
+              <div className="flex items-center gap-1.5 mb-2">
+                <MessageSquare className="w-2.5 h-2.5 text-accent" />
+                <span className="text-[9px] text-white/50 uppercase tracking-wider">Follow-ups</span>
               </div>
               <div className="space-y-1.5">
                 {[
-                  { name: 'Primary Account', group: 'Marketing', limit: '$800,000', status: 'Active', statusColor: 'bg-emerald-500' },
-                  { name: 'Virtual Account', group: 'Marketing', limit: '$300,000', status: 'Active', statusColor: 'bg-emerald-500' },
-                  { name: 'Team Expenses', group: 'Operations', limit: 'No Limit', status: 'Paused', statusColor: 'bg-orange-500' },
-                ].map((row, i) => (
-                  <div key={i} className="flex items-center text-[8px]">
-                    <span className="flex-1 text-white/60">{row.name}</span>
-                    <span className="w-16 text-center text-white/40">{row.group}</span>
-                    <span className="w-16 text-center text-white/50">{row.limit}</span>
-                    <div className="w-12 flex justify-end">
-                      <span className={`${row.statusColor} text-white text-[6px] px-1.5 py-0.5 rounded-full`}>{row.status}</span>
+                  { name: 'Mike R.', msg: 'Time for your next detail?', status: 'Sent' },
+                  { name: 'Sarah K.', msg: 'How was your ceramic coat?', status: 'Replied' },
+                  { name: 'John D.', msg: 'Ready for spring clean?', status: 'Booked' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[8px] text-white/60 truncate">{item.name}</div>
+                      <div className="text-[7px] text-white/30 truncate">{item.msg}</div>
+                    </div>
+                    <span className={`text-[6px] px-1 py-0.5 rounded ${
+                      item.status === 'Booked' ? 'bg-emerald-500/20 text-emerald-400' :
+                      item.status === 'Replied' ? 'bg-blue-500/20 text-blue-400' :
+                      'bg-white/10 text-white/40'
+                    }`}>{item.status}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Inbound Leads - spans 6 cols */}
+            <div 
+              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+            >
+              {/* Shiny border - left edge where light passes */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 3%, transparent 10%, transparent 100%)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor',
+                  padding: '1px',
+                }}
+              />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[9px] text-white/50 uppercase tracking-wider">Inbound Leads</span>
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded bg-[#4267B2]/30 flex items-center justify-center text-[6px] text-[#4267B2]">f</div>
+                  <div className="w-3 h-3 rounded bg-[#EA4335]/30 flex items-center justify-center text-[6px] text-[#EA4335]">G</div>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                {[
+                  { source: 'Google', name: 'New lead: Alex M.', time: '2m ago', color: 'text-[#EA4335]' },
+                  { source: 'Facebook', name: 'Quote request: Lisa P.', time: '8m ago', color: 'text-[#4267B2]' },
+                  { source: 'Google', name: 'Booking: Tom W.', time: '15m ago', color: 'text-[#EA4335]' },
+                ].map((lead, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[7px] ${lead.color}`}>{lead.source}</span>
+                      <span className="text-[8px] text-white/60 truncate max-w-[70px]">{lead.name}</span>
+                    </div>
+                    <span className="text-[7px] text-white/30">{lead.time}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2 pt-1.5 border-t border-white/5 flex justify-between">
+                <span className="text-[8px] text-white/40">AI responded to all</span>
+                <span className="text-[8px] text-emerald-400">✓</span>
+              </div>
+            </div>
+            
+            {/* Employee Management - spans 6 cols */}
+            <div 
+              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+            >
+              {/* Shiny border - bottom-left where light exits */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, transparent 0%, transparent 85%, rgba(255,255,255,0.2) 92%, rgba(255,255,255,0.4) 95%, transparent 100%)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor',
+                  padding: '1px',
+                }}
+              />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[9px] text-white/50 uppercase tracking-wider">Team</span>
+                <Users className="w-3 h-3 text-accent" />
+              </div>
+              <div className="space-y-1.5">
+                {[
+                  { name: 'Josh T.', role: 'Lead Detailer', status: 'On Job', statusColor: 'bg-emerald-500' },
+                  { name: 'Mike S.', role: 'Detailer', status: 'Available', statusColor: 'bg-blue-500' },
+                  { name: 'Chris L.', role: 'Detailer', status: 'Break', statusColor: 'bg-orange-500' },
+                ].map((emp, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <div>
+                      <div className="text-[8px] text-white/60">{emp.name}</div>
+                      <div className="text-[7px] text-white/30">{emp.role}</div>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className={`w-1.5 h-1.5 rounded-full ${emp.statusColor}`} />
+                      <span className="text-[7px] text-white/40">{emp.status}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
+            
           </div>
         </div>
         
-        {/* Static diagonal light beam */}
+        {/* Static diagonal light beam - subtle but bright like reference */}
         <div 
           className="absolute inset-0 pointer-events-none z-[5]"
           style={{
-            background: 'linear-gradient(135deg, transparent 0%, transparent 30%, rgba(255,255,255,0.02) 38%, rgba(255,255,255,0.08) 42%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.08) 48%, rgba(255,255,255,0.02) 52%, transparent 60%, transparent 100%)',
+            background: 'linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255,255,255,0.01) 40%, rgba(255,255,255,0.04) 43%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.04) 47%, rgba(255,255,255,0.01) 50%, transparent 55%, transparent 100%)',
           }}
         />
         
-        {/* Secondary intense light core */}
+        {/* Core light line - thin bright streak */}
         <div 
           className="absolute inset-0 pointer-events-none z-[5]"
           style={{
-            background: 'linear-gradient(135deg, transparent 0%, transparent 42%, rgba(255,255,255,0.25) 44.5%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.25) 45.5%, transparent 48%, transparent 100%)',
+            background: 'linear-gradient(135deg, transparent 0%, transparent 44%, rgba(255,255,255,0.12) 44.8%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.12) 45.2%, transparent 46%, transparent 100%)',
           }}
         />
         
