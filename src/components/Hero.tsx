@@ -20,47 +20,56 @@ const Hero = () => {
             
             {/* Calendar with Booked Jobs - spans 7 cols */}
             <div 
-              className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-7 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Internal light glow from top-left */}
+              {/* Strong internal light glow from top-left */}
               <div 
-                className="absolute -top-10 -left-10 w-36 h-36 pointer-events-none"
+                className="absolute -top-12 -left-12 w-44 h-44 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,200,150,0.15) 0%, rgba(255,180,120,0.08) 40%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,190,130,0.25) 0%, rgba(255,170,100,0.12) 35%, rgba(255,150,80,0.04) 60%, transparent 80%)',
                 }}
               />
-              {/* Shiny border - top and left edges where light originates */}
+              {/* Shiny border - top and left edges - much brighter */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 50%, rgba(255,220,180,0.3) 70%, rgba(255,240,220,0.7) 85%, rgba(255,255,255,0.9) 92%, rgba(255,240,220,0.5) 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 45%, rgba(255,200,150,0.4) 65%, rgba(255,230,200,0.8) 80%, rgba(255,255,255,1) 90%, rgba(255,230,200,0.6) 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
-                  padding: '1px',
+                  padding: '1.5px',
                 }}
               />
-              {/* Fade overlay for right side (away from light) */}
+              {/* Strong fade overlay for right side - deep into darkness */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%)',
+                  background: 'linear-gradient(100deg, transparent 0%, transparent 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.8) 100%)',
+                }}
+              />
+              {/* Content overlay - brighter on left */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,220,180,0.08) 0%, transparent 40%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/50 uppercase tracking-wider">Booked Jobs</span>
-                <Calendar className="w-3 h-3 text-accent" />
+                <span className="text-[9px] text-white/70 uppercase tracking-wider">Booked Jobs</span>
+                <Calendar className="w-3 h-3 text-accent/60" />
               </div>
-              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/30 mb-1 relative z-10">
+              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/40 mb-1 relative z-10">
                 {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-                  <div key={i} className="text-center">{d}</div>
+                  <div key={i} className="text-center" style={{ opacity: 1 - (i * 0.08) }}>{d}</div>
                 ))}
               </div>
               <div className="grid grid-cols-7 gap-0.5 relative z-10">
                 {Array.from({ length: 21 }, (_, i) => {
                   const isBooked = [3, 5, 8, 10, 12, 15, 17, 19].includes(i);
                   const isToday = i === 10;
+                  const col = i % 7;
+                  const dimFactor = 1 - (col * 0.1);
                   return (
                     <div 
                       key={i} 
@@ -69,48 +78,56 @@ const Hero = () => {
                         isBooked ? 'bg-accent/30 text-white/70' : 
                         'text-white/25'
                       }`}
+                      style={{ opacity: dimFactor }}
                     >
                       {i + 1}
                     </div>
                   );
                 })}
               </div>
-              <div className="mt-2 text-[8px] text-white/40 relative z-10">8 jobs this week</div>
+              <div className="mt-2 text-[8px] text-white/50 relative z-10">8 jobs this week</div>
             </div>
             
             {/* AI SMS Follow-ups - spans 5 cols */}
             <div 
-              className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-5 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Internal light glow from top-left */}
+              {/* Strong internal light glow from top-left */}
               <div 
-                className="absolute -top-8 -left-4 w-24 h-24 pointer-events-none"
+                className="absolute -top-10 -left-8 w-32 h-32 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse, rgba(255,200,150,0.08) 0%, rgba(255,180,120,0.03) 50%, transparent 70%)',
+                  background: 'radial-gradient(ellipse, rgba(255,190,130,0.18) 0%, rgba(255,170,100,0.08) 45%, transparent 75%)',
                 }}
               />
-              {/* Shiny border - top-left edge */}
+              {/* Shiny border - top-left edge - brighter */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 70%, rgba(255,240,220,0.5) 88%, rgba(255,255,255,0.7) 95%, transparent 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 60%, rgba(255,230,200,0.6) 82%, rgba(255,255,255,0.95) 92%, rgba(255,230,200,0.4) 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
-                  padding: '1px',
+                  padding: '1.5px',
                 }}
               />
-              {/* Fade overlay for right side */}
+              {/* Strong fade overlay for right side */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.5) 100%)',
+                  background: 'linear-gradient(100deg, transparent 0%, transparent 25%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.85) 100%)',
+                }}
+              />
+              {/* Content light wash */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,220,180,0.06) 0%, transparent 35%)',
                 }}
               />
               <div className="flex items-center gap-1.5 mb-2 relative z-10">
                 <MessageSquare className="w-2.5 h-2.5 text-accent" />
-                <span className="text-[9px] text-white/50 uppercase tracking-wider">Follow-ups</span>
+                <span className="text-[9px] text-white/70 uppercase tracking-wider">Follow-ups</span>
               </div>
               <div className="space-y-1.5 relative z-10">
                 {[
@@ -118,14 +135,14 @@ const Hero = () => {
                   { name: 'Sarah K.', msg: 'How was your ceramic coat?', status: 'Replied' },
                   { name: 'John D.', msg: 'Ready for spring clean?', status: 'Booked' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center justify-between">
+                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.15) }}>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[8px] text-white/60 truncate">{item.name}</div>
-                      <div className="text-[7px] text-white/30 truncate">{item.msg}</div>
+                      <div className="text-[8px] text-white/70 truncate">{item.name}</div>
+                      <div className="text-[7px] text-white/35 truncate">{item.msg}</div>
                     </div>
                     <span className={`text-[6px] px-1 py-0.5 rounded ${
-                      item.status === 'Booked' ? 'bg-emerald-500/20 text-emerald-400' :
-                      item.status === 'Replied' ? 'bg-blue-500/20 text-blue-400' :
+                      item.status === 'Booked' ? 'bg-emerald-500/20 text-emerald-400/80' :
+                      item.status === 'Replied' ? 'bg-blue-500/20 text-blue-400/80' :
                       'bg-white/10 text-white/40'
                     }`}>{item.status}</span>
                   </div>
@@ -135,36 +152,43 @@ const Hero = () => {
             
             {/* Inbound Leads - spans 6 cols */}
             <div 
-              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-6 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Internal light glow from left */}
+              {/* Strong internal light glow from left */}
               <div 
-                className="absolute top-0 -left-8 w-28 h-28 pointer-events-none"
+                className="absolute -top-4 -left-10 w-36 h-36 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,200,150,0.12) 0%, transparent 60%)',
+                  background: 'radial-gradient(circle, rgba(255,190,130,0.2) 0%, rgba(255,170,100,0.08) 50%, transparent 70%)',
                 }}
               />
-              {/* Shiny border - left edge */}
+              {/* Shiny border - left edge - very bright */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,240,220,0.5) 3%, rgba(255,220,180,0.2) 8%, transparent 18%, transparent 100%)',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,230,200,0.7) 2%, rgba(255,200,150,0.3) 6%, transparent 15%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
-                  padding: '1px',
+                  padding: '1.5px',
                 }}
               />
-              {/* Fade overlay for right side */}
+              {/* Strong fade overlay for right side */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.45) 100%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.85) 100%)',
+                }}
+              />
+              {/* Content light wash */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,220,180,0.08) 0%, transparent 30%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/50 uppercase tracking-wider">Inbound Leads</span>
-                <div className="flex gap-1">
+                <span className="text-[9px] text-white/70 uppercase tracking-wider">Inbound Leads</span>
+                <div className="flex gap-1 opacity-50">
                   <div className="w-3 h-3 rounded bg-[#4267B2]/30 flex items-center justify-center text-[6px] text-[#4267B2]">f</div>
                   <div className="w-3 h-3 rounded bg-[#EA4335]/30 flex items-center justify-center text-[6px] text-[#EA4335]">G</div>
                 </div>
@@ -175,53 +199,60 @@ const Hero = () => {
                   { source: 'Facebook', name: 'Quote request: Lisa P.', time: '8m ago', color: 'text-[#4267B2]' },
                   { source: 'Google', name: 'Booking: Tom W.', time: '15m ago', color: 'text-[#EA4335]' },
                 ].map((lead, i) => (
-                  <div key={i} className="flex items-center justify-between">
+                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.2) }}>
                     <div className="flex items-center gap-1.5">
                       <span className={`text-[7px] ${lead.color}`}>{lead.source}</span>
-                      <span className="text-[8px] text-white/60 truncate max-w-[70px]">{lead.name}</span>
+                      <span className="text-[8px] text-white/70 truncate max-w-[70px]">{lead.name}</span>
                     </div>
-                    <span className="text-[7px] text-white/30">{lead.time}</span>
+                    <span className="text-[7px] text-white/25">{lead.time}</span>
                   </div>
                 ))}
               </div>
               <div className="mt-2 pt-1.5 border-t border-white/5 flex justify-between relative z-10">
-                <span className="text-[8px] text-white/40">AI responded to all</span>
-                <span className="text-[8px] text-emerald-400">✓</span>
+                <span className="text-[8px] text-white/50">AI responded to all</span>
+                <span className="text-[8px] text-emerald-400/70">✓</span>
               </div>
             </div>
             
             {/* Employee Management - spans 6 cols */}
             <div 
-              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-6 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Internal light glow from top-left */}
+              {/* Strong internal light glow from top-left */}
               <div 
-                className="absolute -top-4 -left-4 w-20 h-20 pointer-events-none"
+                className="absolute -top-6 -left-6 w-28 h-28 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,200,150,0.06) 0%, transparent 60%)',
+                  background: 'radial-gradient(circle, rgba(255,190,130,0.12) 0%, rgba(255,170,100,0.05) 50%, transparent 70%)',
                 }}
               />
-              {/* Shiny border - top-left */}
+              {/* Shiny border - top-left - bright */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 75%, rgba(255,220,180,0.3) 88%, rgba(255,240,220,0.5) 93%, rgba(255,255,255,0.6) 97%, transparent 100%)',
+                  background: 'linear-gradient(225deg, transparent 0%, transparent 70%, rgba(255,220,180,0.4) 85%, rgba(255,240,220,0.7) 92%, rgba(255,255,255,0.9) 97%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
-                  padding: '1px',
+                  padding: '1.5px',
                 }}
               />
-              {/* Fade overlay for right side */}
+              {/* Strong fade overlay for right side */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.5) 100%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.85) 100%)',
+                }}
+              />
+              {/* Content light wash */}
+              <div 
+                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,220,180,0.05) 0%, transparent 30%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
-                <span className="text-[9px] text-white/50 uppercase tracking-wider">Team</span>
-                <Users className="w-3 h-3 text-accent" />
+                <span className="text-[9px] text-white/70 uppercase tracking-wider">Team</span>
+                <Users className="w-3 h-3 text-accent/50" />
               </div>
               <div className="space-y-1.5 relative z-10">
                 {[
@@ -229,14 +260,14 @@ const Hero = () => {
                   { name: 'Mike S.', role: 'Detailer', status: 'Available', statusColor: 'bg-blue-500' },
                   { name: 'Chris L.', role: 'Detailer', status: 'Break', statusColor: 'bg-orange-500' },
                 ].map((emp, i) => (
-                  <div key={i} className="flex items-center justify-between">
+                  <div key={i} className="flex items-center justify-between" style={{ opacity: 1 - (i * 0.2) }}>
                     <div>
-                      <div className="text-[8px] text-white/60">{emp.name}</div>
+                      <div className="text-[8px] text-white/70">{emp.name}</div>
                       <div className="text-[7px] text-white/30">{emp.role}</div>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 opacity-70">
                       <div className={`w-1.5 h-1.5 rounded-full ${emp.statusColor}`} />
-                      <span className="text-[7px] text-white/40">{emp.status}</span>
+                      <span className="text-[7px] text-white/35">{emp.status}</span>
                     </div>
                   </div>
                 ))}
