@@ -34,138 +34,273 @@ const ValueProps = () => {
     }
   ];
 
-  // Minimal Industrial Booking Visual
-  const BookingVisual = () => (
-    <div className="relative w-full h-full overflow-hidden">
-      {/* Mobile */}
-      <div className="md:hidden h-full flex flex-col p-5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Lead → Booking</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-600 font-medium">LIVE</span>
-          </div>
-        </div>
-        
-        {/* Flow diagram */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-1">
-          {/* Input node */}
-          <div className="w-full max-w-[240px] p-4 bg-background border border-border rounded-sm shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-muted border border-border rounded-sm flex items-center justify-center">
-                <MessageSquare className="w-4 h-4 text-muted-foreground" />
-              </div>
-              <div className="flex-1">
-                <div className="text-[10px] font-mono text-muted-foreground uppercase">Inbound</div>
-                <div className="text-xs text-foreground">"How much for a detail?"</div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Connector */}
-          <div className="flex flex-col items-center">
-            <div className="w-px h-6 bg-border" />
-            <div className="w-6 h-6 bg-accent rounded-sm flex items-center justify-center">
-              <Zap className="w-3 h-3 text-accent-foreground" />
-            </div>
-            <div className="text-[9px] font-mono text-accent mt-1">2s response</div>
-            <div className="w-px h-6 bg-border" />
-          </div>
-          
-          {/* Output node */}
-          <div className="w-full max-w-[240px] p-4 bg-accent border border-accent rounded-sm shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-accent-foreground" />
-              </div>
-              <div className="flex-1">
-                <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Booked</div>
-                <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
-              </div>
-              <CheckCircle className="w-4 h-4 text-accent-foreground" />
-            </div>
-          </div>
-        </div>
-        
-        {/* Stats bar */}
-        <div className="mt-6 pt-4 border-t border-border">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div>
-                <div className="text-lg font-mono font-semibold text-accent">$850</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Today</div>
-              </div>
-              <div>
-                <div className="text-lg font-mono font-semibold text-foreground">100%</div>
-                <div className="text-[9px] font-mono text-muted-foreground uppercase">Response</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  // Animated Booking Visual with cycling lead cards
+  const BookingVisual = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [showLead, setShowLead] = useState(false);
+    const [pulsePhase, setPulsePhase] = useState<'idle' | 'toCenter' | 'loading' | 'toBottom'>('idle');
+    const [showBooked, setShowBooked] = useState(false);
+    
+    const leads = [
+      { source: "google", message: "How much for a full detail?" },
+      { source: "meta", message: "Do you do ceramic coating?" },
+      { source: "google", message: "Can I get my truck detailed today?" },
+      { source: "meta", message: "What's your price for interior only?" },
+      { source: "google", message: "Are you available this weekend?" },
+      { source: "meta", message: "How long does a full detail take?" },
+      { source: "google", message: "Do you offer mobile detailing?" },
+    ];
+    
+    const bookings = [
+      "Tomorrow 10am · $220",
+      "Today 3pm · $450",
+      "Saturday 9am · $180",
+      "Today 5pm · $95",
+      "Sunday 11am · $320",
+      "Tomorrow 2pm · $280",
+      "Friday 4pm · $240",
+    ];
+    
+    useEffect(() => {
+      // Timeline per cycle:
+      // 0ms: Start fresh
+      // 100ms: Lead card appears
+      // 600ms: Pulse starts traveling to center
+      // 1100ms: Pulse reaches center, loading state starts
+      // 2100ms: Loading ends, pulse travels to bottom
+      // 2600ms: Booked card appears
+      // 4200ms: Everything fades, cycle to next
       
-      {/* Desktop */}
-      <div className="hidden md:flex flex-col h-full p-6">
-        <div className="flex items-center justify-between mb-8">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Lead → Booking</span>
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[9px] font-mono text-green-400 font-medium">24/7</span>
+      let showLeadTimeout: NodeJS.Timeout;
+      let pulseStartTimeout: NodeJS.Timeout;
+      let loadingTimeout: NodeJS.Timeout;
+      let pulseToBottomTimeout: NodeJS.Timeout;
+      let showBookedTimeout: NodeJS.Timeout;
+      let resetTimeout: NodeJS.Timeout;
+      
+      // Show lead card
+      showLeadTimeout = setTimeout(() => {
+        setShowLead(true);
+      }, 100);
+      
+      // Start pulse to center
+      pulseStartTimeout = setTimeout(() => {
+        setPulsePhase('toCenter');
+      }, 600);
+      
+      // Pulse reaches center, start loading
+      loadingTimeout = setTimeout(() => {
+        setPulsePhase('loading');
+      }, 1100);
+      
+      // Loading ends, pulse to bottom
+      pulseToBottomTimeout = setTimeout(() => {
+        setPulsePhase('toBottom');
+      }, 2100);
+      
+      // Show booked card
+      showBookedTimeout = setTimeout(() => {
+        setShowBooked(true);
+        setPulsePhase('idle');
+      }, 2600);
+      
+      // Reset and cycle
+      resetTimeout = setTimeout(() => {
+        setShowLead(false);
+        setShowBooked(false);
+        setPulsePhase('idle');
+        setCurrentIndex((prev) => (prev + 1) % leads.length);
+      }, 4200);
+      
+      return () => {
+        clearTimeout(showLeadTimeout);
+        clearTimeout(pulseStartTimeout);
+        clearTimeout(loadingTimeout);
+        clearTimeout(pulseToBottomTimeout);
+        clearTimeout(showBookedTimeout);
+        clearTimeout(resetTimeout);
+      };
+    }, [currentIndex, leads.length]);
+    
+    const lead = leads[currentIndex];
+    const booking = bookings[currentIndex];
+    
+    // Google logo SVG
+    const GoogleLogo = () => (
+      <svg viewBox="0 0 24 24" className="w-4 h-4">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+    );
+    
+    // Meta logo SVG
+    const MetaLogo = () => (
+      <svg viewBox="0 0 24 24" className="w-4 h-4">
+        <path fill="#0081FB" d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+      </svg>
+    );
+    
+    return (
+      <div className="relative w-full h-full overflow-hidden">
+        {/* Mobile */}
+        <div className="md:hidden h-full flex flex-col p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Lead → Booking</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-600 font-medium">LIVE</span>
+            </div>
           </div>
-        </div>
-        
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="w-full max-w-[260px] p-4 bg-white border border-white/20 rounded-sm shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-neutral-100 rounded-sm flex items-center justify-center">
-                <MessageSquare className="w-4 h-4 text-neutral-500" />
+          
+          {/* Flow diagram */}
+          <div className="flex-1 flex flex-col items-center justify-center gap-0">
+            {/* Lead card */}
+            <div className={`w-full max-w-[240px] p-4 bg-background border border-border rounded-sm shadow-sm transition-all duration-500 ${
+              showLead ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            }`}>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-muted border border-border rounded-sm flex items-center justify-center">
+                  {lead.source === 'google' ? <GoogleLogo /> : <MetaLogo />}
+                </div>
+                <div className="flex-1">
+                  <div className="text-[10px] font-mono text-muted-foreground uppercase">
+                    {lead.source === 'google' ? 'Google Ads' : 'Meta Ads'}
+                  </div>
+                  <div className="text-xs text-foreground">"{lead.message}"</div>
+                </div>
               </div>
-              <div className="flex-1">
-                <div className="text-[10px] font-mono text-neutral-400 uppercase">Inbound SMS</div>
-                <div className="text-xs text-neutral-900">"How much for a full detail?"</div>
+            </div>
+            
+            {/* Connector with pulse */}
+            <div className="flex flex-col items-center relative">
+              {/* Top line with pulse */}
+              <div className="w-px h-6 bg-border relative overflow-visible">
+                {pulsePhase === 'toCenter' && (
+                  <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
+                )}
+              </div>
+              
+              {/* Center icon */}
+              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-300 ${
+                pulsePhase === 'loading' ? 'bg-accent' : 'bg-muted border border-border'
+              }`}>
+                {pulsePhase === 'loading' ? (
+                  <div className="w-3 h-3 border-2 border-accent-foreground border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <Zap className={`w-3 h-3 transition-colors ${pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`} />
+                )}
+              </div>
+              <div className={`text-[9px] font-mono mt-1 transition-colors ${pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'text-accent' : 'text-muted-foreground'}`}>
+                2s response
+              </div>
+              
+              {/* Bottom line with pulse */}
+              <div className="w-px h-6 bg-border relative overflow-visible">
+                {pulsePhase === 'toBottom' && (
+                  <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
+                )}
+              </div>
+            </div>
+            
+            {/* Booked card */}
+            <div className={`w-full max-w-[240px] p-4 bg-accent border border-accent rounded-sm shadow-sm transition-all duration-500 ${
+              showBooked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-accent-foreground" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Booked</div>
+                  <div className="text-xs text-accent-foreground">{booking}</div>
+                </div>
+                <CheckCircle className="w-4 h-4 text-accent-foreground" />
               </div>
             </div>
           </div>
           
-          <div className="flex flex-col items-center">
-            <div className="w-px h-8 bg-white/20" />
-            <div className="w-6 h-6 bg-accent rounded-sm flex items-center justify-center">
-              <Zap className="w-3 h-3 text-accent-foreground" />
-            </div>
-            <div className="text-[9px] font-mono text-accent mt-1">AI · 2s</div>
-            <div className="w-px h-8 bg-white/20" />
-          </div>
-          
-          <div className="w-full max-w-[260px] p-4 bg-accent border border-accent rounded-sm shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-accent-foreground" />
+          {/* Stats bar */}
+          <div className="mt-6 pt-4 border-t border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div>
+                  <div className="text-lg font-mono font-semibold text-accent">$850</div>
+                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Today</div>
+                </div>
+                <div>
+                  <div className="text-lg font-mono font-semibold text-foreground">100%</div>
+                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Response</div>
+                </div>
               </div>
-              <div className="flex-1">
-                <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Confirmed</div>
-                <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
-              </div>
-              <CheckCircle className="w-4 h-4 text-accent-foreground" />
             </div>
           </div>
         </div>
         
-        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div>
-              <div className="text-lg font-mono font-bold text-accent">$850</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Today</div>
+        {/* Desktop */}
+        <div className="hidden md:flex flex-col h-full p-6">
+          <div className="flex items-center justify-between mb-8">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Lead → Booking</span>
+            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[9px] font-mono text-green-400 font-medium">24/7</span>
             </div>
-            <div>
-              <div className="text-lg font-mono font-bold text-white">100%</div>
-              <div className="text-[9px] font-mono text-white/40 uppercase">Response</div>
+          </div>
+          
+          <div className="flex-1 flex flex-col items-center justify-center gap-4">
+            <div className="w-full max-w-[260px] p-4 bg-white border border-white/20 rounded-sm shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-neutral-100 rounded-sm flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4 text-neutral-500" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-[10px] font-mono text-neutral-400 uppercase">Inbound SMS</div>
+                  <div className="text-xs text-neutral-900">"How much for a full detail?"</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <div className="w-px h-8 bg-white/20" />
+              <div className="w-6 h-6 bg-accent rounded-sm flex items-center justify-center">
+                <Zap className="w-3 h-3 text-accent-foreground" />
+              </div>
+              <div className="text-[9px] font-mono text-accent mt-1">AI · 2s</div>
+              <div className="w-px h-8 bg-white/20" />
+            </div>
+            
+            <div className="w-full max-w-[260px] p-4 bg-accent border border-accent rounded-sm shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-accent-foreground/20 rounded-sm flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-accent-foreground" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-[10px] font-mono text-accent-foreground/80 uppercase">Confirmed</div>
+                  <div className="text-xs text-accent-foreground">Tomorrow 10am · $220</div>
+                </div>
+                <CheckCircle className="w-4 h-4 text-accent-foreground" />
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div>
+                <div className="text-lg font-mono font-bold text-accent">$850</div>
+                <div className="text-[9px] font-mono text-white/40 uppercase">Today</div>
+              </div>
+              <div>
+                <div className="text-lg font-mono font-bold text-white">100%</div>
+                <div className="text-[9px] font-mono text-white/40 uppercase">Response</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Animated Retention Visual with cycling customer cards
   const RetentionVisual = () => {
