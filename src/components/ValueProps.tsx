@@ -158,8 +158,8 @@ const ValueProps = () => {
           {/* Flow diagram */}
           <div className="flex-1 flex flex-col items-center justify-center gap-0">
             {/* Lead card */}
-            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-background border border-border rounded-sm shadow-sm transition-all duration-500 ${
-              showLead ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            <div className={`w-full max-w-[240px] px-3 py-2.5 bg-background border border-border rounded-sm shadow-sm transition-all duration-700 ease-out ${
+              showLead ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-6 scale-95'
             }`}>
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 bg-muted border border-border rounded-sm flex items-center justify-center flex-shrink-0">
