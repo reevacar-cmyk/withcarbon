@@ -278,7 +278,7 @@ const Solution = () => {
   };
 
   return (
-    <section id="solution" className="pt-8 pb-24 md:pt-4 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(0_0%_5%)] md:text-[hsl(0_0%_100%)]">
+    <section id="solution" className="pt-8 pb-24 md:pt-4 md:pb-32 px-[3px] md:px-8 lg:px-16 bg-card md:bg-[hsl(0_0%_10%)] md:text-[hsl(0_0%_100%)]">
       <div className="container mx-auto">
         {/* Mobile layout - light mode */}
         <div className="md:hidden">
