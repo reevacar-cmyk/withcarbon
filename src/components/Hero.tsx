@@ -3,8 +3,10 @@ import { Calendar, MessageSquare, Users, ArrowRight, Briefcase, UserCheck } from
 import { useState, useEffect } from "react";
 
 const Hero = () => {
-  const handleBookDemo = () => {
-    window.open('https://calendly.com/az356', '_blank');
+  const scrollToPartnerForm = () => {
+    document.getElementById("partner-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
 
   // Mobile Hero Visual - Animated AI activity feed with fixed height
@@ -212,7 +214,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap items-center gap-4 fade-in fade-in-delay-3 justify-center md:justify-start pt-2">
-              <Button onClick={handleBookDemo} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
+              <Button onClick={scrollToPartnerForm} size="lg" className="md:bg-foreground md:hover:bg-foreground/90 md:text-background bg-accent hover:bg-accent/90 text-background font-medium px-8 w-full sm:w-auto">
                 Book a demo
               </Button>
             </div>
