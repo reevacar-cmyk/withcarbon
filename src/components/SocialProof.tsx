@@ -10,7 +10,7 @@ const SocialProof = () => {
   ];
 
   const stats = [
-    { value: "40+", label: "Active Partners", icon: Users },
+    { value: "12+", label: "Active Partners", icon: Users },
     { value: "6", label: "Months Building", icon: Calendar },
   ];
 
@@ -121,7 +121,7 @@ const SocialProof = () => {
                   {/* Stats */}
                   <div className="flex items-center gap-6">
                     <div>
-                      <span className="text-2xl font-bold text-white">40+</span>
+                      <span className="text-2xl font-bold text-white">12+</span>
                       <span className="text-sm text-white/50 ml-2">partners</span>
                     </div>
                     <div>
