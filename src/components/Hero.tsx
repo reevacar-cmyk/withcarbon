@@ -23,27 +23,34 @@ const Hero = () => {
               className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Shiny border - top-right corner where diagonal light hits */}
+              {/* Internal light glow from top-right */}
+              <div 
+                className="absolute -top-10 -right-10 w-32 h-32 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, rgba(255,200,150,0.12) 0%, rgba(255,180,120,0.06) 40%, transparent 70%)',
+                }}
+              />
+              {/* Shiny border - top and right edges where light originates */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, transparent 0%, transparent 60%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0.5) 85%, rgba(255,255,255,0.8) 90%, rgba(255,255,255,0.5) 95%, transparent 100%)',
+                  background: 'linear-gradient(135deg, transparent 0%, transparent 50%, rgba(255,220,180,0.3) 70%, rgba(255,240,220,0.7) 85%, rgba(255,255,255,0.9) 92%, rgba(255,240,220,0.5) 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
                 }}
               />
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2 relative z-10">
                 <span className="text-[9px] text-white/50 uppercase tracking-wider">Booked Jobs</span>
                 <Calendar className="w-3 h-3 text-accent" />
               </div>
-              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/30 mb-1">
+              <div className="grid grid-cols-7 gap-0.5 text-[6px] text-white/30 mb-1 relative z-10">
                 {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
                   <div key={i} className="text-center">{d}</div>
                 ))}
               </div>
-              <div className="grid grid-cols-7 gap-0.5">
+              <div className="grid grid-cols-7 gap-0.5 relative z-10">
                 {Array.from({ length: 21 }, (_, i) => {
                   const isBooked = [3, 5, 8, 10, 12, 15, 17, 19].includes(i);
                   const isToday = i === 10;
@@ -61,7 +68,7 @@ const Hero = () => {
                   );
                 })}
               </div>
-              <div className="mt-2 text-[8px] text-white/40">8 jobs this week</div>
+              <div className="mt-2 text-[8px] text-white/40 relative z-10">8 jobs this week</div>
             </div>
             
             {/* AI SMS Follow-ups - spans 5 cols */}
@@ -69,22 +76,29 @@ const Hero = () => {
               className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Shiny border - top edge where light grazes */}
+              {/* Internal light glow from top */}
+              <div 
+                className="absolute -top-8 left-1/2 -translate-x-1/2 w-28 h-24 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(ellipse, rgba(255,200,150,0.1) 0%, rgba(255,180,120,0.04) 50%, transparent 70%)',
+                }}
+              />
+              {/* Shiny border - top edge */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 5%, transparent 15%, transparent 100%)',
+                  background: 'linear-gradient(180deg, rgba(255,240,220,0.8) 0%, rgba(255,220,180,0.4) 3%, transparent 8%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
                 }}
               />
-              <div className="flex items-center gap-1.5 mb-2">
+              <div className="flex items-center gap-1.5 mb-2 relative z-10">
                 <MessageSquare className="w-2.5 h-2.5 text-accent" />
                 <span className="text-[9px] text-white/50 uppercase tracking-wider">Follow-ups</span>
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 relative z-10">
                 {[
                   { name: 'Mike R.', msg: 'Time for your next detail?', status: 'Sent' },
                   { name: 'Sarah K.', msg: 'How was your ceramic coat?', status: 'Replied' },
@@ -109,25 +123,32 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Shiny border - left edge where light passes */}
+              {/* Internal light glow from top-left */}
+              <div 
+                className="absolute -top-6 -left-6 w-24 h-24 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, rgba(255,200,150,0.08) 0%, transparent 60%)',
+                }}
+              />
+              {/* Shiny border - top-left edge */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 3%, transparent 10%, transparent 100%)',
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,240,220,0.6) 5%, rgba(255,220,180,0.3) 12%, transparent 25%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
                 }}
               />
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2 relative z-10">
                 <span className="text-[9px] text-white/50 uppercase tracking-wider">Inbound Leads</span>
                 <div className="flex gap-1">
                   <div className="w-3 h-3 rounded bg-[#4267B2]/30 flex items-center justify-center text-[6px] text-[#4267B2]">f</div>
                   <div className="w-3 h-3 rounded bg-[#EA4335]/30 flex items-center justify-center text-[6px] text-[#EA4335]">G</div>
                 </div>
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 relative z-10">
                 {[
                   { source: 'Google', name: 'New lead: Alex M.', time: '2m ago', color: 'text-[#EA4335]' },
                   { source: 'Facebook', name: 'Quote request: Lisa P.', time: '8m ago', color: 'text-[#4267B2]' },
@@ -142,7 +163,7 @@ const Hero = () => {
                   </div>
                 ))}
               </div>
-              <div className="mt-2 pt-1.5 border-t border-white/5 flex justify-between">
+              <div className="mt-2 pt-1.5 border-t border-white/5 flex justify-between relative z-10">
                 <span className="text-[8px] text-white/40">AI responded to all</span>
                 <span className="text-[8px] text-emerald-400">✓</span>
               </div>
@@ -152,22 +173,29 @@ const Hero = () => {
             <div 
               className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Shiny border - bottom-left where light exits */}
+              {/* Internal light glow from top */}
+              <div 
+                className="absolute -top-6 right-4 w-20 h-20 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, rgba(255,200,150,0.06) 0%, transparent 60%)',
+                }}
+              />
+              {/* Shiny border - top-right */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, transparent 0%, transparent 85%, rgba(255,255,255,0.2) 92%, rgba(255,255,255,0.4) 95%, transparent 100%)',
+                  background: 'linear-gradient(160deg, transparent 0%, transparent 60%, rgba(255,220,180,0.2) 80%, rgba(255,240,220,0.5) 90%, rgba(255,255,255,0.7) 95%, transparent 100%)',
                   mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   maskComposite: 'xor',
                   WebkitMaskComposite: 'xor',
                   padding: '1px',
                 }}
               />
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2 relative z-10">
                 <span className="text-[9px] text-white/50 uppercase tracking-wider">Team</span>
                 <Users className="w-3 h-3 text-accent" />
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 relative z-10">
                 {[
                   { name: 'Josh T.', role: 'Lead Detailer', status: 'On Job', statusColor: 'bg-emerald-500' },
                   { name: 'Mike S.', role: 'Detailer', status: 'Available', statusColor: 'bg-blue-500' },
@@ -189,22 +217,6 @@ const Hero = () => {
             
           </div>
         </div>
-        
-        {/* Static diagonal light beam - subtle but bright like reference */}
-        <div 
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background: 'linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255,255,255,0.01) 40%, rgba(255,255,255,0.04) 43%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.04) 47%, rgba(255,255,255,0.01) 50%, transparent 55%, transparent 100%)',
-          }}
-        />
-        
-        {/* Core light line - thin bright streak */}
-        <div 
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background: 'linear-gradient(135deg, transparent 0%, transparent 44%, rgba(255,255,255,0.12) 44.8%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0.12) 45.2%, transparent 46%, transparent 100%)',
-          }}
-        />
         
         {/* Gradient fade for text readability - stronger at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-black via-black/95 to-transparent z-10 pointer-events-none" />
