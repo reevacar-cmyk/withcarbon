@@ -77,122 +77,156 @@ const Solution = () => {
     }
   ];
 
-  // Visual for unified system - with strategic orange highlights
+  // Visual for unified system - minimal industrial scientific style
   const UnifiedVisual = () => (
-    <div className="h-full flex flex-col p-5">
+    <div className="h-full flex flex-col p-4 font-mono">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-white/60 uppercase tracking-wider">All-in-One</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.UNIFIED</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Connected</span>
+        <span className="text-[10px] px-2 py-0.5 bg-accent rounded-sm text-foreground font-medium">CONNECTED</span>
       </div>
       
-      {/* Visual - Central hub with spokes */}
+      {/* Central hub diagram */}
       <div className="flex-1 flex items-center justify-center relative">
-        {/* Center hub - orange highlight */}
-        <div className="relative">
-          <div className="w-20 h-20 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center">
-            <span className="text-2xl font-bold text-accent">C</span>
+        {/* Center hub */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-sm bg-accent border border-accent flex items-center justify-center">
+            <span className="text-xl font-bold text-foreground">C</span>
           </div>
-          <div className="absolute inset-0 rounded-2xl border border-accent/20" style={{ animation: 'ping 2s ease-in-out infinite' }} />
+        </div>
+        
+        {/* Connection lines */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-48 h-48 border border-white/10 rounded-sm rotate-45" />
         </div>
         
         {/* Connected nodes */}
         {[
-          { icon: "📞", label: "Calls", position: "-translate-x-24 -translate-y-12" },
-          { icon: "💬", label: "Texts", position: "translate-x-24 -translate-y-12" },
-          { icon: "📅", label: "Jobs", position: "-translate-x-24 translate-y-12" },
-          { icon: "👤", label: "Customers", position: "translate-x-24 translate-y-12" }
+          { label: "CALLS", position: "top-4 left-1/2 -translate-x-1/2" },
+          { label: "TEXTS", position: "right-4 top-1/2 -translate-y-1/2" },
+          { label: "JOBS", position: "bottom-4 left-1/2 -translate-x-1/2" },
+          { label: "CRM", position: "left-4 top-1/2 -translate-y-1/2" }
         ].map((node, i) => (
           <div key={i} className={`absolute ${node.position}`}>
-            <div className="flex flex-col items-center gap-1">
-              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-lg">
-                {node.icon}
-              </div>
-              <span className="text-[10px] text-white/60">{node.label}</span>
+            <div className="px-2 py-1.5 bg-white/5 border border-white/20 rounded-sm">
+              <span className="text-[9px] text-white/70 tracking-wider">{node.label}</span>
             </div>
           </div>
         ))}
       </div>
       
-      {/* Stats */}
-      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-        <div className="text-[10px] text-white/60">Everything in one place</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] text-accent font-medium">Live</span>
+      {/* Data grid */}
+      <div className="border border-white/10 rounded-sm overflow-hidden mt-4">
+        <div className="grid grid-cols-4 divide-x divide-white/10">
+          {[
+            { label: "Sources", value: "4" },
+            { label: "Synced", value: "100%" },
+            { label: "Latency", value: "<1s" },
+            { label: "Status", value: "LIVE", isAccent: true }
+          ].map((stat, i) => (
+            <div key={i} className="p-2 text-center bg-white/[0.02]">
+              <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-accent' : 'text-white/80'}`}>{stat.value}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 
-  // Visual for visibility - with strategic orange highlights
+  // Visual for visibility - minimal industrial scientific style
   const VisibilityVisual = () => (
-    <div className="h-full flex flex-col p-5">
+    <div className="h-full flex flex-col p-4 font-mono">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-xs text-white/60 uppercase tracking-wider">Transparency</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.MONITOR</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">You see everything</span>
+        <span className="text-[10px] px-2 py-0.5 bg-white/10 border border-white/20 rounded-sm text-white/70">TRANSPARENT</span>
       </div>
       
-      {/* Visual - Simple automation feed */}
-      <div className="flex-1 space-y-3">
+      {/* Activity log */}
+      <div className="flex-1 space-y-1">
         {[
           { 
-            action: "Sent follow-up to John D.", 
-            reason: "45 days since last detail",
-            status: "Booked",
+            time: "09:42",
+            action: "Follow-up sent", 
+            target: "John D.",
+            reason: "45d since last",
+            status: "BOOKED",
             isHighlight: true
           },
           { 
-            action: "Answered call from new lead", 
-            reason: "AI qualified and booked",
-            status: "Done",
+            time: "09:38",
+            action: "Call answered", 
+            target: "New lead",
+            reason: "AI qualified",
+            status: "DONE",
             isHighlight: false
           },
           { 
-            action: "Escalated to you", 
-            reason: "Customer requested callback",
-            status: "Urgent",
+            time: "09:35",
+            action: "Escalated", 
+            target: "Mike S.",
+            reason: "Callback req",
+            status: "URGENT",
             isHighlight: true
+          },
+          { 
+            time: "09:31",
+            action: "SMS sent", 
+            target: "Sarah K.",
+            reason: "Appt confirm",
+            status: "SENT",
+            isHighlight: false
           }
         ].map((item, i) => (
           <div 
             key={i} 
-            className={`p-3 rounded-xl border ${
-              item.status === 'Urgent' 
+            className={`p-2 rounded-sm border ${
+              item.status === 'URGENT' 
                 ? 'bg-accent/10 border-accent/30' 
-                : item.status === 'Booked'
+                : item.status === 'BOOKED'
                 ? 'bg-accent/10 border-accent/30'
-                : 'bg-white/5 border-white/10'
+                : 'bg-white/[0.02] border-white/10'
             }`}
           >
-            <div className="flex items-start justify-between mb-1">
-              <span className="text-sm text-white font-medium">{item.action}</span>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                item.status === 'Urgent' || item.status === 'Booked'
-                  ? 'bg-accent/20 text-accent' 
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="text-[9px] text-white/40 shrink-0">{item.time}</span>
+                <span className="text-[10px] text-white/80 truncate">{item.action}</span>
+                <span className="text-[10px] text-white/50 truncate">→ {item.target}</span>
+              </div>
+              <span className={`text-[8px] px-1.5 py-0.5 rounded-sm shrink-0 ${
+                item.status === 'URGENT' || item.status === 'BOOKED'
+                  ? 'bg-accent text-foreground' 
                   : 'bg-white/10 text-white/60'
               }`}>
                 {item.status}
               </span>
             </div>
-            <div className="text-xs text-white/50">{item.reason}</div>
+            <div className="text-[9px] text-white/40 mt-0.5 ml-9">{item.reason}</div>
           </div>
         ))}
       </div>
       
-      {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-        <div className="text-[10px] text-white/60">AI shows you what it does & why</div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="text-[10px] text-accent font-medium">3 active</span>
+      {/* Footer stats */}
+      <div className="border border-white/10 rounded-sm overflow-hidden mt-3">
+        <div className="grid grid-cols-3 divide-x divide-white/10">
+          {[
+            { label: "Active", value: "3" },
+            { label: "Today", value: "47" },
+            { label: "Escalated", value: "2", isAccent: true }
+          ].map((stat, i) => (
+            <div key={i} className="p-2 text-center bg-white/[0.02]">
+              <div className="text-[8px] text-white/40 uppercase tracking-wider mb-0.5">{stat.label}</div>
+              <div className={`text-xs font-medium ${stat.isAccent ? 'text-accent' : 'text-white/80'}`}>{stat.value}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

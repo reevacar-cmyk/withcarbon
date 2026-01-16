@@ -133,62 +133,64 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
     );
   }
 
-  // Solution variant - A/B testing visualization
+  // Solution variant - Learning/optimization visualization - minimal industrial scientific style
   return (
-    <div className={cn("relative w-full h-full bg-[hsl(0_0%_8%)] rounded-lg overflow-hidden", className)}>
-      <div className="absolute inset-5 flex flex-col">
+    <div className={cn("relative w-full h-full bg-[hsl(0_0%_8%)] rounded-sm overflow-hidden font-mono", className)}>
+      <div className="absolute inset-4 flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs text-white/60 uppercase tracking-wider">AI Learning</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+            <span className="text-[10px] text-white/50 uppercase tracking-widest">SYS.OPTIMIZE</span>
           </div>
-          <span className="text-[10px] px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-accent">Auto-optimizing</span>
+          <span className="text-[10px] px-2 py-0.5 bg-accent rounded-sm text-foreground font-medium">LEARNING</span>
         </div>
 
-        {/* A/B Test cards */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="p-3 bg-white/10 rounded-xl border border-white/20">
-            <div className="text-[10px] text-white/60 mb-2 uppercase tracking-wider">Variant A</div>
-            <div className="space-y-1.5 mb-3">
-              <div className="h-2 w-full bg-white/20 rounded-full" />
-              <div className="h-2 w-3/4 bg-white/20 rounded-full" />
+        {/* A/B Test comparison */}
+        <div className="grid grid-cols-2 gap-1 mb-3">
+          <div className="p-3 bg-white/[0.02] border border-white/10 rounded-sm">
+            <div className="text-[9px] text-white/40 mb-2 uppercase tracking-wider">VARIANT.A</div>
+            <div className="space-y-1 mb-2">
+              <div className="h-1.5 w-full bg-white/10 rounded-sm" />
+              <div className="h-1.5 w-3/4 bg-white/10 rounded-sm" />
             </div>
-            <div className="text-2xl font-bold text-white/60 mb-1">42%</div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-              <div className="w-[42%] h-full bg-white/40" />
+            <div className="text-xl font-bold text-white/50 mb-1">42%</div>
+            <div className="h-1 bg-white/10 rounded-sm overflow-hidden">
+              <div className="w-[42%] h-full bg-white/30" />
             </div>
           </div>
-          <div className="p-3 bg-accent/10 rounded-xl border border-accent/30">
-            <div className="text-[10px] text-accent mb-2 uppercase tracking-wider flex items-center gap-1">
-              Variant B <span className="text-accent">✓</span>
+          <div className="p-3 bg-accent/10 border border-accent/30 rounded-sm">
+            <div className="text-[9px] text-accent mb-2 uppercase tracking-wider flex items-center gap-1">
+              VARIANT.B <span className="text-accent">✓</span>
             </div>
-            <div className="space-y-1.5 mb-3">
-              <div className="h-2 w-full bg-accent/30 rounded-full" />
-              <div className="h-2 w-2/3 bg-accent/30 rounded-full" />
+            <div className="space-y-1 mb-2">
+              <div className="h-1.5 w-full bg-accent/20 rounded-sm" />
+              <div className="h-1.5 w-2/3 bg-accent/20 rounded-sm" />
             </div>
-            <div className="text-2xl font-bold text-accent mb-1">58%</div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div className="text-xl font-bold text-accent mb-1">58%</div>
+            <div className="h-1 bg-white/10 rounded-sm overflow-hidden">
               <div className="w-[58%] h-full bg-accent" />
             </div>
           </div>
         </div>
 
-        {/* What AI learned */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-3 mb-4">
-          <div className="text-[10px] text-white/60 uppercase tracking-wider mb-2">What AI learned</div>
-          <div className="space-y-2">
+        {/* Learnings log */}
+        <div className="border border-white/10 rounded-sm overflow-hidden mb-3">
+          <div className="px-2 py-1.5 bg-white/[0.02] border-b border-white/10">
+            <span className="text-[9px] text-white/40 uppercase tracking-wider">LEARNINGS.LOG</span>
+          </div>
+          <div className="divide-y divide-white/5">
             {[
-              { insight: "Mentioning vehicle model increases response by 23%", status: "Applied" },
-              { insight: "Messages sent at 10am outperform 2pm by 18%", status: "Applied" },
-              { insight: "Follow-up on day 3 beats day 7", status: "Testing" }
+              { insight: "Vehicle model mention → +23% response", status: "APPLIED" },
+              { insight: "10am send time → +18% vs 2pm", status: "APPLIED" },
+              { insight: "Day 3 follow-up vs Day 7", status: "TESTING" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between text-[10px]">
-                <span className="text-white/80">{item.insight}</span>
-                <span className={`px-1.5 py-0.5 rounded text-[9px] ${
-                  item.status === 'Applied' 
-                    ? 'bg-accent/20 text-accent' 
-                    : 'bg-white/10 text-white/60'
+              <div key={i} className="flex items-center justify-between px-2 py-1.5 text-[9px]">
+                <span className="text-white/70">{item.insight}</span>
+                <span className={`px-1.5 py-0.5 rounded-sm ${
+                  item.status === 'APPLIED' 
+                    ? 'bg-accent text-foreground' 
+                    : 'bg-white/10 text-white/50'
                 }`}>
                   {item.status}
                 </span>
@@ -197,21 +199,22 @@ const AbstractGraphic = ({ variant = "hero", className }: AbstractGraphicProps) 
           </div>
         </div>
 
-        {/* Response rate chart */}
-        <div className="flex flex-col">
-          <div className="text-[10px] text-white/60 uppercase tracking-wider mb-2">Response Rate Trend</div>
-          <div className="flex items-end gap-1 h-12">
+        {/* Performance chart */}
+        <div className="flex-1 flex flex-col">
+          <div className="text-[9px] text-white/40 uppercase tracking-wider mb-2">RESPONSE.TREND</div>
+          <div className="flex items-end gap-0.5 flex-1 min-h-[48px]">
             {[25, 30, 35, 40, 38, 45, 52, 48, 55, 58, 62, 65].map((h, i) => (
               <div 
                 key={i}
-                className={`flex-1 rounded-t transition-all ${i >= 10 ? 'bg-accent' : 'bg-accent/40'}`}
+                className={`flex-1 rounded-sm transition-all ${i >= 10 ? 'bg-accent' : 'bg-white/20'}`}
                 style={{ height: `${h}%` }}
               />
             ))}
           </div>
-          <div className="flex items-center justify-between mt-1 text-[9px] text-white/60">
-            <span>Week 1</span>
-            <span>Now</span>
+          <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/10">
+            <span className="text-[8px] text-white/40">W1</span>
+            <span className="text-[8px] text-accent">+160%</span>
+            <span className="text-[8px] text-white/40">NOW</span>
           </div>
         </div>
       </div>
