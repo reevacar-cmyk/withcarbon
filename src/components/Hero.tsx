@@ -20,39 +20,28 @@ const Hero = () => {
             
             {/* Calendar with Booked Jobs - spans 7 cols */}
             <div 
-              className="col-span-7 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-7 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Strong internal light glow from top-left */}
+              {/* Subtle internal light glow from left */}
               <div 
-                className="absolute -top-12 -left-12 w-44 h-44 pointer-events-none"
+                className="absolute -top-8 -left-8 w-32 h-32 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,190,130,0.25) 0%, rgba(255,170,100,0.12) 35%, rgba(255,150,80,0.04) 60%, transparent 80%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - top and left edges - much brighter */}
+              {/* Selective border shine - only left edge, thin bright line */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute left-0 top-2 bottom-2 w-[1px] pointer-events-none rounded-full"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 45%, rgba(255,200,150,0.4) 65%, rgba(255,230,200,0.8) 80%, rgba(255,255,255,1) 90%, rgba(255,230,200,0.6) 100%)',
-                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                  maskComposite: 'xor',
-                  WebkitMaskComposite: 'xor',
-                  padding: '1.5px',
+                  background: 'linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 70%, transparent 100%)',
                 }}
               />
               {/* Strong fade overlay for right side - deep into darkness */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(100deg, transparent 0%, transparent 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.8) 100%)',
-                }}
-              />
-              {/* Content overlay - brighter on left */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,220,180,0.08) 0%, transparent 40%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -90,39 +79,34 @@ const Hero = () => {
             
             {/* AI SMS Follow-ups - spans 5 cols */}
             <div 
-              className="col-span-5 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-5 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
               style={{ minHeight: '130px' }}
             >
-              {/* Strong internal light glow from top-left */}
+              {/* Subtle internal light glow from left */}
               <div 
-                className="absolute -top-10 -left-8 w-32 h-32 pointer-events-none"
+                className="absolute -top-6 -left-6 w-24 h-24 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse, rgba(255,190,130,0.18) 0%, rgba(255,170,100,0.08) 45%, transparent 75%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - top-left edge - brighter */}
+              {/* Selective border shine - only top-left corner */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute left-0 top-0 w-[1px] h-12 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 60%, rgba(255,230,200,0.6) 82%, rgba(255,255,255,0.95) 92%, rgba(255,230,200,0.4) 100%)',
-                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                  maskComposite: 'xor',
-                  WebkitMaskComposite: 'xor',
-                  padding: '1.5px',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 60%, transparent 100%)',
+                }}
+              />
+              <div 
+                className="absolute left-0 top-0 h-[1px] w-8 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 60%, transparent 100%)',
                 }}
               />
               {/* Strong fade overlay for right side */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(100deg, transparent 0%, transparent 25%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.85) 100%)',
-                }}
-              />
-              {/* Content light wash */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,220,180,0.06) 0%, transparent 35%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%)',
                 }}
               />
               <div className="flex items-center gap-1.5 mb-2 relative z-10">
@@ -152,38 +136,27 @@ const Hero = () => {
             
             {/* Inbound Leads - spans 6 cols */}
             <div 
-              className="col-span-6 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Strong internal light glow from left */}
+              {/* Subtle internal light glow from left */}
               <div 
-                className="absolute -top-4 -left-10 w-36 h-36 pointer-events-none"
+                className="absolute -top-4 -left-8 w-28 h-28 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,190,130,0.2) 0%, rgba(255,170,100,0.08) 50%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - left edge - very bright */}
+              {/* Selective border shine - left edge, key highlight */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute left-0 top-3 bottom-3 w-[1px] pointer-events-none"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,230,200,0.7) 2%, rgba(255,200,150,0.3) 6%, transparent 15%, transparent 100%)',
-                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                  maskComposite: 'xor',
-                  WebkitMaskComposite: 'xor',
-                  padding: '1.5px',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0.5) 100%)',
                 }}
               />
               {/* Strong fade overlay for right side */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.85) 100%)',
-                }}
-              />
-              {/* Content light wash */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,220,180,0.08) 0%, transparent 30%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 30%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.9) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
@@ -216,38 +189,27 @@ const Hero = () => {
             
             {/* Employee Management - spans 6 cols */}
             <div 
-              className="col-span-6 bg-[hsl(0,0%,5%)] rounded-lg p-3 relative overflow-hidden"
+              className="col-span-6 bg-[hsl(0,0%,6%)] rounded-lg p-3 relative overflow-hidden"
             >
-              {/* Strong internal light glow from top-left */}
+              {/* Subtle internal light glow from left */}
               <div 
-                className="absolute -top-6 -left-6 w-28 h-28 pointer-events-none"
+                className="absolute -top-4 -left-4 w-20 h-20 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(255,190,130,0.12) 0%, rgba(255,170,100,0.05) 50%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)',
                 }}
               />
-              {/* Shiny border - top-left - bright */}
+              {/* Selective border shine - top edge only, subtle */}
               <div 
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute left-2 top-0 w-10 h-[1px] pointer-events-none"
                 style={{
-                  background: 'linear-gradient(225deg, transparent 0%, transparent 70%, rgba(255,220,180,0.4) 85%, rgba(255,240,220,0.7) 92%, rgba(255,255,255,0.9) 97%, transparent 100%)',
-                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                  maskComposite: 'xor',
-                  WebkitMaskComposite: 'xor',
-                  padding: '1.5px',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 70%, transparent 100%)',
                 }}
               />
               {/* Strong fade overlay for right side */}
               <div 
                 className="absolute inset-0 rounded-lg pointer-events-none z-[8]"
                 style={{
-                  background: 'linear-gradient(95deg, transparent 0%, transparent 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.85) 100%)',
-                }}
-              />
-              {/* Content light wash */}
-              <div 
-                className="absolute inset-0 rounded-lg pointer-events-none z-[7]"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(255,220,180,0.05) 0%, transparent 30%)',
+                  background: 'linear-gradient(95deg, transparent 0%, transparent 25%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.9) 100%)',
                 }}
               />
               <div className="flex items-center justify-between mb-2 relative z-10">
