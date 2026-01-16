@@ -40,7 +40,7 @@ const DesignPartnerForm = () => {
             <span className="text-white md:text-accent">with us.</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto leading-relaxed">
-            Join 100 detail businesses shaping the AI platform you actually need.
+            We're partnering with up to 40 detailing businesses to shape our AI platform.
           </p>
         </div>
 
@@ -58,23 +58,12 @@ const DesignPartnerForm = () => {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{item.title}</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-2">{item.title}</h3>
               <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">{item.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Spots remaining indicator */}
-        <div className="flex items-center justify-center gap-3 mb-8 fade-in fade-in-delay-1">
-          <div className="flex -space-x-2">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-8 h-8 rounded-full bg-white/20 md:bg-accent/20 border-2 border-[hsl(0_0%_10%)] flex items-center justify-center">
-                <span className="text-[10px] text-white md:text-accent font-bold">✓</span>
-              </div>
-            ))}
-          </div>
-          <span className="text-sm text-white/60">40+ partners already joined</span>
-        </div>
 
         {/* CTA Button only */}
         <div className="fade-in fade-in-delay-2 max-w-md mx-auto text-center">
