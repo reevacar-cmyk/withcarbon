@@ -49,6 +49,11 @@ const ValueProps = () => {
       { source: "google", message: "Open this weekend?" },
       { source: "meta", message: "Mobile detailing?" },
       { source: "google", message: "Full detail cost?" },
+      { source: "meta", message: "PPF pricing?" },
+      { source: "google", message: "Can you remove scratches?" },
+      { source: "meta", message: "How long does it take?" },
+      { source: "google", message: "Do you come to me?" },
+      { source: "meta", message: "Tint windows too?" },
     ];
     
     const bookings = [
@@ -59,6 +64,11 @@ const ValueProps = () => {
       "Sunday 11am · $320",
       "Tomorrow 2pm · $280",
       "Friday 4pm · $240",
+      "Monday 11am · $1,200",
+      "Thursday 9am · $150",
+      "Tomorrow 4pm · $380",
+      "Saturday 2pm · $220",
+      "Wednesday 10am · $350",
     ];
     
     useEffect(() => {
