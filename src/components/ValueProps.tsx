@@ -801,10 +801,10 @@ const ValueProps = () => {
             >
               {/* Content */}
               <div className="space-y-1 md:space-y-3 md:flex-1">
-                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-[hsl(210_100%_50%)] md:text-white tracking-tight">
+                <div className="pt-4 md:pt-0 text-5xl md:text-6xl lg:text-7xl font-bold text-accent md:text-white tracking-tight">
                   <StaticMetric value={value.metric} />
                 </div>
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[hsl(210_100%_50%)] md:text-white">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-accent md:text-white">
                   <span className="md:hidden">{value.mobileTitle}</span>
                   <span className="hidden md:inline">{value.title}</span>
                 </h3>
