@@ -222,21 +222,6 @@ const ValueProps = () => {
             </div>
           </div>
           
-          {/* Stats bar */}
-          <div className="mt-6 pt-4 border-t border-border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div>
-                  <div className="text-lg font-mono font-semibold text-accent">$850</div>
-                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Today</div>
-                </div>
-                <div>
-                  <div className="text-lg font-mono font-semibold text-foreground">100%</div>
-                  <div className="text-[9px] font-mono text-muted-foreground uppercase">Response</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         
         {/* Desktop */}
