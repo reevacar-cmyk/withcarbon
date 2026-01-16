@@ -208,7 +208,7 @@ const Hero = () => {
               <span className="hidden md:inline text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">Turn customer conversations into booked jobs and repeat business.</span>
             </h1>
             
-            <p className="text-base md:text-xl max-w-xl fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
+            <p className="text-base md:text-xl max-w-2xl fade-in fade-in-delay-2 md:mx-0 mx-auto leading-snug">
               <span className="md:hidden text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
               <span className="hidden md:inline text-muted-foreground">All-in-one system that manages the busy work and gives each customer a white glove service.</span>
             </p>
