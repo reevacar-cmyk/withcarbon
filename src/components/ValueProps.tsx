@@ -177,14 +177,14 @@ const ValueProps = () => {
             {/* Connector with pulse */}
             <div className="flex flex-col items-center relative">
               {/* Top line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible">
+              <div className="w-px h-6 bg-border relative overflow-visible z-0">
                 {pulsePhase === 'toCenter' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
               </div>
               
               {/* Center icon */}
-              <div className={`w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
+              <div className={`relative z-10 w-6 h-6 rounded-sm flex items-center justify-center transition-colors duration-200 ${
                 pulsePhase === 'toCenter' || pulsePhase === 'loading' || pulsePhase === 'toBottom' || showBooked ? 'bg-accent' : 'bg-muted border border-border'
               }`}>
                 {pulsePhase === 'loading' ? (
@@ -198,7 +198,7 @@ const ValueProps = () => {
               </div>
               
               {/* Bottom line with pulse */}
-              <div className="w-px h-6 bg-border relative overflow-visible">
+              <div className="w-px h-6 bg-border relative overflow-visible z-0">
                 {pulsePhase === 'toBottom' && (
                   <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent animate-[pulseDown_0.5s_ease-out_forwards]" />
                 )}
