@@ -82,7 +82,7 @@ export default {
         },
         "slideInFromRight": {
           from: {
-            transform: "translateX(100%)",
+            transform: "translateX(140%)",
             opacity: "0",
           },
           to: {
@@ -96,7 +96,7 @@ export default {
             opacity: "1",
           },
           to: {
-            transform: "translateX(-100%)",
+            transform: "translateX(-140%)",
             opacity: "0",
           },
         },
