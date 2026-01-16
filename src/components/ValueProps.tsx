@@ -536,7 +536,8 @@ const ValueProps = () => {
 
   // Animated Automation Visual with curved lines and flowing dots
   const AutomationVisual = () => {
-    const [highlightedLog, setHighlightedLog] = useState<number | null>(null);
+    const [counters, setCounters] = useState([483, 728, 611]);
+    const [checkPulse, setCheckPulse] = useState<number | null>(null);
     
     const sources = [
       { icon: Phone, label: "Calls" },
@@ -545,10 +546,55 @@ const ValueProps = () => {
     ];
     
     const logEntries = [
-      { action: "Call logged", time: "Now" },
-      { action: "SMS synced", time: "2m" },
-      { action: "Job created", time: "5m" }
+      { action: "Call logged" },
+      { action: "SMS synced" },
+      { action: "Job created" }
     ];
+    
+    // Increment counters based on dot timing
+    useEffect(() => {
+      // Dot 1: 0.9s duration, starts at 0s
+      // Dot 2: 0.75s duration, starts at 0.3s
+      // Dot 3: 0.9s duration, starts at 0.6s
+      
+      const incrementCounter = (index: number) => {
+        setCounters(prev => {
+          const newCounters = [...prev];
+          newCounters[index] = newCounters[index] + 1;
+          return newCounters;
+        });
+        setCheckPulse(index);
+        setTimeout(() => setCheckPulse(null), 200);
+      };
+      
+      // Set up intervals matching each dot's cycle
+      const interval1 = setInterval(() => incrementCounter(0), 900);
+      const interval2 = setInterval(() => incrementCounter(1), 750);
+      const interval3 = setInterval(() => incrementCounter(2), 900);
+      
+      // Stagger the starts to match animation delays
+      const timeout2 = setTimeout(() => {
+        incrementCounter(1);
+      }, 300 + 750);
+      
+      const timeout3 = setTimeout(() => {
+        incrementCounter(2);
+      }, 600 + 900);
+      
+      // Initial increment for first dot
+      const timeout1 = setTimeout(() => {
+        incrementCounter(0);
+      }, 900);
+      
+      return () => {
+        clearInterval(interval1);
+        clearInterval(interval2);
+        clearInterval(interval3);
+        clearTimeout(timeout1);
+        clearTimeout(timeout2);
+        clearTimeout(timeout3);
+      };
+    }, []);
     
     return (
       <div className="relative w-full h-full overflow-hidden">
@@ -626,22 +672,24 @@ const ValueProps = () => {
                 </div>
               </div>
               
-              {/* Static log entries that light up */}
+              {/* Log entries with counter */}
               <div className="space-y-1.5">
                 {logEntries.map((log, i) => (
                   <div 
                     key={i}
-                    className="flex items-center justify-between text-[10px] transition-all duration-300"
-                    style={{
-                      animation: `logPulse 0.9s ease-out infinite`,
-                      animationDelay: `${i * 0.3}s`
-                    }}
+                    className="flex items-center justify-between text-[10px]"
                   >
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 text-accent-foreground" />
-                      <span className="text-accent-foreground font-medium">{log.action}</span>
+                      <CheckCircle 
+                        className={`w-3 h-3 transition-all duration-200 ${
+                          checkPulse === i 
+                            ? 'text-accent-foreground scale-125' 
+                            : 'text-accent-foreground/70'
+                        }`} 
+                      />
+                      <span className="text-accent-foreground">{log.action}</span>
                     </div>
-                    <span className="font-mono text-accent-foreground/70">{log.time}</span>
+                    <span className="font-mono text-accent-foreground/80">{counters[i]}</span>
                   </div>
                 ))}
               </div>
@@ -690,10 +738,16 @@ const ValueProps = () => {
                 {logEntries.map((log, i) => (
                   <div key={i} className="flex items-center justify-between text-[10px]">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 text-accent-foreground" />
-                      <span className="text-accent-foreground/90">{log.action}</span>
+                      <CheckCircle 
+                        className={`w-3 h-3 transition-all duration-200 ${
+                          checkPulse === i 
+                            ? 'text-accent-foreground scale-125' 
+                            : 'text-accent-foreground/70'
+                        }`} 
+                      />
+                      <span className="text-accent-foreground">{log.action}</span>
                     </div>
-                    <span className="font-mono text-accent-foreground/60">{log.time}</span>
+                    <span className="font-mono text-accent-foreground/80">{counters[i]}</span>
                   </div>
                 ))}
               </div>
